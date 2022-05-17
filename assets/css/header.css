@@ -156,7 +156,7 @@
     position: absolute;
     content: "";
     display: block;
-    width: 55px;
+    width: 90px;
     height: 50px;
     background-color: transparent;
     top: -35px;
@@ -180,11 +180,13 @@
 }
 
 .header_right-list-course {
-    right: 260px;
+    top: 60px;
+    right: 210px;
 }
 
 .header_right-wishlist {
-    right: 180px;
+    top: 60px;
+    right: 145px;
 }
 
 .header_right-list-cart {
@@ -194,7 +196,8 @@
 
 .header_right-avt {
     background-color: #333;
-    width: 48px;
+    width: 50px;
+    height: 50px;
     color: #fff;
     border-radius: 50%;
     display: flex;
@@ -226,28 +229,33 @@
     font-weight: bold;
 }
 
+.header_right-list-course ul,
 .header_right-wishlist ul,
 .header_right-list-cart ul {
     padding: 10px;
 }
 
+.list-course,
 .wishlist_item,
 .cart_item {
     padding-bottom: 10px;
     border-bottom: 1px solid #d1d7dc;
 }
 
+.list-course-img,
 .wishlist_item-img,
 .cart_item-img {
     width: 30%;
 }
 
+.list-course-des,
 .wishlist_item-des,
 .cart_item-des {
     text-align: left;
     padding-left: 5px;
 }
 
+.list-course-des p,
 .wishlist_item-des p,
 .cart_item-des p {
     letter-spacing: -0.2px;
@@ -255,6 +263,7 @@
     margin: 0px 0px 4px;
 }
 
+.list-course-btn,
 .cart-btn {
     background-color: #333;
     color: #fff;
@@ -282,4 +291,41 @@
 .cart-btn:hover {
     opacity: 0.95;
     cursor: pointer;
+}
+
+.header_right-user::before {
+    position: absolute;
+    content: "";
+    display: block;
+    width: 120px;
+    height: 30px;
+    background-color: transparent;
+    top: -20px;
+    right: 0;
+}
+
+.header_right-user {
+    position: absolute;
+    z-index: 3;
+    top: 61px;
+    border: 1px solid #d1d7dc;
+    box-shadow: 0px 0px 5px #d1d7dc;
+    width: 260px;
+    color: #1c1d1f;
+    text-align: left;
+    right: 0;
+    line-height: 20px;
+    display: none;
+}
+
+.header_right-user-profile:hover .header_right-user {
+    display: block;
+}
+
+.header_right-user-info {
+    padding-left: 10px;
+}
+
+.header_right-user-info p {
+    margin: 0px 0px 4px;
 }
