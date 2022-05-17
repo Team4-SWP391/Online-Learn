@@ -329,3 +329,31 @@
 .header_right-user-info p {
     margin: 0px 0px 4px;
 }
+
+.header_right-log-out,
+.header_right-log-in {
+    width: 80px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 5px;
+    font-weight: bold;
+}
+
+.header_right-log-in {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #333;
+}
+
+.header_right-log-out {
+    background-color: #333;
+
+}
+
+.header_right-log-out:hover,
+.header_right-log-in:hover {
+    opacity: 0.95;
+    cursor: pointer;
+}
