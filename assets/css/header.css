@@ -149,6 +149,12 @@
 .header_right-heart:hover .header_right-wishlist {
     display: block;
 }
+.header_right-heart{
+    margin-right: 10px;
+}
+.header_right-cart{
+    margin-right: 15px;
+}
 
 .header_right-list-course::before,
 .header_right-list-cart::before,
