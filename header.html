@@ -19,7 +19,7 @@
         <div class="header px-4 d-flex justify-content-between align-items-center">
             <div class="header_left d-flex justify-content-between align-items-center">
                 <div class="header_left-logo">
-                    <img src="./assets/img/Udemy_logo.svg" alt="" width="91" height="34" />
+                    <a href=""><img src="./assets/img/Udemy_logo.svg" alt="" width="91" height="34" /></a>
                 </div>
                 <div class="category">
                     <div class="category_title">
@@ -176,14 +176,26 @@
                     </div>
                 </form>
             </div>
-            <div class="header_right">
+            <div class="header_right position-relative">
                 <ul class="d-flex justify-content-between align-items-center m-0">
                     <li><a href="">Blog</a></li>
                     <li class="header_right-course"><a href="">My Course</a>
                         <div class="header_right-list-course">
-                            <span>Your Course Is Empty</span>
+                            <!-- <span>Your Course Is Empty</span>
                             <br>
-                            <a href="" class="fw-bold" style="color: var(--main-color);">Go To My Course</a>
+                            <a href="" class="fw-bold" style="color: var(--main-color);">Go To My Course</a> -->
+                            <ul>
+                                <li class="list-course d-flex">
+                                    <img src="https://img-c.udemycdn.com/course/240x135/1362070_b9a1_2.jpg" alt=""
+                                        class="list-course-img">
+                                    <div class="list-course-des">
+                                        <p class="list-course-title fw-bold">Learn C++ Programming</p>
+                                        <p class="list-course-author">FPT</p>
+                                        <p class="list-course-price fw-bold">$100</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="list-course-btn"><a>Go To My Course</a></div>
                         </div>
                     </li>
                     <li class="header_right-heart">
@@ -231,9 +243,38 @@
                             <div class="cart-btn"><a>Go To Cart</a></div>
                         </div>
                     </li>
-                    <li>
+                    <li class="header_right-user-profile">
                         <div class="header_right-avt">
                             <a href="">LV</a>
+                        </div>
+                        <div class="header_right-user">
+                            <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
+                                <div class="d-flex">
+                                    <div class="header_right-avt">
+                                        <a href="">LV</a>
+                                    </div>
+                                    <div class="header_right-user-info">
+                                        <p class="fw-bold"><a href="">My Full Name</a></p>
+                                        <p>My Email</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
+                                <ul class="p-0">
+                                    <li style="padding-bottom: 10px"><a href="">My Course</a></li>
+                                    <li style="padding-bottom: 10px;" class="d-flex justify-content-between"><a
+                                            href="">My Cart </a><span class="fw-bold text-white"
+                                            style="background-color: var(--main-color); border-radius: 50%; width: 20px;text-align: center;">1</span>
+                                    </li>
+                                    <li style="padding-bottom: 10px"><a href="">Wishlist</a></li>
+                                </ul>
+                            </div>
+                            <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
+                                <ul class="p-0">
+                                    <li style="padding-bottom: 10px"><a href="">Public Profile</a></li>
+                                    <li style="padding-bottom: 10px"><a href="">Edit Profile</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </li>
                 </ul>
