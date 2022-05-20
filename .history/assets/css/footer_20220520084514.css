@@ -1,0 +1,19 @@
+a{
+    color:white;
+}
+
+a:hover{
+    
+}
+.footer{
+    background-color: #1C1D1F;
+    padding: 15px;
+}
+.footer-head{
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-head__content{
+    display: flex;
+}

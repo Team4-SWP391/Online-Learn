@@ -1,0 +1,45 @@
+a {
+    color: white;
+}
+
+a:hover {
+    color: #A435F0;
+}
+
+.footer {
+    background-color: #1C1D1F;
+    padding: 15px;
+}
+
+.footer-head {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-head__content {
+    display: flex;
+}
+
+.footer-language{
+    color: white;
+}
+
+.footer-language__btn{
+    margin-right: 25px;
+    border: 1px solid white;
+    padding:10px 15px 0px 15px;
+    cursor: pointer;
+}
+
+.footer-laguage__btn:hover{
+    color: rgba(255, 255, 255, 0.132);
+}
+
+.footer-laguage__logo{
+    color: white;
+    margin-right: 8px;
+}
+
+.footer-end{
+    margin-top: 35px;
+}

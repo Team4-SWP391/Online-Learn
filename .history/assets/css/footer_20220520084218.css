@@ -1,0 +1,7 @@
+.footer{
+    color: white;
+}
+.footer-head{
+    display: flex;
+    justify-content: space-between;
+}
