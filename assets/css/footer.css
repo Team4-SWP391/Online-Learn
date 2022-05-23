@@ -2,7 +2,7 @@ a {
     color: white;
 }
 
-a:hover {
+.header-list__item > a:hover {
     color: #A435F0;
 }
 
