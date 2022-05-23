@@ -50,6 +50,11 @@
 
 .category:hover .category_list {
     display: block;
+    background-color: #fff;
+}
+
+.category_list-type:hover .category_list-items{
+    background-color: #fff;
 }
 
 .category_list-type:first-child {
@@ -102,6 +107,7 @@
 
 .category_list-items ul li:hover .category_list-topic {
     color: var(--main-color);
+    background-color: #fff;
 }
 
 .header_center {
