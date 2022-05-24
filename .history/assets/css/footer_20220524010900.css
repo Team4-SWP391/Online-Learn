@@ -1,5 +1,5 @@
-.footer_href {
-    color: #fff;
+a {
+    color: white;
 }
 
 .header-list__item > a:hover {
@@ -31,7 +31,6 @@
 
 .header-list__item{
    margin: 8px 0;
-   color:white;
 }
 .footer-language__btn{
     margin-right: 25px;
