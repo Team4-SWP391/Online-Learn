@@ -1,4 +1,7 @@
-﻿USE [Online_Learn]
+﻿CREATE DATABASE [Online_Learn]
+GO
+--DROP DATABASE [Online_Learn]
+USE [Online_Learn]
 GO
 /****** Object:  Table [dbo].[Account]    Script Date: 5/19/2022 8:15:57 PM ******/
 SET ANSI_NULLS ON

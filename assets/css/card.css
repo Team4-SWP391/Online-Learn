@@ -23,6 +23,7 @@
 .img{
     padding-top: 7px;
     padding-bottom: 14px;
+    height: 100px;
 }
 .rating{
     font-size: 15px;
@@ -71,3 +72,4 @@
 .colo{
     background-color: rgb(245, 237, 245);
 }
+
