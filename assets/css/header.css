@@ -53,7 +53,7 @@
     background-color: #fff;
 }
 
-.category_list-type:hover .category_list-items{
+.category_list-type:hover .category_list-items {
     background-color: #fff;
 }
 
@@ -155,10 +155,13 @@
 .header_right-heart:hover .header_right-wishlist {
     display: block;
 }
-.header_right-heart{
+
+
+.header_right-heart {
     margin-right: 10px;
 }
-.header_right-cart{
+
+.header_right-cart {
     margin-right: 15px;
 }
 
@@ -179,6 +182,7 @@
 .header_right-list-course,
 .header_right-list-cart,
 .header_right-wishlist {
+    background-color: #fff;
     position: absolute;
     z-index: 3;
     top: var(--height-header);
