@@ -27,6 +27,7 @@
 .img {
     padding-top: 7px;
     padding-bottom: 14px;
+    height: 100px;
 }
 
 .rating {
@@ -83,4 +84,9 @@
 
 .colo {
     background-color: rgb(245, 237, 245);
+<<<<<<< HEAD:assets/css/card.css
 }
+=======
+}
+
+>>>>>>> fe99ea41050effd261e88417e5c7ff15a1559302:assets/css/cart.css
