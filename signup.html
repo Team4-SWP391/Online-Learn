@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./assets/css/base.css" />
     <link rel="stylesheet" href="./assets/css/footer.css">
     <link rel="stylesheet" href="./assets/css/header.css" />
-    <link rel="stylesheet" href="./assets/css/login.css" />
+    <link rel="stylesheet" href="./assets/css/signup.css" />
 </head>
 
 <body>
@@ -290,49 +290,37 @@
             </div>
         </div>
         <div class="content">
-            <div class="content_title">
-                <h4 class="text-center" style="border-bottom: 1px solid #d1d7dc; padding: 5% 0;">Log In to Your Udemy
-                    Account!</h4>
-                <div class="login">
-                    <div class="login_facebook login_with">
-                        <i class="fab fa-facebook"></i>
-                        <span>Continue With Facebook</span>
+            <h4 class="text-center" style="border-bottom: 1px solid #d1d7dc; padding: 10% 0; ">Sign up and start
+                learning
+            </h4>
+            <div class="signup">
+                <form class="signup_form" action="">
+                    <div class="signup_account-form">
+                        <span data-index="0" class="signup_placeholder">Full Name</span>
+                        <input data-index="0" class="form_signup" value="" type="text">
+                        <span class="form_message-name">Full Name is not valid</span>
                     </div>
-                    <div class="login_google login_with">
-                        <i class="fab fa-google"></i>
-                        <span>Continue With Google</span>
+                    <div class="signup_account-form">
+                        <span data-index="1" class="signup_placeholder">Email</span>
+                        <input data-index="1" class="form_signup" value="" type="text">
+                        <span class="form_message-email">Email is not valid</span>
                     </div>
-                    <div class="login_account">
-                        <form action="">
-                            <div class="login_account-form">
-                                <i class="fal fa-envelope"></i>
-                                <input type="email" class="form" placeholder="Email">
-                            </div>
-                            <div class="login_account-form">
-                                <i class="fal fa-lock"></i>
-                                <input type="password" class="form" placeholder="Password">
-                            </div>
-                            <div class="login_account-remember">
-                                <input type="checkbox" id="remember">
-                                <label class="form-check-label" for="remember"
-                                    style="font-size: 1.1rem; cursor: pointer;">Remember
-                                    me</label>
-                            </div>
-                            <div class="login_account-submit">
-                                <button type="submit">Log In</button>
-                            </div>
-                        </form>
-                        <div class="login_account-forgot">
-                            <span>or <a href="">Forgot Password</a></span>
-                        </div>
+                    <div class="signup_account-form">
+                        <span data-index="2" class="signup_placeholder">Password</span>
+                        <input data-index="2" class="form_signup" value="" type="password">
+                        <span class="form_message-pass">Password is not valid</span>
                     </div>
-                    <div class="login_sigup">
-                        <span>Don't have an account? <a href="">Sign up</a></span>
+                    <div class="signup_account-submit">
+                        <button type="submit">Sign Up</button>
                     </div>
+
+                </form>
+                <div class="signup_login">
+                    <span>Already have an account? <a href="">Log In</a></span>
                 </div>
             </div>
         </div>
-        <footer class="footer">
+        <footer class=" footer">
             <div class="footer-head">
                 <div class="footer-head__content">
                     <ul class="footer-head__list">
@@ -392,5 +380,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
     integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
     crossorigin="anonymous"></script>
+<script src="./assets/js/signup.js"></script>
 
 </html>
