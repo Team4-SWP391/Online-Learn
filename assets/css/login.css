@@ -23,6 +23,7 @@
     align-items: center;
     margin-bottom: 10px;
     box-shadow: 1px 1px 5px #d1d7dc;
+    cursor: pointer;
 }
 
 .login_with i {
@@ -49,10 +50,13 @@
 .login_account-form input {
     height: 100%;
     width: 100%;
-    padding-left: 40px;
+    padding-left: 45px;
     border: 1px solid #1c1d1f;
+    font-size: 1.2rem;
 }
-
+.login_account-form input:focus{
+    outline: none;
+}
 .login_account-form input::placeholder {
     font-size: 1.2rem;
     font-weight: 400;
