@@ -1,45 +1,49 @@
-.pd-23{
-    padding-top: 23px;
-    margin-bottom: 32px;;
+.pd-23 {
+  padding-top: 23px;
+  margin-bottom: 32px;
+  ;
 }
 
-.filter{
-    width: 88.86px;
-    height: 62px;
-    background-color: white;
-    font-weight: 799;
-    border: 1px solid black;
+.filter {
+  width: 88.86px;
+  height: 62px;
+  background-color: white;
+  font-weight: 799;
+  border: 1px solid black;
 }
 
-.padd{
-    padding-right: 70px;
+.padd {
+  padding-right: 70px;
 }
-.best-seller{
-    font-size: 13px;
-    border: 3px solid #eceb98;
-    background-color: #eceb98;
-    text-align: center;
+
+.best-seller {
+  font-size: 13px;
+  border: 3px solid #eceb98;
+  background-color: #eceb98;
+  text-align: center;
 }
-.cost{
-    text-align: right;
-    font-size: 15px;
+
+.cost {
+  text-align: right;
+  font-size: 15px;
 }
-.result{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 750;
-    color: #6a6f73;
-    font-size: 16px;
-    padding-left: 45px;
+
+.result {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 750;
+  color: #6a6f73;
+  font-size: 16px;
+  padding-left: 45px;
 }
 
 
-.course-item:hover .detail{
+.course-item:hover .detail {
   display: block;
 }
 
-.detail::before{
+.detail::before {
   position: absolute;
   content: '';
   display: block;
@@ -47,17 +51,17 @@
   height: 30px;
   left: 194px;
   background-color: transparent;
- 
+
   bottom: -15px;
-  
-  
+
+
   right: 0px;
   z-index: 6;
   transform: rotate(45deg);
- 
+
 }
 
-.detail{
+.detail {
   position: absolute;
   bottom: 0;
   z-index: 3;
@@ -87,15 +91,19 @@
 .topic-content {
   display: none;
 }
-.cot{
+
+.cot {
   width: 50px;
 }
-.ke{
+
+.ke {
   border-top: 1px solid #DDD;
   margin-left: 2px;
 }
 
-
+.form-check {
+  padding: 5px 0;
+}
 
 #confirm:hover {
   cursor: pointer;
@@ -104,6 +112,7 @@
 #deny:hover {
   cursor: pointer;
 }
-.logo{
+
+.logo {
   padding-top: 12px;
 }
