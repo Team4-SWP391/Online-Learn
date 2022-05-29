@@ -30,11 +30,20 @@ a {
     color: #333;
 }
 
-.star {
-    width: 15px;
+.rate {
+    font-size: 14px;
+    font-weight: 700;
+    transform: translateY(-2px);
+    color: #b4695c;
+    display: inline;
 }
 
-.star.starActive {
+.stars {
+    width: 15px;
+    cursor: pointer;
+}
+
+.stars.starActive {
     color: var(--star-color);
 }
 
@@ -70,4 +79,11 @@ input[type=checkbox]:checked:after {
     position: absolute;
     top: 2px;
     left: 6px;
+}
+
+.best-seller {
+    font-size: 12px;
+    border: 3px solid #eceb98;
+    background-color: #eceb98;
+    text-align: center;
 }
