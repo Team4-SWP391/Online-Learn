@@ -1,0 +1,17 @@
+.details_bottom .stars {
+    display: inline-block;
+    list-style: none;
+    padding: 0;
+}
+.details_bottom .stars > li {
+    display: inline-block;
+}
+.details_bottom .stars > li .fa {
+    color: #f7c01b;
+}
+.details_bottom > span {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    margin-left: 5px;
+    color: #555;
+}
