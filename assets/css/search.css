@@ -16,12 +16,6 @@
   padding-right: 70px;
 }
 
-.best-seller {
-  font-size: 13px;
-  border: 3px solid #eceb98;
-  background-color: #eceb98;
-  text-align: center;
-}
 
 .cost {
   text-align: right;
@@ -38,6 +32,9 @@
   padding-left: 45px;
 }
 
+.course-item {
+  cursor: pointer;
+}
 
 .course-item:hover .detail {
   display: block;
