@@ -40,6 +40,10 @@
     text-transform: uppercase;
 }
 
+.signup_account-submit button:hover {
+    background-color: #7325a3;
+}
+
 .signup_login {
     text-align: center;
     margin: 20px;
@@ -47,7 +51,15 @@
 }
 
 .signup_login a {
-    color: var(--main-color);
+    color: #5624d0;
+}
+
+.signup_login a:hover {
+    color: #401b9c;
+}
+
+.form_signup:focus {
+    outline: none;
 }
 
 .form_message-name,

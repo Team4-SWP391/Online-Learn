@@ -47,13 +47,17 @@ const validateInfo = (callBack, element, messageElement) => {
 };
 
 form.addEventListener('submit', e => {
-    e.preventDefault();
     validateInfo(validateEmail(email.value), email, messageEmail);
     validateInfo(validatePass(password.value), password, messagePass);
     validateInfo(validateName(fullname.value), fullname, messageName);
+    if (validateEmail(email.value) && validatePass(password.value) && validateName(fullname.value)) {
+        form.submit();
+    } else {
+        e.preventDefault();
+    }
 });
 
-inputs.forEach(function (input, index) {
+inputs.forEach(function (input) {
     input.addEventListener('change', () => {
         validateInfo(validateName(fullname.value), fullname, messageName);
         validateInfo(validateEmail(email.value), email, messageEmail);

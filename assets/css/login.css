@@ -32,6 +32,10 @@
 
 }
 
+.login_with:hover {
+    background-color: #f7f9fa;
+}
+
 .login_account-form {
     height: 50px;
     position: relative;
@@ -54,9 +58,11 @@
     border: 1px solid #1c1d1f;
     font-size: 1.2rem;
 }
-.login_account-form input:focus{
+
+.login_account-form input:focus {
     outline: none;
 }
+
 .login_account-form input::placeholder {
     font-size: 1.2rem;
     font-weight: 400;
@@ -87,6 +93,10 @@ input[type=checkbox]:checked:after {
     text-transform: uppercase;
 }
 
+.login_account-submit button:hover {
+    background-color: #7325a3;
+}
+
 .login_sigup,
 .login_account-forgot {
     text-align: center;
@@ -96,5 +106,10 @@ input[type=checkbox]:checked:after {
 
 .login_sigup a,
 .login_account-forgot a {
-    color: var(--main-color);
+    color: #5624d0;
+}
+
+.login_sigup a,
+.login_account-forgot a {
+    color: #401b9c;
 }

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./assets/css/base.css" />
     <link rel="stylesheet" href="./assets/css/footer.css">
     <link rel="stylesheet" href="./assets/css/header.css" />
-    <link rel="stylesheet" href="./assets/css/signup.css" />
+    <link rel="stylesheet" href="./assets/css/forgot.css" />
 </head>
 
 <body>
@@ -290,33 +290,20 @@
             </div>
         </div>
         <div class="content">
-            <h4 class="text-center" style="border-bottom: 1px solid #d1d7dc; padding: 10% 0; ">Sign up and start
-                learning
+            <h4 class="text-center" style="border-bottom: 1px solid #d1d7dc; padding: 10% 0; ">Forgot Password
             </h4>
-            <div class="signup">
-                <form class="signup_form" action="sigup">
-                    <div class="signup_account-form">
-                        <span data-index="0" class="signup_placeholder">Full Name</span>
-                        <input data-index="0" class="form_signup" value="" type="text">
-                        <span class="form_message-name">Full Name is not valid</span>
-                    </div>
-                    <div class="signup_account-form">
-                        <span data-index="1" class="signup_placeholder">Email</span>
-                        <input data-index="1" class="form_signup" value="" type="email">
-                        <span class="form_message-email">Email is not valid</span>
-                    </div>
-                    <div class="signup_account-form">
-                        <span data-index="2" class="signup_placeholder">Password</span>
-                        <input data-index="2" class="form_signup" value="" type="password">
-                        <span class="form_message-pass">Password is not valid</span>
+            <div class="forgot">
+                <form id="form" action="forgot">
+                    <div class="forgot_form">
+                        <input id="email" class="forgot_form-email" placeholder="Email" value="" type="text">
+                        <span class="forgot_message-email">Email is not valid</span>
                     </div>
                     <div class="signup_account-submit">
-                        <button type="submit">Sign Up</button>
+                        <button type="submit">Reset Password</button>
                     </div>
-
                 </form>
-                <div class="signup_login">
-                    <span>Already have an account? <a href="">Log In</a></span>
+                <div class="forgot_login">
+                    <span>Or <br><a href="">Log In</a></span>
                 </div>
             </div>
         </div>
@@ -380,6 +367,26 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
     integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
     crossorigin="anonymous"></script>
-<script src="./assets/js/signup.js"></script>
+<script>
+    const form = document.querySelector('#form');
+    const email = document.querySelector('#email');
+    const message = document.querySelector('.forgot_message-email');
+    const validateEmail = email => {
+        return email.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
+    };
+    form.addEventListener('submit', (e) => {
+        if (!validateEmail(email.value)) {
+            e.preventDefault();
+            message.style.display = 'block';
+        }
+    })
+    email.addEventListener('change', () => {
+        if (validateEmail(email.value)) {
+            message.style.display = 'none';
+        } else {
+            message.style.display = 'block';
+        }
+    })
+</script>
 
 </html>
