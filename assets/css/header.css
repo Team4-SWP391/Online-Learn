@@ -336,6 +336,7 @@
 
 .header_right-user-profile:hover .header_right-user {
     display: block;
+    background-color: #fff;
 }
 
 .header_right-user-info {

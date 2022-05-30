@@ -15,3 +15,17 @@
     margin-left: 5px;
     color: #555;
 }
+.details_rating {
+    padding-left: 0;
+}
+.details_rating .rate{
+    margin-right: 5px;
+}
+
+.star-value {
+    color: #c6970c;
+    font-weight: bold;
+}
+.pa{
+    margin: 0 auto;
+}

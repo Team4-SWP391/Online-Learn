@@ -97,44 +97,13 @@ button{
   	margin-top:10px;
 }
 
-.details_rating {
+ .details_rating {
     float: right;
     height: 20px;
     padding: 0 10px;
 }
-.details_rating:not(:checked) > input {
-    position:absolute;
-    top:-9999px;
-}
-.details_rating:not(:checked) > label {
-    float:right;
-    width:1em;
-    overflow:hidden;
-    white-space:nowrap;
-    cursor:pointer;
-    font-size:18px;
-    color:#ccc;
-}
-.details_rating:not(:checked) > label:before {
-    content: '★ ';
-}
-.details_rating > input:checked ~ label {
-    color: #ffc700;    
-}
-.details_rating:not(:checked) > label:hover,
-.details_rating:not(:checked) > label:hover ~ label {
-    color: #deb217;  
-}
-.details_rating > input:checked + label:hover,
-.details_rating > input:checked + label:hover ~ label,
-.details_rating > input:checked ~ label:hover,
-.details_rating > input:checked ~ label:hover ~ label,
-.details_rating > label:hover ~ input:checked ~ label {
-    color: #c59b08;
-}
-
 .progress{
     height: 5px;
-}
+} 
 
 
