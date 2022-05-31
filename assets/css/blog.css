@@ -1,0 +1,36 @@
+.blog .container{
+    width: 1010px;
+}
+.post_feed{
+    margin: 30px 0;
+}
+.post_feed-item{
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 0.2px rgb(136, 137, 138) solid;
+}
+.post_feed-item-info{
+    width: 100%;
+    align-items: flex-start;
+    margin-left: 20px;
+}
+.post-meta--inline{
+    display: flex;
+    flex-wrap: wrap;
+    font-size: .8rem;
+    margin-bottom: 0.25rem;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+}
+.user--inline{
+    margin-right: 15px;
+}
+.user--inline span a{
+    color: rgb(98, 192, 192);
+}
+
+.post-footer-item{
+    margin-right: 20px;
+}
+
