@@ -23,8 +23,8 @@
 }
 
 .star-value {
-    color: #c6970c;
-    font-weight: bold;
+    font-size: 15px;
+    color: rgb(194, 136, 11);
 }
 .pa{
     margin: 0 auto;
