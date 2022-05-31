@@ -1,0 +1,43 @@
+
+.course{
+    
+    &-title{
+        background-color: #1C1D1F;
+        width: 100%;
+        height: 250px;
+        margin-bottom: 15px;
+        color: #fff;
+        &__main{
+            width: 650px;
+            margin-left: 200px;
+            padding: 30px;
+        }
+        &__name{
+            font-size: 30px;
+            font-weight: bold;
+        }
+        &__content{
+            font-size: 20px;
+        }
+        &__seller{
+            padding: 3px 5px;
+            background-color: #ECEB98;
+            color:#1C1D1F;
+            font-weight: bold;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+        &__totalstar{
+            color: #F3CA8C;
+            font-weight: bold;
+        }
+        &__level{
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+        &__author{
+            
+        }
+    }
+    
+}
