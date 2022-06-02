@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/header.css">
+    <link rel="stylesheet" href="./assets/css/footer.css">
+    <link rel="stylesheet" href="./assets/css/home.css">
+    <link rel="stylesheet" href="./assets/css/courseDetail.css">
+</head>
+
+<body>
+
+    <!--Header-->
+    <div class="app">
+        <div class="header px-4 d-flex justify-content-between align-items-center">
+            <div class="header_left d-flex justify-content-between align-items-center">
+                <div class="header_left-logo">
+                    <a href=""><img src="./assets/img/Udemy_logo.svg" alt="" width="91" height="34" /></a>
+                </div>
+                <div class="category">
+                    <div class="category_title">
+                        <span>Categories</span>
+                    </div>
+                    <div class="category_list">
+                        <ul>
+                            <li class="category_list-type">
+                                <span class="">Web Developmet<i class="fal fa-angle-right fw-bold"></i></span>
+                                <div class="category_list-items">
+                                    <span>Popular Topics</span>
+                                    <ul>
+                                        <li><a class="category_list-topic" href="">JavaScript</a></li>
+                                        <li><a class="category_list-topic" href="">React</a></li>
+                                        <li><a class="category_list-topic" href="">Angular</a></li>
+                                        <li><a class="category_list-topic" href="">Css</a></li>
+                                        <li><a class="category_list-topic" href="">NodeJS</a></li>
+                                        <li><a class="category_list-topic" href="">HTML5</a></li>
+                                        <li><a class="category_list-topic" href="">PHP</a></li>
+                                        <li><a class="category_list-topic" href="">VueJS</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="category_list-type">
+                                <div>
+                                    <span>Data Science<i class="fal fa-angle-right fw-bold"></i></span>
+                                    <div class="category_list-items">
+                                        <span>Popular Topics</span>
+                                        <ul>
+                                            <li><a class="category_list-topic" href="">Python</a></li>
+                                            <li><a class="category_list-topic" href="">Machine Learning</a></li>
+                                            <li><a class="category_list-topic" href="">Deep Learning</a></li>
+                                            <li><a class="category_list-topic" href="">Data Analysis</a></li>
+                                            <li><a class="category_list-topic" href="">Artificial Intelligence</a>
+                                            </li>
+                                            <li><a class="category_list-topic" href="">R (programming language)</a>
+                                            </li>
+                                            <li><a class="category_list-topic" href="">Statistics</a></li>
+                                            <li><a class="category_list-topic" href="">Natural Language
+                                                    Processing</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="category_list-type">
+                                <div>
+                                    <span>Mobile Developmet <i class="fal fa-angle-right fw-bold"></i></span>
+                                    <div class="category_list-items">
+                                        <span>Popular Topics</span>
+                                        <ul>
+                                            <li><a class="category_list-topic" href="">Google Flutter</a></li>
+                                            <li><a class="category_list-topic" href="">Androi Developmet</a></li>
+                                            <li><a class="category_list-topic" href="">IOS Developmet</a></li>
+                                            <li><a class="category_list-topic" href="">React Native</a></li>
+                                            <li><a class="category_list-topic" href="">Swift</a></li>
+                                            <li><a class="category_list-topic" href="">Dart (Programing Language)</a>
+                                            </li>
+                                            <li><a class="category_list-topic" href="">Mobile App Developmet</a></li>
+                                            <li><a class="category_list-topic" href="">Kotlin</a></li>
+                                            <li><a class="category_list-topic" href="">SwiftUI</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="category_list-type">
+                                <div>
+                                    <span>Programing Languages <i class="fal fa-angle-right fw-bold"></i></span>
+                                    <div class="category_list-items">
+                                        <span>Popular Topics</span>
+                                        <ul>
+                                            <li><a class="category_list-topic" href="">Python</a></li>
+                                            <li><a class="category_list-topic" href="">Java</a></li>
+                                            <li><a class="category_list-topic" href="">C#</a></li>
+                                            <li><a class="category_list-topic" href="">React</a></li>
+                                            <li><a class="category_list-topic" href="">C++</a></li>
+                                            <li><a class="category_list-topic" href="">JavaScript</a></li>
+                                            <li><a class="category_list-topic" href="">Go (Programing Language)</a>
+                                            </li>
+                                            <li><a class="category_list-topic" href="">Spring Framework</a></li>
+                                            <li><a class="category_list-topic" href="">C (Programing Language)</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="category_list-type">
+                                <div>
+                                    <span>Game Developmet <i class="fal fa-angle-right fw-bold"></i></span>
+                                    <div class="category_list-items">
+                                        <span>Popular Topics</span>
+                                        <ul>
+                                            <li><a class="category_list-topic" href="">Unity</a></li>
+                                            <li><a class="category_list-topic" href="">Unreal Engine</a></li>
+                                            <li><a class="category_list-topic" href="">Game Develoment Fundamental</a>
+                                            </li>
+                                            <li><a class="category_list-topic" href="">C#</a></li>
+                                            <li><a class="category_list-topic" href="">3D Game Develoment</a></li>
+                                            <li><a class="category_list-topic" href="">C++</a></li>
+                                            <li><a class="category_list-topic" href="">Unreal Engine Blueprints</a></li>
+                                            <li><a class="category_list-topic" href="">2D Game Develoment</a></li>
+                                            <li><a class="category_list-topic" href="">Virtual Reality</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="category_list-type">
+                                <div>
+                                    <span>Database Design & Developmet <i class="fal fa-angle-right fw-bold"></i></span>
+                                    <div class="category_list-items">
+                                        <span>Popular Topics</span>
+                                        <ul>
+                                            <li><a class="category_list-topic" href="">SQL</a></li>
+                                            <li><a class="category_list-topic" href="">MySQl</a></li>
+                                            <li><a class="category_list-topic" href="">Oracle SQL</a></li>
+                                            <li><a class="category_list-topic" href="">Database Management</a></li>
+                                            <li><a class="category_list-topic" href="">MonggoDB</a></li>
+                                            <li><a class="category_list-topic" href="">Apache Kafka</a></li>
+                                            <li><a class="category_list-topic" href="">Oracle Certification</a></li>
+                                            <li><a class="category_list-topic" href="">SQL Server</a></li>
+                                            <li><a class="category_list-topic" href="">Database Programing</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="category_list-type">
+                                <div>
+                                    <span>Software Testing <i class="fal fa-angle-right fw-bold"></i></span>
+                                    <div class="category_list-items">
+                                        <span>Popular Topics</span>
+                                        <ul>
+                                            <li><a class="category_list-topic" href="">Selenium WebDriver</a></li>
+                                            <li><a class="category_list-topic" href="">Java</a></li>
+                                            <li><a class="category_list-topic" href="">Automation Testing</a></li>
+                                            <li><a class="category_list-topic" href="">Selenium Testing Framework</a>
+                                            </li>
+                                            <li><a class="category_list-topic" href="">API Testing</a></li>
+                                            <li><a class="category_list-topic" href="">Postman</a></li>
+                                            <li><a class="category_list-topic" href="">Quality Assurance</a></li>
+                                            <li><a class="category_list-topic" href="">Cypress.io</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            <div class="header_center ">
+                <form action="">
+                    <div class="header_center-search">
+                        <i class="fal fa-search fs-5"></i>
+                        <input type="text" placeholder="Search For Anything..." class="outline-none" />
+                    </div>
+                </form>
+            </div>
+            <div class="header_right position-relative">
+                <ul class="d-flex justify-content-between align-items-center m-1" style="text-align: center;">
+                    <li class="header_right-blog"><a href="">Blog</a></li>
+                    <li class="header_right-course" style="width: 100px;"><a href="">My Course</a>
+                        <div class="header_right-list-course">
+                            <!-- <span>Your Course Is Empty</span>
+                            <br>
+                            <a href="" class="fw-bold" style="color: var(--main-color);">Go To My Course</a> -->
+                            <ul>
+                                <li class="list-course d-flex">
+                                    <img src="https://img-c.udemycdn.com/course/240x135/1362070_b9a1_2.jpg" alt=""
+                                        class="list-course-img">
+                                    <div class="list-course-des">
+                                        <p class="list-course-title fw-bold">Learn C++ Programming</p>
+                                        <p class="list-course-author">FPT</p>
+                                        <p class="list-course-price fw-bold">$100</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="list-course-btn"><a>Go To My Course</a></div>
+                        </div>
+                    </li>
+                    <li class="header_right-heart">
+                        <a href=""><i class="fal fa-heart fs-4"></i></a>
+                        <div class="header_right-wishlist">
+                            <!-- <span>Your Wish List Is Empty</span>
+                            <br>
+                            <a href="" class="fw-bold" style="color: var(--main-color);">Explore Course</a> -->
+                            <ul>
+                                <li class="wishlist_item d-flex">
+                                    <img src="https://img-c.udemycdn.com/course/240x135/1362070_b9a1_2.jpg" alt=""
+                                        class="wishlist_item-img">
+                                    <div class="wishlist_item-des">
+                                        <p class="wishlist_item-title fw-bold">Learn C++ Programming</p>
+                                        <p class="wishlist_item-author">FPT</p>
+                                        <p class="wishlist_item-price fw-bold">$100</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <div class="wishlist-btn-add"><a>Add To Cart</a></div>
+                            <div class="wishlist-btn-go"><a>Go To Wishlist</a></div>
+                        </div>
+                    </li>
+                    <li class="header_right-cart">
+                        <a href=""><i class="fal fa-shopping-cart fs-4"></i></a>
+                        <div class="header_right-cart-quantity d-flex justify-content-center align-items-center">
+                            <span>1</span>
+                        </div>
+                        <div class="header_right-list-cart">
+                            <!-- <span>Your Cart Is Empty</span>
+                            <br>
+                            <a href="" class="fw-bold" style="color: var(--main-color);">Your Cart Is Empty</a> -->
+                            <ul>
+                                <li class="cart_item d-flex">
+                                    <img src="https://img-c.udemycdn.com/course/240x135/1362070_b9a1_2.jpg" alt=""
+                                        class="cart_item-img">
+                                    <div class="cart_item-des">
+                                        <p class="cart_item-title fw-bold">Learn C++ Programming</p>
+                                        <p class="cart_item-author">FPT</p>
+                                        <p class="cart_item-price fw-bold">$100</p>
+                                    </div>
+                                </li>
+                            </ul>
+                            <span class="fw-bold text-start fs-4">Total: 100$</span>
+                            <div class="cart-btn"><a>Go To Cart</a></div>
+                        </div>
+                    </li>
+                    <li class="header_right-user-profile">
+                        <div class="header_right-avt">
+                            <a href="">LV</a>
+                        </div>
+                        <div class="header_right-user">
+                            <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
+                                <div class="d-flex">
+                                    <div class="header_right-avt">
+                                        <a href="">LV</a>
+                                    </div>
+                                    <div class="header_right-user-info">
+                                        <p class="fw-bold"><a href="">My Full Name</a></p>
+                                        <p>My Email</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
+                                <ul class="p-0">
+                                    <li style="padding-bottom: 10px"><a href="">My Course</a></li>
+                                    <li style="padding-bottom: 10px;" class="d-flex justify-content-between"><a
+                                            href="">My Cart </a><span class="fw-bold text-white"
+                                            style="background-color: var(--main-color); border-radius: 50%; width: 20px;text-align: center;">1</span>
+                                    </li>
+                                    <li style="padding-bottom: 10px"><a href="">Wishlist</a></li>
+                                </ul>
+                            </div>
+                            <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
+                                <ul class="p-0">
+                                    <li style="padding-bottom: 10px"><a href="">Public Profile</a></li>
+                                    <li style="padding-bottom: 10px"><a href="">Edit Profile</a></li>
+                                </ul>
+                            </div>
+                            <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
+                                <ul class="p-0">
+                                    <li style="padding-bottom: 10px"><a href="">Log Out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- <li class="header_right-log d-flex justify-content-between align-items-center">
+                        <div class="header_right-log-in"><a href="">Log In</a></div>
+                        <div class="header_right-log-out"><a href="" class="text-white">Sign Up</a></div>
+                    </li> -->
+                </ul>
+            </div>
+        </div>
+        <!--Header end-->
+
+    </div>
+
+
+
+    <!-- Course Detail -->
+    <div class="course-title container-fluid">
+        <div class="course-preview">
+            <div class="course-preview__image">
+                <img src="https://img-c.udemycdn.com/course/240x135/551498_7081.jpg" alt="">
+            </div>
+            <div class="course-preview__cart">
+                <h1 class="course-preview__price">$84.99</h1>
+                <button class="course-preview__btnatc">Add to cart</button><br>
+                <button class="course-preview__btnbn">Buy now</button><br>
+                <span class="course-preview__gua">30-Day Money-Black Guarantee</span>
+            </div>
+            <div class="course-preview__info">
+                <h5 class="course-preview__heading">This course includes:</h5>
+                <ul class="course-preview__list">
+                    <li class="course-preview__items"><i class="fas fa-laptop"></i> 6.5 hourse on-demand video</li>
+                    <li class="course-preview__items"><i class="fas fa-file"></i> 2 articles</li>
+                    <li class="course-preview__items"><i class="fas fa-folder"></i> 28 downloadable</li>
+                    <li class="course-preview__items"><i class="fas fa-infinity"></i> Full lifetime access</li>
+                    <li class="course-preview__items"><i class="fas fa-mobile-alt"></i> Access on mobile and TV</li>
+                    <li class="course-preview__items"><i class="fas fa-trophy"></i> Certificate of completion</li>
+                </ul>
+            </div>
+            <div class="course-preview__bussiness">
+                <h5 class="course-preview__train">Training 5 or more people?</h5>
+                <p class="course-preview__doc">Get your team access to 15,000+ top Udemy courses anytime, anywhere.</p>
+                <button class="course-preview__try">Try Udemy Business</button>
+            </div>
+        </div>
+        <div class="course-title__main">
+            <h1 class="course-title__name">Entity Framework in Depth: The Complete Guilde</h1>
+            <p class="course-title__content">Connect your application to a SQL Server database</p>
+            <span class="course-title__level"> <span class="course-title__seller">Bestseller</span>
+                <span class="course-title__totalstar">4.6</span>
+                <div class="rate">
+                    <i data-star='0' class="fas fa-star stars starActive"></i>
+                    <i data-star='1' class="fas fa-star stars starActive"></i>
+                    <i data-star='2' class="fas fa-star stars starActive"></i>
+                    <i data-star='3' class="fas fa-star stars starActive"></i>
+                    <i data-star='4' class="fas fa-star stars starActive"></i>
+                </div>
+                (11,321 ratings) <span class="course-title__totalstudent">53,275 students</span>
+            </span><br>
+            <span class="course-title__createby">Created by <span class="course-title__author">Mosh
+                    Hamedani</span></span>
+            <br>
+            <span class="course-title__cc"><i class="fas fa-laptop-code"></i> Java, Spring MVC, Spring boot, SQL,
+                MySQL</span>
+        </div>
+    </div>
+
+    <div class="course">
+        <div class="course-learn">
+            <h2 class="course-learn__heading">What you'll learn</h2>
+            <div class="course-learn__wrap">
+                <div class="course-learn__will">
+                    <span class="course-learn__skin"><i class="fad fa-check"></i>Have an intermediate skill level of
+                        Python
+                        programming.</span> <br>
+                    <span class="course-learn__skin"><i class="fad fa-check"></i>Use the numpy library to create and
+                        manipulate
+                        arrays.</span><br>
+                    <span class="course-learn__skin"><i class="fad fa-check"></i>Learn how to work with various data
+                        formats
+                        within python, including: JSON,HTML, and MS Excel Worksheets.</span><br>
+                    <span class="course-learn__skin"><i class="fad fa-check"></i>Have a portfolio of various data
+                        analysis
+                        projects.</span><br>
+                </div>
+                <div class="course-learn__will">
+                    <span class="course-learn__skin"><i class="fad fa-check"></i>Use the Jupyter Notebook
+                        Environment.</span><br>
+                    <span class="course-learn__skin"><i class="fad fa-check"></i>Use the pandas module with Python to
+                        create
+                        and
+                        structure data.</span><br>
+                    <span class="course-learn__skin"><i class="fad fa-check"></i>Create data visualizations using
+                        matplotlib
+                        and
+                        the seaborn modules with python.</span><br>
+                    <span class="course-learn__skin"><i class="fad fa-check"></i>Create data visualizations using
+                        matplotlib
+                        and
+                        the seaborn modules with python.</span><br>
+                </div>
+            </div>
+        </div>
+        <div class="course-content">
+            <h2 class="course-content-heading">Course content</h2>
+        </div>
+    </div>
+
+
+    <!-- Course Detail End -->
+
+
+    <!--Footer-->
+    <footer class="footer">
+        <div class="footer-head">
+            <div class="footer-head__content">
+                <ul class="footer-head__list">
+                    <li class="header-list__item"><a class="footer_href" href="#">Udemy Business</a></li>
+                    <li class="header-list__item"><a class="footer_href" href="#">Teach on Udemy</a></li>
+                    <li class="header-list__item"><a class="footer_href" href="#">Get the app</a></li>
+                    <li class="header-list__item"><a class="footer_href" href="#">About us</a></li>
+                    <li class="header-list__item"><a class="footer_href" href="#">Contact us</a></li>
+                </ul>
+                <ul class="footer-head__list">
+                    <li class="header-list__item"><a class="footer_href" href="#">Careers</a></li>
+                    <li class="header-list__item"><a class="footer_href" href="#">Blog</a></li>
+                    <li class="header-list__item"><a class="footer_href" href="#">Help and Support</a></li>
+                    <li class="header-list__item"><a class="footer_href" href="#">Affiliate</a></li>
+                    <li class="header-list__item"><a class="footer_href" href="#">Investors</a></li>
+                </ul>
+                <ul class="footer-head__list">
+                    <li class="header-list__item"><a class="footer_href" href="#">Terms</a></li>
+                    <li class="header-list__item"><a class="footer_href" href="#">Privacy policy</a></li>
+                    <li class="header-list__item"><a class="footer_href" href="#">Cookie settings</a></li>
+                    <li class="header-list__item"><a class="footer_href" href="#">Sitemap</a></li>
+                    <li class="header-list__item"><a class="footer_href" href="#">Accessibility statement</a></li>
+                </ul>
+            </div>
+            <div class="footer-map">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.4854095316073!2d105.52487561464551!3d21.01325499368394!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31345b465a4e65fb%3A0xaae6040cfabe8fe!2sFPT%20University!5e0!3m2!1sen!2s!4v1653015417673!5m2!1sen!2s"
+                    width="420" height="230" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+            <div class="footer-language">
+                <div class="footer-language__btn">
+                    <p><i class="fas fa-globe footer-laguage__logo"></i><span>English</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-end">
+            <div class="footer-end__logo">
+                <a href=""><img src="./assets/img/logo-udemy-inverted.svg" alt="" width="91" height="34" /></a>
+            </div>
+            <div class="footer-end__copyright">
+                <span>@ 2022 Team4 SWP391, Inc.</span>
+            </div>
+        </div>
+    </footer>
+    <!--Footer End -->
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+    crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="./assets/js/courseDetail.js"></script>
+
+</html>
