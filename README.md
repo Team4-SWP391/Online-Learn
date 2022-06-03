@@ -24,6 +24,6 @@
 
 -   10: git checkout main (về lại branch main)
 
--   11: git pull orgin main (kéo code vừa đẩy lên github về nên làm mỗi khi code thay đổi hoặc có thành viên up code mới lên)
+-   11: git pull origin main (kéo code vừa đẩy lên github về nên làm mỗi khi code thay đổi hoặc có thành viên up code mới lên)
 
 -   12: git branch -d + (tên branch vừa tạo ở bước 1): Xóa branch vừa tạo ở máy
