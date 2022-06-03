@@ -2,6 +2,10 @@
     position: relative;
 }
 
+.slider-content img{
+    width: 100%;
+}
+
 .slick-initialized .slick-slide {
     margin: 0 5px;
 }
@@ -54,8 +58,7 @@
 }
 
 .active-model {
-    padding: 15px 15px 15px 15px;
-    width: 1200px;
+    padding: 15px;
     margin: 0 auto;
     background-color: #181A1B;
     color: #fff;
@@ -78,7 +81,6 @@
 
 
 .home {
-    width: 1200px;
     margin: 0 auto;
 }
 
@@ -147,8 +149,4 @@
 
 .course-discount {
     font-weight: normal;
-}
-
-.stars {
-    
 }
