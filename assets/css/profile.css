@@ -1,0 +1,48 @@
+.bodi {
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.font-heading-serif-xxxl {
+    font-family: SuisseWorks, Georgia, Times, times new roman, serif, apple color emoji, segoe ui emoji, segoe ui symbol;
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 1.15;
+    letter-spacing: -.5px;
+}
+
+.choose {
+    font-family: udemy sans, sf pro display, -apple-system, BlinkMacSystemFont, Roboto, segoe ui, Helvetica, Arial, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -.02rem;
+    font-size: 1.4rem;
+}
+
+input[type=text] {
+    border: 2px solid black;   
+}
+
+.inn {
+    border: 2px solid black;   
+}
+
+.inn-span {
+    border: 2px solid black;
+    border-right: 0;
+}
+
+.save{
+    border: 3px sold rgb(130, 130, 130);
+    background-color: rgb(130, 130, 130);
+    font-weight: 800;
+    width: 90px;
+    height: 55px;
+}
+
+.on-foot{
+    border: 1px solid #1C1D1F;
+    color: white;
+    background-color: #1C1D1F;
+    margin-bottom: 1px;
+}
