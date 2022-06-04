@@ -4,7 +4,7 @@ const question = document.querySelector('.question');
 const numberQuestion = document.querySelectorAll('.sidebar .count');
 const viewResult = document.querySelector('.view_result');
 
-var answersOfUser = [];
+const display = document.querySelector('#time');
 
 listAnswers.forEach((answer, index) => {
     answer.addEventListener('click', function (e) {
@@ -23,13 +23,57 @@ listAnswers.forEach((answer, index) => {
     });
 });
 
+var answersOfUser = [];
 viewResult.addEventListener('click', e => {
-    if (quizDone.textContent < 10) {
-        alert('Bạn chưa hoàn thành bài thi');
-    } else {
-        question.querySelectorAll('.option-choosed').forEach(item => {
-            answersOfUser.push(item.dataset.option);
+    if (display.textContent != '00:00') {
+        question.querySelectorAll('.question_list-item-choice').forEach(item => {
+            let check = 0;
+            item.querySelectorAll('section').forEach((choice, index) => {
+                if (choice.classList.contains('option-choosed')) {
+                    check++;
+                    answersOfUser.push(choice.textContent);
+                }
+                if (check == 0 && index == 3) {
+                    answersOfUser.push('none');
+                }
+            });
         });
-        console.log(answersOfUser);
+        if (quizDone.textContent == 10) {
+            const check = confirm('Are you sure you want to submit?');
+            console.log(check);
+            if (check === true) {
+                console.log(answersOfUser);
+            }
+        } else {
+            alert('You need to fill all questions');
+            console.log(answersOfUser);
+        }
+    } else {
+        alert('Time Out');
     }
 });
+
+function startTimer(duration, display) {
+    var timer = duration,
+        minutes,
+        seconds;
+    setInterval(function () {
+        minutes = parseInt(timer / 60, 10);
+        seconds = parseInt(timer % 60, 10);
+
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        display.textContent = minutes + ':' + seconds;
+
+        if (--timer < 0) {
+            timer = duration;
+            viewResult.click();
+        }
+    }, 1000);
+}
+
+window.onload = function () {
+    var fiveMinutes = 60 * 5;
+    startTimer(fiveMinutes, display);
+};
