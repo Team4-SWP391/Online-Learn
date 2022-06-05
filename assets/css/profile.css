@@ -34,7 +34,7 @@ input[type=text] {
 
 .save{
     border: 3px sold rgb(130, 130, 130);
-    background-color: rgb(130, 130, 130);
+    background-color:black;
     font-weight: 800;
     width: 90px;
     height: 55px;
@@ -45,4 +45,10 @@ input[type=text] {
     color: white;
     background-color: #1C1D1F;
     margin-bottom: 1px;
+}
+.iconn{
+    color: rgb(130, 130, 130);
+    text-align: center;
+    border: 1px solid rgb(249, 249, 249);
+    background-color: rgb(249, 249, 249);
 }
