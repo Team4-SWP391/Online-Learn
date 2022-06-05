@@ -89,7 +89,7 @@
         }
     }
     &-preview {
-        position: fixed;
+        position: sticky;
         z-index: 2;
         top: 100px;
         right: 405px;

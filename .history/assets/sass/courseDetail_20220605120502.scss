@@ -89,9 +89,9 @@
         }
     }
     &-preview {
-        position: fixed;
+        position: absolute;
         z-index: 2;
-        top: 100px;
+        top: 60px;
         right: 405px;
         width: 340px;
         background-color: #fff;
@@ -293,8 +293,7 @@
             i{  
                 background-color: #1c1d1f;
                 color:#fff;
-                padding: 16px;
-                transform: translateX(10px);
+                padding: 12px;
             }
         }
         &__input{
