@@ -89,9 +89,9 @@
         }
     }
     &-preview {
-        position: absolute;
+        position: sticky;
         z-index: 2;
-        top: 40px;
+        top: 300px;
         right: 405px;
         width: 340px;
         background-color: #fff;

@@ -89,9 +89,9 @@
         }
     }
     &-preview {
-        position: absolute;
+        position: fixed;
         z-index: 2;
-        top: 40px;
+        top: 100px;
         right: 405px;
         width: 340px;
         background-color: #fff;
@@ -287,14 +287,15 @@
             font-weight: bold;
         }
         &__srv{
-            margin-bottom: 42px;
-            width: 100%;
+            
+            margin-bottom: 35px;
+            width: 80%;
             border: 2px solid #1c1d1f;
             i{  
                 background-color: #1c1d1f;
                 color:#fff;
                 padding: 16px;
-                transform: translateX(25px);
+                transform: translateX(10px);
             }
         }
         &__input{

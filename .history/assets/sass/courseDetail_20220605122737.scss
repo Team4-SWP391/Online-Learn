@@ -25,7 +25,6 @@
         }
     }
     &-title {
-        position: relative;
         background-color: #1c1d1f;
         width: 100%;
         height: 280px;
@@ -89,9 +88,9 @@
         }
     }
     &-preview {
-        position: absolute;
+        position: fixed;
         z-index: 2;
-        top: 40px;
+        top: 300px;
         right: 405px;
         width: 340px;
         background-color: #fff;

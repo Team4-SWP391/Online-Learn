@@ -89,9 +89,9 @@
         }
     }
     &-preview {
-        position: absolute;
+        position: fixed;
         z-index: 2;
-        top: 40px;
+        top: 100px;
         right: 405px;
         width: 340px;
         background-color: #fff;
@@ -287,7 +287,7 @@
             font-weight: bold;
         }
         &__srv{
-            margin-bottom: 42px;
+            margin-bottom: 35px;
             width: 100%;
             border: 2px solid #1c1d1f;
             i{  
