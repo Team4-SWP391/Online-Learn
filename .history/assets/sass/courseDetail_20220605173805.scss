@@ -286,19 +286,14 @@
             font-weight: bold;
         }
         &__srv {
-            margin-bottom: 45px;
+            margin-bottom: 35px;
             width: 100%;
             border: 2px solid #1c1d1f;
             i {
-                color: #fff;
             }
         }
         &__submit {
             border: none;
-            outline: none;
-            background-color: #1c1d1f;
-            padding: 13px 15px 13px 16px;
-            transform: translateX(25px);
         }
         &__input {
             width: 90%;
