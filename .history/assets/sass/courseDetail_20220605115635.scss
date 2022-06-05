@@ -89,9 +89,9 @@
         }
     }
     &-preview {
-        position: fixed;
+        position: absolute;
         z-index: 2;
-        top: 100px;
+        top: 60px;
         right: 405px;
         width: 340px;
         background-color: #fff;
@@ -286,25 +286,8 @@
         &__name{
             font-weight: bold;
         }
-        &__srv{
-            margin-bottom: 35px;
-            width: 80%;
-            border: 2px solid #1c1d1f;
-            i{  
-                background-color: #1c1d1f;
-                color:#fff;
-                padding: 16px;
-                transform: translateX(10px);
-            }
-        }
         &__input{
-            width: 90%;
             border: none;
-            padding: 12px;
-            font-size: 14px;
-            &:focus{
-                outline: none;
-            }
         }
     }
 }
