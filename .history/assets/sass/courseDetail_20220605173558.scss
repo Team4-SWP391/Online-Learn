@@ -186,10 +186,10 @@
         &__heading {
             font-weight: bold;
         }
-        &__author {
+        &__author{
             font-weight: bold;
             font-size: 20px;
-            color: #8710d8;
+            color:#8710d8;
         }
         &__slogan {
             color: rgb(183, 134, 115);
@@ -261,6 +261,7 @@
             border-bottom: 1px solid #999;
             &:last-child {
                 border-bottom: none;
+
             }
         }
         &__avt {
@@ -275,38 +276,33 @@
             border: none;
             width: 100%;
             padding: 12px;
-            font-weight: bold;
+            font-weight: bold;   
             border: 1px solid #1c1d1f;
             background-color: #fff;
             &:hover {
                 background-color: #eee;
             }
         }
-        &__name {
+        &__name{
             font-weight: bold;
         }
-        &__srv {
-            margin-bottom: 45px;
+        &__srv{
+            margin-bottom: 35px;
             width: 100%;
             border: 2px solid #1c1d1f;
-            i {
-                color: #fff;
+            i{  
+                background-color: #1c1d1f;
+                color:#fff;
+                padding: 16px;
+                transform: translateX(35px);
             }
         }
-        &__submit {
-            border: none;
-            outline: none;
-            background-color: #1c1d1f;
-            padding: 13px 15px 13px 16px;
-            transform: translateX(25px);
-        }
-        &__input {
+        &__input{
             width: 90%;
             border: none;
             padding: 12px;
             font-size: 14px;
-            font-family: "Poppins", sans-serif;
-            &:focus {
+            &:focus{
                 outline: none;
             }
         }
