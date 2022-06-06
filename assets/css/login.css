@@ -68,6 +68,12 @@
     font-weight: 400;
 }
 
+.login_account-role {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .login_account-remember {
     display: flex;
     align-items: center;
