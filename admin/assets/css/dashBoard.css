@@ -1,0 +1,55 @@
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    font-size: 26px;
+    font-weight: 600;
+}
+
+.tab-title {
+    border: 1px solid black;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.tab-title span {
+    color: black;
+}
+
+.tab-title.active {
+    background-color: black;
+}
+
+.tab-title.active span {
+    color: white;
+}
+
+.list_items {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+.item {
+    border: 1px solid black;
+    text-align: center;
+}
+
+.item_wrap {
+    color: black;
+    padding: 24px;
+}
+
+.item_wrap i {
+    font-size: 50px;
+}
+
+.item_wrap p {
+    font-size: 18px;
+}
+
+.item_wrap h3 {
+    margin-top: 20px;
+}
