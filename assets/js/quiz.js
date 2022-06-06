@@ -23,15 +23,15 @@ listAnswers.forEach((answer, index) => {
     });
 });
 
-var answersOfUser = [];
 viewResult.addEventListener('click', e => {
+    const answersOfUser = [];
     if (display.textContent != '00:00') {
         question.querySelectorAll('.question_list-item-choice').forEach(item => {
             let check = 0;
             item.querySelectorAll('section').forEach((choice, index) => {
                 if (choice.classList.contains('option-choosed')) {
                     check++;
-                    answersOfUser.push(choice.textContent);
+                    answersOfUser.push(choice.dataset.option);
                 }
                 if (check == 0 && index == 3) {
                     answersOfUser.push('none');
@@ -44,13 +44,11 @@ viewResult.addEventListener('click', e => {
             if (check === true) {
                 console.log(answersOfUser);
             }
-        } else {
-            alert('You need to fill all questions');
-            console.log(answersOfUser);
         }
     } else {
         alert('Time Out');
     }
+    console.log(answersOfUser);
 });
 
 function startTimer(duration, display) {
@@ -67,13 +65,12 @@ function startTimer(duration, display) {
         display.textContent = minutes + ':' + seconds;
 
         if (--timer < 0) {
-            timer = duration;
             viewResult.click();
         }
     }, 1000);
 }
 
 window.onload = function () {
-    var fiveMinutes = 60 * 5;
+    var fiveMinutes = 5 * 60;
     startTimer(fiveMinutes, display);
 };
