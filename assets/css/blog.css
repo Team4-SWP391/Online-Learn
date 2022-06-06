@@ -27,10 +27,20 @@
     margin-right: 15px;
 }
 .user--inline span a{
-    color: rgb(98, 192, 192);
+    color: rgb(63, 155, 155);
 }
 
 .post-footer-item{
     margin-right: 20px;
+}
+.post-title--inline h3 a:hover{
+    color: var(--main-color);
+}
+.page-item.active .page-link{
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+}
+.page-link{
+    color: var(--main-color);
 }
 
