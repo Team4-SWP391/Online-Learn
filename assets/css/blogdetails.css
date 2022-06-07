@@ -82,6 +82,11 @@ a:hover{
 .comment{
   border: 1px solid gainsboro;
 }
+.profile{
+  padding-left:3px; 
+  display: flex;
+  align-items: center;
+}
 
 
 
