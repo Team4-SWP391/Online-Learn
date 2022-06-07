@@ -93,11 +93,17 @@
   position: absolute;
   z-index: 2;
   top: 100px;
-  right: 405px;
+  /* right: 405px; */
+  right: 200px;
   width: 340px;
   background-color: #fff;
   box-shadow: 0 0 3px 2px #eee;
   color: #1c1d1f;
+}
+.course-preview.modify {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
 }
 .course-preview__cart {
   padding: 25px;
