@@ -29,3 +29,20 @@ ul {
 ul li {
     list-style: none;
 }
+
+.rate {
+    font-size: 14px;
+    font-weight: 700;
+    transform: translateY(-2px);
+    color: #b4695c;
+    display: inline;
+}
+
+.stars {
+    width: 15px;
+    cursor: pointer;
+}
+
+.stars.starActive {
+    color: var(--star-color);
+}
