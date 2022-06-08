@@ -262,6 +262,7 @@
 .wishlist_item-img,
 .cart_item-img {
     width: 30%;
+    object-fit: cover;
 }
 
 .list-course-des,
