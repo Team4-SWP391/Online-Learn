@@ -58,6 +58,12 @@
     color: #401b9c;
 }
 
+.login_account-role {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .form_signup:focus {
     outline: none;
 }
