@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/course-update.css">
+</head>
+
+<body>
+
+    <!-- <div class="delete">
+        <div class="delete-head">
+            <div class="delete-close">
+                <i class="fas fa-times-circle"></i>
+            </div>
+        </div>
+        <div class="delete-content">
+            <i class="fas fa-exclamation-circle"></i>
+            <span class="delete-alert">Do you want delete Course</span>
+        </div>
+        <div class="delete-main">
+            <div class="delete__tt">
+                <a href="#" class="delete_link">Delete</a>
+            </div>
+            <div class="delete__tt">
+                <span class="delete_cancel">Cancel</span>
+            </div>
+
+        </div>
+    </div> -->
+
+    <div class="course">
+        <div class="course-header">
+            <a href="#backToList" class="course-header__back"><i class="fas fa-angle-left"></i>Back to course</a>
+            <span class="course-header__key">Keyword research for bloggers</span>
+            <span class="course-header__bold">Draft</span>
+            <span class="course-header__tt">Omin of video contenet upload</span>
+        </div>
+        <div class="course-wrap">
+            <div class="course-sidebar">
+                <div class="course-sidebar__content">
+                    <h4 class="course-sidebar__heading"><i class="fas fa-angle-down"></i>Lecture</h4>
+                    <ul class="course-sidebar__list">
+                        <li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Intro</a></li>
+                        <li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Hello world</a>
+                        </li>
+                        <li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Lesson 1</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="course-sidebar__content">
+                    <h4 class="course-sidebar__heading"><i class="fas fa-angle-down"></i>Exam</h4>
+
+                    <ul class="course-sidebar__list">
+                        <li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Progess Test
+                                1</a></li>
+                        <li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Assigment</a>
+                        </li>
+                        <li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Final Exam</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="course-update">
+                <h3 class="course-update__heading">Course Detail</h3>
+                <div class="course-update__content">
+                    <div class="course-update__form">
+                        <form action="#" method="get">
+                            <div class="course-update__formgr">
+                                <input type="text" class="course-update__input" hidden>
+                            </div>
+                            <div class="course-update__formgr">
+                                <label class="course-update__lable">Course Name</label><br>
+                                <input type="text" class="course-update__input" value="ASP.NET USING ENTITY FRAMEWORK">
+                            </div>
+                            <div class="course-update__formgr">
+                                <label class="course-update__lable">Price</label><br>
+                                <input type="number" min="0" class="course-update__input" value="99">
+                            </div>
+                            <div class="course-update__formgr">
+                                <label class="course-update__lable">Language</label><br>
+                                <input type="text" class="course-update__input" value="English">
+                            </div>
+                            <div class="course-update__formgr">
+                                <label class="course-update__lable">Image</label><br>
+                                <input type="file" class="course-update__input">
+                            </div>
+                            <div class="course-update__formgr">
+                                <label class="course-update__lable">Description</label><br>
+                                <textarea class="course-update__textarea" cols="68"
+                                    rows="15">Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis tempore fugit perferendis saepe possimus nam sit ad pariatur, libero ipsam aliquid consectetur obcaecati sunt nulla, eligendi aspernatur! Suscipit, quas iure.
+                                Velit iusto maiores eligendi assumenda nisi minus, sed consectetur saepe neque dicta ad dolores facere repellat nulla quos quidem porro asperiores incidunt modi vero fugiat praesentium! Eaque nam unde quisquam!</textarea>
+                            </div>
+                            <div class="course-update__formgr">
+                                <label class="course-update__lable">Department</label><br>
+                                <Select class="course-update__select">
+                                    <option class="course-update__option">Web</option>
+                                    <option class="course-update__option">Design</option>
+                                    <option class="course-update__option">Software</option>
+                                </Select>
+                            </div>
+                            <div class="course-update__formgr">
+                                <label class="course-update__lable">Level</label><br>
+                                <Select class="course-update__select">
+                                    <option class="course-update__option">Easy</option>
+                                    <option class="course-update__option">Medium</option>
+                                    <option class="course-update__option">Night mare</option>
+                                </Select>
+                            </div>
+                            <div class="course-update__formgr">
+                                <label class="course-update__lable">Discount(%)</label><br>
+                                <input type="number" min="0" max="100" style="width:20%" class="course-update__input"
+                                    value="30">
+                            </div>
+                            <div class="course-update__formgr">
+                                <p class="course-update__lbp">Program</><br>
+                                    <input type="checkbox" class="course-update__checkbox" id="course-update__checkbox">
+                                    <label class="course-update__lablecb" for="course-update__checkbox">C#</label>
+                                    <input type="checkbox" class="course-update__checkbox" id="course-update__checkbox">
+                                    <label class="course-update__lablecb" for="course-update__checkbox">Java</label>
+                                    <input type="checkbox" class="course-update__checkbox" id="course-update__checkbox">
+                                    <label class="course-update__lablecb" for="course-update__checkbox">SQL</label>
+                                    <input type="checkbox" class="course-update__checkbox" id="course-update__checkbox">
+                                    <label class="course-update__lablecb" for="course-update__checkbox">Python</label>
+                                    <input type="checkbox" class="course-update__checkbox" id="course-update__checkbox">
+                                    <label class="course-update__lablecb"
+                                        for="course-update__checkbox">JavaScript</label>
+                                    <input type="checkbox" class="course-update__checkbox" id="course-update__checkbox">
+                                    <label class="course-update__lablecb" for="course-update__checkbox">ReactJS</label>
+                                    <input type="checkbox" class="course-update__checkbox" id="course-update__checkbox">
+                                    <label class="course-update__lablecb" for="course-update__checkbox">VueJS</label>
+                            </div>
+                            <div class="course-update__formgr">
+                                <button class="course-update__submit">Update</button>
+                        </form>
+                        <button id="#course" class="course-update__info">Delete</button>
+                    </div>
+                </div>
+                <div class="course-update__image">
+                    <img src="https://img-c.udemycdn.com/course/240x135/4259956_25c8_4.jpg" alt="" srcset="">
+                    <br>
+                    <span class="course-update__author">Mosh Hamedani</span><br>
+                    <span class="course-update__total"><span>4.6</span>
+                        <div class="rate">
+                            <i data-star='0' class="fas fa-star stars starActive"></i>
+                            <i data-star='1' class="fas fa-star stars starActive"></i>
+                            <i data-star='2' class="fas fa-star stars starActive"></i>
+                            <i data-star='3' class="fas fa-star stars starActive"></i>
+                            <i data-star='4' class="fas fa-star stars starActive"></i>
+                        </div>
+                        (11.269)
+                    </span><br>
+                    <span class="course-update__lct">8 lecture - 16 lesson - 3 Exam</span>
+                    <div class="course-update__question">
+                        <a href="#" class="course-update__qslink">View list question</a>
+                        <a href="#" class="course-update__qslink">Add new Lecture</a>
+                        <a href="#" class="course-update__qslink">Add new Exam</a>
+                    </div>
+                    <img src="./assets/image/Online learning-amico.svg" style="margin-top: 100px;" alt="" srcset="">
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="./assets/js/course-update.js"></script>
+</body>
+
+</html>
