@@ -113,3 +113,10 @@ input[type=checkbox]:checked:after {
 .login_account-forgot a {
     color: #401b9c;
 }
+
+.login_account-err-mess {
+    margin-top: 10px;
+    color: red;
+    font-size: 1.2rem;
+    font-weight: 500;
+}

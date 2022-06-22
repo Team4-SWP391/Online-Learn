@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
+using Online_Learn.AuthData;
 using Online_Learn.Models;
 
 namespace Online_Learn.Controllers {
@@ -17,7 +18,6 @@ namespace Online_Learn.Controllers {
         {
             _logger = logger;
         }
-
         public IActionResult Index()
         {
             return View();
