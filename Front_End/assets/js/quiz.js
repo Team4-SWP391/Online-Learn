@@ -22,9 +22,8 @@ listAnswers.forEach((answer, index) => {
         quizDone.textContent = question.querySelectorAll('.option-choosed').length;
     });
 });
-
+const answersOfUser = [];
 viewResult.addEventListener('click', e => {
-    const answersOfUser = [];
     if (display.textContent != '00:00') {
         question.querySelectorAll('.question_list-item-choice').forEach(item => {
             let check = 0;
