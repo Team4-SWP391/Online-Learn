@@ -197,7 +197,7 @@ namespace Online_Learn.Controllers
             {
                 _context.Add(course);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(List));
             }
             ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "Password", course.AccountId);
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", course.DepartmentId);
@@ -288,7 +288,7 @@ namespace Online_Learn.Controllers
             Course course = await _context.Courses.FirstOrDefaultAsync(x => x.CourseId == id);
             _context.Courses.Remove(course);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(List));
         }
 
         private bool CourseExists(int id)
