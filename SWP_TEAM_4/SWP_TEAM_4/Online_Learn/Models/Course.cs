@@ -49,7 +49,8 @@ namespace Online_Learn.Models
             }
             else
             {
-                return (double)((IsSale / 100) * Price);
+                return 1;
+                //return (double)((IsSale / 100) * Price);
             }
         }
 
