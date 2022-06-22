@@ -1,0 +1,106 @@
+﻿@model Online_Learn.Models.Course
+
+@{
+	ViewData["Title"] = "Create";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<link rel="stylesheet" href="~/css/home.css">
+<link rel="stylesheet" href="~/css/course-create.css">
+
+<div class="course">
+	<div class="course-header">
+		<a asp-action="Index" class="course-header__back"><i class="fas fa-angle-left"></i>Back to course</a>
+		<span class="course-header__key">Keyword research for bloggers</span>
+		<span class="course-header__bold">Draft</span>
+		<span class="course-header__tt">Omin of video contenet upload</span>
+	</div>
+	<div class="course-wrap">
+		<div class="course-image">
+			<div class="course_create__imageit">
+				<img src="~/css/Online learning-amico.svg" alt="" srcset="">
+			</div>
+			<div class="course_create__imageit">
+				<img src="~/css/Taking notes-amico.svg" alt="" srcset="">
+			</div>
+			<div class="course_create__imageit">
+				<img src="~/css/Teaching-amico.svg" alt="" srcset="">
+			</div>
+		</div>
+		<div class="course-create">
+			<h1 class="course-create__heading" style="color: #a435f0">Add new Course</h1>
+			<div class="course-create__content">
+				<div class="course-create__form">
+					<form asp-action="Create">
+						<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+						<div class="course-create__formgr">
+							<label asp-for="CourseName" class="course-create__lable"></label>
+							<input asp-for="CourseName" class="course-create__input" />
+							<span asp-validation-for="CourseName" class="text-danger"></span>
+						</div>
+						<div class="course-create__formgr">
+							<label asp-for="Price" class="course-create__lable"></label>
+							<input asp-for="Price" class="course-create__input" />
+							<span asp-validation-for="Price" class="text-danger"></span>
+						</div>
+						<div class="course-create__formgr">
+							<label asp-for="Image" class="course-create__lable"></label>
+							<input asp-for="Image" class="course-create__input" />
+							<span asp-validation-for="Image" class="text-danger"></span>
+						</div>
+						<div class="course-create__formgr">
+							<label asp-for="Language" class="course-create__lable"></label>
+							<input asp-for="Language" class="course-create__input" />
+							<span asp-validation-for="Language" class="text-danger"></span>
+						</div>
+						<div class="course-create__formgr">
+							<label hidden asp-for="AccountId" class="course-create__lable"></label>
+							<select hidden asp-for="AccountId" class="course-create__select" asp-items="ViewBag.AccountId"></select>
+						</div>
+						<div class="course-create__formgr">
+							<label asp-for="Description" class="course-create__lable"></label>
+							<textarea asp-for="Description" class="course-create__textarea" cols="94" rows="8"></textarea>
+							<span asp-validation-for="Description" class="text-danger"></span>
+						</div>
+						<div class="course-create__formgr">
+							<label asp-for="Department" class="course-create__lable"></label><br />
+							<select asp-for="DepartmentId" class="course-create__select" asp-items="ViewBag.DepartmentId"></select>
+						</div>
+						<div class="course-create__formgr">
+							<label asp-for="Level" class="course-create__lable"></label><br />
+							<select asp-for="LevelId" class="course-create__select" asp-items="ViewBag.LevelId"></select>
+						</div>
+						<div class="course-create__formgr">
+							<p class="course-create__lbp">
+								Program</><br>
+								<input type="checkbox" class="course-create__checkbox" id="course-create__checkbox">
+								<label class="course-create__lablecb" for="course-create__checkbox">C#</label>
+								<input type="checkbox" class="course-create__checkbox" id="course-create__checkbox">
+								<label class="course-create__lablecb" for="course-create__checkbox">Java</label>
+								<input type="checkbox" class="course-create__checkbox" id="course-create__checkbox">
+								<label class="course-create__lablecb" for="course-create__checkbox">SQL</label>
+								<input type="checkbox" class="course-create__checkbox" id="course-create__checkbox">
+								<label class="course-create__lablecb" for="course-create__checkbox">Python</label>
+								<input type="checkbox" class="course-create__checkbox" id="course-create__checkbox">
+								<label class="course-create__lablecb"
+									   for="course-create__checkbox">JavaScript</label>
+								<input type="checkbox" class="course-create__checkbox" id="course-create__checkbox">
+								<label class="course-create__lablecb" for="course-create__checkbox">ReactJS</label>
+								<input type="checkbox" class="course-create__checkbox" id="course-create__checkbox">
+								<label class="course-create__lablecb" for="course-create__checkbox">VueJS</label>
+						</div>
+						<div class="course-create__formgr">
+							<input type="submit" value="Save" class="course-create__submit" />
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migstars starActive-1.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="~/js/home.js"></script>
