@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ADMIN\\OneDrive\\Desktop\\Github\\Assigment\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj": {}
+    "D:\\GITHUB\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ADMIN\\OneDrive\\Desktop\\Github\\Assigment\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj": {
+    "D:\\GITHUB\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\Github\\Assigment\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj",
+        "projectUniqueName": "D:\\GITHUB\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj",
         "projectName": "Online_Learn",
-        "projectPath": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\Github\\Assigment\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj",
-        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\Github\\Assigment\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\obj\\",
+        "projectPath": "D:\\GITHUB\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "D:\\GITHUB\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -53,6 +53,16 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[5.0.2, )"
             }
           },
           "imports": [
@@ -73,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
