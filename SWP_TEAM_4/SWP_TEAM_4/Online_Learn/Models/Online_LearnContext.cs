@@ -6,9 +6,15 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Online_Learn.Models
 {
+<<<<<<< HEAD
     public partial class Online_learnContext : DbContext
     {
         public Online_learnContext()
+=======
+    public partial class Online_LearnContext : DbContext
+    {
+        public Online_LearnContext()
+>>>>>>> 72e556e8071898fe9699d372dd1b1525911b84b4
         {
         }
 
@@ -43,7 +49,11 @@ namespace Online_Learn.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+<<<<<<< HEAD
                 optionsBuilder.UseSqlServer("server =CHINHHOANG-SO3H\\SQLEXPRESS; database=Online_learn;uid=sa;pwd=131415161718;");
+=======
+                optionsBuilder.UseSqlServer("server =DESKTOP-NB2DNI9\\VINH; database=Online_Learn;uid=sa;pwd=0775122001;");
+>>>>>>> 72e556e8071898fe9699d372dd1b1525911b84b4
             }
         }
 
@@ -135,12 +145,6 @@ namespace Online_Learn.Models
 
                 entity.Property(e => e.DepartmentId).HasColumnName("department_id");
 
-                entity.Property(e => e.Desc1).HasColumnName("desc1");
-
-                entity.Property(e => e.Desc2).HasColumnName("desc2");
-
-                entity.Property(e => e.Desc3).HasColumnName("desc3");
-
                 entity.Property(e => e.Title).HasColumnName("title");
 
                 entity.Property(e => e.UpdateAt)
@@ -151,11 +155,13 @@ namespace Online_Learn.Models
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.Blogs)
                     .HasForeignKey(d => d.AccountId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Blog_Account");
 
                 entity.HasOne(d => d.Department)
                     .WithMany(p => p.Blogs)
                     .HasForeignKey(d => d.DepartmentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Blog_Department");
             });
 
