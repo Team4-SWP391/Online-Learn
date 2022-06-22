@@ -1,0 +1,61 @@
+﻿.content-title {
+    width: 30%;
+    padding: 2% 0;
+    margin: 0 auto;
+}
+
+    .content-title h4 {
+        background-color: var(--main-color);
+    }
+
+.changepass_form {
+    display: flex;
+    margin: 0 auto;
+    width: 30%;
+    font-size: 20px;
+    margin-bottom: 10px;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+    .changepass_form input {
+        height: 100%;
+        width: 100%;
+        padding-left: 45px;
+        border: 1px solid #1c1d1f;
+        font-size: 1.2rem;
+    }
+
+.pwform {
+    padding: 4%;
+}
+
+.changepass_form i {
+    position: absolute;
+    top: 22px;
+    left: 14px;
+}
+
+.changepass_form-submit button {
+    width: 10%;
+    height: 50px;
+    margin-top: 15px;
+    border: none;
+    background-color: var(--main-color);
+    color: white;
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+
+    .changepass_form-submit button:hover {
+        background-color: #7325a3;
+    }
+
+.form_message {
+    color: red;
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin: 5px;
+}

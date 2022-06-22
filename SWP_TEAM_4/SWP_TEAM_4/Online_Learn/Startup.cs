@@ -2,22 +2,30 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-
 using Online_Learn.Models;
+using Online_Learn.Service;
+using static Online_Learn.Service.SendMailService;
 
-namespace Online_Learn {
-    public class Startup {
+namespace Online_Learn
+{
+    public class Startup
+    {
+        
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+        }
+
+        public Startup()
+        {
         }
 
         public IConfiguration Configuration { get; }
@@ -25,9 +33,14 @@ namespace Online_Learn {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
-
-
+            services.AddOptions();
+            var mailsetting = Configuration.GetSection("MailSettings");
+            services.Configure<MailSetting>(mailsetting);
+            services.AddTransient<SendMailService>();
+            services.AddAuthentication();
+            services.AddMvc();
+            services.Configure<DataProtectionTokenProviderOptions>(opt =>
+        opt.TokenLifespan = TimeSpan.FromHours(2));
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<Online_LearnContext>(options => options.UseSqlServer(connection));
         }
@@ -58,6 +71,26 @@ namespace Online_Learn {
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapGet("/Confirm", async (context) =>
+                {
+                    var sendEmail = context.RequestServices.GetService<SendMailService>();
+                    //var mailContent = MessageContent();
+                    //string kq = await sendEmail.SendMail(mailContent);
+                    //await context.Response.WriteAsync(kq);
+                });
+            });
+        }
+
+        public MailContent MessageContent(string to, string subject, string body)
+        {
+            MailContent mailContent = new MailContent();
+            mailContent.To = to;
+            mailContent.Subject = subject;
+            mailContent.Body = body;
+
+            return mailContent;
         }
     }
 }

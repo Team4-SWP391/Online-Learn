@@ -16,6 +16,7 @@ namespace Online_Learn.Models
         public int? DepartmentId { get; set; }
         public string Content { get; set; }
         public int? AccountId { get; set; }
+        public bool? CourseStatus { get; set; }
 
         public virtual Account Account { get; set; }
         public virtual Department Department { get; set; }

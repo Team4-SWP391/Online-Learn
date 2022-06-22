@@ -14,7 +14,6 @@
     border: 1px solid #1c1d1f;
     margin-bottom: 10px;
     padding-left: 5%;
-    padding-top: 5%;
     font-size: 1.2rem;
 }
 
@@ -68,12 +67,19 @@
     outline: none;
 }
 
-.form_message-name,
-.form_message-email,
-.form_message-pass {
-    display: none;
+.form_message {
     color: red;
     font-size: 1.2rem;
     font-weight: 500;
     margin-bottom: 10px;
+}
+.header_right-course, .header_right-cart{
+    display: none;
+}
+#togglePassword, #togglePassword2{
+    top: 29%;
+    margin-left: -30px;
+    cursor: pointer;
+    position: absolute;
+    font-size: 20px;
 }

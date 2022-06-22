@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en"><head>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -290,41 +292,54 @@
             </div>
         </div>
         <div class="content">
-            <h4 class="text-center" style="border-bottom: 1px solid #d1d7dc; padding: 10% 0; ">Sign up and start
+            <h4 class="text-center" style="border-bottom: 1px solid #d1d7dc; padding: 10% 0; ">
+                Sign up and start
                 learning
             </h4>
             <div class="signup">
-                <form class="signup_form" action="sigup">
+                <form class="signup_form" action="register" method="post">
                     <div class="signup_account-form">
-                        <span data-index="0" class="signup_placeholder">Full Name</span>
-                        <input data-index="0" class="form_signup" value="" type="text">
-                        <span class="form_message-name">Full Name is not valid</span>
+                        <input data-index="0" class="form_signup" name="username" value="" type="text" placeholder="Full Name">
+                        <span class="form_message"></span>
                     </div>
                     <div class="signup_account-form">
-                        <span data-index="1" class="signup_placeholder">Email</span>
-                        <input data-index="1" class="form_signup" value="" type="email">
-                        <span class="form_message-email">Email is not valid</span>
+                        <input data-index="1" class="form_signup" name="email" value="" type="email" placeholder="Email (example: email@domain.com)">
+                        <span class="form_message"></span>
+                        @if (ViewBag.error != null)
+                        {
+                            <span class="form_message" id="existEmail">@ViewBag.error</span>
+                        }
+        
                     </div>
                     <div class="signup_account-form">
-                        <span data-index="2" class="signup_placeholder">Password</span>
-                        <input data-index="2" class="form_signup" value="" type="password">
-                        <span class="form_message-pass">Password is not valid</span>
+                        <input data-index="2" class="form_signup" name="password" value="" type="password" placeholder="Password">
+                        <i class="far fa-eye" id="togglePassword"></i>
+                        <br>
+                        <span class="form_message"></span>
                     </div>
-                    <div class="login_account-role">
-                        <div>
-                            <input name="role" type="radio" id="student" value="1">
-                            <label class="label_radio" for="student">Student</label>
-                        </div>
-
-                        <div>
-                            <input name="role" type="radio" id="creator" value="2">
-                            <label class="label_radio" for="creator">Creator</label>
+                    <div class="signup_account-form">
+                        <input data-index="3" class="form_signup" name="confirm password" value="" type="password" placeholder="Confirm password">
+                        <i class="far fa-eye" id="togglePassword2"></i>
+                        <br>
+                        <span class="form_message"></span>
+                    </div>
+                    <div class="signup_account-form">
+                        <div class="login_account-role">
+                            <div>
+                                <input name="role" type="radio" id="student" value="1" checked>
+                                <label class="label_radio" for="student">Student</label>
+                            </div>
+        
+                            <div>
+                                <input name="role" type="radio" id="creator" value="2">
+                                <label class="label_radio" for="creator">Creator</label>
+                            </div>
                         </div>
                     </div>
                     <div class="signup_account-submit">
-                        <button type="submit">Sign Up</button>
+                        <button  type="submit">Sign Up</button>
                     </div>
-
+        
                 </form>
                 <div class="signup_login">
                     <span>Already have an account? <a href="">Log In</a></span>

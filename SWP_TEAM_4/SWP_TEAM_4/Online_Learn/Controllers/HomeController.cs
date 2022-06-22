@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
@@ -12,6 +14,7 @@ using Online_Learn.Models;
 namespace Online_Learn.Controllers {
     public class HomeController : Controller {
         private readonly ILogger<HomeController> _logger;
+        private Online_LearnContext context = new Online_LearnContext();
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -33,5 +36,6 @@ namespace Online_Learn.Controllers {
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        
     }
 }
