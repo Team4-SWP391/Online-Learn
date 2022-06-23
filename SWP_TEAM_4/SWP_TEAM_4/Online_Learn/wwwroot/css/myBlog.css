@@ -2,27 +2,41 @@
     background-color: #f6f7fb;
 }
 
-.img_blog {
-    height: 400px;
-    position: relative;
+
+.blog_header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-bottom: 50px;
+    text-align: center;
+    border-bottom: 1px solid #d9dde8;
 }
 
-    .img_blog img {
+.blog_header-info-user {
+    display: flex;
+}
+
+.user-avt {
+    width: 100px;
+    height: 100px;
+}
+
+    .user-avt img {
         width: 100%;
         height: 100%;
-        object-fit: fill;
+        border-radius: 50%;
+        object-fit: cover;
     }
 
-.img_blog-tittle {
-    position: absolute;
-    top: 16%;
-    right: 50%;
-    font-size: 2rem;
-    text-transform: uppercase;
-    font-weight: 500;
+.user-fullname {
+    font-size: 1.4rem;
+    margin: auto 10px;
+    font-weight: 600;
 }
 
-.post_list {
+.blog_header-title {
+    margin-right: 30px;
 }
 
 .blog_search {
@@ -60,10 +74,36 @@
         font-weight: 400;
     }
 
-.post_list-item {
+ul {
+    padding: 0;
+    margin: 0;
+}
+
+.blog_list-item {
+}
+
+.blog_list-time {
+    margin-top: 10px;
+    display: flex;
+    gap: 0.5%;
+}
+
+    .blog_list-time h4 {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+.line-through {
+    height: 1px;
+    background-color: #d9dde8;
+    flex: 1;
+    margin: auto;
+}
+
+.blog_list-item-des {
     margin: 20px 0;
     background-color: #fff;
-    height: 100px;
+    height: 80px;
     display: flex;
     align-items: center;
     padding: 20px;
@@ -72,67 +112,17 @@
     border-bottom: 0px solid var(--main-color);
 }
 
-.post_list-item-avt {
-    background-color: #333;
-    width: 70px;
-    height: 70px;
-    color: #fff;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-    .post_list-item-avt a {
-        color: #fff;
-        font-weight: bold;
+    .blog_list-item-des:hover {
+        color: var(--main-color);
+        border-bottom: 1px solid var(--main-color);
     }
 
-
-
-.post_list-item-info {
-    padding-left: 20px;
-}
-
-.post_list-item-title {
-    font-size: 1.8rem;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    display: inline-block;
-}
-
-    .post_list-item-title a::first-letter {
-        text-transform: uppercase
-    }
-
-
-.post_list-item-cate {
-    display: inline-block;
-    font-size: 1.2rem;
-    font-weight: 500;
-    border: 1px solid var(--main-color);
-    padding: 5px;
-    background-color: var(--main-color);
-    color: white;
-}
-
-
-    .post_list-item-cate:hover {
-        color: white;
-        opacity: 0.8;
-    }
-
-.post-meta--inline span a:hover,
-.post_list-item-title a:hover {
-    color: var(--main-color);
-}
 
 .pagination {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 3%;
+    margin-top: 3%;
 }
 
 .pagination-item {
