@@ -1,0 +1,54 @@
+﻿.blog .container {
+    width: 1010px;
+}
+
+.post_feed {
+    margin: 30px 0;
+}
+
+.post_feed-item {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 0.2px rgb(136, 137, 138) solid;
+}
+
+.post_feed-item-info {
+    width: 100%;
+    align-items: flex-start;
+    margin-left: 20px;
+}
+
+.post-meta--inline {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: .8rem;
+    margin-bottom: 0.25rem;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+}
+
+.user--inline {
+    margin-right: 15px;
+}
+
+    .user--inline span a {
+        color: rgb(63, 155, 155);
+    }
+
+.post-footer-item {
+    margin-right: 20px;
+}
+
+.post-title--inline h3 a:hover {
+    color: var(--main-color);
+}
+
+.page-item.active .page-link {
+    background-color: var(--main-color);
+    border-color: var(--main-color);
+}
+
+.page-link {
+    color: var(--main-color);
+}

@@ -1,0 +1,61 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<link rel="stylesheet" href="~/css/profile.css">
+<div class="profile">
+    <h2 class="profile-heading">Profile Udemy</h2>
+    <div class="profile-wrapper">
+        <div class="profile-from">
+            <form action="/Account/Profile" method="post">
+                <div class="profile-from__group">
+                    <label class="profile-lable">Full Name</label><br>
+                    <input type="text" class="profile-input" name="NewAccount.FulllName" value="@ViewBag.account.FulllName">
+                    <input type="text" class="profile-input" name="NewAccount.AccountId" value="@ViewBag.account.AccountId" hidden>
+                </div>
+                <div class="profile-from__group">
+                    <p class="profile-para">Gender</p>
+                    <input type="radio" class="profile-radio" name="NewAccount.Gender" id="profile-male" value="true" @(ViewBag.account.Gender == true ? "checked" : "") />
+                    <label class="profile-lable__radio" for="profile-male">Male</label><br>
+                    <input type="radio" class="profile-radio" name="NewAccount.Gender" id="profile-female" value="false" @(ViewBag.account.Gender == false ? "checked" : "") />
+                    <label class="profile-lable__radio" for="profile-female">Female</label><br>
+                </div>
+                <div class="profile-from__group">
+                    <label class="profile-lable">Day of birth</label><br>
+                    <input type="date" class="profile-input" id="profile-date" name="NewAccount.Dob" value="@(Convert.ToDateTime(ViewBag.account.Dob).ToString("yyyy-MM-dd"))"/>
+                </div>
+                <div class="profile-from__group">
+                    <label class="profile-lable">Address</label><br>
+                    <input type="text" class="profile-input" name="NewAccount.Address" value="@ViewBag.account.Address">
+                </div>
+                <div class="profile-from__group">
+                    <label class="profile-lable">Phone</label><br>
+                    <input type="number" class="profile-input" name="NewAccount.Phone" value="@ViewBag.account.Phone">
+                </div>
+                <div class="profile-from__group">
+                    <label class="profile-lable">Language</label><br>
+                    <input type="text" class="profile-input" name="NewAccount.Language" value="@ViewBag.account.Language">
+                </div>
+                <div class="profile-from__group">
+                    <label class="profile-lable">Email</label><br>
+                    <input type="email" class="profile-input" name="NewAccount.Email" value="@ViewBag.account.Email">
+                </div>
+                <div class="profile-from__group">
+                    <label class="profile-lable">Amount</label><br>
+                    <input type="number" disabled class="profile-input" name="NewAccount.Amount" value="@ViewBag.account.Amount">
+                </div>
+                <div class="profile-from__group">
+                    <button class="from-submit">Save</button>
+                </div>
+            </form>
+        </div>
+        <div class="profile-image">
+            <div class="profile-avt">
+                <img src="https://source.unsplash.com/random" alt="">
+            </div>
+        </div>
+    </div>
+</div>
