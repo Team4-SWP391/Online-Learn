@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/header.css">
+    <link rel="stylesheet" href="./assets/css/blogAdd.css">
+    
+        <link rel="stylesheet" href="./assets/css/richtext.min.css">
+     
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript" src="./assets/js/jquery.richtext.js"></script>
+</head>
+
+<body>
+    <div class="course">
+        <div class="course-header">
+            <a href="#backToList" class="course-header__back"><i class="fas fa-angle-left"></i>Back to course</a>
+            <span class="course-header__key">Keyword research for bloggers</span>
+            <span class="course-header__bold">Draft</span>
+            <span class="course-header__tt">Omin of video contenet upload</span>
+        </div>
+        <div class="course-wrap">
+            
+            <div class="course-create">
+                <h3 class="course-create__heading">Add New Blog</h3>
+                <div class="course-create__content">
+
+                    <div class="course-create__form">
+                        <form>
+                            <div class="course-create__formgr">
+                                <input type="text" class="course-create__input" hidden>
+                            </div>
+                            <div class="course-create__formgr">
+                                <label class="course-create__lable">Blog Title</label><br>
+                                <input type="text" class="course-create__input">
+                            </div>
+                            
+                           
+                           
+                            <div class="course-create__formgr">
+                                <label class="course-create__lable">Department ID</label><br>
+                                <Select class="course-create__select">
+                                    <option class="course-create__option">1</option>
+                                    <option class="course-create__option">2</option>
+                                    <option class="course-create__option">3</option>
+                                </Select>
+                            </div>
+                            <div class="course-create__formgr">
+                                <textarea class="content" cols="163" rows="8"></textarea>
+                            </div>
+
+                            <div class="course-create__formgr">
+                                <button class="course-create__submit">Save</button>
+                            </div>
+
+                        
+                            <script>
+                            $(document).ready(function() {
+                                $('.content').richText();
+                            });
+                            </script>
+                            
+                            
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+</body>
+
+
+</html>

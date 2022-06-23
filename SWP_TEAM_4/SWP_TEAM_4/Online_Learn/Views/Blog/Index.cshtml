@@ -1,0 +1,245 @@
+﻿
+
+@model IEnumerable<Online_Learn.Models.Blog>
+
+
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/blog.css">
+<link rel="stylesheet" href="~/css/mylearning.css">
+<div class="mylearning">
+            <div class="mylearning_header">
+                <div class="container">
+                    <div class="header_bar">
+                        <h1>Blog</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+ <div class="blog">
+            <div class="container">
+                <div class="row">
+                    <div class="post_feed">
+                        <ul>
+                             @foreach (var item in Model) {
+                            <li>
+                                <a asp-action="Details" asp-route-id="@item.BlogId">
+                                <div class="post_feed-item d-flex">
+                                    <div class="header_right-avt d-inline-flex">
+                                        <a href="#">@Html.DisplayFor(modelItem => item.Account.FulllName)</a>
+                                    </div>
+                                    <div class="post_feed-item-info">
+                                        <div class="post-meta--inline">
+                                            <div class="user--inline d-inline-flex flex-shrink-0">
+                                                <span>
+                                                    <a href="#">@Html.DisplayFor(modelItem => item.Account.Username)</a>
+                                                </span>
+                                            </div>
+                                            <div class="post-meta d-inline-flex align-items-center">
+                                                <span style="margin-right: 15px;">@Html.DisplayFor(modelItem => item.UpdateAt)</span>
+                                                <button class="icon-btn copyUrl_1y5X4" data-tippy=""
+                                                    data-original-title="Sao chép URL"><i aria-hidden="true"
+                                                        class="fa fa-link"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="post-title--inline">
+                                            <h3>
+                                                <a href="Blog/Details/@item.BlogId">@Html.DisplayFor(modelItem => item.Title)</a>
+                                            </h3>
+                                        </div>
+                                       
+                                    </div>
+                                </div> 
+                                </a>
+                            </li>
+                            }
+                        </ul>
+                       
+                        
+                    
+
+                            
+                            
+                        </div>
+                        
+                                
+                    </div>
+                </div>
+            
+
+
+        <!-- Pagination -->
+        <nav aria-label="Page navigation" class="mb-5">
+            <ul class="pagination justify-content-center">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+
+@*
+
+<div class="content container blog" style="height: 1000px;">
+            <div class="blog_header">
+                <div class="blog_header-info-user">
+                    <div class="user-avt">
+                        <img src="https://hinhnen123.com/wp-content/uploads/2021/11/Man-nhan-80-hinh-anh-con-gai-cute-de-thuong-het-phan-thien-ha-29.jpg" alt="">
+                    </div>
+                    <div class="user-fullname">
+                      User
+                    </div>
+                </div>
+                <div class="blog_header-title" style="margin-top: 45px;">
+                    <h2>MY BLOG</h2>
+                    <h5 style="text-align: right; margin-top: 15px;">
+                        <a asp-action="Create" class="write" style="border: 5px solid white;
+                            border-radius: 7px;
+                            color: #a435f0;
+                            background-color: white;
+                            padding-bottom: 3px;">Write post</a>
+                    </h5>
+                </div>
+            </div>
+    @using (Html.BeginForm("Index", "Blogs", FormMethod.Get))
+    {
+        <div class="blog_search">
+                <input type="text" name="search" placeholder="Search Blog">
+                <i class="fal fa-search" name="submit" type="submit"></i>
+            </div>
+    }
+            
+            <div class="blog_list">
+                <ul>
+                    <div class="blog_list-time">
+                        <h4>This Week</h4>
+                        <div class="line-through"></div>
+                    </div>
+
+
+
+                    @foreach (var item in Model) {
+       
+                    <li class="blog_list-item">
+                        <a asp-action="Details" asp-route-id="@item.BlogId">
+                            <div class="blog_list-item-des row">
+                                
+                                    <h5 >@Html.DisplayFor(modelItem => item.Title)</h5>
+                                
+                                
+                            </div>
+                            
+                        </a>
+                    </li>
+                    }
+                    *@
+                   @* <div class="blog_list-time">
+                        <h4>This Month</h4>
+                        <div class="line-through"></div>
+                    </div>
+                    <li class="blog_list-item">
+                        <a href="">
+                            <div class="blog_list-item-des">
+                                <h5>Learn C++ Programming FPT University</h5>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="blog_list-item">
+                        <a href="">
+                            <div class="blog_list-item-des">
+                                <h5>Learn C++ Programming FPT University</h5>
+                            </div>
+                        </a>
+                    </li>*@
+               @* </ul>
+            </div>
+            </div>*@
+            @*Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+
+        @Html.PagedListPager(Model, page => Url.Action("Index", 
+    new { page, currentFilter = ViewBag.CurrentFilter }))*@
+        
+        
+        
+@*<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Desc1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Desc2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Desc3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdateAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Content)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Department)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>*@
+
+      @* <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Desc1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Desc2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Desc3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Content)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Account.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Department.DepartmentName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BlogId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.BlogId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.BlogId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>*@
