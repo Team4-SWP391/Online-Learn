@@ -30,7 +30,6 @@ namespace Online_Learn.Models
         public DateTime UpdateAt { get; set; }
         public int LevelId { get; set; }
 
-
         public virtual Account Account { get; set; }
         public virtual Department Department { get; set; }
         public virtual Level Level { get; set; }
@@ -40,23 +39,5 @@ namespace Online_Learn.Models
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ICollection<Technology> Technologies { get; set; }
         public virtual ICollection<WhistList> WhistLists { get; set; }
-
-        public double getPriceByDiscount()
-        {
-            if(IsSale == 0)
-            {
-                return Price;
-            }
-            else
-            {
-                return 1;
-                //return (double)((IsSale / 100) * Price);
-            }
-        }
-
-        public string getAuthor()
-        {
-            return Account.FulllName;
-        }
     }
 }

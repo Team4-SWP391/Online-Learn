@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Online_Learn.Models.Blog>
+
+@{
+    ViewData["Title"] = "MyBlog";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/MyBlog.css">
+
+
+<div class="content container blog" style="height: 1000px;">
+            <div class="blog_header">
+                <div class="blog_header-info-user">
+                    <div class="user-avt">
+                        <img src="https://hinhnen123.com/wp-content/uploads/2021/11/Man-nhan-80-hinh-anh-con-gai-cute-de-thuong-het-phan-thien-ha-29.jpg" alt="">
+                    </div>
+                    <div class="user-fullname">
+                      User
+                    </div>
+                </div>
+                <div class="blog_header-title" style="margin-top: 45px;">
+                    <h2>MY BLOG</h2>
+                    <h5 style="text-align: right; margin-top: 15px;">
+                        <a asp-action="Create" class="write" style="border: 5px solid white;
+                            border-radius: 7px;
+                            color: #a435f0;
+                            background-color: white;
+                            padding-bottom: 3px;">Write post</a>
+                    </h5>
+                </div>
+            </div>
+    @using (Html.BeginForm("Index", "Blogs", FormMethod.Get))
+    {
+        <div class="blog_search">
+                <input type="text" name="search" placeholder="Search Blog">
+                <i class="fal fa-search" name="submit" type="submit"></i>
+            </div>
+    }
+            
+            <div class="blog_list">
+                <ul>
+                    <div class="blog_list-time">
+                        <h4>This Week</h4>
+                        <div class="line-through"></div>
+                    </div>
+
+
+
+                    @foreach (var item in Model) {
+       
+                    <li class="blog_list-item">
+                        <a asp-action="Details" asp-route-id="@item.BlogId">
+                            <div class="blog_list-item-des row">
+                                
+                                    <h5 >@Html.DisplayFor(modelItem => item.Title)</h5>
+                                
+                                
+                            </div>
+                            
+                        </a>
+                    </li>
+                    }
+                    
+                   @* <div class="blog_list-time">
+                        <h4>This Month</h4>
+                        <div class="line-through"></div>
+                    </div>
+                    <li class="blog_list-item">
+                        <a href="">
+                            <div class="blog_list-item-des">
+                                <h5>Learn C++ Programming FPT University</h5>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="blog_list-item">
+                        <a href="">
+                            <div class="blog_list-item-des">
+                                <h5>Learn C++ Programming FPT University</h5>
+                            </div>
+                        </a>
+                    </li>*@
+                </ul>
+            </div>
+            </div>

@@ -20,7 +20,7 @@
         <div class="header px-4 d-flex justify-content-between align-items-center">
             <div class="header_left d-flex justify-content-between align-items-center">
                 <div class="header_left-logo">
-                    <a href="https://localhost:44396/"><img src="~/css/Udemy_logo.svg" alt="" width="91" height="34" /></a>
+                    <a href=""><img src="./assets/img/Udemy_logo.svg" alt="" width="91" height="34" /></a>
                 </div>
                 <div class="category">
                     <div class="category_title">
@@ -190,7 +190,7 @@
             </div>
             <div class="header_right position-relative">
                 <ul class="d-flex justify-content-between align-items-center m-1" style="text-align: center;">
-                    <li class="header_right-blog"><a href="">Blog</a></li>
+                    <li class="header_right-blog"><a asp-controller="Blog" asp-action="Index">Blog</a></li>
                     <li class="header_right-course" style="width: 100px;">
                         <a href="">My Course</a>
                         <div class="header_right-list-course">
@@ -284,7 +284,7 @@
                             </div>
                             <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
                                 <ul class="p-0">
-                                    <li style="padding-bottom: 10px"><a href="">My Blog</a></li>
+                                    <li style="padding-bottom: 10px"  ><a asp-controller="Blog" asp-action="Myblog" >My Blog</a></li>
                                 </ul>
                             </div>
                             <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
@@ -348,7 +348,7 @@
             </div>
             <div class="footer-end">
                 <div class="footer-end__logo">
-                    <a href=""><img src="~/css/logo-udemy-inverted.svg" alt="" width="91" height="34" /></a>
+                    <a href=""><img src="./assets/img/logo-udemy-inverted.svg" alt="" width="91" height="34" /></a>
                 </div>
                 <div class="footer-end__copyright">
                     <span>2022 Team4 SWP391, Inc.</span>

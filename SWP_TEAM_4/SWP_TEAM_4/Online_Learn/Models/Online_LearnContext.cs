@@ -549,6 +549,7 @@ namespace Online_Learn.Models {
 
             OnModelCreatingPartial(modelBuilder);
         }
+
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
