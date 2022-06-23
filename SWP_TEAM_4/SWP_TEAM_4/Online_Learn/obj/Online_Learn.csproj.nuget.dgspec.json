@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ADMIN\\OneDrive\\Desktop\\Github\\Assigment\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj": {}
+    "D:\\PROJECT\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ADMIN\\OneDrive\\Desktop\\Github\\Assigment\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj": {
+    "D:\\PROJECT\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\Github\\Assigment\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj",
+        "projectUniqueName": "D:\\PROJECT\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj",
         "projectName": "Online_Learn",
-        "projectPath": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\Github\\Assigment\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj",
-        "packagesPath": "C:\\Users\\ADMIN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ADMIN\\OneDrive\\Desktop\\Github\\Assigment\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\obj\\",
+        "projectPath": "D:\\PROJECT\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj",
+        "packagesPath": "C:\\Users\\VINH\\.nuget\\packages\\",
+        "outputPath": "D:\\PROJECT\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ADMIN\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\VINH\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -58,6 +58,10 @@
               "target": "Package",
               "version": "[5.0.0, )"
             },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
             "System.Data.SqlClient": {
               "target": "Package",
               "version": "[4.8.3, )"
@@ -81,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.409\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
