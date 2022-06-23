@@ -7,4 +7,8 @@ build_property.InvariantGlobalization =
 build_property.PlatformNeutralAssembly = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Online_Learn
+<<<<<<< HEAD
+build_property.ProjectDir = C:\Users\Admin\Documents\GitHub\Online-Learn\SWP_TEAM_4\SWP_TEAM_4\Online_Learn\
+=======
 build_property.ProjectDir = D:\GITHUB\Online-Learn\SWP_TEAM_4\SWP_TEAM_4\Online_Learn\
+>>>>>>> a836345287e5eb075e2735e98c01a2c9dff36c34
