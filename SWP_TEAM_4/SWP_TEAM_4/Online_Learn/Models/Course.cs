@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Online_Learn.Models
-{
-    public partial class Course
-    {
+namespace Online_Learn.Models {
+    public partial class Course {
         public Course()
         {
             AccountCourses = new HashSet<AccountCourse>();
@@ -43,14 +41,13 @@ namespace Online_Learn.Models
 
         public double getPriceByDiscount()
         {
-            if(IsSale == 0)
+            if (IsSale == 0)
             {
                 return Price;
             }
             else
             {
-                return -1;
-                //return (double)((IsSale / 100) * Price);
+                return 1;
             }
         }
 
