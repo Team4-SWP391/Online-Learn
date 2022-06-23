@@ -1,37 +1,20 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "C:\\Users\\Admin\\Documents\\GitHub\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj": {}
+    "D:\\PROJECT\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Admin\\Documents\\GitHub\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj": {
+    "D:\\PROJECT\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Admin\\Documents\\GitHub\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj",
+        "projectUniqueName": "D:\\PROJECT\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj",
         "projectName": "Online_Learn",
-        "projectPath": "C:\\Users\\Admin\\Documents\\GitHub\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Admin\\Documents\\GitHub\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\obj\\",
+        "projectPath": "D:\\PROJECT\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj",
+        "packagesPath": "C:\\Users\\VINH\\.nuget\\packages\\",
+        "outputPath": "D:\\PROJECT\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-    "D:\\GITHUB\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj": {}
-  },
-  "projects": {
-    "D:\\GITHUB\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "D:\\GITHUB\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj",
-        "projectName": "Online_Learn",
-        "projectPath": "D:\\GITHUB\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "D:\\GITHUB\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> a836345287e5eb075e2735e98c01a2c9dff36c34
+          "C:\\Users\\VINH\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -98,11 +81,7 @@
               "privateAssets": "all"
             }
           },
-<<<<<<< HEAD
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
-=======
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
->>>>>>> a836345287e5eb075e2735e98c01a2c9dff36c34
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
         }
       }
     }
