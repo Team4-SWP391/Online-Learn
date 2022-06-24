@@ -78,7 +78,6 @@ ul {
     margin: 0;
 }
 
-.blog_list-item {}
 
 .blog_list-time {
     margin-top: 10px;
@@ -167,4 +166,16 @@ ul {
 .pagination-link.page-active {
     background-color: #a435f0;
     color: #fff;
+}
+
+.searr{
+    margin-right: 0px;
+}
+
+.write{
+    border: 5px solid white;
+    border-radius: 7px;
+    color: #a435f0;
+    background-color: white;
+    padding-bottom: 3px;
 }

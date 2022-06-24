@@ -1,0 +1,59 @@
+﻿@{
+
+}
+
+
+<link rel="stylesheet" href="~/css/login.css" />
+<div class="content">
+    <div class="content_title">
+        <h4 class="text-center" style="border-bottom: 1px solid #d1d7dc; padding: 5% 0;">
+            Log In to Your Udemy
+            Account!
+        </h4>
+        <div class="login">
+            <a class="login_facebook login_with">
+                <i class="fab fa-facebook"></i>
+                <span>Continue With Facebook</span>
+            </a>
+            <a class="login_google login_with" href='https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=https://localhost:44393/Login/Login_Google&response_type=code&client_id=240096817026-hiacplg3lvqrnku3g6ihm26fv3geog3q.apps.googleusercontent.com&approval_prompt=force'>
+                <i class="fab fa-google"></i>
+                <span>
+                    Continue With Google
+                </span>
+            </a>
+            <div class="login_account">
+                <form action="Login" method="post">
+                    <div class="login_account-form">
+                        <i class="fal fa-envelope"></i>
+                        <input name="email" type="email" value="@ViewData["email"]" class="form" placeholder="Email">
+                    </div>
+                    <div class="login_account-form">
+                        <i class="fal fa-lock"></i>
+                        <input name="pass" type="password" value="@ViewData["pass"]" class="form" placeholder="Password">
+                    </div>
+                    <div class="login_account-remember">
+                        <input name="remember" type="checkbox"
+                               @ViewData["remember"] id="remember">
+                        <label class="form-check-label" for="remember"
+                               style="font-size: 1.1rem; cursor: pointer;">
+                            Remember
+                            me
+                        </label>
+                    </div>
+                    <div class="login_account-err-mess">
+                        <span>@ViewData["ErrMess"]</span>
+                    </div>
+                    <div class="login_account-submit">
+                        <button type="submit">Log In</button>
+                    </div>
+                </form>
+                <div class="login_account-forgot">
+                    <span>or <a href="">Forgot Password</a></span>
+                </div>
+            </div>
+            <div class="login_sigup">
+                <span>Don't have an account? <a href="">Sign up</a></span>
+            </div>
+        </div>
+    </div>
+</div>

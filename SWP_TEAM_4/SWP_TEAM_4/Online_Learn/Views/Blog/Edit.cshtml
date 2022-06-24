@@ -1,0 +1,81 @@
+﻿@model Online_Learn.Models.Blog
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/blogAdd.css">
+<link rel="stylesheet" href="~/css/richtext.min.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<div class="course">
+        <div class="course-header">
+            <a class="course-header__back"asp-action="Index"><i class="fas fa-angle-left"></i>Back to your blog</a>
+            <span class="course-header__key">Keyword research for bloggers</span>
+            <span class="course-header__bold">Draft</span>
+            <span class="course-header__tt">Omin of video contenet upload</span>
+        </div>
+        <div class="course-wrap">
+            
+            <div class="course-create">
+                <h3 class="course-create__heading">Edit Post</h3>
+                <div class="course-create__content">
+
+                    <div class="course-create__form">
+                        <form asp-action="Edit">
+                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                               <input type="hidden" asp-for="BlogId" />
+                            <div class="course-create__formgr">
+                                @*<label asp-for="Title" class="course-create__lable">Blog Title</label><br>
+                                <input asp-for="Title" type="text" class="course-create__input">*@
+                                <label asp-for="Title" class="control-label course-create__lable"></label>
+                                <input asp-for="Title" class="form-control" />
+                                <span asp-validation-for="Title" class="text-danger"></span>
+
+                            </div>
+                           
+                            <div class="course-create__formgr">
+                                <label asp-for="DepartmentId" class="control-label course-create__lable"></label>
+                                <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId"></select>
+                                <span asp-validation-for="DepartmentId" class="text-danger"></span>
+                            </div>
+                            <div class="form-group">
+                        <label hidden asp-for="UpdateAt" class="control-label"></label>
+                        <input hidden asp-for="UpdateAt" class="form-control" />
+                        <span hidden asp-validation-for="UpdateAt" class="text-danger"></span>
+                            </div>
+                            <div class="course-create__formgr">
+                                
+                                <label asp-for="Content" class="control-label course-create__lable"></label>
+                                <textarea asp-for="Content" class="form-control content" cols="163" rows="8"></textarea>
+                                <span asp-validation-for="Content" class="text-danger"></span>
+                            
+                            </div>
+
+                          
+                            <div class="form-group">
+                                <label hidden asp-for="AccountId" class="control-label"></label>
+                                <select hidden asp-for="AccountId" class ="form-control" asp-items="ViewBag.AccountId"></select>
+                            </div>
+                            <div class="course-create__formgr">
+                                <button class="course-create__submit" value="Create">Save</button>
+                            </div>
+                            <script>
+                                 $(document).ready(function() {
+                                    $('.content').richText();
+                                 });
+                            </script>
+
+                           
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="~/js/jquery.richtext.js"></script>
+
+    
+
+

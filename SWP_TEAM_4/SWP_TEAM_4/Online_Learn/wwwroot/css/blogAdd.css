@@ -1,0 +1,135 @@
+.course-header {
+    width: 100%;
+    background-color: #1b1c1f;
+    color: #fff;
+    padding: 12px;
+  }
+  .course-header a {
+    color: #fff;
+    margin-right: 12px;
+  }
+  .course-header a i {
+    margin-right: 8px;
+  }
+  .course-header__key {
+    font-weight: bold;
+    margin-right: 12px;
+  }
+  .course-header__bold {
+    margin-right: 12px;
+    padding: 8px;
+    background-color: #999;
+    border-radius: 10px;
+  }
+  .course-wrap {
+    margin-top: 25px;
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    justify-content: space-evenly;
+  }
+  .course-image {
+    width: 20%;
+  }
+  .course-create {
+    width: 80%;
+    border: 1px solid #1b1c1f;
+  }
+  .course-create__content {
+    padding: 35px;
+  }
+  .course-create__heading {
+    padding: 25px;
+    border-bottom: 1px solid #999;
+  }
+  .course-create__formgr {
+    margin: 15px 0;
+  }
+  .course-create__checkbox {
+    margin-right: 3px;
+  }
+  .course-create__lable {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+  .course-create__lablecb {
+    margin-right: 12px;
+    font-size: 12.5px;
+    font-weight: 500;
+  }
+  .course-create__textarea {
+    padding: 8px;
+  }
+  .course-create__input {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    outline: none;
+    border: 1px solid #1b1c1f;
+  }
+  .course-create__lbp {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+  .course-create__submit {
+    margin-top: 15px;
+    border: none;
+    outline: none;
+    padding: 12px 36px;
+    border: 1px solid #1b1c1f;
+    font-weight: bold;
+    background-color: #fff;
+  }
+  .course-create__select {
+    width: 200px;
+    padding: 8px;
+  }
+  .course-create__option {
+    width: 200px;
+    padding: 8px;
+  }
+  
+  textarea {
+    resize: none;
+  }
+
+  /* reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* general */
+
+
+/* page */
+
+
+
+/* box */
+.box-content {
+    padding:20px;
+    background-color: #EFEFEF;
+}
+
+
+textarea {
+    background-color:#FAFAFA;
+    border:#EFEFEF solid 1px;
+    color:#333;
+    height:150px;
+    width:100%;
+}
+
+
+/* richtext custom style */
+.richText {
+    margin-top: 40px;
+    /* -webkit-box-shadow: 0 0 20px 0 #999;
+    -moz-box-shadow: 0 0 20px 0 #999; */
+    /* box-shadow: 0 0 20px 0 #999; */
+}
