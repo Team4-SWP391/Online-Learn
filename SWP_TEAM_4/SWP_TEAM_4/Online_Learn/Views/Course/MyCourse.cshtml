@@ -1,0 +1,141 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<link rel="stylesheet" href="~/css/mylearning.css">
+<link rel="stylesheet" href="~/css/blog.css">
+
+<div class="mylearning">
+    <div class="mylearning_header">
+        <div class="container">
+            <div class="header_bar">
+                <h1>My learning</h1>
+            </div>
+            <div class="nav_container">
+                <ul class="nav">
+                    <li class="nav_item me-3 active">
+                        <a href="#">All courses</a>
+                    </li>
+                    <li class="nav_item mx-3">
+                        <a href="#">Wishlist</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Search -->
+<div class="search my-3">
+    <form action="/Course/MyCourse">
+        <input type="text" name="name_search" placeholder="Search my courses" value="@ViewBag.name_search">
+        <input type="text" name="account_id" value="4" hidden disabled/>
+        <button type="submit"> <i class="fa fa-search"></i> </button>
+    </form>
+</div>
+
+<!-- My courses -->
+<div class="mycourses">
+    <div class="container">
+        <div class="row d-flex justify-content-between mb-3 wrap">
+            @foreach (AccountCourse item in ViewBag.MyCourse)
+            {
+                <div class="card card-learning col-3 p-0">
+                    <a href="#" class="card-learning_img" tabindex="-1">
+                        <div class="card_img">
+                            <img class="img-fluid"
+                                 alt="Complete JAVASCRIPT with HTML5,CSS3 from zero to Expert-2022" width="100%"
+                                 src="@item.Course.Image"
+                                 srcset="@item.Course.Image 1x">
+                        </div>
+                    </a>
+                    <div class="card-learning_details p-2">
+                        <a href="#" class="btn noHover">
+                            <strong class="details_name">
+                                @item.Course.CourseName
+                            </strong>
+                        </a><br>
+                        <div class="details_instructor">
+                            <span>@item.Course.CourseName</span><span>
+                                , Data Scientist | AI Entrepreneur and
+                                Developer
+                            </span>
+                        </div>
+                        <div class="details_bottom">
+                            <div class="progress">
+                                <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
+                                     aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                            <div class="progress-value">25% Complete</div>
+                            <button>
+                                <div class="details_rating">
+                                    <div class="rate">
+                                        <i data-star='0' class="fas fa-star stars starActive"></i>
+                                        <i data-star='1' class="fas fa-star stars starActive"></i>
+                                        <i data-star='2' class="fas fa-star stars starActive"></i>
+                                        <i data-star='3' class="fas fa-star stars starActive"></i>
+                                        <i data-star='4' class="fas fa-star stars starActive"></i>
+                                    </div>
+                                </div>
+                                <div>Leave a rating</div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+<!-- Pagination -->
+@if (ViewBag.MaxPage > 1)
+{
+    @if (ViewBag.checkPage == 2)
+    {
+        <div class="pagination" id="pagger">
+            <div class="pagination-item">
+                <a href="/Course/MyCourse?pageIndex=@(ViewBag.prevPage <= 0 ? 1 : ViewBag.prevPage)" class="pagination-link"><i class="far fa-angle-left"></i></a>
+            </div>
+            @for (int i = 1; i <= ViewBag.MaxPage; i++)
+            {
+                <div class="pagination-item">
+                    <a href="/Course/MyCourse?pageIndex=@i" class="pagination-link @(ViewBag.pageIndex == i ?"page-active":"")">@i</a>
+                </div>
+            }
+            <div class="pagination-item">
+                <a href="/Course/MyCourse?pageIndex=@(ViewBag.nextPage > ViewBag.MaxPage ? "1": ViewBag.nextPage)" class="pagination-link"><i class="fas fa-angle-right"></i></a>
+            </div>
+        </div>
+    }
+    else if (ViewBag.checkPage == 1)
+    {
+        <div class="pagination" id="pagger">
+            <div class="pagination-item">
+                <a href="/Course/MyCourse?pageIndex=@(ViewBag.prevPage <= 0 ? 1 : ViewBag.prevPage)&&name_search=@ViewBag.name_search" class="pagination-link"><i class="far fa-angle-left"></i></a>
+            </div>
+            @for (int i = 1; i <= ViewBag.MaxPage; i++)
+            {
+                <div class="pagination-item">
+                    <a href="/Course/MyCourse?pageIndex=@i&&name_search=@ViewBag.name_search" class="pagination-link @(ViewBag.pageIndex == i ?"page-active":"")">@i</a>
+                </div>
+            }
+            <div class="pagination-item">
+                <a href="/Course/MyCourse?pageIndex=@(ViewBag.nextPage > ViewBag.MaxPage ? "1": ViewBag.nextPage)&&name_search=@ViewBag.name_search" class="pagination-link"><i class="fas fa-angle-right"></i></a>
+            </div>
+        </div>
+    }
+}
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+
+<script src="~/js/rateStar.js"></script>

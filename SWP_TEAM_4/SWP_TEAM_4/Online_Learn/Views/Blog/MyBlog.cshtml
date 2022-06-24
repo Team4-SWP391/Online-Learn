@@ -1,83 +1,98 @@
-﻿@model IEnumerable<Online_Learn.Models.Blog>
+﻿@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json
 
+
+@model dynamic
 @{
-    ViewData["Title"] = "MyBlog";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout_No_Footer.cshtml";
+    Account user = Context.Session.GetString("User") != null ?
+    JsonConvert.DeserializeObject<Account>(Context.Session.GetString("User")) : null;
 }
-<link rel="stylesheet" href="~/css/MyBlog.css">
+<link rel="stylesheet" href="~/css/myBlog.css" />
 
-
-<div class="content container blog" style="height: 1000px;">
-            <div class="blog_header">
-                <div class="blog_header-info-user">
-                    <div class="user-avt">
-                        <img src="https://hinhnen123.com/wp-content/uploads/2021/11/Man-nhan-80-hinh-anh-con-gai-cute-de-thuong-het-phan-thien-ha-29.jpg" alt="">
-                    </div>
-                    <div class="user-fullname">
-                      User
-                    </div>
-                </div>
-                <div class="blog_header-title" style="margin-top: 45px;">
-                    <h2>MY BLOG</h2>
-                    <h5 style="text-align: right; margin-top: 15px;">
-                        <a asp-action="Create" class="write" style="border: 5px solid white;
-                            border-radius: 7px;
-                            color: #a435f0;
-                            background-color: white;
-                            padding-bottom: 3px;">Write post</a>
-                    </h5>
-                </div>
+<div class="content container blog">
+    <div class="blog_header">
+        <div class="blog_header-info-user">
+            <div class="user-avt">
+                <img src="https://img-c.udemycdn.com/course/240x135/1362070_b9a1_2.jpg" alt="">
             </div>
-    @using (Html.BeginForm("Index", "Blogs", FormMethod.Get))
-    {
-        <div class="blog_search">
-                <input type="text" name="search" placeholder="Search Blog">
-                <i class="fal fa-search" name="submit" type="submit"></i>
+            <div class="user-fullname">
+                @user.FulllName
             </div>
-    }
-            
-            <div class="blog_list">
-                <ul>
-                    <div class="blog_list-time">
-                        <h4>This Week</h4>
-                        <div class="line-through"></div>
-                    </div>
-
-
-
-                    @foreach (var item in Model) {
-       
+        </div>
+        <div class="blog_header-title">
+            <h2>MY BLOG</h2>
+        </div>
+    </div>
+    <div class="blog_search">
+        <form id="myBlogForm" asp-action="MyBlog" method="get">
+            <input type="text" placeholder="Search Blog" name="title">
+            <i class="fal fa-search" id="btnSubmit"></i>
+        </form>
+    </div>
+    <div class="blog_list">
+        <ul>
+            @if (Model.listWeek.Count > 0)
+            {
+                <div class="blog_list-time">
+                    <h4>This Week</h4>
+                    <div class="line-through"></div>
+                </div>
+                @foreach (var item in Model.listWeek)
+                {
                     <li class="blog_list-item">
-                        <a asp-action="Details" asp-route-id="@item.BlogId">
-                            <div class="blog_list-item-des row">
-                                
-                                    <h5 >@Html.DisplayFor(modelItem => item.Title)</h5>
-                                
-                                
-                            </div>
-                            
-                        </a>
-                    </li>
-                    }
-                    
-                   @* <div class="blog_list-time">
-                        <h4>This Month</h4>
-                        <div class="line-through"></div>
-                    </div>
-                    <li class="blog_list-item">
-                        <a href="">
+                        <a href="Blog/MyBlog/@item.BlogId">
                             <div class="blog_list-item-des">
-                                <h5>Learn C++ Programming FPT University</h5>
+                                <h5>@item.Title</h5>
                             </div>
                         </a>
                     </li>
+                }
+            }
+            @if (Model.listMonth.Count > 0)
+            {
+                <div class="blog_list-time">
+                    <h4>This Month</h4>
+                    <div class="line-through"></div>
+                </div>
+                @foreach (var item in Model.listMonth)
+                {
                     <li class="blog_list-item">
-                        <a href="">
+                        <a href="Blog/MyBlog/@item.BlogId">
                             <div class="blog_list-item-des">
-                                <h5>Learn C++ Programming FPT University</h5>
+                                <h5>@item.Title</h5>
                             </div>
                         </a>
-                    </li>*@
-                </ul>
-            </div>
-            </div>
+                    </li>
+                }
+            }
+
+            @if (Model.listYear.Count > 0)
+            {
+                <div class="blog_list-time">
+                    <h4>This Month</h4>
+                    <div class="line-through"></div>
+                </div>
+                @foreach (var item in Model.listYear)
+                {
+                    <li class="blog_list-item">
+                        <a href="Blog/MyBlog/@item.BlogId">
+                            <div class="blog_list-item-des">
+                                <h5>@item.Title</h5>
+                            </div>
+                        </a>
+                    </li>
+                }
+            }
+
+        </ul>
+    </div>
+</div>
+
+<script>
+    var btn = document.querySelector("#btnSubmit");
+    var form = document.querySelector("#myBlogForm");
+    btn.addEventListener('click', () => {
+        form.submit();
+    });
+</script>
