@@ -293,7 +293,6 @@ C:\Users\Admin\Documents\GitHub\Online-Learn\SWP_TEAM_4\SWP_TEAM_4\Online_Learn\
 C:\Users\Admin\Documents\GitHub\Online-Learn\SWP_TEAM_4\SWP_TEAM_4\Online_Learn\obj\Debug\net5.0\RazorDeclaration\Online_Learn.dll
 C:\Users\Admin\Documents\GitHub\Online-Learn\SWP_TEAM_4\SWP_TEAM_4\Online_Learn\obj\Debug\net5.0\Razor\wwwroot\js\BlogDetails.razor.g.cs
 C:\Users\Admin\Documents\GitHub\Online-Learn\SWP_TEAM_4\SWP_TEAM_4\Online_Learn\obj\Debug\net5.0\Razor\Views\Blog\Create.cshtml.g.cs
-C:\Users\Admin\Documents\GitHub\Online-Learn\SWP_TEAM_4\SWP_TEAM_4\Online_Learn\obj\Debug\net5.0\Razor\Views\Blog\Delete.cshtml.g.cs
 C:\Users\Admin\Documents\GitHub\Online-Learn\SWP_TEAM_4\SWP_TEAM_4\Online_Learn\obj\Debug\net5.0\Razor\Views\Blog\Details.cshtml.g.cs
 C:\Users\Admin\Documents\GitHub\Online-Learn\SWP_TEAM_4\SWP_TEAM_4\Online_Learn\obj\Debug\net5.0\Razor\Views\Blog\Edit.cshtml.g.cs
 C:\Users\Admin\Documents\GitHub\Online-Learn\SWP_TEAM_4\SWP_TEAM_4\Online_Learn\obj\Debug\net5.0\Razor\Views\Blog\Index.cshtml.g.cs

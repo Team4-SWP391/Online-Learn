@@ -197,31 +197,29 @@ namespace Online_Learn.Controllers
                 return NotFound();
             }
 
-            var blog = await _context.Blogs
-                .Include(b => b.Account)
-                .Include(b => b.Department)
-                .FirstOrDefaultAsync(m => m.BlogId == id);
+            var blog = await _context.Blogs.FindAsync(id);
+            _context.Blogs.Remove(blog);
+            await _context.SaveChangesAsync();
+
+            
             if (blog == null)
             {
                 return NotFound();
             }
-            ViewData["AccountName"] = blog.Account.FulllName;
-            ViewData["AccountImg"] = blog.Account.Image;
-
-
-            return View(blog);
+            return RedirectToAction(nameof(Index));
         }
 
         // POST: Blogs/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var blog = await _context.Blogs.FindAsync(id);
-            _context.Blogs.Remove(blog);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        //public async Task<IActionResult> DeleteConfirmed(int id)
+        //{
+        //    var blog = await _context.Blogs.FindAsync(id);
+        //    _context.Blogs.Remove(blog);
+        //    await _context.SaveChangesAsync();
+            
+        //    return RedirectToAction(nameof(Index));
+        //}
 
         private bool BlogExists(int id)
         {
