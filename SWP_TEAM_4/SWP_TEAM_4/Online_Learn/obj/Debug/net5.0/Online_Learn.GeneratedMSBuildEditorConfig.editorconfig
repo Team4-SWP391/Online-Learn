@@ -1,0 +1,10 @@
+is_global = true
+build_property.TargetFramework = net5.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.PublishSingleFile = 
+build_property.IncludeAllContentForSelfExtract = 
+build_property._SupportedPlatformList = Android,iOS,Linux,macOS,Windows
+build_property.RootNamespace = Online_Learn
+build_property.ProjectDir = C:\Users\Tuan\Documents\FPT University\Summer2022\SWP391\Online-Learn\SWP_TEAM_4\SWP_TEAM_4\Online_Learn\
