@@ -1,0 +1,59 @@
+﻿@model Online_Learn.Models.Account
+
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string error = ViewBag.error == null ? "" : ViewBag.error.ToString();
+}
+<link href="~/css/signup.css" rel="stylesheet" />
+<div class="content">
+    <h4 class="text-center" style="border-bottom: 1px solid #d1d7dc; padding: 10% 0; ">
+        Sign up and start
+        learning
+    </h4>
+    <div class="signup">
+        <form class="signup_form" action="register" method="post">
+            <div class="signup_account-form">
+                <input data-index="0" class="form_signup" name="username" value="" type="text" placeholder="Username">
+                <span class="form_message"></span>
+            </div>
+            <div class="signup_account-form">
+                <input data-index="1" class="form_signup" name="email" value="" type="email" placeholder="Email (example: email@domain.com)">
+                <span class="form_message" data-error="@ViewBag.error" id="existEmail">@ViewBag.error</span>
+            </div>
+            <div class="signup_account-form">
+                <input data-index="2" class="form_signup" name="password" value="" type="password" placeholder="Password">
+                <i class="far fa-eye" id="togglePassword"></i>
+                <br />
+                <span class="form_message"></span>
+            </div>
+            <div class="signup_account-form">
+                <input data-index="3" class="form_signup" name="confirm password" value="" type="password" placeholder="Confirm password">
+                <i class="far fa-eye" id="togglePassword2"></i>
+                <br />
+                <span class="form_message"></span>
+            </div>
+            <div class="signup_account-form">
+                <div class="login_account-role">
+                    <div>
+                        <input name="roleid" type="radio" id="student" value="1" checked>
+                        <label class="label_radio" for="student">Student</label>
+                    </div>
+
+                    <div>
+                        <input name="roleid" type="radio" id="creator" value="2">
+                        <label class="label_radio" for="creator">Creator</label>
+                    </div>
+                </div>
+            </div>
+            <div class="signup_account-submit">
+                <button type="submit">Sign Up</button>
+            </div>
+
+        </form>
+        <div class="signup_login">
+            <span>Already have an account? <a href="">Log In</a></span>
+        </div>
+    </div>
+</div>
+<script src="~/js/signup.js"></script>
