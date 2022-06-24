@@ -1,12 +1,13 @@
 ﻿using System;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace Online_Learn.Models {
-    public partial class Online_LearnContext : DbContext {
+namespace Online_Learn.Models
+{
+    public partial class Online_LearnContext : DbContext
+    {
         public Online_LearnContext()
         {
         }
@@ -18,6 +19,7 @@ namespace Online_Learn.Models {
 
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<AccountCourse> AccountCourses { get; set; }
+        public virtual DbSet<AccountToken> AccountTokens { get; set; }
         public virtual DbSet<Blog> Blogs { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
         public virtual DbSet<Department> Departments { get; set; }
@@ -39,6 +41,11 @@ namespace Online_Learn.Models {
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("server=DESKTOP-UKC2529\\TUAN; database=Online_Learn;uid=sa;pwd=123;");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -117,6 +124,30 @@ namespace Online_Learn.Models {
                     .HasConstraintName("FK_Account_Course_Course");
             });
 
+            modelBuilder.Entity<AccountToken>(entity =>
+            {
+                entity.HasKey(e => e.AtId);
+
+                entity.ToTable("Account_Token");
+
+                entity.Property(e => e.AtId).HasColumnName("at_id");
+
+                entity.Property(e => e.CreateToken)
+                    .HasColumnType("datetime")
+                    .HasColumnName("create_token")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Email).HasColumnName("email");
+
+                entity.Property(e => e.Status)
+                    .HasColumnName("status")
+                    .HasDefaultValueSql("((0))");
+
+                entity.Property(e => e.Token)
+                    .HasMaxLength(50)
+                    .HasColumnName("token");
+            });
+
             modelBuilder.Entity<Blog>(entity =>
             {
                 entity.ToTable("Blog");
@@ -126,6 +157,8 @@ namespace Online_Learn.Models {
                 entity.Property(e => e.AccountId).HasColumnName("account_id");
 
                 entity.Property(e => e.Content).HasColumnName("content");
+
+                //entity.Property(e => e.CourseStatus).HasColumnName("course_status");
 
                 entity.Property(e => e.DepartmentId).HasColumnName("department_id");
 
@@ -544,6 +577,7 @@ namespace Online_Learn.Models {
 
             OnModelCreatingPartial(modelBuilder);
         }
+
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
