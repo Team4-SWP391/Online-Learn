@@ -26,13 +26,13 @@ namespace Online_Learn.Models
         public int? RoleId { get; set; }
         public bool? Gender { get; set; }
         public DateTime? Dob { get; set; }
-        public string? Address { get; set; }
-        public string? Phone { get; set; }
-        public string? Language { get; set; }
-        public string? Image { get; set; }
-        public string? Email { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
+        public string Language { get; set; }
+        public string Image { get; set; }
+        public string Email { get; set; }
         public int? Amount { get; set; }
-        public string? Desc { get; set; }
+        public string Desc { get; set; }
 
         public virtual ICollection<AccountCourse> AccountCourses { get; set; }
         public virtual ICollection<Blog> Blogs { get; set; }

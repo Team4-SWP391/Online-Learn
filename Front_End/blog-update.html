@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./admin/assets/css/course-update.css">
+    <link rel="stylesheet" href="./admin/assets/css/course-create.css">
+
+</head>
+
+<body>
+
+    <!-- <div class="delete">
+        <div class="delete-head">
+            <div class="delete-close">
+                <i class="fas fa-times-circle"></i>
+            </div>
+        </div>
+        <div class="delete-content">
+            <i class="fas fa-exclamation-circle"></i>
+            <span class="delete-alert">Do you want delete Course</span>
+        </div>
+        <div class="delete-main">
+            <div class="delete__tt">
+                <a href="#" class="delete_link">Delete</a>
+            </div>
+            <div class="delete__tt">
+                <span class="delete_cancel">Cancel</span>
+            </div>
+
+        </div>
+    </div> -->
+
+    <div class="course">
+        <div class="course-header">
+            <a href="#backToList" class="course-header__back"><i class="fas fa-angle-left"></i>Back to course</a>
+            <span class="course-header__key">Keyword research for bloggers</span>
+            <span class="course-header__bold">Draft</span>
+            <span class="course-header__tt">Omin of video contenet upload</span>
+        </div>
+       
+            <div class="course-update" style="margin-left: 300px;">
+                <h3 class="course-update__heading">Blog Detail</h3>
+                <div class="course-update__content">
+                    <div class="course-update__form">
+                        <form action="#" method="get">
+                            <div class="course-update__formgr">
+                                <input type="text" class="course-update__input" hidden>
+                            </div>
+                            <div class="course-update__formgr">
+                                <label class="course-update__lable">Blog Title</label><br>
+                                <input type="text" class="course-update__input" value="ASP.NET USING ENTITY FRAMEWORK">
+                            </div>
+                    
+                            <div class="course-create__formgr">
+                                <label class="course-create__lable">Desc1</label><br>
+                                <input type="text" class="course-create__input">
+                            </div>
+                            <div class="course-create__formgr">
+                                <label class="course-create__lable">Desc2</label><br>
+                                <input type="text" class="course-create__input">
+                            </div>
+                            <div class="course-create__formgr">
+                                <label class="course-create__lable">Desc3</label><br>
+                                <input type="text" class="course-create__input">
+                            </div>
+                            <div class="course-create__formgr">
+                                <label class="course-create__lable">Update At</label><br>
+                                <input type="datetime" class="course-create__input">
+                            </div>
+                           
+                           
+                            <div class="course-create__formgr">
+                                <label class="course-create__lable">Department ID</label><br>
+                                <Select class="course-create__select">
+                                    <option class="course-create__option">1</option>
+                                    <option class="course-create__option">2</option>
+                                    <option class="course-create__option">3</option>
+                                </Select>
+                            </div>
+                            <div class="course-create__formgr">
+                                <label class="course-create__lable">Content</label><br>
+                                <textarea class="course-create__textarea" cols="81" rows="8"></textarea>
+                            </div>
+
+                            <div class="course-create__formgr">
+                                <label class="course-create__lable">Account ID</label><br>
+                                <input type="text" class="course-create__input">
+                            </div>
+                            <div class="course-update__formgr">
+                                <button class="course-update__submit">Update</button>
+                        </form>
+                        <button id="#course" class="course-update__info">Delete</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="admin/assets/js/course-update.js"></script>
+</body>
+
+</html>
