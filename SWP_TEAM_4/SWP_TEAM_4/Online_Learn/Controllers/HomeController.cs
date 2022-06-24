@@ -41,7 +41,7 @@ namespace Online_Learn.Controllers {
             ViewBag.list7 = list7;
             ViewBag.list8 = list8;
             ViewBag.list9 = list9;
-            ViewBag.course_rcm = course_rcm.CourseName;    
+            ViewBag.course_rcm = course_rcm.CourseName;
             return View();
         }
 

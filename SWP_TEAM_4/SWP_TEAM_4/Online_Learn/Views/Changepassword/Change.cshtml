@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "ChangePassword";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/changepass.css" rel="stylesheet" />
+
+<div class="content">
+    <div class="content-title">
+        <h4 class="text-center" style="border-bottom: 1px solid #d1d7dc; padding: 5% 0; color: white;">
+            Change Password
+        </h4>
+    </div>
+    <div class="changepass text-center">
+        <form action="change" method="post" id="changepass-form">
+
+            <div class="changepass_form" style="margin-bottom: 20px;">
+                <i class="fal fa-envelope"></i>
+                <input type="email" class="pwform" placeholder="Email" name="email" readonly value=@ViewBag.Account.Email>
+            </div>
+            <div class="changepass_form">
+                <i class="fal fa-lock"></i>
+                <input type="password" class="pwform" name="newpass" placeholder="New Password">
+                <span class="form_message"></span>
+            </div>
+            <div class="changepass_form">
+                <i class="fal fa-lock"></i>
+                <input type="password" class="pwform" name="confirm new pass" placeholder="Confirm New Password">
+                <span class="form_message"></span>
+            </div>
+            <input type="hidden" name="token" />
+            <div class="changepass_form-submit">
+                <button type="submit">Save Change</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="~/js/changepass.js"></script>
+

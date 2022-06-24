@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\GITHUB\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj": {}
+    "C:\\Users\\Tuan\\Documents\\FPT University\\Summer2022\\SWP391\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj": {}
   },
   "projects": {
-    "D:\\GITHUB\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj": {
+    "C:\\Users\\Tuan\\Documents\\FPT University\\Summer2022\\SWP391\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\GITHUB\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj",
+        "projectUniqueName": "C:\\Users\\Tuan\\Documents\\FPT University\\Summer2022\\SWP391\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj",
         "projectName": "Online_Learn",
-        "projectPath": "D:\\GITHUB\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "D:\\GITHUB\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\obj\\",
+        "projectPath": "C:\\Users\\Tuan\\Documents\\FPT University\\Summer2022\\SWP391\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\Online_Learn.csproj",
+        "packagesPath": "C:\\Users\\Tuan\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Tuan\\Documents\\FPT University\\Summer2022\\SWP391\\Online-Learn\\SWP_TEAM_4\\SWP_TEAM_4\\Online_Learn\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Tuan\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -40,6 +40,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[3.3.0, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.17, )"
@@ -81,7 +85,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.408\\RuntimeIdentifierGraph.json"
         }
       }
     }
