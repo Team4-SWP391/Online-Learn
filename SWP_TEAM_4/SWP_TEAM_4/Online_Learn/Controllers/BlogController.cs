@@ -14,8 +14,10 @@ using Newtonsoft.Json;
 
 using Online_Learn.Models;
 
-namespace Online_Learn.Controllers {
-    public class BlogController : Controller {
+namespace Online_Learn.Controllers
+{
+    public class BlogController : Controller
+    {
         private readonly Online_LearnContext _context;
 
         public BlogController(Online_LearnContext context)
@@ -252,15 +254,8 @@ namespace Online_Learn.Controllers {
         {
             return _context.Blogs.Any(e => e.BlogId == id);
         }
-    
-}
-
-
-
-
-
-        //hdhdjsjskakaa
 
     }
 
 }
+
