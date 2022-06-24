@@ -129,6 +129,11 @@ namespace Online_Learn.Models {
 
                 entity.Property(e => e.DepartmentId).HasColumnName("department_id");
 
+                entity.Property(e => e.Desc1).HasColumnName("desc1");
+
+                entity.Property(e => e.Desc2).HasColumnName("desc2");
+
+                entity.Property(e => e.Desc3).HasColumnName("desc3");
 
                 entity.Property(e => e.Title).HasColumnName("title");
 
@@ -544,6 +549,7 @@ namespace Online_Learn.Models {
 
             OnModelCreatingPartial(modelBuilder);
         }
+
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
