@@ -14,10 +14,8 @@ using Newtonsoft.Json;
 
 using Online_Learn.Models;
 
-namespace Online_Learn.Controllers
-{
-    public class BlogController : Controller
-    {
+namespace Online_Learn.Controllers {
+    public class BlogController : Controller {
         private readonly Online_LearnContext _context;
 
         public BlogController(Online_LearnContext context)
@@ -39,14 +37,14 @@ namespace Online_Learn.Controllers
             if (title != null)
             {
                 ListBlog = await _context.Blogs.Include(b => b.Account).Include(b => b.Department)
-                    .Where(b => b.Title.Contains(title)).Skip((pageIndex - 1) * pageSize + 1).Take(pageSize).ToListAsync();
+                    .Where(b => b.Title.Contains(title)).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
                 pageNumber = Convert.ToInt32(Math.Ceiling((decimal)_context.Blogs
                     .Where(b => b.Title.Contains(title)).ToList().Count / pageSize));
             }
             else
             {
                 ListBlog = await _context.Blogs.Include(b => b.Account).Include(b => b.Department)
-                .Skip((pageIndex - 1) * pageSize + 1).Take(pageSize).ToListAsync();
+                .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
                 pageNumber = Convert.ToInt32(Math.Ceiling((decimal)_context.Blogs.ToList().Count / pageSize));
             }
             ViewBag.PageNumber = pageNumber;
@@ -95,16 +93,13 @@ namespace Online_Learn.Controllers
             model.listYear = listYear;
             return View(model);
         }
-        // GET: Blogs/Details/5
-        public async Task<IActionResult> Details(int? id, int? depaid, int? acid)
+        // GET: Blogs/Detail/5
+        public async Task<IActionResult> Detail(int? id, int? depaid, int? acid)
         {
             if (id == null)
             {
                 return NotFound();
             }
-
-
-
             var blog = await _context.Blogs
                 .Include(b => b.Account)
                 .Include(b => b.Department)
@@ -119,9 +114,6 @@ namespace Online_Learn.Controllers
             //var course = from b in _context.Blogs  
             //         join d in _context.Departments on b.DepartmentId equals d.DepartmentId
             //         join c in _context.Courses on d.DepartmentId = c. where b.department_id = 1";
-
-
-
             if (blog == null)
             {
                 return NotFound();
@@ -130,12 +122,11 @@ namespace Online_Learn.Controllers
             ViewData["AccountName"] = blog.Account.Username;
             ViewData["AccountImg"] = blog.Account.Image;
             ViewData["user"] = blog.Account.FulllName;
-
             return View(blog);
 
         }
 
-        // GET: Blogs/Create
+        // GET: Blog/Create
         public IActionResult Create()
         {
             ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "Password");
@@ -148,7 +139,7 @@ namespace Online_Learn.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BlogId,Title,Desc1,Desc2,Desc3,UpdateAt,DepartmentId,Content,AccountId")] Blog blog)
+        public async Task<IActionResult> Create([Bind("BlogId,Title,UpdateAt,DepartmentId,Content,AccountId")] Blog blog)
         {
             if (ModelState.IsValid)
             {
@@ -186,7 +177,7 @@ namespace Online_Learn.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BlogId,Title,Desc1,Desc2,Desc3,UpdateAt,DepartmentId,Content,AccountId")] Blog blog)
+        public async Task<IActionResult> Edit(int id, [Bind("BlogId,Title,UpdateAt,DepartmentId,Content,AccountId")] Blog blog)
         {
             if (id != blog.BlogId)
             {
@@ -235,7 +226,7 @@ namespace Online_Learn.Controllers
             {
                 return NotFound();
             }
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(MyBlog));
         }
 
         // POST: Blogs/Delete/5
