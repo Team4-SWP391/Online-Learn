@@ -1,7 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Http
 @using Newtonsoft.Json
 @{
-    Boolean IsLogin = Convert.ToBoolean(ViewData["isLogin"]);
     Account user = Context.Session.GetString("User") != null ?
     JsonConvert.DeserializeObject<Account>(Context.Session.GetString("User")) : null;
 }
