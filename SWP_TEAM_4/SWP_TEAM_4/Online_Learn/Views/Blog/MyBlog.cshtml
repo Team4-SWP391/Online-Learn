@@ -41,7 +41,7 @@
                 @foreach (var item in Model.listWeek)
                 {
                     <li class="blog_list-item">
-                        <a href="Blog/MyBlog/@item.BlogId">
+                        <a href="/Blog/Detail/@item.BlogId">
                             <div class="blog_list-item-des">
                                 <h5>@item.Title</h5>
                             </div>
@@ -58,7 +58,7 @@
                 @foreach (var item in Model.listMonth)
                 {
                     <li class="blog_list-item">
-                        <a href="Blog/MyBlog/@item.BlogId">
+                        <a href="/Blog/Detail/@item.BlogId">
                             <div class="blog_list-item-des">
                                 <h5>@item.Title</h5>
                             </div>
@@ -70,13 +70,13 @@
             @if (Model.listYear.Count > 0)
             {
                 <div class="blog_list-time">
-                    <h4>This Month</h4>
+                    <h4>This Year</h4>
                     <div class="line-through"></div>
                 </div>
                 @foreach (var item in Model.listYear)
                 {
                     <li class="blog_list-item">
-                        <a href="Blog/MyBlog/@item.BlogId">
+                        <a href="/Blog/Detail/@item.BlogId">
                             <div class="blog_list-item-des">
                                 <h5>@item.Title</h5>
                             </div>
