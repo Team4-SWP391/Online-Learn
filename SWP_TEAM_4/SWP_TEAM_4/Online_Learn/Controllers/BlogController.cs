@@ -65,8 +65,7 @@ namespace Online_Learn.Controllers {
             List<Blog> listMonth = new List<Blog>();
             List<Blog> listYear = new List<Blog>();
             DateTime today = DateTime.Today;
-            Account user = HttpContext.Session.GetString("User") != null ?
-    JsonConvert.DeserializeObject<Account>(HttpContext.Session.GetString("User")) : null;
+            Account user = JsonConvert.DeserializeObject<Account>(HttpContext.Session.GetString("User"));
             int accountId = user.AccountId;
             title = title == null ? "" : title;
             list = await _context.Blogs.Include(b => b.Account).Include(b => b.Department)

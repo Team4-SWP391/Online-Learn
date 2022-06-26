@@ -1,15 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
+using Newtonsoft.Json;
+
 using Online_Learn.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Online_Learn.Controllers
-{
-    public class AccountController : Controller
-    {
+namespace Online_Learn.Controllers {
+    public class AccountController : Controller {
         private readonly Online_LearnContext context;
 
         public AccountController(Online_LearnContext _context)
@@ -20,7 +23,8 @@ namespace Online_Learn.Controllers
         [HttpGet]
         public async Task<IActionResult> Profile()
         {
-            Account account = await context.Accounts.Where(x => x.AccountId == 2).FirstOrDefaultAsync();
+            Account user = JsonConvert.DeserializeObject<Account>(HttpContext.Session.GetString("User"));
+            Account account = await context.Accounts.Where(x => x.AccountId == user.AccountId).FirstOrDefaultAsync();
             ViewBag.account = account;
             return View();
         }
@@ -29,7 +33,7 @@ namespace Online_Learn.Controllers
         public async Task<IActionResult> Profile(Account NewAccount)
         {
             Account a = await context.Accounts.FirstOrDefaultAsync(x => x.AccountId == NewAccount.AccountId);
-            if(a != null)
+            if (a != null)
             {
                 a.AccountId = NewAccount.AccountId;
                 a.FulllName = NewAccount.FulllName;

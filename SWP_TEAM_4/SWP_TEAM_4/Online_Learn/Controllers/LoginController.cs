@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,8 +14,13 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 using Online_Learn.Models;
+
+using Org.BouncyCastle.Asn1.Crmf;
+
+using RestSharp;
 
 namespace Online_Learn.Controllers {
     public class LoginController : Controller {
@@ -69,12 +75,45 @@ namespace Online_Learn.Controllers {
             }
             return View("Login");
         }
-        public IActionResult Login_Google()
+        public async Task<GoogleToken> Login_Google(string code)
         {
-            //string redirect = "https://accounts.google.com/o/oauth2/auth?scope=email&" +
-            //    "redirect_uri=https://localhost:44393/login-google&response_type=code&" +
-            //    "client_id=240096817026-hiacplg3lvqrnku3g6ihm26fv3geog3q.apps.googleusercontent.com&approval_prompt=force";
-            return Redirect("Login_Google");
+            string clientID = "240096817026-bnoup401nmf0bgig9c6evbpb473r6ou2.apps.googleusercontent.com";
+            string clientSecret = "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";
+            string redirect_uri = "https://localhost:44396/Login/Login_Google";
+            string TokenUri = "https://www.googleapis.com/oauth2/v4/token";
+            string scope = "https://www.googleapis.com/auth/userinfo.email";
+            GoogleToken token = null;
+            var postData = new
+            {
+                code = code,
+                client_id = clientID,
+                client_secret = clientSecret,
+                redirect_uri = redirect_uri,
+                grant_type = "authorization_code"
+            };
+            using (var httpClient = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(postData), Encoding.UTF8, "application/json");
+                using (var response = httpClient.PostAsync(TokenUri, content))
+                {
+                    string responseString = await response.Result.Content.ReadAsStringAsync();
+                    token = JsonConvert.DeserializeObject<GoogleToken>(responseString);
+                }
+            }
+            //StringBuilder sb = new StringBuilder();
+            //sb.Append($"client_id = {clientID}");
+            //sb.Append($"&redirect_uti = {redirect_uri}");
+            //sb.Append($"&response_type = code");
+            //sb.Append($"&scope = {scope}");
+            //sb.Append($"&access_type = offline");
+            //sb.Append($"&state = lamvinh2431@gmail.com");
+            //sb.Append($"&approval_prompt=force");
+            //return sb.ToString();
+            return token;
+        }
+        public string Login_Facebook()
+        {
+            return "1";
         }
 
         public static string GetMD5(string str)
