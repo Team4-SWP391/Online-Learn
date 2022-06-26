@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+
+using Online_Learn.AuthData;
 using Online_Learn.Models;
 
 namespace Online_Learn.Controllers {
@@ -18,7 +21,6 @@ namespace Online_Learn.Controllers {
             _logger = logger;
             _context = context;
         }
-
         public async Task<IActionResult> Index()
         {
             Random rand = new Random();

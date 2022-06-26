@@ -1,8 +1,10 @@
-﻿@model IEnumerable<Course> 
-@{
+﻿@{
     ViewData["Title"] = "Wishlist";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@model List<Course>
+
+
 <link href="~/css/wishlist.css" rel="stylesheet" />
 <link href="~/css/mylearning.css" rel="stylesheet" />
 <div class="mylearning">
@@ -14,10 +16,10 @@
             <div class="nav_container">
                 <ul class="nav">
                     <li class="nav_item me-3">
-                        <a href="#">All courses</a>
+                        <a href="/Course/MyCourse">All courses</a>
                     </li>
                     <li class="nav_item mx-3 active">
-                        <a href="../wishlist/wishlist">Wishlist</a>
+                        <a href="#">Wishlist</a>
                     </li>
                 </ul>
             </div>
@@ -25,59 +27,70 @@
     </div>
 </div>
 <!-- Search -->
-<div class="search my-3">
-    <form action="../wishlist/wishlist" method="post">
-        <input type="text" name="search" placeholder="Search my courses">
-        <button type="submit"> <i class="fa fa-search"></i> </button>
-    </form>
-</div>
+@if (Model.Count > 0)
+{
+    <div class="search my-3">
+        <form action="../wishlist/wishlist" method="post">
+            <input type="text" name="search" placeholder="Search my courses">
+            <button type="submit"> <i class="fa fa-search"></i> </button>
+        </form>
+    </div>
+}
 <div class="mycourses">
     <div class="container">
         <div class="row d-flex justify-content-between mb-3">
-            @foreach (var item in Model) {
-            <div class="card card-learning col-3 p-0">
-                <a href="#" class="card-learning_img" tabindex="-1">
-                    <div class="card_img">
-                        <img class="img-fluid"
+            @if (Model.Count > 0)
+            {
+                @foreach (var item in Model)
+                {
+                    <div class="card card-learning col-3 p-0">
+                        <a href="#" class="card-learning_img" tabindex="-1">
+                            <div class="card_img">
+                                <img class="img-fluid"
                              alt="Complete JAVASCRIPT with HTML5,CSS3 from zero to Expert-2022" width="100%"
                              src="@item.Image"
                              srcset="@item.Image 1x">
-                    </div>
-                </a>
-                <div class="card-learning_details p-2">
-                    <a href="#" class="btn noHover">
-                        <strong class="details_name">
-                           @item.CourseName
-                        </strong>
-                    </a>
-                    <div class="details_instructor" style="height:160px">
-                       <span>
-                           @item.Description
-                        </span>
-                    </div>
-                    <div class="details_bottom">
-                        <button class="float-start">
-                            <div class="details_rating d-inline-block">
-                                <div class="rate">
-                                    <i data-star='0' class="fas fa-star stars starActive"></i>
-                                    <i data-star='1' class="fas fa-star stars starActive"></i>
-                                    <i data-star='2' class="fas fa-star stars starActive"></i>
-                                    <i data-star='3' class="fas fa-star stars starActive"></i>
-                                    <i data-star='4' class="fas fa-star stars starActive"></i>
-                                </div>
-                                <strong class="star-value">4.7</strong>
-                                <span>(100)</span>
                             </div>
-                        </button>
-                        <br>
-                        <div style="text-align: right;margin-top: 10px;">
-                            <del style="font-size: 15px;">$199.99</del>
-                            <span class="gia" style="color: black; font-weight: 700;">$@item.Price</span>
+                        </a>
+                        <div class="card-learning_details p-2">
+                            <a href="#" class="btn noHover">
+                                <strong class="details_name">
+                                    @item.CourseName
+                                </strong>
+                            </a>
+                            <div class="details_instructor" style="height:160px">
+                                <span>
+                                    @item.Description
+                                </span>
+                            </div>
+                            <div class="details_bottom">
+                                <button class="float-start">
+                                    <div class="details_rating d-inline-block">
+                                        <div class="rate">
+                                            <i data-star='0' class="fas fa-star stars starActive"></i>
+                                            <i data-star='1' class="fas fa-star stars starActive"></i>
+                                            <i data-star='2' class="fas fa-star stars starActive"></i>
+                                            <i data-star='3' class="fas fa-star stars starActive"></i>
+                                            <i data-star='4' class="fas fa-star stars starActive"></i>
+                                        </div>
+                                        <strong class="star-value">4.7</strong>
+                                        <span>(100)</span>
+                                    </div>
+                                </button>
+                                <br>
+                                <div style="text-align: right;margin-top: 10px;">
+                                    <del style="font-size: 15px;">$199.99</del>
+                                    <span class="gia" style="color: black; font-weight: 700;">$@item.Price</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-             }
+                }
+            }
+            else
+            {
+                <h1 class="text-center">You dont have any course! <a href="/Home" style="color: var(--main-color)">See More Course</a></h1>
+            }
         </div>
     </div>
 </div>

@@ -1,16 +1,19 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+
+using Newtonsoft.Json;
+
 using Online_Learn.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Online_Learn.Controllers
-{
-    public class CourseController : Controller 
-    {
+namespace Online_Learn.Controllers {
+    public class CourseController : Controller {
         private readonly Online_LearnContext _context;
 
         public CourseController(Online_LearnContext context)
@@ -87,7 +90,7 @@ namespace Online_Learn.Controllers
             {
                 totalCourse = _context.Courses.Where(x => x.Department.DepartmentId == department_id).ToList().Count;
             }
-            else if(name_search != null)
+            else if (name_search != null)
             {
                 totalCourse = _context.Courses.Where(x => x.Department.DepartmentId == department_id && x.CourseName.ToLower().Contains(name_search.ToLower())).ToList().Count;
             }
@@ -107,9 +110,10 @@ namespace Online_Learn.Controllers
             return View();
         }
 
-        public async Task<IActionResult> MyCourse(int account_id, string name_search, int pageIndex)
+        public async Task<IActionResult> MyCourse(string name_search, int pageIndex)
         {
-            account_id = 4;
+            Account user = JsonConvert.DeserializeObject<Account>(HttpContext.Session.GetString("User"));
+            int account_id = user.AccountId;
             List<AccountCourse> courses = new List<AccountCourse>();
             if (pageIndex <= 0 || pageIndex == null)
             {
@@ -119,15 +123,15 @@ namespace Online_Learn.Controllers
             int checkPage = 0;
             int totalCourse = 0;
             if (name_search != null)
-            { 
+            {
                 courses = await _context.AccountCourses.Include(x => x.Account).Include(x => x.Course).
                     Where(x => x.Account.AccountId == account_id && x.Course.CourseName.ToLower().Contains(name_search.ToLower().Trim())).
                     Skip(((pageIndex - 1) * pageSize + 1)).Take(pageSize).ToListAsync();
-                
+
 
                 totalCourse = _context.AccountCourses.Include(x => x.Account).Include(x => x.Course).
                     Where(x => x.Account.AccountId == account_id && x.Course.CourseName.ToLower().Contains(name_search.ToLower().Trim())).ToList().Count;
-                
+
                 checkPage = 1;
             }
             else
