@@ -6,12 +6,16 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
+using Google.Apis.Auth.AspNetCore3;
+using Google.Apis.Services;
+
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.FileSystemGlobbing;
 
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -25,10 +29,12 @@ using RestSharp;
 namespace Online_Learn.Controllers {
     public class LoginController : Controller {
         private readonly Online_LearnContext _context;
+
         public LoginController(Online_LearnContext context)
         {
             _context = context;
         }
+
 
         // GET: Login_Udemy
         public IActionResult Login_Udemy()
@@ -42,6 +48,12 @@ namespace Online_Learn.Controllers {
             return View("Login");
         }
 
+        public Account GetAccount(string email, string pass)
+        {
+            Account user = _context.Accounts.FirstOrDefault(a => a.Email == email && a.Password == GetMD5(pass));
+            return user;
+        }
+
         [HttpPost]
         // POST: Login/Login
         public async Task<IActionResult> Login(string email, string pass, string remember)
@@ -49,7 +61,7 @@ namespace Online_Learn.Controllers {
             if (ModelState.IsValid)
             {
                 pass = pass == null ? "" : pass;
-                Account user = await _context.Accounts.FirstOrDefaultAsync(a => a.Email == email && a.Password == GetMD5(pass));
+                Account user = GetAccount(email, pass);
                 if (user != null)
                 {
                     if (remember != null)
@@ -100,21 +112,16 @@ namespace Online_Learn.Controllers {
                     token = JsonConvert.DeserializeObject<GoogleToken>(responseString);
                 }
             }
-            //StringBuilder sb = new StringBuilder();
-            //sb.Append($"client_id = {clientID}");
-            //sb.Append($"&redirect_uti = {redirect_uri}");
-            //sb.Append($"&response_type = code");
-            //sb.Append($"&scope = {scope}");
-            //sb.Append($"&access_type = offline");
-            //sb.Append($"&state = lamvinh2431@gmail.com");
-            //sb.Append($"&approval_prompt=force");
-            //return sb.ToString();
+
             return token;
         }
+
+
         public string Login_Facebook()
         {
             return "1";
         }
+
 
         public static string GetMD5(string str)
         {

@@ -29,7 +29,6 @@ namespace Online_Learn {
             services.AddControllersWithViews();
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<Online_LearnContext>(options => options.UseSqlServer(connection));
-
             services
                 .AddAuthentication().AddFacebook(facebookOptions =>
                 {
