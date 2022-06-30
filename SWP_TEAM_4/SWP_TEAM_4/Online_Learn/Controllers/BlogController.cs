@@ -95,6 +95,8 @@ namespace Online_Learn.Controllers {
         // GET: Blogs/Detail/5
         public async Task<IActionResult> Detail(int? id, int? depaid, int? acid)
         {
+            Random rand = new Random();
+
             if (id == null)
             {
                 return NotFound();
@@ -104,15 +106,17 @@ namespace Online_Learn.Controllers {
                 .Include(b => b.Department)
                 .FirstOrDefaultAsync(m => m.BlogId == id);
 
-            //var  relate =  "select* from Blog where department_id = 1 and account_id = 1";
-            var related = from b in _context.Blogs
-                          where b.DepartmentId == depaid
-                          select b;
+
+            var listCourse = await _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).OrderBy(x => Guid.NewGuid()).Take(8).ToListAsync();
+            ViewBag.listCourse = listCourse;
+
+            var relate = await _context.Blogs.Include(b => b.Account).Include(b => b.Department).
+                OrderBy(b => Guid.NewGuid()).Take(5).ToListAsync();
 
 
-            //var course = from b in _context.Blogs  
-            //         join d in _context.Departments on b.DepartmentId equals d.DepartmentId
-            //         join c in _context.Courses on d.DepartmentId = c. where b.department_id = 1";
+            ViewBag.relate = relate;
+
+
             if (blog == null)
             {
                 return NotFound();
@@ -121,7 +125,9 @@ namespace Online_Learn.Controllers {
             ViewData["AccountName"] = blog.Account.Username;
             ViewData["AccountImg"] = blog.Account.Image;
             ViewData["user"] = blog.Account.FulllName;
+
             return View(blog);
+
 
         }
 
@@ -227,18 +233,6 @@ namespace Online_Learn.Controllers {
             }
             return RedirectToAction(nameof(MyBlog));
         }
-
-        // POST: Blogs/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    var blog = await _context.Blogs.FindAsync(id);
-        //    _context.Blogs.Remove(blog);
-        //    await _context.SaveChangesAsync();
-
-        //    return RedirectToAction(nameof(Index));
-        //}
 
         private bool BlogExists(int id)
         {
