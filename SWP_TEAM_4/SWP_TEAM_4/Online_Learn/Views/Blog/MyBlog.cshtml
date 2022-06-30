@@ -14,7 +14,7 @@
     <div class="blog_header">
         <div class="blog_header-info-user">
             <div class="user-avt">
-                <img src="https://img-c.udemycdn.com/course/240x135/1362070_b9a1_2.jpg" alt="">
+                <img src="@user.Image" alt="">
             </div>
             <div class="user-fullname">
                 @user.FulllName
@@ -22,6 +22,13 @@
         </div>
         <div class="blog_header-title">
             <h2>MY BLOG</h2>
+             <h5 style="text-align: right; margin-top: 15px;">
+                        <a asp-action="Create" class="write" style="border: 5px solid white;
+                            border-radius: 7px;
+                            color: #a435f0;
+                            background-color: white;
+                            padding-bottom: 3px;">Write post</a>
+              </h5>
         </div>
     </div>
     <div class="blog_search">
@@ -41,7 +48,7 @@
                 @foreach (var item in Model.listWeek)
                 {
                     <li class="blog_list-item">
-                        <a href="Blog/MyBlog/@item.BlogId">
+                        <a href="/Blog/Detail/@item.BlogId">
                             <div class="blog_list-item-des">
                                 <h5>@item.Title</h5>
                             </div>
@@ -58,7 +65,7 @@
                 @foreach (var item in Model.listMonth)
                 {
                     <li class="blog_list-item">
-                        <a href="Blog/MyBlog/@item.BlogId">
+                        <a href="/Blog/Detail/@item.BlogId">
                             <div class="blog_list-item-des">
                                 <h5>@item.Title</h5>
                             </div>
@@ -70,13 +77,13 @@
             @if (Model.listYear.Count > 0)
             {
                 <div class="blog_list-time">
-                    <h4>This Month</h4>
+                    <h4>This Year</h4>
                     <div class="line-through"></div>
                 </div>
                 @foreach (var item in Model.listYear)
                 {
                     <li class="blog_list-item">
-                        <a href="Blog/MyBlog/@item.BlogId">
+                        <a href="/Blog/Detail/@item.BlogId">
                             <div class="blog_list-item-des">
                                 <h5>@item.Title</h5>
                             </div>

@@ -28,8 +28,8 @@
 
     <div class="sidebar">
         <div class="sidebar-logo">
-            <a href="#home" class="sidebar-link">
-                <img src="~/image/logo-udemy-inverted.svg" alt="" width="120"
+            <a href="/Home" class="sidebar-link">
+                <img src="~/css/logo-udemy-inverted.svg" alt="" width="120"
                      height="50">
             </a>
         </div>
@@ -48,7 +48,7 @@
     </div>
     <div class="course-contact">
         <div class="course-contact__header">
-            <span class="course-contact__heading">Course Manager</span> <a href="/Course/Insert" class="course-contact__link">
+            <span class="course-contact__heading">Course Manager</span> <a href="/Course/Create" class="course-contact__link">
                 <i class="fal fa-plus"></i>Add
             </a>
         </div>
@@ -91,7 +91,7 @@
                 {
                     <div class="course-main__item">
                         <div class="course-main__img">
-                            <a href="/Course/update">
+                            <a href="/Course/Edit?id=@course.CourseId">
                                 <img src="@course.Image" alt=""
                                      srcset="">
                             </a>
@@ -110,9 +110,9 @@
                                 </div>
                                 (11.269)
                             </span><br>
-                            <span class="course-main__price">
-                                @course.Price<span class="course-main__discount">@(course.getPriceByDiscount())</span>
-                            </span><br>
+                                   <span class="course-main__price">
+                                       @course.getPriceByDiscount()<span class="course-main__discount">@course.Price</span>
+                                   </span><br>
                             <span class="course-main__seller"><strong>Bestseller</strong></span>
                         </div>
                     </div>

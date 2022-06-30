@@ -37,14 +37,14 @@ namespace Online_Learn.Controllers {
             if (title != null)
             {
                 ListBlog = await _context.Blogs.Include(b => b.Account).Include(b => b.Department)
-                    .Where(b => b.Title.Contains(title)).Skip((pageIndex - 1) * pageSize + 1).Take(pageSize).ToListAsync();
+                    .Where(b => b.Title.Contains(title)).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
                 pageNumber = Convert.ToInt32(Math.Ceiling((decimal)_context.Blogs
                     .Where(b => b.Title.Contains(title)).ToList().Count / pageSize));
             }
             else
             {
                 ListBlog = await _context.Blogs.Include(b => b.Account).Include(b => b.Department)
-                .Skip((pageIndex - 1) * pageSize + 1).Take(pageSize).ToListAsync();
+                .Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync();
                 pageNumber = Convert.ToInt32(Math.Ceiling((decimal)_context.Blogs.ToList().Count / pageSize));
             }
             ViewBag.PageNumber = pageNumber;
@@ -65,8 +65,7 @@ namespace Online_Learn.Controllers {
             List<Blog> listMonth = new List<Blog>();
             List<Blog> listYear = new List<Blog>();
             DateTime today = DateTime.Today;
-            Account user = HttpContext.Session.GetString("User") != null ?
-    JsonConvert.DeserializeObject<Account>(HttpContext.Session.GetString("User")) : null;
+            Account user = JsonConvert.DeserializeObject<Account>(HttpContext.Session.GetString("User"));
             int accountId = user.AccountId;
             title = title == null ? "" : title;
             list = await _context.Blogs.Include(b => b.Account).Include(b => b.Department)
@@ -93,5 +92,154 @@ namespace Online_Learn.Controllers {
             model.listYear = listYear;
             return View(model);
         }
+        // GET: Blogs/Detail/5
+        public async Task<IActionResult> Detail(int? id, int? depaid, int? acid)
+        {
+            Random rand = new Random();
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var blog = await _context.Blogs
+                .Include(b => b.Account)
+                .Include(b => b.Department)
+                .FirstOrDefaultAsync(m => m.BlogId == id);
+
+
+            var listCourse = await _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).OrderBy(x => Guid.NewGuid()).Take(8).ToListAsync();
+            ViewBag.listCourse = listCourse;
+
+            var relate = await _context.Blogs.Include(b => b.Account).Include(b => b.Department).
+                OrderBy(b => Guid.NewGuid()).Take(5).ToListAsync();
+
+
+            ViewBag.relate = relate;
+
+
+            if (blog == null)
+            {
+                return NotFound();
+            }
+            ViewData["BlogId"] = blog.BlogId;
+            ViewData["AccountName"] = blog.Account.Username;
+            ViewData["AccountImg"] = blog.Account.Image;
+            ViewData["user"] = blog.Account.FulllName;
+
+            return View(blog);
+
+
+        }
+
+        // GET: Blog/Create
+        public IActionResult Create()
+        {
+            ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "Password");
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName");
+            return View();
+        }
+
+        // POST: Blogs/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("BlogId,Title,UpdateAt,DepartmentId,Content,AccountId")] Blog blog)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(blog);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "Password", blog.AccountId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", blog.DepartmentId);
+            return View(blog);
+        }
+
+        // GET: Blogs/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var blog = await _context.Blogs.FindAsync(id);
+            if (blog == null)
+            {
+                return NotFound();
+            }
+
+            ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "Password", blog.AccountId);
+
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", blog.DepartmentId);
+            return View(blog);
+        }
+
+        // POST: Blogs/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("BlogId,Title,UpdateAt,DepartmentId,Content,AccountId")] Blog blog)
+        {
+            if (id != blog.BlogId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(blog);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!BlogExists(blog.BlogId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "Password", blog.AccountId);
+            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", blog.DepartmentId);
+            return View(blog);
+        }
+
+        // GET: Blogs/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var blog = await _context.Blogs.FindAsync(id);
+            _context.Blogs.Remove(blog);
+            await _context.SaveChangesAsync();
+
+
+            if (blog == null)
+            {
+                return NotFound();
+            }
+            return RedirectToAction(nameof(MyBlog));
+        }
+
+        private bool BlogExists(int id)
+        {
+            return _context.Blogs.Any(e => e.BlogId == id);
+        }
+
     }
+
 }
+

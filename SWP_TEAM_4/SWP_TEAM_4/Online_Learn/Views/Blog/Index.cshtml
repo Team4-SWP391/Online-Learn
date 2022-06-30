@@ -23,25 +23,27 @@
         <div class="post_list">
             @foreach (var blog in Model)
             {
-                <div class="post_list-item">
-                    <div class="post_list-item-avt">
-                        <a href="#">@blog.Account.FulllName</a>
-                    </div>
-                    <div class="post_list-item-info">
-                        <div class="post-meta--inline">
-                            <span style="font-size: 1.2rem;">
-                                <a href="#">@blog.Account.FulllName</a>
-                            </span>
-                            <span style="margin:0 20px;">@blog.UpdateAt</span>
-                            <a href="" class="post_list-item-cate">@blog.Department.DepartmentName</a>
+                <a href="Blog/Detail/@blog.BlogId">
+                    <div class="post_list-item">
+                        <div class="post_list-item-avt">
+                            <a href="#">@blog.Account.Username</a>
                         </div>
-                        <div class="post_list-item-title">
-                            <a href="Blog/Detail/@blog.BlogId">
-                                @blog.Title
-                            </a>
+                        <div class="post_list-item-info">
+                            <div class="post-meta--inline">
+                                <span style="font-size: 1.2rem;">
+                                    <a href="#">@blog.Account.FulllName</a>
+                                </span>
+                                <span style="margin:0 20px;">@blog.UpdateAt</span>
+                                <a href="" class="post_list-item-cate">@blog.Department.DepartmentName</a>
+                            </div>
+                            <div class="post_list-item-title">
+                                <a href="Blog/Detail/@blog.BlogId">
+                                    @blog.Title
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </a>
             }
         </div>
     </div>
@@ -51,16 +53,16 @@
 <!-- Pagination -->
 <div class="pagination" id="pagger">
     <div class="pagination-item">
-        <a href="/Blog?pageIndex=@(pageIndex  - 1 <= 0 ? numberPage : pageIndex  - 1)&&title=@title" class="pagination-link"><i class="far fa-angle-left"></i></a>
+        <a href="/Blog?pageIndex=@(pageIndex  - 1 <= 0 ? numberPage : pageIndex  - 1)&title=@title" class="pagination-link"><i class="far fa-angle-left"></i></a>
     </div>
     @for (int i = 1; i <= numberPage; i++)
     {
         <div class="pagination-item">
-            <a href="/Blog?pageIndex=@i&&title=@title" style="@(pageIndex == i ? "background-color: var(--main-color); color: white" : "")" class="pagination-link">@i</a>
+            <a href="/Blog?pageIndex=@i&title=@title" style="@(pageIndex == i ? "background-color: var(--main-color); color: white" : "")" class="pagination-link">@i</a>
         </div>
     }
     <div class="pagination-item">
-        <a href="/Blog?pageIndex=@(pageIndex + 1 > numberPage ? 1 : pageIndex + 1)&&title=@title" class="pagination-link "><i class="fas fa-angle-right"></i></a>
+        <a href="/Blog?pageIndex=@(pageIndex + 1 > numberPage ? 1 : pageIndex + 1)&title=@title" class="pagination-link "><i class="fas fa-angle-right"></i></a>
     </div>
 </div>
 

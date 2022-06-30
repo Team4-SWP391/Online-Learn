@@ -4,16 +4,19 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+
+using Newtonsoft.Json;
+
 using Online_Learn.Models;
 
 
-namespace Online_Learn.Controllers
-{
-    public class ChangepasswordController : Controller
-    {
+namespace Online_Learn.Controllers {
+    public class ChangepasswordController : Controller {
         private readonly Online_LearnContext _context;
 
         public ChangepasswordController(Online_LearnContext context)
@@ -30,7 +33,8 @@ namespace Online_Learn.Controllers
         [HttpGet]
         public ActionResult Change()
         {
-            var account = _context.Accounts.Where(a => a.AccountId == 21).FirstOrDefault();
+            Account user = JsonConvert.DeserializeObject<Account>(HttpContext.Session.GetString("User"));
+            var account = _context.Accounts.Where(a => a.AccountId == user.AccountId).FirstOrDefault();
             ViewBag.Account = account;
             return View();
         }
@@ -50,7 +54,7 @@ namespace Online_Learn.Controllers
         [HttpPost]
         public ActionResult Confirm(string newpass, string email)
         {
-            
+
             var account = _context.Accounts.Where(a => a.Email == email).FirstOrDefault();
             var accountToken = _context.AccountTokens.Where(a => a.Email == email).FirstOrDefault();
 
@@ -63,11 +67,12 @@ namespace Online_Learn.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult Token(string token, string email) {
+        public ActionResult Token(string token, string email)
+        {
             var accountToken = _context.AccountTokens.Where(a => a.Token == token).FirstOrDefault();
             DateTime applyTime = DateTime.Now;
             DateTime tokenTime = (DateTime)accountToken.CreateToken;
-            if(applyTime.Subtract(tokenTime).Minutes >=15)
+            if (applyTime.Subtract(tokenTime).Minutes >= 15)
             {
                 ViewBag.error = "Token not exist";
                 return Redirect("../ForgotPassword/Forgot");

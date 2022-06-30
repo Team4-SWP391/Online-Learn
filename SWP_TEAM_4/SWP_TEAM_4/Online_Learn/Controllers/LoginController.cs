@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+
+using Google.Apis.Auth.AspNetCore3;
+using Google.Apis.Services;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -11,18 +15,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.FileSystemGlobbing;
 
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 using Online_Learn.Models;
+
+using Org.BouncyCastle.Asn1.Crmf;
+
+using RestSharp;
 
 namespace Online_Learn.Controllers {
     public class LoginController : Controller {
         private readonly Online_LearnContext _context;
+
         public LoginController(Online_LearnContext context)
         {
             _context = context;
         }
+
 
         // GET: Login_Udemy
         public IActionResult Login_Udemy()
@@ -36,6 +48,12 @@ namespace Online_Learn.Controllers {
             return View("Login");
         }
 
+        public Account GetAccount(string email, string pass)
+        {
+            Account user = _context.Accounts.FirstOrDefault(a => a.Email == email && a.Password == GetMD5(pass));
+            return user;
+        }
+
         [HttpPost]
         // POST: Login/Login
         public async Task<IActionResult> Login(string email, string pass, string remember)
@@ -43,7 +61,7 @@ namespace Online_Learn.Controllers {
             if (ModelState.IsValid)
             {
                 pass = pass == null ? "" : pass;
-                Account user = await _context.Accounts.FirstOrDefaultAsync(a => a.Email == email && a.Password == GetMD5(pass));
+                Account user = GetAccount(email, pass);
                 if (user != null)
                 {
                     if (remember != null)
@@ -69,13 +87,41 @@ namespace Online_Learn.Controllers {
             }
             return View("Login");
         }
-        public IActionResult Login_Google()
+        public async Task<GoogleToken> Login_Google(string code)
         {
-            //string redirect = "https://accounts.google.com/o/oauth2/auth?scope=email&" +
-            //    "redirect_uri=https://localhost:44393/login-google&response_type=code&" +
-            //    "client_id=240096817026-hiacplg3lvqrnku3g6ihm26fv3geog3q.apps.googleusercontent.com&approval_prompt=force";
-            return Redirect("Login_Google");
+            string clientID = "240096817026-bnoup401nmf0bgig9c6evbpb473r6ou2.apps.googleusercontent.com";
+            string clientSecret = "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";
+            string redirect_uri = "https://localhost:44396/Login/Login_Google";
+            string TokenUri = "https://www.googleapis.com/oauth2/v4/token";
+            string scope = "https://www.googleapis.com/auth/userinfo.email";
+            GoogleToken token = null;
+            var postData = new
+            {
+                code = code,
+                client_id = clientID,
+                client_secret = clientSecret,
+                redirect_uri = redirect_uri,
+                grant_type = "authorization_code"
+            };
+            using (var httpClient = new HttpClient())
+            {
+                StringContent content = new StringContent(JsonConvert.SerializeObject(postData), Encoding.UTF8, "application/json");
+                using (var response = httpClient.PostAsync(TokenUri, content))
+                {
+                    string responseString = await response.Result.Content.ReadAsStringAsync();
+                    token = JsonConvert.DeserializeObject<GoogleToken>(responseString);
+                }
+            }
+
+            return token;
         }
+
+
+        public string Login_Facebook()
+        {
+            return "1";
+        }
+
 
         public static string GetMD5(string str)
         {
