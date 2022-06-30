@@ -23,6 +23,7 @@ namespace Online_Learn.Controllers {
 
         public async Task<IActionResult> List(string name_search, int pageIndex)
         {
+
             List<Course> list_course = new List<Course>();
             if (pageIndex <= 0 || pageIndex == null)
             {
@@ -35,7 +36,7 @@ namespace Online_Learn.Controllers {
             {
                 list_course = await _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).
                     Where(x => x.CourseName.ToLower().Contains(name_search.ToLower())).
-                    Skip(((pageIndex - 1) * pageSize + 1)).Take(pageSize).ToListAsync();
+                    Skip(((pageIndex - 1) * pageSize)).Take(pageSize).ToListAsync();
                 totalCourse = _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).
                  Where(x => x.CourseName.ToLower().Contains(name_search.ToLower())).ToList().Count;
                 checkPage = 1;
@@ -43,7 +44,7 @@ namespace Online_Learn.Controllers {
             else
             {
                 list_course = await _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).
-                   Skip(((pageIndex - 1) * pageSize + 1)).Take(pageSize).ToListAsync();
+                   Skip(((pageIndex - 1) * pageSize)).Take(pageSize).ToListAsync();
                 totalCourse = _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).ToList().Count;
                 checkPage = 2;
             }
@@ -74,14 +75,14 @@ namespace Online_Learn.Controllers {
             {
                 list_course = await _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).
                     Where(x => x.Department.DepartmentId == department_id && x.CourseName.ToLower().Contains(name_search.ToLower())).
-                    Skip(((pageIndex - 1) * pageSize + 1) - 1).Take(pageSize).ToListAsync();
+                    Skip(((pageIndex - 1) * pageSize)).Take(pageSize).ToListAsync();
                 checkPage = 1;
             }
             else
             {
                 list_course = await _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).
                     Where(x => x.Department.DepartmentId == department_id).
-                    Skip(((pageIndex - 1) * pageSize + 1) - 1).Take(pageSize).ToListAsync();
+                    Skip(((pageIndex - 1) * pageSize )).Take(pageSize).ToListAsync();
                 checkPage = 2;
             }
             int totalCourse = 0;
@@ -126,7 +127,7 @@ namespace Online_Learn.Controllers {
             {
                 courses = await _context.AccountCourses.Include(x => x.Account).Include(x => x.Course).
                     Where(x => x.Account.AccountId == account_id && x.Course.CourseName.ToLower().Contains(name_search.ToLower().Trim())).
-                    Skip(((pageIndex - 1) * pageSize + 1)).Take(pageSize).ToListAsync();
+                    Skip(((pageIndex - 1) * pageSize)).Take(pageSize).ToListAsync();
 
 
                 totalCourse = _context.AccountCourses.Include(x => x.Account).Include(x => x.Course).
@@ -138,7 +139,7 @@ namespace Online_Learn.Controllers {
             {
                 courses = await _context.AccountCourses.Include(x => x.Account).Include(x => x.Course).
                     Where(x => x.Account.AccountId == account_id).
-                    Skip(((pageIndex - 1) * pageSize + 1)).Take(pageSize).ToListAsync();
+                    Skip(((pageIndex - 1) * pageSize)).Take(pageSize).ToListAsync();
 
                 totalCourse = _context.AccountCourses.Include(x => x.Account).Include(x => x.Course).
                    Where(x => x.Account.AccountId == account_id).ToList().Count;

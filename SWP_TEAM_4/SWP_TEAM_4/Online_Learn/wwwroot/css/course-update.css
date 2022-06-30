@@ -94,10 +94,10 @@
 }
 .course-update__image {
   margin-top: 45px;
-  margin-left: 70px;
+  margin-left: 200px;
 }
 .course-update__image img {
-  width: 400px;
+  width: 450px;
   object-fit: cover;
 }
 .course-update__heading {
@@ -141,7 +141,7 @@
   margin-top: 15px;
   border: none;
   outline: none;
-  padding: 12px 36px;
+  padding: 11px 34px;
   border: 1px solid #1b1c1f;
   font-weight: bold;
   background-color: #fff;

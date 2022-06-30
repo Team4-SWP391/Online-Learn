@@ -41,14 +41,16 @@ namespace Online_Learn.Models {
 
         public double getPriceByDiscount()
         {
-            if (IsSale == 0)
+            double price = 0;
+            if (IsSale == null || IsSale == 0)
             {
-                return Price;
+                price = Price;
             }
             else
             {
-                return 1;
+                price = Price;
             }
+            return price;
         }
 
         public string getAuthor()

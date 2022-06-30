@@ -100,10 +100,9 @@
 									   value="30">
 							</div>
 							<div class="form-group">
-								<label asp-for="AccountId" class="course-update__lable"></label><br />
-								<select asp-for="AccountId" class="course-update__select" asp-items="ViewBag.AccountId"></select>
+								<input asp-for="AccountId" class="course-update__select" asp-items="ViewBag.AccountId" hidden />
 								<span asp-validation-for="AccountId" class="text-danger"></span>
-							</div><br />
+							</div> <br/>
 							<div class="course-update__formgr">
 								<p class="course-update__lbp">
 									Program</><br>
