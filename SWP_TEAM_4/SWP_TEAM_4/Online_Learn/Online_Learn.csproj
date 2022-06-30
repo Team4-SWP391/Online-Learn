@@ -17,7 +17,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.17" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+<<<<<<< HEAD
+=======
     <PackageReference Include="RestSharp" Version="108.0.1" />
+>>>>>>> d20183dfd88483ed2ba9a90f27b7970442348308
   </ItemGroup>
 
   <ItemGroup>
