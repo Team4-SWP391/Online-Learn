@@ -1,4 +1,4 @@
-const listAnswers = document.querySelectorAll('.question_list-item-choice');
+﻿const listAnswers = document.querySelectorAll('.question_list-item-choice');
 const quizDone = document.querySelector('#quiz_done');
 const question = document.querySelector('.question');
 const numberQuestion = document.querySelectorAll('.sidebar .count');
@@ -50,15 +50,15 @@ viewResult.addEventListener('click', e => {
     } else {
         alert('Time Out');
     }
-    console.log(answersOfUser);
-    // $.ajax({
-    //     url: 'Exam/ViewResult',
-    //     type: 'POST',
-    //     data: answersOfUser,
-    //     success: function (res) {
-    //         console.log(res);
-    //     },
-    // });
+    $.ajax({
+        url: 'Exam/ViewResult',
+        type: 'POST',
+        data: { listRes: answersOfUser, time: display.dataset.time - display.textContent.split(':')[0], examId: 1, totalQuestion: questionList.length },
+        dataType: 'json',
+        success: function (res) {
+            window.location.href = res.url;
+        },
+    });
 });
 
 function startTimer(duration, display) {
@@ -81,6 +81,5 @@ function startTimer(duration, display) {
 }
 
 window.onload = function () {
-    var fiveMinutes = 5 * 60;
     startTimer(display.dataset.time * 60, display);
 };
