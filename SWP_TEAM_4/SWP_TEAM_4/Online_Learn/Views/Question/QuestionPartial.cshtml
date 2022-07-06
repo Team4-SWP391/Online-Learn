@@ -1,0 +1,56 @@
+﻿@model List<Question>
+
+@foreach (var question in Model)
+{
+    <div class="question_list-item">
+        <input id="id" type="text" hidden value="@question.QuestionId">
+        <div class="question_list-item-info">
+            <span class="title">
+                Question <span class="count"></span>: @question.Quiz
+            </span>
+            <div class="inputHidden">
+                <textarea class="questionInfo"
+                      rows="2">@question.Quiz</textarea>
+            </div>
+
+            <div class="choice">
+                <span>1: @question.Op1</span>
+                <div class="inputHidden">
+                    1:<textarea class="questionInfo" style="width: 100%; margin-left: 5px;"
+                            rows="2">@question.Op1</textarea>
+                </div>
+                <span>2:@question.Op2</span>
+                <div class="inputHidden">
+                    2:<textarea class="questionInfo" style="width: 100%; margin-left: 5px;"
+                            rows="2">@question.Op2</textarea>
+                </div>
+                <span>3: @question.Op3</span>
+                <div class="inputHidden">
+                    3:<textarea class="questionInfo" style="width: 100%; margin-left: 5px;"
+                            rows="2">@question.Op3</textarea>
+                </div>
+                <span>4: @question.Op4</span>
+                <div class="inputHidden">
+                    4:<textarea class="questionInfo" style="width: 100%; margin-left: 5px;"
+                            rows="2">@question.Op4</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="question_list-item-result">
+            <span class="result">@question.Solution</span>
+            <div class="inputHidden">
+                <input oninput="validate(this)" type="text" class="questionInfo" value="@question.Solution"
+                   style="height: 30px; padding-left: 5px;">
+            </div>
+            <div class="question_action">
+                <div>
+                    <span id="btnEdit"><i class="fal fa-edit"></i> </span>
+                    <span class="btnHidden"><i class="fal fa-check"></i></span>
+                </div>
+                <span onclick="confirm('Do you want to delete this question?') == true ?
+                                window.location.href = 'Question/Delete/@question.QuestionId' : ''"
+                  class=""><i class="fal fa-trash-alt"></i></span>
+            </div>
+        </div>
+    </div>
+}

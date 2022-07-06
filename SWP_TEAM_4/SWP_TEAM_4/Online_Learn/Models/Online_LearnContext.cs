@@ -44,7 +44,7 @@ namespace Online_Learn.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("server=DESKTOP-UKC2529\\TUAN; database=Online_Learn;uid=sa;pwd=123;");
+                optionsBuilder.UseSqlServer("server =DESKTOP-NB2DNI9\\VINH; database=Online_Learn;uid=sa;pwd=0775122001;");
             }
         }
 
@@ -158,10 +158,7 @@ namespace Online_Learn.Models
 
                 entity.Property(e => e.Content).HasColumnName("content");
 
-                //entity.Property(e => e.CourseStatus).HasColumnName("course_status");
-
                 entity.Property(e => e.DepartmentId).HasColumnName("department_id");
-
 
                 entity.Property(e => e.Title).HasColumnName("title");
 
@@ -173,11 +170,13 @@ namespace Online_Learn.Models
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.Blogs)
                     .HasForeignKey(d => d.AccountId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Blog_Account");
 
                 entity.HasOne(d => d.Department)
                     .WithMany(p => p.Blogs)
                     .HasForeignKey(d => d.DepartmentId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Blog_Department");
             });
 
@@ -464,19 +463,28 @@ namespace Online_Learn.Models
 
                 entity.Property(e => e.LectureId).HasColumnName("lecture_id");
 
-                entity.Property(e => e.Op1).HasColumnName("op1");
+                entity.Property(e => e.Op1)
+                    .IsRequired()
+                    .HasColumnName("op1");
 
-                entity.Property(e => e.Op2).HasColumnName("op2");
+                entity.Property(e => e.Op2)
+                    .IsRequired()
+                    .HasColumnName("op2");
 
-                entity.Property(e => e.Op3).HasColumnName("op3");
+                entity.Property(e => e.Op3)
+                    .IsRequired()
+                    .HasColumnName("op3");
 
-                entity.Property(e => e.Op4).HasColumnName("op4");
+                entity.Property(e => e.Op4)
+                    .IsRequired()
+                    .HasColumnName("op4");
 
                 entity.Property(e => e.Quiz)
                     .IsRequired()
                     .HasColumnName("quiz");
 
                 entity.Property(e => e.Solution)
+                    .IsRequired()
                     .HasMaxLength(4)
                     .IsUnicode(false)
                     .HasColumnName("solution");
@@ -484,6 +492,7 @@ namespace Online_Learn.Models
                 entity.HasOne(d => d.Lecture)
                     .WithMany(p => p.Questions)
                     .HasForeignKey(d => d.LectureId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Question_Lecture");
             });
 

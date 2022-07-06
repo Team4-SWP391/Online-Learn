@@ -123,7 +123,7 @@ namespace Online_Learn.Controllers {
         }
 
 
-        public static string GetMD5(string str)
+        public string GetMD5(string str)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
             byte[] fromData = Encoding.UTF8.GetBytes(str);
