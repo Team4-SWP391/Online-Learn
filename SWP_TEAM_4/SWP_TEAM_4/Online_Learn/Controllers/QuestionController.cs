@@ -1,9 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 
+
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+
+using OfficeOpenXml;
 
 using Online_Learn.Models;
 
@@ -62,6 +67,77 @@ namespace Online_Learn.Controllers {
         {
             List<Question> questions = _context.Questions.ToList();
             return PartialView("QuestionPartial", questions);
+        }
+
+        [HttpPost]
+        public IActionResult ImportExcel(IFormFile fileUpload)
+        {
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "FileUpload", fileUpload.FileName);
+            using (var file = new FileStream(path, FileMode.Create))
+            {
+                fileUpload.CopyTo(file);
+            }
+            ReadExcel(fileUpload.FileName);
+            return RedirectToAction("Index");
+        }
+
+        public void ReadExcel(string fileName)
+        {
+            var package = new ExcelPackage(new FileInfo("FileUpload/" + fileName));
+            ExcelWorksheet worksheet = package.Workbook.Worksheets.First();
+            int totalRows = worksheet.Dimension.End.Row;
+            for (int row = 2; row <= totalRows; row++)
+            {
+                Question question = new Question();
+                question.Quiz = worksheet.Cells[row, 1].Value.ToString();
+                question.Op1 = worksheet.Cells[row, 2].Value.ToString();
+                question.Op2 = worksheet.Cells[row, 3].Value.ToString();
+                question.Op3 = worksheet.Cells[row, 4].Value.ToString();
+                question.Op4 = worksheet.Cells[row, 5].Value.ToString();
+                question.Solution = worksheet.Cells[row, 6].Value.ToString();
+                question.LectureId = 1;
+                _context.Add(question);
+                _context.SaveChanges();
+            }
+
+        }
+        public IActionResult ExportExcel()
+        {
+            var questions = _context.Questions.ToList();
+            WriteExcel(questions);
+            var path = @"Questions.xlsx";
+            var memory = new MemoryStream();
+            using (var stream = new FileStream(path, FileMode.Open))
+            {
+                stream.CopyTo(memory);
+            }
+            memory.Position = 0;
+            return File(memory, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Questions.xlsx");
+        }
+        public void WriteExcel(List<Question> questions)
+        {
+            var package = new ExcelPackage();
+            var workSheet = package.Workbook.Worksheets.Add("Questions");
+            workSheet.Cells["A1"].Value = "Question";
+            workSheet.Cells["B1"].Value = "Option 1";
+            workSheet.Cells["C1"].Value = "Option 2";
+            workSheet.Cells["D1"].Value = "Option 3";
+            workSheet.Cells["E1"].Value = "Option 4";
+            workSheet.Cells["F1"].Value = "Option 5";
+            workSheet.Cells["G1"].Value = "LectureId";
+            int row = 2;
+            foreach (var question in questions)
+            {
+                workSheet.Cells["A" + row].Value = question.Quiz;
+                workSheet.Cells["B" + row].Value = question.Op1;
+                workSheet.Cells["C" + row].Value = question.Op2;
+                workSheet.Cells["D" + row].Value = question.Op3;
+                workSheet.Cells["E" + row].Value = question.Op4;
+                workSheet.Cells["F" + row].Value = question.Solution;
+                workSheet.Cells["G" + row].Value = question.LectureId;
+                row++;
+            }
+            package.SaveAs(new FileInfo("Questions.xlsx"));
         }
     }
 }

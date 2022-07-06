@@ -11,9 +11,11 @@
     <div class="content_header">
         <h2>Question List</h2>
         <div class="action_excel">
-            <input type="file" name="file" id="file" class="inputfile" accept=".xlsx, .xls, .csv" />
-            <label for="file">Choose a file to import</label>
-            <a href="#">Export Excel</a>
+            <form method="POST" action="Question/ImportExcel" enctype="multipart/form-data">
+                <input type="file" onchange="form.submit()" name="fileUpload" id="file" class="inputfile" accept=".xlsx, .xls, .csv" />
+                <label for="file">Choose a file to import</label>
+            </form>
+            <a href="Question/ExportExcel">Export Excel</a>
         </div>
     </div>
     <div class="slider" data-total="@Model.questionsSlider.Count">
