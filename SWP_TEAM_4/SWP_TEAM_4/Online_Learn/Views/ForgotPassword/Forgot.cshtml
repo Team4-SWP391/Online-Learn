@@ -3,10 +3,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <link href="~/css/forgot.css" rel="stylesheet" />
-@*@if (ViewBag.error != null)
-    {
-            <h4 style="margin:0 auto; color: red; margin-bottom: 10px;">@ViewBag.error</h4>
-    }*@
 <div class="content">
     <h4 class="text-center" style="border-bottom: 1px solid #d1d7dc; padding: 10% 0; ">
         Forgot Password
@@ -15,6 +11,7 @@
         <form id="form" action="confirm" method="post">
             <div class="forgot_form">
                 <input id="email" class="forgot_form-email" placeholder="Email" name="email" value="" type="text" required>
+                <div style="color: red; font-size: 20px;">@ViewBag.message</div>
             </div>
             <div class="signup_account-submit">
                 <button type="submit">Reset Password</button>
