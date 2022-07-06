@@ -1,0 +1,117 @@
+﻿@model Online_Learn.Models.Lecture
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/lecture-add.css">
+
+  <div class="course">
+        <div class="course-header">
+            <a href="#backToList" class="course-header__back"><i class="fas fa-angle-left"></i>Back to course</a>
+            <span class="course-header__key">Keyword research for bloggers</span>
+            <span class="course-header__bold">Draft</span>
+            <span class="course-header__tt">Omin of video contenet upload</span>
+        </div>
+        <div class="course-wrap">
+            <div class="course-sidebar">
+                <div class="course-sidebar__content">
+                    <h4 class="course-sidebar__heading"><i class="fas fa-angle-down"></i>Lecture</h4>
+
+                    <ul class="course-sidebar__list">
+                        
+                    
+                       <li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Introduction to building a behavioral model</a></li>
+                    
+                        
+                        <li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Hello world</a>
+                        </li>
+                        <li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Lesson 1</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="course-sidebar__content">
+                    <h4 class="course-sidebar__heading"><i class="fas fa-angle-down"></i>Exam</h4>
+
+                    <ul class="course-sidebar__list">
+                        <li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Progess Test
+                                1</a></li>
+                        <li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Assigment</a>
+                        </li>
+                        <li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Final Exam</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="course-update">
+                <h3 class="course-update__heading">Lecture Detail</h3>
+                <div class="course-update__content">
+                    <div class="course-update__form" >
+                        <form asp-action="Edit" method="post">
+                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <input type="hidden" asp-for="LectureId" />
+                           
+                            <div class="course-update__formgr">
+                                <label class="course-update__lable">Lecture Name</label><br>
+                                <input asp-for="LectureName" type="text" class="course-update__input">
+                                <span asp-validation-for="LectureName" class="text-danger"></span>
+                            </div>
+                           
+                             <div class="form-group">
+                                <label asp-for="CourseId" class="control-label"></label>
+                                <select asp-for="CourseId" class="form-control" asp-items="ViewBag.CourseId"></select>
+                                <span asp-validation-for="CourseId" class="text-danger"></span>
+                            </div>
+                           
+                          
+                            <div class="course-update__formgr">
+                                <button class="course-update__update">Update</button>
+                            
+                        </form>
+                        <a asp-action="Delete" class="course-update__info" asp-route-ID="@Model.LectureId" 
+                        onclick = "return confirm('Are you sure you wish to remove this Lecture?');">Delete</a>
+                        
+                         
+                    </div>
+                </div>
+                <div class="course-update__image">
+                    <img src="https://img-c.udemycdn.com/course/240x135/4259956_25c8_4.jpg" alt="" srcset="">
+                    <br>
+                    <span class="course-update__author">Mosh Hamedani</span><br>
+                    <span class="course-update__total"><span>4.6</span>
+                        <div class="rate">
+                            <i data-star='0' class="fas fa-star stars starActive"></i>
+                            <i data-star='1' class="fas fa-star stars starActive"></i>
+                            <i data-star='2' class="fas fa-star stars starActive"></i>
+                            <i data-star='3' class="fas fa-star stars starActive"></i>
+                            <i data-star='4' class="fas fa-star stars starActive"></i>
+                        </div>
+                        (11.269)
+                    </span><br>
+                    <span class="course-update__lct">8 lecture - 16 lesson - 3 Exam</span>
+                    <div class="course-update__question">
+                        <a href="#" class="course-update__qslink">View list question</a>
+                        <a href="#" class="course-update__qslink">Add new Lesson</a>
+                        <a href="#" class="course-update__qslink">Add new Exam</a>
+                    </div>
+                   
+                </div>
+            </div> 
+        </div>
+    </div>
+
+
+    
+
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
