@@ -28,7 +28,6 @@ namespace Online_Learn.Models {
         public DateTime UpdateAt { get; set; }
         public int LevelId { get; set; }
 
-
         public virtual Account Account { get; set; }
         public virtual Department Department { get; set; }
         public virtual Level Level { get; set; }
