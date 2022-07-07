@@ -36,9 +36,14 @@
 				<ul class="course-sidebar__list">
 					<li class="course-sidebar__item">
 						<a href="#lecture" class="course-sidebar__link">
-							Progess Test
-							1
+							@*@foreach (Exam item in ViewBag.examName)
+                            {
+                              item.ExamName
+                            }*@
 						</a>
+					</li>
+					<li class="course-sidebar__item">
+						<a href="#lecture" class="course-sidebar__link">Progess Test 1</a>
 					</li>
 					<li class="course-sidebar__item">
 						<a href="#lecture" class="course-sidebar__link">Assigment</a>
@@ -102,7 +107,7 @@
 							<div class="form-group">
 								<input asp-for="AccountId" class="course-update__select" asp-items="ViewBag.AccountId" hidden />
 								<span asp-validation-for="AccountId" class="text-danger"></span>
-							</div> <br/>
+							</div> <br />
 							<div class="course-update__formgr">
 								<p class="course-update__lbp">
 									Program</><br>
@@ -125,7 +130,7 @@
 							<div class="course-update__formgr">
 								<button class="course-update__submit">Update</button>
 						</form>
-					<a href="/Course/Delete?id=@ViewData["CourseId"]" class="windowdelete">Delete</a>
+						<a href="/Course/Delete?id=@ViewData["CourseId"]" class="windowdelete">Delete</a>
 					</div>
 				</div>
 				<div class="course-update__image col img1">
@@ -147,7 +152,7 @@
 					<div class="course-update__question">
 						<a href="#" class="course-update__qslink">View list question</a>
 						<a href="/Lecture/Create/@ViewData["CourseId"]" class="course-update__qslink">Add new Lecture</a>
-						<a href="#" class="course-update__qslink">Add new Exam</a>
+						<a href="/Exams/Create" class="course-update__qslink">Add new Exam</a>
 					</div>
 				</div>
 			</div>
