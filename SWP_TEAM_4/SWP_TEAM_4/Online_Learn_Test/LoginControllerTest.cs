@@ -37,7 +37,7 @@ namespace Online_Learn_Test {
         public void TestLogin()
         {
             loginController = new LoginController(context);
-            var result = loginController.GetAccount("admin@gmail.com", "123");
+            var result = loginController.GetAccount("hainam123", "123456");
             Assert.AreEqual(result, null);
         }
     }
