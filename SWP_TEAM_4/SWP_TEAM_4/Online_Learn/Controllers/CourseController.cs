@@ -23,7 +23,6 @@ namespace Online_Learn.Controllers {
 
         public async Task<IActionResult> List(string name_search, int pageIndex)
         {
-
             List<Course> list_course = new List<Course>();
             if (pageIndex <= 0 || pageIndex == null)
             {
@@ -95,9 +94,7 @@ namespace Online_Learn.Controllers {
             {
                 totalCourse = _context.Courses.Where(x => x.Department.DepartmentId == department_id && x.CourseName.ToLower().Contains(name_search.ToLower())).ToList().Count;
             }
-
             int maxPage = totalCourse / pageSize + (totalCourse % pageSize != 0 ? 1 : 0);
-
             List<Department> list_department = _context.Departments.ToList();
             ViewBag.Departments = list_department;
             ViewBag.department_id = department_id;
@@ -109,6 +106,33 @@ namespace Online_Learn.Controllers {
             ViewBag.prevPage = pageIndex - 1;
             ViewBag.nextPage = pageIndex + 1;
             return View();
+        }
+
+        public List<Course> getAllCourse(string name_search)
+        {
+            var list_course = _context.Courses.
+                Include(x => x.Account).Include(x => x.Level).Include(x => x.Department).
+                Where(x => x.CourseName.ToLower().Contains(name_search.ToLower())).ToList();
+            return list_course;
+        }
+
+        public List<Course> getAllCourseByDepartment(string name_search, int department)
+        {
+            var list_course = _context.Courses.
+                Include(x => x.Account).Include(x => x.Level).Include(x => x.Department).
+                Where(x => x.CourseName.Contains(name_search) && x.DepartmentId == department).ToList();
+            return list_course;
+        }
+
+        public List<Course> Pagging(int pageIndex, int pageSize)
+        {
+            int size = pageSize;
+            int page = pageIndex;
+            var list_course = _context.Courses.ToList();
+            int totalCourse = list_course.Count;
+            int maxPage = totalCourse / pageSize + (totalCourse % pageSize != 0 ? 1 : 0);
+            List<Course> list = _context.Courses.Skip(((pageIndex - 1) * pageSize)).Take(pageSize).ToList();
+            return list;
         }
 
         public async Task<IActionResult> MyCourse(string name_search, int pageIndex)
