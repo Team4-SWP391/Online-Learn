@@ -69,10 +69,13 @@ namespace Online_Learn_Test {
         public async Task TestLogin(string email, string pass)
         {
 <<<<<<< HEAD
+<<<<<<< HEAD
             loginController = new LoginController(context);
             var result = loginController.GetAccount("hainam123", "123456");
             Assert.AreEqual(result, null);
 =======
+=======
+>>>>>>> be00fa77822a2614637b576cc451dfdf8d277ced
             var result = loginController.GetAccount(email, pass);
             Assert.IsNotNull(result);
         }
@@ -102,6 +105,9 @@ namespace Online_Learn_Test {
 
             }
             return byte2String;
+<<<<<<< HEAD
+>>>>>>> be00fa77822a2614637b576cc451dfdf8d277ced
+=======
 >>>>>>> be00fa77822a2614637b576cc451dfdf8d277ced
         }
     }
