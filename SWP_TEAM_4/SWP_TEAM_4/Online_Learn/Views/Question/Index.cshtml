@@ -1,0 +1,114 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Question";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/questionList.css">
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+<div class="content container">
+    <div class="content_header">
+        <h2>Question List</h2>
+        <div class="action_excel">
+            <form method="POST" action="Question/ImportExcel" enctype="multipart/form-data">
+                <input type="file" onchange="form.submit()" name="fileUpload" id="file" class="inputfile" accept=".xlsx, .xls, .csv" />
+                <label for="file">Choose a file to import</label>
+            </form>
+            <a href="Question/ExportExcel">Export Excel</a>
+        </div>
+    </div>
+    <div class="slider" data-total="@Model.questionsSlider.Count">
+        <div class="slider_list">
+            @foreach (var question in Model.questionsSlider)
+            {
+                <div class="slider_question" style="display: flex;">
+                    <div class="front">
+                        <span>
+                            @question.Quiz
+                        </span>
+                        <span>1. @question.Op1</span>
+                        <span>2. @question.Op2</span>
+                        <span>3. @question.Op3</span>
+                        <span>4. @question.Op4</span>
+                    </div>
+                    <div class="back">
+                        <span>@question.Solution</span>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="slider_total">
+            <span class="current">1</span>
+            <span>/</span>
+            <span class="total">@Model.questionsSlider.Count</span>
+        </div>
+    </div>
+    <div class="question">
+        <h3>All Question</h3>
+        <div class="question_list">
+            @foreach (var question in Model.questions)
+            {
+                <div class="question_list-item">
+                    <input id="id" type="text" hidden value="@question.QuestionId">
+                    <div class="question_list-item-info">
+                        <span class="title">
+                            Question <span class="count"></span>: @question.Quiz
+                        </span>
+                        <div class="inputHidden">
+                            <textarea class="questionInfo"
+                                  rows="2">@question.Quiz</textarea>
+                        </div>
+
+                        <div class="choice">
+                            <span>1: @question.Op1</span>
+                            <div class="inputHidden">
+                                1:<textarea class="questionInfo" style="width: 100%; margin-left: 5px;"
+                                        rows="2">@question.Op1</textarea>
+                            </div>
+                            <span>2:@question.Op2</span>
+                            <div class="inputHidden">
+                                2:<textarea class="questionInfo" style="width: 100%; margin-left: 5px;"
+                                        rows="2">@question.Op2</textarea>
+                            </div>
+                            <span>3: @question.Op3</span>
+                            <div class="inputHidden">
+                                3:<textarea class="questionInfo" style="width: 100%; margin-left: 5px;"
+                                        rows="2">@question.Op3</textarea>
+                            </div>
+                            <span>4: @question.Op4</span>
+                            <div class="inputHidden">
+                                4:<textarea class="questionInfo" style="width: 100%; margin-left: 5px;"
+                                        rows="2">@question.Op4</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="question_list-item-result">
+                        <span class="result">@question.Solution</span>
+                        <div class="inputHidden">
+                            <input oninput="validate(this)" type="text" class="questionInfo" value="@question.Solution"
+                               style="height: 30px; padding-left: 5px;">
+                        </div>
+                        <div class="question_action">
+                            <div>
+                                <span id="btnEdit"><i class="fal fa-edit"></i> </span>
+                                <span class="btnHidden"><i class="fal fa-check"></i></span>
+                            </div>
+                            <span onclick="confirm('Do you want to delete this question?') == true ?
+                                window.location.href = 'Question/Delete/@question.QuestionId' : ''"
+                              class=""><i class="fal fa-trash-alt"></i></span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <div style="text-align: center;">
+            <button class="btnLoad">Load More</button>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migstars starActive-1.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="~/js/questionList.js"></script>

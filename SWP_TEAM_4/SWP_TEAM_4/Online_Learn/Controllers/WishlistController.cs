@@ -19,16 +19,21 @@ namespace Online_Learn.Controllers {
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string search)
         {
             Account user = JsonConvert.DeserializeObject<Account>(HttpContext.Session.GetString("User"));
-            //var account = _context.WhistLists.Where(w => w.AccountId == 21);
-            //var wishlist = _context.Courses.Join(account, course => course.CourseId, a => a.AccountId,)
             List<Course> wishlist = (from c in _context.Courses
                                      join a in _context.WhistLists on c.CourseId equals a.CourseId
                                      where a.AccountId == user.AccountId
                                      select c).ToList();
+            if(search != null)
+            {
+                wishlist = wishlist.Where(w => w.CourseName.ToLower().Contains(search.ToLower())).ToList();
+            }
+            ViewBag.search = search;
             return View("Wishlist", wishlist);
         }
+
+        
     }
 }

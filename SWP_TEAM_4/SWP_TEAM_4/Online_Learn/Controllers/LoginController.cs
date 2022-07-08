@@ -6,8 +6,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-using Google.Apis.Auth.AspNetCore3;
-using Google.Apis.Services;
+//using Google.Apis.Auth.AspNetCore3;
+//using Google.Apis.Services;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +24,7 @@ using Online_Learn.Models;
 
 using Org.BouncyCastle.Asn1.Crmf;
 
-using RestSharp;
+//using RestSharp;
 
 namespace Online_Learn.Controllers {
     public class LoginController : Controller {
@@ -123,7 +123,7 @@ namespace Online_Learn.Controllers {
         }
 
 
-        public static string GetMD5(string str)
+        public string GetMD5(string str)
         {
             MD5 md5 = new MD5CryptoServiceProvider();
             byte[] fromData = Encoding.UTF8.GetBytes(str);

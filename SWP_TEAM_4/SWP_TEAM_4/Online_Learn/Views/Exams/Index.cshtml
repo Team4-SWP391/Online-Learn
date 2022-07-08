@@ -1,0 +1,109 @@
+﻿@model List<Question>
+
+@{
+    ViewData["Title"] = "Exam";
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="~/css/base.css">
+    <link rel="stylesheet" href="~/css/header.css">
+    <link rel="stylesheet" href="~/css/footer.css">
+    <link rel="stylesheet" href="~/css/quiz.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+
+    <!--Header-->
+    <div class="app">
+        <div class="header px-4 d-flex justify-content-between align-items-center">
+            <div class="header_left d-flex justify-content-between align-items-center">
+                <div class="header_left-logo">
+                    <a href="/Home"><img src="~/css/Udemy_logo.svg" alt="" width="91" height="34" /></a>
+                </div>
+            </div>
+            <div class="header_center">
+                <span class="text-center">Title of Lesson</span>
+                <span class="text-center"><span id="quiz_done">0</span>/10</span>
+            </div>
+            <div class="header_right d-flex justify-content-end">
+                <a href="">Cancel</a>
+            </div>
+        </div>
+        <div class="content" style="background-color: #f6f7fb;">
+            <div class="container question">
+                <h2>Multiple Question</h2>
+                <h2 id="time" data-time="5">05:00</h2>
+                <div class="question_list">
+                    @foreach (var question in Model)
+                    {
+                        <div class="question_list-item" id="@question.QuestionId">
+                            <div class="question_list-item-title">
+                                <p>
+                                    Question <span class="count"></span>:
+                                    @question.Quiz
+                                </p>
+                            </div>
+                            <div>
+                                <h5 style="text-align: left; margin-left: 10px;">Choose Correct Answer</h5>
+                                <div class="question_list-item-choice">
+                                    <section data-option="1">@question.Op1</section>
+                                    <section data-option="2">@question.Op2</section>
+                                    <section data-option="3">@question.Op3</section>
+                                    <section data-option="4">@question.Op4</section>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <button class="view_result">
+                        <h4>View Result</h4>
+                    </button>
+                </div>
+            </div>
+            <div class="sidebar">
+                <h5>List of question</h5>
+                <ul>
+                    @foreach (var question in Model)
+                    {
+                        <li>
+                            <a href="#@(question.QuestionId)" class="count">
+                                <i class="fal fa-check" style="display: none;"></i>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--Header end-->
+    <!--Homepage-->
+    <!--Footer End -->
+
+
+
+    <script src="~/js/quiz.js"></script>
+    <script>
+        //document.querySelectorAll('question_list-item').forEach(element => {
+        //    element.getAttribute('id').scrollIntoView({
+        //        behavior: 'smooth',
+        //        block: 'center',
+        //        inline: 'center'
+        //    })
+        //})
+    </script>
+</body>
+
+</html>

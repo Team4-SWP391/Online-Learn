@@ -53,15 +53,19 @@
     padding: 20px;
 }
 
-.author, .courses-tilte {
-    color: #5488c7;
+.author {
+    color: #a435f0;
     font-size: 14px;
 }
-
-.post-name {
-    font-size: 17.6px;
-    color: #0b1a33;
+.courses-tilte:hover {
+        color: #a435f0;
+        text-decoration:underline;
 }
+   
+    .post-name {
+        font-size: 17.6px;
+        color: #0b1a33;
+    }
 
 .tabl {
     margin-left: 30px;
@@ -82,9 +86,7 @@
     color: #9b9b9b;
 }
 
-a:hover {
-    text-decoration: underline;
-}
+
 
 .relate {
     font-size: 19px;

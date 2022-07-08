@@ -1,0 +1,68 @@
+﻿@model Online_Learn.Models.Exam
+
+@{
+	ViewData["Title"] = "Create";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<link rel="stylesheet" href="~/css/home.css">
+<link rel="stylesheet" href="~/css/course-create.css">
+
+
+<div class="course">
+	<div class="course-header">
+		<a asp-action="List" class="course-header__back"><i class="fas fa-angle-left"></i>Back to Exam</a>
+		<span class="course-header__key">Keyword research for bloggers</span>
+		<span class="course-header__bold">Draft</span>
+		<span class="course-header__tt">Omin of video contenet upload</span>
+	</div>
+	<div class="course-wrap">
+		<div class="course-create">
+			<h1 class="course-create__heading" style="color: rgb(126, 87, 194)">Manage Create Exams</h1>
+			<div class="course-create__content">
+				<div class="course-create__form">
+					<form asp-action="Create">
+						<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+						<div class="course-create__formgr">
+							<label asp-for="ExamName" class="course-create__lable"></label>
+							<input asp-for="ExamName" class="course-create__input" />
+							<span asp-validation-for="ExamName" class="text-danger"></span>
+						</div>
+						<div class="course-create__formgr">
+							<label asp-for="Quantity" class="course-create__lable"></label>
+							<input asp-for="Quantity" class="course-create__input" />
+							<span asp-validation-for="Quantity" class="text-danger"></span>
+						</div>
+						<div class="course-create__formgr">
+							<label asp-for="Time" class="course-create__lable"></label>
+							<input asp-for="Time" class="course-create__input" />
+							<span asp-validation-for="Time" class="text-danger"></span>
+						</div>
+						<div class="course-create__formgr">
+							<label asp-for="Lecture" class="course-create__lable"></label><br />
+							<select asp-for="LectureId" class="course-create__select" asp-items="ViewBag.LectureId"></select>
+						</div>
+						<div class="course-create__formgr">
+							<input type="submit" value="Save" class="course-create__submit" />
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="course-image">
+			<div class="course_create__imageit">
+				<img src="~/css/Exams-bro.svg" alt="" srcset="">
+			</div>
+			<div class="course_create__imageit">
+				<img src="~/css/Studying-bro.svg" alt="" srcset="">
+			</div>
+		</div>
+	</div><br />
+</div>
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migstars starActive-1.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="~/js/home.js"></script>

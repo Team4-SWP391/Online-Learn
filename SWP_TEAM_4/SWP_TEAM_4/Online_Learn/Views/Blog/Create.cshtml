@@ -1,8 +1,12 @@
 ﻿@model Online_Learn.Models.Blog
+@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json
 
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+     Account user = Context.Session.GetString("User") != null ?
+    JsonConvert.DeserializeObject<Account>(Context.Session.GetString("User")) : null;
 }
 
 
@@ -23,7 +27,7 @@
         <div class="course-wrap">
             
             <div class="course-create">
-                <h3 class="course-create__heading">Write Post</h3>
+                <h3 class="course-create__heading">Write post</h3>
                 <div class="course-create__content">
 
                     <div class="course-create__form">
@@ -49,8 +53,7 @@
 
                           
                             <div class="form-group">
-                                <label hidden asp-for="AccountId" class="control-label"></label>
-                                <select hidden asp-for="AccountId" class ="form-control" asp-items="ViewBag.AccountId"></select>
+                                 <input hidden asp-for="AccountId" class ="form-control" value="@user.AccountId" name="AccountId" />
                             </div>
                             <div class="course-create__formgr">
                                 <button class="course-create__submit" value="Create">Save</button>

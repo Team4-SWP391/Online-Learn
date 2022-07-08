@@ -3,6 +3,7 @@ const quizDone = document.querySelector('#quiz_done');
 const question = document.querySelector('.question');
 const numberQuestion = document.querySelectorAll('.sidebar .count');
 const viewResult = document.querySelector('.view_result');
+const questionList = document.querySelectorAll('.question_list-item');
 
 const display = document.querySelector('#time');
 
@@ -26,15 +27,16 @@ listAnswers.forEach((answer, index) => {
 viewResult.addEventListener('click', e => {
     const answersOfUser = [];
     if (display.textContent != '00:00') {
-        question.querySelectorAll('.question_list-item-choice').forEach(item => {
+        question.querySelectorAll('.question_list-item-choice').forEach((item, index) => {
+            const id = questionList[index].getAttribute('id');
             let check = 0;
             item.querySelectorAll('section').forEach((choice, index) => {
                 if (choice.classList.contains('option-choosed')) {
                     check++;
-                    answersOfUser.push(choice.dataset.option);
+                    answersOfUser.push({ id: id, answer: choice.dataset.option });
                 }
                 if (check == 0 && index == 3) {
-                    answersOfUser.push('none');
+                    answersOfUser.push({ id: id, answer: 'null' });
                 }
             });
         });
@@ -49,6 +51,14 @@ viewResult.addEventListener('click', e => {
         alert('Time Out');
     }
     console.log(answersOfUser);
+    // $.ajax({
+    //     url: 'Exam/ViewResult',
+    //     type: 'POST',
+    //     data: answersOfUser,
+    //     success: function (res) {
+    //         console.log(res);
+    //     },
+    // });
 });
 
 function startTimer(duration, display) {
@@ -72,5 +82,5 @@ function startTimer(duration, display) {
 
 window.onload = function () {
     var fiveMinutes = 5 * 60;
-    startTimer(fiveMinutes, display);
+    startTimer(display.dataset.time * 60, display);
 };
