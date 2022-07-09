@@ -268,8 +268,31 @@ namespace Online_Learn.Controllers {
             return View(course);
         }
 
+        //List question by course
+        public IActionResult Questions(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            Course course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
+                ViewData["CourseName"] = course.CourseName;
+                ViewData["CourseID"] = id;
+                dynamic model = new System.Dynamic.ExpandoObject();
+                List<QuestionDetail> questionsSlider = (from q in _context.Questions
+                                   join l in _context.Lectures on q.LectureId equals l.LectureId
+                                   join c in _context.Courses on l.CourseId equals c.CourseId where c.CourseId == id
+                                   join a in _context.Accounts on c.AccountId equals a.AccountId
+                                   select new QuestionDetail(q.QuestionId, q.Quiz, q.Op1, q.Op2, q.Op3, q.Op4, q.Solution, l.LectureName, c.CourseName, c.CourseId, a.FulllName)).ToList();
+           
+            List<QuestionDetail> questions = questionsSlider.Take(3).ToList();
+                model.questionsSlider = questionsSlider.ToList();
+                model.questions = questions.ToList();
+                return View(model);
+        }
+
         // GET: Courses/Delete/5
-        public async Task<IActionResult> Delete(int id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -285,7 +308,6 @@ namespace Online_Learn.Controllers {
             {
                 return NotFound();
             }
-            ViewData["CourseId"] = course.CourseId;
             return View(course);
         }
 
@@ -300,10 +322,45 @@ namespace Online_Learn.Controllers {
         }
         private bool CourseExists(int id)
         {
+
             return _context.Courses.Any(e => e.CourseId == id);
         }
+    }
+    public class QuestionDetail
+    {
+        public int QuestionId { get; set; }
+        public string Quiz { get; set; }
+        public string Op1{ get; set; }
+        public string Op2 { get; set; }
 
+        public string Op3 { get; set; }
 
+        public string Op4 { get; set; }
+
+        public string Solution { get; set; }
+
+        public string Lecture { get; set; }
+
+        public string CourseName { get; set; }
+
+        public int CourseID { get; set; }
+
+        public string Author { get; set; }
+
+        public QuestionDetail(int questionId, string quiz, string op1, string op2, string op3, string op4, string solution, string lecture, string courseName, int courseID, string author)
+        {
+            QuestionId = questionId;
+            Quiz = quiz;
+            Op1 = op1;
+            Op2 = op2;
+            Op3 = op3;
+            Op4 = op4;
+            Solution = solution;
+            Lecture = lecture;
+            CourseName = courseName;
+            CourseID = courseID;
+            Author = author;
+        }
     }
 
 

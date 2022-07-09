@@ -24,7 +24,7 @@ namespace Online_Learn.Controllers
         public async Task<IActionResult> Index()
         {
             var online_LearnContext = _context.Lectures.Include(l => l.Course);
-         
+
             return View(await online_LearnContext.ToListAsync());
         }
 
