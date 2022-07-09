@@ -17,6 +17,12 @@
                 @Html.DisplayNameFor(model => model.LectureName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.CreateAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Course)
             </th>
             <th></th>
@@ -27,6 +33,12 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.LectureName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreateAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Course.CourseName)

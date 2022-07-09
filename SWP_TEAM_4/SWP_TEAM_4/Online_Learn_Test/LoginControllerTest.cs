@@ -66,11 +66,16 @@ namespace Online_Learn_Test {
         [TestCase("adminadmin", "******")]
         [TestCase("********", "123@@@@")]
 
-        public async Task TestLogin(string email, string pass)
-        {
-            var result = loginController.GetAccount(email, pass);
-            Assert.IsNotNull(result);
-        }
+        //public async Task TestLogin(string email, string pass)
+        //{
+
+        //    loginController = new LoginController(context);
+        //    var result = loginController.GetAccount("hainam123", "123456");
+        //    Assert.AreEqual(result, null);
+
+        //    var result = loginController.GetAccount(email, pass);
+        //    Assert.IsNotNull(result);
+        //}
 
         [Test]
         [TestCase("123")]
@@ -97,6 +102,7 @@ namespace Online_Learn_Test {
 
             }
             return byte2String;
+
         }
     }
 

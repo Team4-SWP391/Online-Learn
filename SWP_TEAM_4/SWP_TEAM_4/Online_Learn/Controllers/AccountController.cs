@@ -29,6 +29,37 @@ namespace Online_Learn.Controllers {
             return View();
         }
 
+
+        public int ProfileTest(Account NewAccount)
+        {
+            Account a = context.Accounts.FirstOrDefault(x => x.AccountId == NewAccount.AccountId);
+            if (a != null)
+            {
+                a.AccountId = NewAccount.AccountId;
+                a.FulllName = NewAccount.FulllName;
+                a.Gender = NewAccount.Gender;
+                a.Dob = NewAccount.Dob;
+                a.Address = NewAccount.Address;
+                a.Phone = NewAccount.Phone;
+                a.RoleId = a.RoleId;
+                a.Password = a.Password;
+                a.Username = a.Username;
+                a.Language = NewAccount.Language;
+                a.Email = NewAccount.Email;
+                a.Image = a.Image;
+                a.Desc = a.Desc;
+                //a.Amount = NewAccount.Amount;
+            }
+                if(context.SaveChanges() > 0)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return -1;
+                }
+        }
+
         [HttpPost]
         public async Task<IActionResult> Profile(Account NewAccount)
         {

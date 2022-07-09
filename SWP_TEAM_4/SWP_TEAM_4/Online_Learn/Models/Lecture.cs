@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-#nullable disable
-
 namespace Online_Learn.Models
 {
-    public partial class Lecture
+    public class Lecture
     {
         public Lecture()
         {
@@ -18,8 +16,11 @@ namespace Online_Learn.Models
         public int LectureId { get; set; }
         public string LectureName { get; set; }
         public int? CourseId { get; set; }
+        public DateTime? CreateAt { get; set; }
+        public string Description { get; set; }
 
         public Course Course { get; set; }
+
         public virtual ICollection<Exam> Exams { get; set; }
         public virtual ICollection<LectureAccount> LectureAccounts { get; set; }
         public virtual ICollection<Lesson> Lessons { get; set; }

@@ -13,25 +13,33 @@
 
 <body>
 
-    <!-- <div class="delete">
-        <div class="delete-head">
-            <div class="delete-close">
-                <i class="fas fa-times-circle"></i>
+    <!-- <div class="lecture">
+        <div class="lecture-heading">
+            <div class="lecture-add">
+                <h3>New Lecture</h3>
+            </div>
+            <div class="lecture-icon">
+                <i class="fas fa-times"></i>
             </div>
         </div>
-        <div class="delete-content">
-            <i class="fas fa-exclamation-circle"></i>
-            <span class="delete-alert">Do you want delete Course</span>
-        </div>
-        <div class="delete-main">
-            <div class="delete__tt">
-                <a href="#" class="delete_link">Delete</a>
+        <form action="#" method="get">
+            <div class="lecture-form">
+                <div class="lecture-form__group">
+                    <label for="" class="lecture-lable">Name Lecture</label><br>
+                    <input type="text" name="name" class="lecture-input" placeholder="Create new Lecture...">
+                    <input type="text" name="course_id" class="lecture-input" hidden>
+                </div>
+                <div class="lecture-form__group">
+                    <label for="" class="lecture-lable">Description</label><br>
+                    <textarea name="desc" cols="58" class="lecture-textar"
+                        rows="8">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut doloribus facilis cupiditate ipsa ullam, incidunt, voluptas cum, nobis modi neque ipsam. Similique beatae asperiores tenetur magni atque sint, nobis dignissimos.
+                    Incidunt quo ullam distinctio dolorum? Architecto itaque nihil et id ab nulla, natus voluptate obcaecati deleniti? Praesentium ipsum optio aliquam veniam laborum et ab deserunt ullam eaque, quae temporibus corporis.</textarea>
+                </div>
+                <div class="lecture-form__group">
+                    <button class="lecture-submit">Create new</button>
+                </div>
             </div>
-            <div class="delete__tt">
-                <span class="delete_cancel">Cancel</span>
-            </div>
-
-        </div>
+        </form>
     </div> -->
 
     <div class="course">
@@ -157,15 +165,14 @@
                     </span><br>
                     <span class="course-update__lct">8 lecture - 16 lesson - 3 Exam</span>
                     <div class="course-update__question">
-                        <a href="#" class="course-update__qslink">View list question</a>
-                        <a href="#" class="course-update__qslink">Add new Lecture</a>
-                        <a href="#" class="course-update__qslink">Add new Exam</a>
+                        <a href="#" id="link-viewQs" class="course-update__qslink">View list question</a>
+                        <button class="lecture-create">Add new Lecture</button>
+                        <a href="#" id="link-addExam" class="course-update__qslink">Add new Exam</a>
                     </div>
                     <img src="./assets/image/Online learning-amico.svg" style="margin-top: 100px;" alt="" srcset="">
                 </div>
             </div>
         </div>
-    </div>
     </div>
 
     <script src="./assets/js/course-update.js"></script>
