@@ -244,6 +244,8 @@ namespace Online_Learn.Controllers {
             }
 
             var course = await _context.Courses.FindAsync(id);
+           List<Lecture> lectureList =  _context.Lectures.Include(c=> c.Course).Where(l=> l.CourseId==id).ToList();
+            ViewBag.lecture = lectureList;
             if (course == null)
             {
                 return NotFound();
