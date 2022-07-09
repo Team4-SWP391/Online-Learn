@@ -2,83 +2,73 @@
 
 @{
     ViewData["Title"] = "Edit";
+   
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link rel="stylesheet" href="~/css/lecture-add.css">
 
-  <div class="course">
-        <div class="course-header">
-            <a href="#backToList" class="course-header__back"><i class="fas fa-angle-left"></i>Back to course</a>
-            <span class="course-header__key">Keyword research for bloggers</span>
-            <span class="course-header__bold">Draft</span>
-            <span class="course-header__tt">Omin of video contenet upload</span>
+
+    <link rel="stylesheet" href="~/css/lecture-detail.css">
+
+
+    <div class="update">
+        <div class="update-heading">
+            <div class="update-add">
+                <h3>Update Lecture</h3>
+            </div>
+            <div class="update-icon">
+                <i class="fas fa-times" id="update-close"></i>
+            </div>
         </div>
-        <div class="course-wrap">
-            <div class="course-sidebar">
-                <div class="course-sidebar__content">
-                    <h4 class="course-sidebar__heading"><i class="fas fa-angle-down"></i>Lecture</h4>
-
-                    <ul class="course-sidebar__list">
-                        
-                    
-                       <li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Introduction to building a behavioral model</a></li>
-                    
-                        
-                        <li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Hello world</a>
-                        </li>
-                        <li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Lesson 1</a>
-                        </li>
-                    </ul>
+        <form asp-action="Edit" method="post">
+            <div class="update-form">
+                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="LectureId" />
+               
+                <div class="update-form__group">
+                    <label for="" class="update-lable">Name Lecture</label><br>
+                    <input type="text" asp-for="LectureName"  class="update-input" placeholder="Create new Lecture...">                  
                 </div>
-                <div class="course-sidebar__content">
-                    <h4 class="course-sidebar__heading"><i class="fas fa-angle-down"></i>Exam</h4>
-
-                    <ul class="course-sidebar__list">
-                        <li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Progess Test
-                                1</a></li>
-                        <li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Assigment</a>
-                        </li>
-                        <li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Final Exam</a>
-                        </li>
-                    </ul>
+                <div class="update-form__group">
+                    <label for="" class="update-lable">Description</label><br>
+                    <textarea  asp-for="Description" cols="58" class="update-textar" rows="8"></textarea>
+                </div>
+                 <select hidden asp-for="CourseId" class="form-control" asp-items="ViewBag.CourseId"></select>
+                <div class="update-form__group">
+                    <button class="update-submit">Update</button>
                 </div>
             </div>
-            <div class="course-update">
-                <h3 class="course-update__heading">Lecture Detail</h3>
-                <div class="course-update__content">
-                    <div class="course-update__form" >
-                        <form asp-action="Edit" method="post">
-                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                <input type="hidden" asp-for="LectureId" />
-                           
-                            <div class="course-update__formgr">
-                                <label class="course-update__lable">Lecture Name</label><br>
-                                <input asp-for="LectureName" type="text" class="course-update__input">
-                                <span asp-validation-for="LectureName" class="text-danger"></span>
-                            </div>
-                           
-                             <div class="form-group">
-                                <label asp-for="CourseId" class="control-label"></label>
-                                <select asp-for="CourseId" class="form-control" asp-items="ViewBag.CourseId"></select>
-                                <span asp-validation-for="CourseId" class="text-danger"></span>
-                            </div>
-                           
-                          
-                            <div class="course-update__formgr">
-                                <button class="course-update__update">Update</button>
-                            
-                        </form>
-                        <a asp-action="Delete" class="course-update__info" asp-route-ID="@Model.LectureId" 
-                        onclick = "return confirm('Are you sure you wish to remove this Lecture?');">Delete</a>
-                        
-                         
-                    </div>
-                </div>
+        </form>
+    </div>
+
+    <!-- <div class="delete">
+        <div class="delete-heading">
+            <div class="delete-add">
+                <p>Do you want to delete ?</p>
+            </div>
+            <div class="delete-icon">
+                <i class="fas fa-times" id="delete-close"></i>
+            </div>
+        </div>
+        <div class="delete-footer">
+            <a href="#" class="delete-acpt">Ok</a>
+            <span class="delete-cancel">Cancel</span>
+        </div>
+    </div> -->
+
+    <div class="course-header">
+        <a href="#backToList" class="course-header__back"><i class="fas fa-angle-left"></i>Back to course</a>
+        <span class="course-header__key">Keyword research for bloggers</span>
+        <span class="course-header__bold">Draft</span>
+        <span class="course-header__tt">Omin of video contenet upload</span>
+    </div>
+    <div class="containers">
+        <div class="sidebar">
+            <div class="sidebar-course">
                 <div class="course-update__image">
-                    <img src="https://img-c.udemycdn.com/course/240x135/4259956_25c8_4.jpg" alt="" srcset="">
+                    <img src="@Model.Course.Image" alt="" srcset="">
                     <br>
-                    <span class="course-update__author">Mosh Hamedani</span><br>
-                    <span class="course-update__total"><span>4.6</span>
+                    <span class="course-update__author">@Model.Course.CourseName</span><br>
+                    <span class="course-update__total"><span>@Model.Course.Rate</span>
                         <div class="rate">
                             <i data-star='0' class="fas fa-star stars starActive"></i>
                             <i data-star='1' class="fas fa-star stars starActive"></i>
@@ -88,30 +78,53 @@
                         </div>
                         (11.269)
                     </span><br>
-                    <span class="course-update__lct">8 lecture - 16 lesson - 3 Exam</span>
-                    <div class="course-update__question">
-                        <a href="#" class="course-update__qslink">View list question</a>
-                        <a href="#" class="course-update__qslink">Add new Lesson</a>
-                        <a href="#" class="course-update__qslink">Add new Exam</a>
+                    <span class="course-update__lct">@Model.Course.UpdateAt - 8 lesson</span>
+                    <h4 class="lecture-cap">Description</h4>
+                    <p class="lecture-desc">@Model.Description</p>
+                    <div class="lecture-action">
+                        <button class="lecture-update" id="lecture-update">Update</button>
+                        <button class="lecture-update" data-id="@Model.LectureId" id="lecture-delete">Delete</button>
                     </div>
-                   
                 </div>
-            </div> 
+            </div>
+        </div>
+        <div class="lecture">
+            <div class="lecture-head">
+                <div class="lecture-heading">
+                    <h3>@Model.LectureName</h3>
+                </div>
+            </div>
+            <div class="lecture-wrap">
+                <div class="lecture-filter">
+                    <form action="" method="get">
+                        <i class="fas fa-search"></i><input type="text" class="lecture-input" name="name"
+                            placeholder="Search for name lecture...">
+                    </form>
+                </div>
+                <div class="lecture-info">
+                    <ul class="lecture-list">
+                        <li class="lecture-item"><a href="#" class="lecture-link"><i class="fas fa-book-alt"></i>Lesson
+                                1</a></li>
+                        <li class="lecture-item"><a href="#" class="lecture-link"><i class="fas fa-book-alt"></i>Lesson
+                                2</a></li>
+                        <li class="lecture-item"><a href="#" class="lecture-link"><i class="fas fa-book-alt"></i>Lesson
+                                3</a></li>
+                        <li class="lecture-item"><a href="#" class="lecture-link"><i class="fas fa-book-alt"></i>Lesson
+                                4</a></li>
+                        <li class="lecture-item"><a href="#" class="lecture-link"><i class="fas fa-book-alt"></i>Lesson
+                                4</a></li>
+                        <li class="lecture-item"><a href="#" class="lecture-link"><i class="fas fa-book-alt"></i>Lesson
+                                4</a></li>
+                        <li class="lecture-item"><a href="#" class="lecture-link"><i class="fas fa-book-alt"></i>Lesson
+                                4</a></li>
+                    </ul>
+                </div>
+            </div>
         </div>
     </div>
 
 
-    
+<script src="~/js/lecture-detail.js"></script>
 
 
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
-
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
+ 

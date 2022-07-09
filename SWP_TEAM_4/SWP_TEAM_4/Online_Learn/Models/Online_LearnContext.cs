@@ -43,7 +43,6 @@ namespace Online_Learn.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
                 optionsBuilder.UseSqlServer("server=LINHLINH\\SQLEXPRESS; database=Online_Learn;uid=sa;pwd=lin2001;");
             }
         }
@@ -332,6 +331,15 @@ namespace Online_Learn.Models
 
                 entity.Property(e => e.CourseId).HasColumnName("course_id");
 
+                entity.Property(e => e.CreateAt)
+                    .HasColumnType("date")
+                    .HasColumnName("create_at")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Description)
+                    .IsUnicode(false)
+                    .HasColumnName("description");
+
                 entity.Property(e => e.LectureName)
                     .IsRequired()
                     .IsUnicode(false)
@@ -365,9 +373,7 @@ namespace Online_Learn.Models
             {
                 entity.ToTable("Lesson");
 
-                entity.Property(e => e.LessonId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("lesson_id");
+                entity.Property(e => e.LessonId).HasColumnName("lesson_id");
 
                 entity.Property(e => e.LectureId).HasColumnName("lecture_id");
 
