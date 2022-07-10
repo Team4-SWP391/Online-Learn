@@ -1,4 +1,4 @@
-.course-header {
+﻿.course-header {
     width: 100%;
     background-color: #1b1c1f;
     color: #fff;
@@ -26,80 +26,6 @@
     border-radius: 10px;
 }
 
-.course-wrap {
-    width: 100%;
-    margin-top: 15px;
-    display: flex;
-    justify-content: space-evenly;
-    padding: 15px;
-}
-
-.course-sidebar {
-    width: 20%;
-    overflow-y: scroll;
-    border: 1px solid #1b1c1f;
-    padding: 25px;
-    justify-content: center;
-}
-
-.course-sidebar__content {
-    margin-bottom: 25px;
-}
-
-.course-sidebar__list {
-    display: none;
-}
-
-    .course-sidebar__list.isToggle {
-        display: block;
-    }
-
-.course-sidebar__heading {
-    font-size: 18px;
-    padding: 10px;
-    border-bottom: 1px solid #1b1c1f;
-    cursor: pointer;
-}
-
-    .course-sidebar__heading i {
-        margin-right: 12px;
-    }
-
-.course-sidebar__item {
-    margin: 15px 0;
-}
-
-.course-sidebar__link {
-    padding: 15px;
-    color: #a535f0cf;
-    font-size: 15px;
-    font-weight: bold;
-}
-
-    .course-sidebar__link:hover {
-        color: #a435f0;
-    }
-
-.course-sidebar__linkadd {
-    display: inline-block;
-    color: #1b1c1f;
-    border: 1px solid #a435f0;
-    padding: 7px;
-    border-radius: 5px;
-    margin: 5px 0;
-    font-weight: bold;
-    transition: all 0.25s linear;
-}
-
-    .course-sidebar__linkadd i {
-        margin-right: 8px;
-    }
-
-    .course-sidebar__linkadd:hover {
-        background-color: #a435f0;
-        color: #fff;
-    }
-
 .course-update {
     width: 70%;
     border: 1px solid #1b1c1f;
@@ -110,7 +36,6 @@
     display: flex;
     justify-content: space-between;
     padding: 35px;
-    gap:250px;
 }
 
 .course-update__image {
@@ -236,91 +161,135 @@
         transition: 0.25s linear;
     }
 
-        .course-update__question a:hover {
-            background-color: #a435f0;
-            color: #fff;
-            border: 1px solid #a435f0;
-        }
-
-textarea {
-    resize: none;
+.containers {
+    width: 1800px;
+    margin: 15px auto;
+    padding: 25px;
+    display: flex;
+    gap: 10px;
 }
 
-.delete {
-    position: fixed;
-    width: 500px;
-    height: 210px;
-    top: 40%;
-    left: 50%;
-    transform: translateX(-50%);
+.sidebar {
+    width: calc(30% - 1rem);
+}
+
+.lecture {
+    width: calc(65% - 1rem);
+    height: 850px;
+    border: 1px solid #eee;
+    box-shadow: 1px 2px 10px 3px #eee;
+    padding: 25px;
     background-color: #fff;
-    border: 1px solid #1b1c1f;
 }
 
-.delete-head {
+.lecture-heading {
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+}
+
+.lesson-add {
+    padding: 10px;
+    border: 1px solid #1b1c1f;
+    background-color: #fff;
+    color: #1b1c1f;
+    transition: 0.25s linear;
+}
+
+    .lesson-add:hover {
+        border: 1px solid #a435f0;
+        background-color: #a435f0;
+        color: #fff;
+    }
+
+.lecture-wrap {
     width: 100%;
 }
 
-.delete-close {
-    cursor: pointer;
-    border-bottom: 1px solid #1b1c1f;
-    padding: 10px;
-    align-items: flex-end;
+.lecture-filter {
+    margin-top: 25px;
+    width: 100%;
+    border: 1px solid rgba(153, 153, 153, 0.612);
 }
 
-    .delete-close i {
-        font-size: 20px;
-        color: orangered;
-        margin-left: 455px;
+    .lecture-filter i {
+        margin: 0 5px;
+        padding: 13px;
+        font-size: 16px;
+        color: rgba(153, 153, 153, 0.612);
     }
 
-.delete-content {
-    margin-top: 45px;
-    margin-left: 100px;
-    font-size: 22px;
+.lecture-input {
+    border: none;
+    outline: none;
+    padding: 13px;
 }
 
-    .delete-content i {
-        margin-right: 10px;
-    }
+.lecture-info {
+    margin-top: 25px;
+    width: 100%;
+}
 
-.delete-main {
+.lecture-desc {
+    height: 300px;
+}
+
+.lecture-cap {
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.lecture-item {
+    padding: 13px;
+    border: 1px solid rgba(153, 153, 153, 0.295);
     display: flex;
-    margin: 35px;
-    transform: translateX(100px);
+    margin: 10px 0px;
+    justify-content: space-between;
 }
 
-.delete__tt {
-    margin: 0 8px;
-}
-
-.delete_link {
-    padding: 8px 24px;
-    border: 1px solid #1b1c1f;
+.lecture-action {
     color: #1b1c1f;
-    font-weight: bold;
 }
 
-    .delete_link:hover {
-        color: #fff;
-        background-color: orangered;
+    .lecture-action:hover {
+        color: #a435f0;
     }
 
-.delete_cancel {
-    padding: 8px 24px;
-    border: 1px solid #1b1c1f;
-    font-weight: bold;
-    cursor: pointer;
+.lecture-item i {
+    margin: 0 10px;
 }
 
-    .delete_cancel:hover {
+.lecture-link {
+    color: #1b1c1f;
+}
+
+    .lecture-link:hover {
+        color: #1b1c1f;
+    }
+
+.lecture-action {
+    margin-top: 35px;
+}
+
+.lecture-update {
+    border: none;
+    outline: none;
+    font-weight: bold;
+    background-color: #fff;
+    border: 1px solid #1b1c1f;
+    padding: 9px 20px;
+    transition: 0.25s linear;
+}
+
+    .lecture-update:hover {
         color: #fff;
         background-color: #a435f0;
+        border: 1px solid #a435f0;
     }
 
-/*# sourceMappingURL=course-update.css.map */
-
-.lecture {
+.delete {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -334,45 +303,113 @@ textarea {
     box-shadow: 1px 2px 10px 3px #eee;
 }
 
-.lecture-heading {
+.delete-heading {
     display: flex;
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid #eee;
 }
 
-.lecture-add h3 {
+    .delete-heading p {
+        font-size: 16px;
+    }
+
+.delete-icon i {
+    cursor: pointer;
+    font-size: 23px;
+    padding: 0 0 14px 0;
+    color: #a435f0;
+}
+
+.delete-footer {
+    margin: 40px 0 0 300px;
+}
+
+.delete-acpt {
+    color: #1b1c1f;
+    padding: 10px 15px;
+    border: 1px solid #999;
+    transition: 0.25s linear;
+}
+
+    .delete-acpt:hover {
+        border: 1px solid #a435f0;
+        background-color: #a435f0;
+        color: #fff;
+    }
+
+.delete-cancel {
+    padding: 10px 15px;
+    border: 1px solid #999;
+    cursor: pointer;
+    transition: 0.25s linear;
+}
+
+    .delete-cancel:hover {
+        border: 1px solid #a435f0;
+        background-color: #a435f0;
+        color: #fff;
+    }
+
+.update {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 25px;
+    width: 500px;
+    height: auto;
+    border: 1px solid #eee;
+    border-radius: 1rem;
+    background-color: #fff;
+    box-shadow: 1px 2px 10px 3px #eee;
+    opacity: 0;
+    visibility: hidden;
+}
+
+    .update.show-update {
+        opacity: 1;
+        visibility: visible;
+    }
+
+.update-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.update-add h3 {
     padding: 0 0 14px 0;
     font-weight: bold;
     text-transform: uppercase;
     color: #1b1c1f;
 }
 
-.lecture-icon i {
+.update-icon i {
     text-align: center;
     padding: 0 0 14px 0;
     font-size: 25px;
     cursor: pointer;
-    color: #20E3B2;
+    color: #20e3b2;
 }
 
-.lecture-form {
+.update-form {
     margin-top: 20px;
 }
 
-.lecture-form__group {
+.update-form__group {
     width: 100%;
     margin-top: 10px;
 }
 
-
-.lecture-lable {
+.update-lable {
     display: block;
     font-weight: bold;
     font-size: 16px;
 }
 
-.lecture-input {
+.update-input {
     border: none;
     outline: none;
     width: 100%;
@@ -381,11 +418,11 @@ textarea {
     border-radius: 8px;
 }
 
-    .lecture-input:focus {
+    .update-input:focus {
         border: 1px solid #a435f0;
     }
 
-.lecture-submit {
+.update-submit {
     margin-top: 10px;
     border: none;
     outline: none;
@@ -396,30 +433,30 @@ textarea {
     font-weight: bold;
     align-items: flex-end;
     cursor: pointer;
-    transition: .25s linear;
-    margin-left: 350px;
+    transition: 0.25s linear;
+    margin-left: 345px;
 }
 
-    .lecture-submit:hover {
-        background-color: #a435f0;
-        color: #fff
-    }
-
-.lecture-create {
-    border: 1px solid #1b1c1f;
-    padding: 11px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: .25s linear;
-    background-color: #fff;
-}
-
-    .lecture-create:hover {
+    .update-submit:hover {
         background-color: #a435f0;
         color: #fff;
     }
 
-.lecture-textar {
+.update-create {
+    border: 1px solid #1b1c1f;
+    padding: 12.5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.25s linear;
+    background-color: #fff;
+}
+
+    .update-create:hover {
+        background-color: #a435f0;
+        color: #fff;
+    }
+
+.update-textar {
     resize: none;
     border: none;
     outline: none;
@@ -428,6 +465,10 @@ textarea {
     border-radius: 10px;
 }
 
-    .lecture-textar:focus {
+    .update-textar:focus {
         border: 1px solid #a435f0;
     }
+
+
+
+/*# sourceMappingURL=lecture-detail.css.map */

@@ -1,0 +1,118 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<link rel="stylesheet" href="~/css/lecture-detail.css">
+<div class="update">
+    <div class="update-heading">
+        <div class="update-add">
+            <h3>Update Lecture</h3>
+
+        </div>
+        <div class="update-icon">
+            <i class="fas fa-times" id="update-close"></i>
+        </div>
+    </div>
+    <form action="Detail" method="post">
+        <div class="update-form">
+            <div class="update-form__group">
+                <label for="" class="update-lable">Name Lecture</label><br>
+                <input type="text" name="NewLecture.LectureName" class="update-input" value="@ViewBag.lecture.LectureName" placeholder="Create new Lecture...">
+                <input type="text" name="NewLecture.CourseId" class="update-input" value="@ViewBag.lecture.CourseId" hidden>
+                <input type="text" name="NewLecture.LectureId" class="update-input" value="@ViewBag.lecture.LectureId" hidden>
+            </div>
+            <div class="update-form__group">
+                <label for="" class="update-lable">Description</label><br>
+                <textarea name="NewLecture.Description" cols="58" class="update-textar" rows="8">@ViewBag.lecture.Description</textarea>
+            </div>
+            <div class="update-form__group">
+                <button class="update-submit">Update</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="course-header">
+    <a href="../Course/Edit?id=@ViewBag.course.CourseId" class="course-header__back"><i class="fas fa-angle-left"></i>Back to course</a>
+    <span class="course-header__key">Keyword research for bloggers</span>
+    <span class="course-header__bold">Draft</span>
+    <span class="course-header__tt">Omin of video contenet upload</span>
+</div>
+<div class="containers">
+    <div class="sidebar">
+        <div class="sidebar-course">
+            <div class="course-update__image">
+                <img src="@ViewBag.course.Image" alt="" srcset="">
+                <br>
+                <span class="course-update__author">@ViewBag.course.CourseName</span><br>
+                <span class="course-update__total">
+                    <span>4.6</span>
+                    <div class="rate">
+                        <i data-star='0' class="fas fa-star stars starActive"></i>
+                        <i data-star='1' class="fas fa-star stars starActive"></i>
+                        <i data-star='2' class="fas fa-star stars starActive"></i>
+                        <i data-star='3' class="fas fa-star stars starActive"></i>
+                        <i data-star='4' class="fas fa-star stars starActive"></i>
+                    </div>
+                    (11.269)
+                </span><br>
+                <span class="course-update__lct">@ViewBag.lecture.CreateAt - @ViewBag.total_lesson lesson</span>
+                <h4 class="lecture-cap">Description</h4>
+                <p class="lecture-desc">
+                    @ViewBag.lecture.Description
+                </p>
+                <div class="lecture-action">
+                    <button class="lecture-update" id="lecture-update">Update</button>
+                    <button class="lecture-update" data-id="@ViewBag.lecture.LectureId" id="lecture-delete">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="lecture">
+        <div class="lecture-head">
+            <div class="lecture-heading">
+                <h3>@ViewBag.lecture.LectureName</h3>
+                <div class="lecture-lesson">
+                    <a href="Lesson/Create" class="lesson-add">Add Lesson</a>
+                </div>
+            </div>
+        </div>
+        <div class="lecture-wrap">
+            <div class="lecture-filter">
+                <form action="" method="get">
+                    <i class="fas fa-search"></i><input type="text" class="lecture-input" name="name"
+                                                        placeholder="Search for name lecture...">
+                </form>
+            </div>
+            <div class="lecture-info">
+                <ul class="lecture-list">
+                    @foreach (var item in ViewBag.lessons)
+                    {
+                        <li class="lecture-item">
+                            <div class="lecture-item__content">
+                                    <i class="fas fa-book-alt"></i>@item.LessonName
+                            </div>
+                            <div class="lecture-item__action">
+                                <a href="Lesson/Edit?id=@item.LessonId" class="lecture-action"><i class="fas fa-edit"></i></a>
+                                <a href="Lesson/Delete?id=@item.LessonId" class="lecture-action"><i class="fas fa-trash"></i></a>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+<script src="~/js/lecture-detail.js"></script>

@@ -1,8 +1,17 @@
 ﻿@using Microsoft.AspNetCore.Http
-@using Newtonsoft.Json
+@*@using Newtonsoft.Json*@
+@using System.Text.Json
 @{
     Account user = Context.Session.GetString("User") != null ?
-    JsonConvert.DeserializeObject<Account>(Context.Session.GetString("User")) : null;
+    JsonSerializer.Deserialize<Account>(Context.Session.GetString("User")) : null;
+
+    string jsonCart = Context.Session.GetString("cart");
+    List<Course> cart = new List<Course>();
+    if (jsonCart != null)
+    {
+        cart = JsonSerializer.Deserialize<List<Course>>(jsonCart);
+    }
+    string price = Context.Session.GetString("TotalPrice");
 }
 
 <!DOCTYPE html>
@@ -218,7 +227,7 @@
                                 <ul>
                                     <li class="list-course d-flex">
                                         <img src="https://img-c.udemycdn.com/course/240x135/1362070_b9a1_2.jpg" alt=""
-                                         class="list-course-img">
+                                             class="list-course-img">
                                         <div class="list-course-des">
                                             <p class="list-course-title fw-bold">Learn C++ Programming</p>
                                             <p class="list-course-author">FPT</p>
@@ -230,7 +239,7 @@
                             </div>
                         </li>
                         <li class="header_right-heart">
-                            <a href=""><i class="fal fa-heart fs-4"></i></a>
+                            <a href="#"><i class="fal fa-heart fs-4"></i></a>
                             <div class="header_right-wishlist">
                                 <!-- <span>Your Wish List Is Empty</span>
                                 <br>
@@ -238,7 +247,7 @@
                                 <ul>
                                     <li class="wishlist_item d-flex">
                                         <img src="https://img-c.udemycdn.com/course/240x135/1362070_b9a1_2.jpg" alt=""
-                                         class="wishlist_item-img">
+                                             class="wishlist_item-img">
                                         <div class="wishlist_item-des">
                                             <p class="wishlist_item-title fw-bold">Learn C++ Programming</p>
                                             <p class="wishlist_item-author">FPT</p>
@@ -250,28 +259,34 @@
                                 <div class="wishlist-btn-go"><a>Go To Wishlist</a></div>
                             </div>
                         </li>
+
                         <li class="header_right-cart">
                             <a href=""><i class="fal fa-shopping-cart fs-4"></i></a>
                             <div class="header_right-cart-quantity d-flex justify-content-center align-items-center">
-                                <span>1</span>
+                                <span>@cart.Count<span>
                             </div>
                             <div class="header_right-list-cart">
                                 <!-- <span>Your Cart Is Empty</span>
                                 <br>
                                 <a href="" class="fw-bold" style="color: var(--main-color);">Your Cart Is Empty</a> -->
                                 <ul>
-                                    <li class="cart_item d-flex">
-                                        <img src="https://img-c.udemycdn.com/course/240x135/1362070_b9a1_2.jpg" alt=""
-                                         class="cart_item-img">
-                                        <div class="cart_item-des">
-                                            <p class="cart_item-title fw-bold">Learn C++ Programming</p>
-                                            <p class="cart_item-author">FPT</p>
-                                            <p class="cart_item-price fw-bold">$100</p>
-                                        </div>
-                                    </li>
+
+                                    @foreach (var item in cart)
+                                    {
+
+                                        <li class="cart_item d-flex">
+                                            <img src="@item.Image" alt=""
+                                                 class="cart_item-img">
+                                            <div class="cart_item-des">
+                                                <p class="cart_item-title fw-bold">@item.CourseName</p>
+                                                <p class="cart_item-author">@item.Language</p>
+                                                <p class="cart_item-price fw-bold">@item.Price $</p>
+                                            </div>
+                                        </li>
+                                    }
                                 </ul>
-                                <span class="fw-bold text-start fs-4">Total: 100$</span>
-                                <div class="cart-btn"><a>Go To Cart</a></div>
+                                <span class="fw-bold text-start fs-4">Amount: @user.Amount $</span>
+                                <div class="cart-btn"><a href="/Cart/ViewCart">Go To Cart</a></div>
                             </div>
                         </li>
                         <li class="header_right-user-profile">
@@ -295,7 +310,7 @@
                                         <li style="padding-bottom: 10px"><a href="/Course/MyCourse">My Course</a></li>
                                         <li style="padding-bottom: 10px;" class="d-flex justify-content-between">
                                             <a href="">My Cart </a><span class="fw-bold text-white"
-                                                                     style="background-color: var(--main-color); border-radius: 50%; width: 20px;text-align: center;">1</span>
+                                                                         style="background-color: var(--main-color); border-radius: 50%; width: 20px;text-align: center;">1</span>
                                         </li>
                                         <li style="padding-bottom: 10px"><a href="/Wishlist">Wishlist</a></li>
                                     </ul>
@@ -307,7 +322,7 @@
                                 </div>
                                 <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
                                     <ul class="p-0">
-                                        <li style="padding-bottom: 10px"><a href="">Public Profile</a></li>
+                                        <li style="padding-bottom: 10px"><a href="/Account/Profile">Public Profile</a></li>
                                         <li style="padding-bottom: 10px"><a href="">Edit Profile</a></li>
                                     </ul>
                                 </div>
