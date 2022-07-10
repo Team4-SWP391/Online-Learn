@@ -7,6 +7,7 @@ namespace Online_Learn.Controllers {
         public IActionResult Index()
         {
             HttpContext.Session.Remove("User");
+            HttpContext.Session.Clear();
             return Redirect("Home");
         }
     }

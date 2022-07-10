@@ -1,4 +1,4 @@
-const update = document.querySelector('#lecture-update');
+﻿const update = document.querySelector('#lecture-update');
 const del = document.querySelector('#lecture-delete');
 
 const value_id = del.getAttribute('data-id');
@@ -13,7 +13,7 @@ const template_delete = `<div class="delete">
     </div>
 </div>
 <div class="delete-footer">
-    <a href="/Lecture/Delete/${value_id}" class="delete-acpt">Ok</a>
+    <a href="Delete?id=${value_id}" class="delete-acpt">Ok</a>
     <span class="delete-cancel">Cancel</span>
 </div>
 </div>`;

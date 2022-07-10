@@ -150,16 +150,39 @@
   margin-bottom: 15px;
 }
 .course-preview__btnatc {
-  margin-bottom: 5px;
-  border: none;
-  outline: none;
-  padding: 15px 0;
-  width: 100%;
-  font-weight: bold;
-  background-color: #8810d8e0;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    padding: 15px 0;
+    width: 100%;
+    font-weight: bold;
+    background-color: #8810d8e0;
+    color: #fff;
 }
+
+.course-preview__btnatw {
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+    border: none;
+    outline: none;
+    padding: 15px 0;
+    width: 100%;
+    font-weight: bold;
+    transform: translateY(-15px);
+    background-color: deeppink;
+    color: #fff;
+}
+.course-preview__btnatw:hover {
+    background-color: hotpink;
+    color: #fff;
+}
+
 .course-preview__btnatc:hover {
   background-color: #8710d8;
+  color: #fff;
 }
 .course-preview__btnbn {
   border: none;

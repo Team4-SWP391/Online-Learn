@@ -2,18 +2,20 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-
 using Newtonsoft.Json;
-
+using System.Text.Json;
+using System.Text.Json.Serialization;
 using Online_Learn.Models;
-
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace Online_Learn.Controllers {
-    public class CourseController : Controller {
+namespace Online_Learn.Controllers
+{
+    public class CourseController : Controller
+    {
         private readonly Online_LearnContext _context;
 
         public CourseController(Online_LearnContext context)
@@ -81,7 +83,7 @@ namespace Online_Learn.Controllers {
             {
                 list_course = await _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).
                     Where(x => x.Department.DepartmentId == department_id).
-                    Skip(((pageIndex - 1) * pageSize )).Take(pageSize).ToListAsync();
+                    Skip(((pageIndex - 1) * pageSize)).Take(pageSize).ToListAsync();
                 checkPage = 2;
             }
             int totalCourse = 0;
@@ -137,7 +139,7 @@ namespace Online_Learn.Controllers {
 
         public async Task<IActionResult> MyCourse(string name_search, int pageIndex)
         {
-            Account user = JsonConvert.DeserializeObject<Account>(HttpContext.Session.GetString("User"));
+            Account user = JsonSerializer.Deserialize<Account>(HttpContext.Session.GetString("User"));
             int account_id = user.AccountId;
             List<AccountCourse> courses = new List<AccountCourse>();
             if (pageIndex <= 0 || pageIndex == null)
@@ -199,6 +201,16 @@ namespace Online_Learn.Controllers {
             {
                 return NotFound();
             }
+
+            int owner = 0;
+            var account_id = JsonSerializer.Deserialize<Account>(HttpContext.Session.GetString("User")).AccountId;
+            var ac = _context.AccountCourses.FirstOrDefault(x => x.AccountId == account_id && x.CourseId == id);
+            if(ac != null)
+            {
+                owner = 1;
+            }
+            ViewBag.owner = owner;
+            ViewBag.courseId = course.CourseId;
             ViewData["CourseName"] = course.CourseName;
             ViewData["CourseDesc"] = course.Description;
             ViewData["CourseImage"] = course.Image;
@@ -244,12 +256,11 @@ namespace Online_Learn.Controllers {
             }
 
             var course = await _context.Courses.FindAsync(id);
-           List<Lecture> lectureList =  _context.Lectures.Include(c=> c.Course).Where(l=> l.CourseId==id).ToList();
-            ViewBag.lecture = lectureList;
             if (course == null)
             {
                 return NotFound();
             }
+            var lectures = _context.Lectures.Where(x => x.CourseId == id).ToList();
             ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "Password", course.AccountId);
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", course.DepartmentId);
             ViewData["LevelId"] = new SelectList(_context.Levels, "LevelId", "LevelId", course.LevelId);
@@ -257,6 +268,7 @@ namespace Online_Learn.Controllers {
             ViewData["CourseName"] = course.CourseName;
             ViewData["CoursePrice"] = course.Price;
             ViewData["CourseImage"] = course.Image;
+            ViewBag.lectures = lectures;
             return View(course);
         }
 
@@ -294,31 +306,8 @@ namespace Online_Learn.Controllers {
             return View(course);
         }
 
-        //List question by course
-        public IActionResult Questions(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            Course course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
-                ViewData["CourseName"] = course.CourseName;
-                ViewData["CourseID"] = id;
-                dynamic model = new System.Dynamic.ExpandoObject();
-                List<QuestionDetail> questionsSlider = (from q in _context.Questions
-                                   join l in _context.Lectures on q.LectureId equals l.LectureId
-                                   join c in _context.Courses on l.CourseId equals c.CourseId where c.CourseId == id
-                                   join a in _context.Accounts on c.AccountId equals a.AccountId
-                                   select new QuestionDetail(q.QuestionId, q.Quiz, q.Op1, q.Op2, q.Op3, q.Op4, q.Solution, l.LectureName, c.CourseName, c.CourseId, a.FulllName)).ToList();
-           
-            List<QuestionDetail> questions = questionsSlider.Take(3).ToList();
-                model.questionsSlider = questionsSlider.ToList();
-                model.questions = questions.ToList();
-                return View(model);
-        }
-
         // GET: Courses/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
             if (id == null)
             {
@@ -334,6 +323,7 @@ namespace Online_Learn.Controllers {
             {
                 return NotFound();
             }
+            ViewData["CourseId"] = course.CourseId;
             return View(course);
         }
 
@@ -348,45 +338,88 @@ namespace Online_Learn.Controllers {
         }
         private bool CourseExists(int id)
         {
-
             return _context.Courses.Any(e => e.CourseId == id);
         }
-    }
-    public class QuestionDetail
-    {
-        public int QuestionId { get; set; }
-        public string Quiz { get; set; }
-        public string Op1{ get; set; }
-        public string Op2 { get; set; }
 
-        public string Op3 { get; set; }
 
-        public string Op4 { get; set; }
-
-        public string Solution { get; set; }
-
-        public string Lecture { get; set; }
-
-        public string CourseName { get; set; }
-
-        public int CourseID { get; set; }
-
-        public string Author { get; set; }
-
-        public QuestionDetail(int questionId, string quiz, string op1, string op2, string op3, string op4, string solution, string lecture, string courseName, int courseID, string author)
+        public async Task<IActionResult> addLecture(Lecture NewLecture)
         {
-            QuestionId = questionId;
-            Quiz = quiz;
-            Op1 = op1;
-            Op2 = op2;
-            Op3 = op3;
-            Op4 = op4;
-            Solution = solution;
-            Lecture = lecture;
-            CourseName = courseName;
-            CourseID = courseID;
-            Author = author;
+            _context.Lectures.Add(NewLecture);
+            _context.SaveChangesAsync();
+            return Redirect($"Edit?id={NewLecture.CourseId}");
         }
+
+
+        public bool checkCourseExist(List<Course> list, Course course)
+        {
+            bool check = false;
+            foreach (var item in list)
+            {
+                if (item.CourseId == course.CourseId)
+                {
+                    check = true;
+                }
+            }
+            return check;
+        }
+        public IActionResult AddToCart(int id)
+        {
+            string gh = HttpContext.Session.GetString("cart");
+            Course c = _context.Courses.FirstOrDefault(x => x.CourseId == id);
+            List<Course> cart = new List<Course>();
+            if (gh != null)
+            {
+                cart = JsonSerializer.Deserialize<List<Course>>(gh);
+                if (!checkCourseExist(cart, c))
+                {
+                    cart.Add(c);
+                }
+            }
+            else
+            {
+                if (!checkCourseExist(cart, c))
+                {
+                    cart.Add(c);
+                }
+            }
+            double price = 0;
+            foreach (var item in cart)
+            {
+                price += item.Price;
+            }
+            HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(cart));
+            HttpContext.Session.SetString("TotalPrice", price.ToString());
+            return Redirect($"/Course/Details?id={id}");
+        }
+
+
+        public bool checkWLExist(WhistList w)
+        {
+            bool check = false;
+            var wls = _context.WhistLists.ToList();
+            foreach (var item in wls)
+            {
+                if(item.AccountId == w.AccountId && item.CourseId == w.CourseId)
+                {
+                    check = true;
+                }
+            }
+            return check;
+        }
+        public async Task<IActionResult> AddToWL(int id)
+        {
+            var account_id = JsonSerializer.Deserialize<Account>(HttpContext.Session.GetString("User")).AccountId;
+            WhistList w = new WhistList();
+            w.AccountId = account_id;
+            w.CourseId = id;
+            if (!checkWLExist(w))
+            {
+            _context.WhistLists.Add(w);
+            }
+            _context.SaveChanges();
+            return Redirect($"/Course/Details?id={id}");
+        }
+
     }
 
 

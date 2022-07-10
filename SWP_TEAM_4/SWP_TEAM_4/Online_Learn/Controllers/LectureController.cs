@@ -1,11 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+
+using Newtonsoft.Json;
+
 using Online_Learn.Models;
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
 
 namespace Online_Learn.Controllers
 {
@@ -18,151 +24,43 @@ namespace Online_Learn.Controllers
             _context = context;
         }
 
-        // GET: Lecture
-        public async Task<IActionResult> Index()
+
+        public async Task<IActionResult> Detail(int id)
         {
-            var online_LearnContext = _context.Lectures.Include(l => l.Course);
-
-            return View(await online_LearnContext.ToListAsync());
-        }
-
-        // GET: Lecture/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var lecture = await _context.Lectures
-                .Include(l => l.Course)
-                .FirstOrDefaultAsync(m => m.LectureId == id);
-            if (lecture == null)
-            {
-                return NotFound();
-            }
-            ViewData["id"] = lecture.LectureId;
-
-            return View(lecture);
-        }
-
-        // GET: Lecture/Create
-        public IActionResult Create()
-        {
-            ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName");
+            var lecture = await _context.Lectures.FirstOrDefaultAsync(x => x.LectureId == id);
+            var course = await _context.Courses.FirstOrDefaultAsync(x => x.CourseId == lecture.CourseId);
+            var lessons = await _context.Lessons.Where(x => x.LectureId == id).ToListAsync();
+            var total_lesson = lessons.Count;
+            ViewBag.course = course;
+            ViewBag.lecture = lecture;
+            ViewBag.lessons = lessons;
+            ViewBag.total_lesson = total_lesson;
             return View();
         }
 
-        // POST: Lecture/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("LectureId,LectureName,CourseId,CreateAt,Description")] Lecture lecture)
+        public async Task<IActionResult> Detail(Lecture NewLecture)
         {
-            if (ModelState.IsValid)
+            var lecture = await _context.Lectures.Where(x => x.LectureId == NewLecture.LectureId).FirstOrDefaultAsync();
+            if(lecture != null)
             {
-                _context.Add(lecture);
+                lecture.LectureName = NewLecture.LectureName;
+                lecture.Description = NewLecture.Description;
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName", lecture.CourseId);
-            return View(lecture);
+            return Redirect($"Detail?id={lecture.LectureId}");
         }
 
-        // GET: Lecture/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null)
+            var lecture = await _context.Lectures.Where(x => x.LectureId == id).FirstOrDefaultAsync();
+            if(lecture != null)
             {
-                return NotFound();
+                  _context.Lectures.Remove(lecture);
+                  _context.SaveChanges();
             }
-
-            var lecture = await _context.Lectures.FindAsync(id);
-            if (lecture == null)
-            {
-                return NotFound();
-            }
-            ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName", lecture.CourseId);
-            return View(lecture);
+            return Redirect($"../Course/Edit?id={lecture.CourseId}");
         }
 
-        // POST: Lecture/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("LectureId,LectureName,CourseId,CreateAt,Description")] Lecture lecture)
-        {
-            if (id != lecture.LectureId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(lecture);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!LectureExists(lecture.LectureId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CourseId"] = new SelectList(_context.Courses, "CourseId", "CourseName", lecture.CourseId);
-            return View(lecture);
-        }
-
-        // GET: Lecture/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            //var lecture = await _context.Lectures
-            //    .Include(l => l.Course)
-            //    .FirstOrDefaultAsync(m => m.LectureId == id);
-            var lecture = await _context.Lectures.FindAsync(id);
-            _context.Lectures.Remove(lecture);
-            await _context.SaveChangesAsync();
-          
-            if (lecture == null)
-            {
-                return NotFound();
-            }
-            ViewData["id"] = lecture.LectureId;
-
-            return RedirectToAction(nameof(Index));
-           
-
-        }
-
-        // POST: Lecture/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    var lecture = await _context.Lectures.FindAsync(id);
-        //    _context.Lectures.Remove(lecture);
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
-
-        private bool LectureExists(int id)
-        {
-            return _context.Lectures.Any(e => e.LectureId == id);
-        }
     }
 }

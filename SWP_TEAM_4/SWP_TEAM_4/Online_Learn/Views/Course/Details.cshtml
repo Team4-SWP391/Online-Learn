@@ -11,340 +11,387 @@
 <link rel="stylesheet" href="~/css/courseDetail.css">
 
 <div class="course-header">
-		<a href="/Home" class="course-header__back"><i class="fas fa-angle-left"></i>Back to Udemy</a>
-		<span class="course-header__key">Keyword research for bloggers</span>
-		<span class="course-header__bold">Draft</span>
-		<span class="course-header__tt">Omin of video contenet upload</span>
+    <a href="/Home" class="course-header__back"><i class="fas fa-angle-left"></i>Back to Udemy</a>
+    <span class="course-header__key">Keyword research for bloggers</span>
+    <span class="course-header__bold">Draft</span>
+    <span class="course-header__tt">Omin of video contenet upload</span>
 </div>
 <div class="course-title container-fluid">
-        <div class="course-preview" id="test">
-            <div class="course-preview__image">
-                <img src="@ViewData["CourseImage"]" alt="">
+    <div class="course-preview" id="test">
+        <div class="course-preview__image">
+            <img src="@ViewData["CourseImage"]" alt="">
+        </div>
+        <div class="course-preview__cart">
+            <h1 class="course-preview__price">@ViewData["CoursePrice"]$</h1>
+            @if (ViewBag.owner == 0)
+            {
+                <a href="/Course/AddToCart?id=@ViewBag.courseId" class="course-preview__btnatc">Add to cart</a><br>
+            }
+            else
+            {
+                <a class="course-preview__btnatc">Owner</a><br>
+            }
+
+
+            <a href="/Course/AddToWL?id=@ViewBag.courseId" class="course-preview__btnatw">Add to WistList</a><br>
+            <button class="course-preview__btnbn">Buy now</button><br>
+            <span class="course-preview__gua">30-Day Money-Black Guarantee</span>
+        </div>
+        <div class="course-preview__info">
+            <h5 class="course-preview__heading">This course includes:</h5>
+            <ul class="course-preview__list">
+                <li class="course-preview__items"><i class="fas fa-laptop"></i> 6.5 hourse on-demand video</li>
+                <li class="course-preview__items"><i class="fas fa-file"></i> 2 articles</li>
+                <li class="course-preview__items"><i class="fas fa-folder"></i> 28 downloadable</li>
+                <li class="course-preview__items"><i class="fas fa-infinity"></i> Full lifetime access</li>
+                <li class="course-preview__items"><i class="fas fa-mobile-alt"></i> Access on mobile and TV</li>
+                <li class="course-preview__items"><i class="fas fa-trophy"></i> Certificate of completion</li>
+            </ul>
+        </div>
+        <div class="course-preview__bussiness">
+            <h5 class="course-preview__train">Training 5 or more people?</h5>
+            <p class="course-preview__doc">Get your team access to 15,000+ top Udemy courses anytime, anywhere.</p>
+            <button class="course-preview__try">Try Udemy Business</button>
+        </div>
+    </div>
+    <div class="course-title__main">
+        <h1 class="course-title__name">@ViewData["CourseName"]</h1>
+        <p class="course-title__content">@ViewData["CourseDepartment"]</p>
+        <span class="course-title__level">
+            <span class="course-title__seller">Bestseller</span>
+            <span class="course-title__totalstar">4.6</span>
+            <div class="rate">
+                <i data-star='0' class="fas fa-star stars starActive"></i>
+                <i data-star='1' class="fas fa-star stars starActive"></i>
+                <i data-star='2' class="fas fa-star stars starActive"></i>
+                <i data-star='3' class="fas fa-star stars starActive"></i>
+                <i data-star='4' class="fas fa-star stars starActive"></i>
             </div>
-            <div class="course-preview__cart">
-                <h1 class="course-preview__price">@ViewData["CoursePrice"]$</h1>
-                <button class="course-preview__btnatc">Add to cart</button><br>
-                <button class="course-preview__btnbn">Buy now</button><br>
-                <span class="course-preview__gua">30-Day Money-Black Guarantee</span>
+            (11,321 ratings) <span class="course-title__totalstudent">53,275 students</span>
+        </span><br>
+        <span class="course-title__createby">
+            Created by <span class="course-title__author">
+                Mosh
+                Hamedani
+            </span>
+        </span>
+        <br>
+        <span class="course-title__cc">
+            <i class="fas fa-laptop-code"></i> Java, Spring MVC, Spring boot, SQL,
+            MySQL
+        </span>
+    </div>
+</div>
+
+<div class="course">
+    <div class="course-learn">
+        <h2 class="course-learn__heading">What you'll learn</h2>
+        <div class="course-learn__wrap">
+            <div class="course-learn__will">
+                <span class="course-learn__skin">
+                    <i class="fad fa-check"></i>Have an intermediate skill level of
+                    Python
+                    programming.
+                </span> <br>
+                <span class="course-learn__skin">
+                    <i class="fad fa-check"></i>Use the numpy library to create and
+                    manipulate
+                    arrays.
+                </span><br>
+                <span class="course-learn__skin">
+                    <i class="fad fa-check"></i>Learn how to work with various data
+                    formats
+                    within python, including: JSON,HTML, and MS Excel Worksheets.
+                </span><br>
+                <span class="course-learn__skin">
+                    <i class="fad fa-check"></i>Have a portfolio of various data
+                    analysis
+                    projects.
+                </span><br>
             </div>
-            <div class="course-preview__info">
-                <h5 class="course-preview__heading">This course includes:</h5>
-                <ul class="course-preview__list">
-                    <li class="course-preview__items"><i class="fas fa-laptop"></i> 6.5 hourse on-demand video</li>
-                    <li class="course-preview__items"><i class="fas fa-file"></i> 2 articles</li>
-                    <li class="course-preview__items"><i class="fas fa-folder"></i> 28 downloadable</li>
-                    <li class="course-preview__items"><i class="fas fa-infinity"></i> Full lifetime access</li>
-                    <li class="course-preview__items"><i class="fas fa-mobile-alt"></i> Access on mobile and TV</li>
-                    <li class="course-preview__items"><i class="fas fa-trophy"></i> Certificate of completion</li>
-                </ul>
-            </div>
-            <div class="course-preview__bussiness">
-                <h5 class="course-preview__train">Training 5 or more people?</h5>
-                <p class="course-preview__doc">Get your team access to 15,000+ top Udemy courses anytime, anywhere.</p>
-                <button class="course-preview__try">Try Udemy Business</button>
+            <div class="course-learn__will">
+                <span class="course-learn__skin">
+                    <i class="fad fa-check"></i>Use the Jupyter Notebook
+                    Environment.
+                </span><br>
+                <span class="course-learn__skin">
+                    <i class="fad fa-check"></i>Use the pandas module with Python to
+                    create
+                    and
+                    structure data.
+                </span><br>
+                <span class="course-learn__skin">
+                    <i class="fad fa-check"></i>Create data visualizations using
+                    matplotlib
+                    and
+                    the seaborn modules with python.
+                </span><br>
+                <span class="course-learn__skin">
+                    <i class="fad fa-check"></i>Create data visualizations using
+                    matplotlib
+                    and
+                    the seaborn modules with python.
+                </span><br>
             </div>
         </div>
-        <div class="course-title__main">
-            <h1 class="course-title__name">@ViewData["CourseName"]</h1>
-            <p class="course-title__content">@ViewData["CourseDepartment"]</p>
-            <span class="course-title__level"> <span class="course-title__seller">Bestseller</span>
-                <span class="course-title__totalstar">4.6</span>
+    </div>
+    <div class="course-content">
+        <h3 class="course-content__heading">Course content</h3>
+        <p class="course-content__section">15 sections - 110 lectures</p>
+        <div class="course-content__lesson">
+            <ul class="course-content__list">
+                <li class="course-content__items"><i class="fas fa-angle-down"></i>Intro to Course and Python</li>
+                <li class="course-content__items"><i class="fas fa-angle-down"></i>Setup</li>
+                <li class="course-content__items"><i class="fas fa-angle-down"></i>Learning Numpy</li>
+                <li class="course-content__items"><i class="fas fa-angle-down"></i>Intro to Pandas</li>
+                <li class="course-content__items"><i class="fas fa-angle-down"></i>Working with Data: Part 1</li>
+                <li class="course-content__items"><i class="fas fa-angle-down"></i>Working with Data: Part 2</li>
+                <li class="course-content__items"><i class="fas fa-angle-down"></i>Working with Data: Part 3</li>
+                <li class="course-content__items"><i class="fas fa-angle-down"></i>Data Vidualization</li>
+                <li class="course-content__items"><i class="fas fa-angle-down"></i>Example Project</li>
+                <li class="course-content__items"><i class="fas fa-angle-down"></i>Machine Learning</li>
+                <li class="course-content__items"><i class="fas fa-angle-down"></i>SQL adnd Python</li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="course-requir">
+        <h3 class="course-requir__heading">Description</h3>
+        <p class="course-requir__desc">@ViewData["CourseDesc"]</p>
+    </div>
+    <div class="course-instruc">
+        <h3 class="course-instruc__heading">Instructor</h3>
+        <h3 class="course-instruc__author">Jose Portilla</h3>
+        <p class="course-instruc__slogan">Head of Data Science at Pierian Training</p>
+        <div class="course-instruc__view">
+            <div class="course-instruc__img">
+                <img src="https://img-c.udemycdn.com/user/200_H/9685726_67e7_4.jpg" alt="">
+            </div>
+            <div class="course-instruc__rv">
+                <span class="course-instruc__skill"><i class="fas fa-star"></i>4.6 Instructor Rating</span><br>
+                <span class="course-instruc__skill"><i class="fas fa-certificate"></i>899,399 Reviews</span><br>
+                <span class="course-instruc__skill"><i class="fas fa-users"></i>2,857,356 Students</span><br>
+                <span class="course-instruc__skill"><i class="fas fa-play-circle"></i>50 Course</span><br>
+            </div>
+        </div>
+        <p class="course-instruc__desc">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium error
+            neque deleniti maxime ipsam, optio rem provident! Explicabo veritatis incidunt ullam quod dignissimos
+            harum! Consectetur vitae maxime sunt voluptatem quas.
+            Reiciendis maiores tempore ipsam eum commodi modi qui laboriosam ullam in illum at, officiis tenetur,
+            molestiae numquam sunt voluptates explicabo autem ratione recusandae cupiditate? Alias eum nobis numquam
+            consequuntur veritatis.
+            Nostrum ipsam harum reprehenderit doloribus soluta aliquam illum, tempore quas assumenda porro provident
+            est aperiam molestias nulla consequatur dolorem laboriosam earum id velit accusamus fugit? Quos
+            necessitatibus officia enim eligendi!
+            Quam, obcaecati enim? Voluptatibus esse, aliquid iure officia aliquam ipsa libero neque quibusdam unde
+            repellat autem! Similique, sequi eius itaque aspernatur placeat voluptates molestias ullam eligendi
+            alias odit ea iure!
+            Eos, sint sit amet eligendi nulla cum quisquam saepe suscipit et molestiae laudantium nihil placeat nemo
+            reprehenderit quaerat odit, iusto sapiente ab eius nisi. Iusto libero distinctio accusantium deleniti
+            adipisci!
+            Harum inventore quisquam minus distinctio obcaecati, a animi. Repellat pariatur inventore tenetur id
+            tempora! Ab consectetur iure cupiditate odio officiis fugiat, aspernatur sit a, itaque possimus dolor
+            repudiandae ducimus facere.
+            Provident quae veritatis ad rerum consequatur sed animi cupiditate iste. Molestiae earum est quibusdam
+            dicta, sequi nemo laudantium tempore odio magnam ad totam autem ut labore natus tenetur assumenda velit?
+            Culpa eligendi corporis ad accusantium quis saepe nostrum molestias voluptatibus dignissimos error non
+            eaque unde, dolores sunt magnam nemo earum qui ducimus fugit iste. Nostrum corporis eaque nobis porro
+            ullam.s
+        </p>
+    </div>
+    <div class="course-feedback">
+        <h3 class="course-feedback__heading">Student feedback</h3>
+        <div class="course-feedback__wrap">
+            <div class="course-feedback__rating">
+                <span class="course-feedback__total">4.7</span> <br>
                 <div class="rate">
                     <i data-star='0' class="fas fa-star stars starActive"></i>
                     <i data-star='1' class="fas fa-star stars starActive"></i>
                     <i data-star='2' class="fas fa-star stars starActive"></i>
                     <i data-star='3' class="fas fa-star stars starActive"></i>
                     <i data-star='4' class="fas fa-star stars starActive"></i>
-                </div>
-                (11,321 ratings) <span class="course-title__totalstudent">53,275 students</span>
-            </span><br>
-            <span class="course-title__createby">Created by <span class="course-title__author">Mosh
-                    Hamedani</span></span>
-            <br>
-            <span class="course-title__cc"><i class="fas fa-laptop-code"></i> Java, Spring MVC, Spring boot, SQL,
-                MySQL</span>
+                </div><br>
+                <span class="course-feedback__lable">Course Rating</span>
+            </div>
+            <div class="course-feedback__range">
+                <progress id="file" value="70" max="100"></progress>
+                <div class="rate">
+                    <i data-star='0' class="fas fa-star stars starActive"></i>
+                    <i data-star='1' class="fas fa-star stars starActive"></i>
+                    <i data-star='2' class="fas fa-star stars starActive"></i>
+                    <i data-star='3' class="fas fa-star stars starActive"></i>
+                    <i data-star='4' class="fas fa-star stars starActive"></i>
+                </div><span class="course-feedback__pt">70%</span><br>
+                <progress id="file" value="25" max="100"></progress>
+                <div class="rate">
+                    <i data-star='0' class="fas fa-star stars starActive"></i>
+                    <i data-star='1' class="fas fa-star stars starActive"></i>
+                    <i data-star='2' class="fas fa-star stars starActive"></i>
+                    <i data-star='3' class="fas fa-star stars starActive"></i>
+                    <i data-star='4' class="fas fa-star stars starActive"></i>
+                </div><span class="course-feedback__pt">25%</span><br>
+                <progress id="file" value="3" max="100"></progress>
+                <div class="rate">
+                    <i data-star='0' class="fas fa-star stars starActive"></i>
+                    <i data-star='1' class="fas fa-star stars starActive"></i>
+                    <i data-star='2' class="fas fa-star stars starActive"></i>
+                    <i data-star='3' class="fas fa-star stars starActive"></i>
+                    <i data-star='4' class="fas fa-star stars starActive"></i>
+                </div><span class="course-feedback__pt">4%</span><br>
+                <progress id="file" value="1" max="100"></progress>
+                <div class="rate">
+                    <i data-star='0' class="fas fa-star stars starActive"></i>
+                    <i data-star='1' class="fas fa-star stars starActive"></i>
+                    <i data-star='2' class="fas fa-star stars starActive"></i>
+                    <i data-star='3' class="fas fa-star stars starActive"></i>
+                    <i data-star='4' class="fas fa-star stars starActive"></i>
+                </div><span class="course-feedback__pt">1%</span><br>
+                <progress id="file" value="1" max="100"></progress>
+                <div class="rate">
+                    <i data-star='0' class="fas fa-star stars starActive"></i>
+                    <i data-star='1' class="fas fa-star stars starActive"></i>
+                    <i data-star='2' class="fas fa-star stars starActive"></i>
+                    <i data-star='3' class="fas fa-star stars starActive"></i>
+                    <i data-star='4' class="fas fa-star stars starActive"></i>
+                </div><span class="course-feedback__pt">1%</span><br>
+            </div>
         </div>
     </div>
-
-    <div class="course">
-        <div class="course-learn">
-            <h2 class="course-learn__heading">What you'll learn</h2>
-            <div class="course-learn__wrap">
-                <div class="course-learn__will">
-                    <span class="course-learn__skin"><i class="fad fa-check"></i>Have an intermediate skill level of
-                        Python
-                        programming.</span> <br>
-                    <span class="course-learn__skin"><i class="fad fa-check"></i>Use the numpy library to create and
-                        manipulate
-                        arrays.</span><br>
-                    <span class="course-learn__skin"><i class="fad fa-check"></i>Learn how to work with various data
-                        formats
-                        within python, including: JSON,HTML, and MS Excel Worksheets.</span><br>
-                    <span class="course-learn__skin"><i class="fad fa-check"></i>Have a portfolio of various data
-                        analysis
-                        projects.</span><br>
-                </div>
-                <div class="course-learn__will">
-                    <span class="course-learn__skin"><i class="fad fa-check"></i>Use the Jupyter Notebook
-                        Environment.</span><br>
-                    <span class="course-learn__skin"><i class="fad fa-check"></i>Use the pandas module with Python to
-                        create
-                        and
-                        structure data.</span><br>
-                    <span class="course-learn__skin"><i class="fad fa-check"></i>Create data visualizations using
-                        matplotlib
-                        and
-                        the seaborn modules with python.</span><br>
-                    <span class="course-learn__skin"><i class="fad fa-check"></i>Create data visualizations using
-                        matplotlib
-                        and
-                        the seaborn modules with python.</span><br>
-                </div>
+    <div class="course-review">
+        <h3 class="course-review__heading">Reviews</h3>
+        <div class="course-review__srv">
+            <input type="text" class="course-review__input" placeholder="typing comment..."><button class="course-review__submit"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="course-review__wrap">
+            <div class="course-review__avt">
+                <img src="https://img-c.udemycdn.com/user/50x50/172051766_5a09.jpg" alt="">
+            </div>
+            <div class="course-review__cmt">
+                <h5 class="course-review__name">Bhuvana R.</h5>
+                <div class="rate">
+                    <i data-star='0' class="fas fa-star stars starActive"></i>
+                    <i data-star='1' class="fas fa-star stars starActive"></i>
+                    <i data-star='2' class="fas fa-star stars starActive"></i>
+                    <i data-star='3' class="fas fa-star stars starActive"></i>
+                    <i data-star='4' class="fas fa-star stars starActive"></i>
+                </div><br>
+                <p class="course-review__com">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
+                    expedita facere, officia vel, minus illum autem corrupti blanditiis aliquam id reiciendis odit
+                    asperiores iste nam quia ab, similique liberon
+                </p>
             </div>
         </div>
-        <div class="course-content">
-            <h3 class="course-content__heading">Course content</h3>
-            <p class="course-content__section">15 sections - 110 lectures</p>
-            <div class="course-content__lesson">
-                <ul class="course-content__list">
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Intro to Course and Python</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Setup</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Learning Numpy</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Intro to Pandas</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Working with Data: Part 1</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Working with Data: Part 2</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Working with Data: Part 3</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Data Vidualization</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Example Project</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Machine Learning</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>SQL adnd Python</li>
-
-                </ul>
+        <div class="course-review__wrap">
+            <div class="course-review__avt">
+                <img src="https://img-c.udemycdn.com/user/50x50/172051766_5a09.jpg" alt="">
+            </div>
+            <div class="course-review__cmt">
+                <h5 class="course-review__name">Bhuvana R.</h5>
+                <div class="rate">
+                    <i data-star='0' class="fas fa-star stars starActive"></i>
+                    <i data-star='1' class="fas fa-star stars starActive"></i>
+                    <i data-star='2' class="fas fa-star stars starActive"></i>
+                    <i data-star='3' class="fas fa-star stars starActive"></i>
+                    <i data-star='4' class="fas fa-star stars starActive"></i>
+                </div><br>
+                <p class="course-review__com">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
+                    expedita facere, officia vel, minus illum autem corrupti blanditiis aliquam id reiciendis odit
+                    asperiores iste nam quia ab, similique liberon
+                </p>
             </div>
         </div>
-        <div class="course-requir">
-            <h3 class="course-requir__heading">Description</h3>
-            <p class="course-requir__desc">@ViewData["CourseDesc"]</p>
-        </div>
-        <div class="course-instruc">
-            <h3 class="course-instruc__heading">Instructor</h3>
-            <h3 class="course-instruc__author">Jose Portilla</h3>
-            <p class="course-instruc__slogan">Head of Data Science at Pierian Training</p>
-            <div class="course-instruc__view">
-                <div class="course-instruc__img">
-                    <img src="https://img-c.udemycdn.com/user/200_H/9685726_67e7_4.jpg" alt="">
-                </div>
-                <div class="course-instruc__rv">
-                    <span class="course-instruc__skill"><i class="fas fa-star"></i>4.6 Instructor Rating</span><br>
-                    <span class="course-instruc__skill"><i class="fas fa-certificate"></i>899,399 Reviews</span><br>
-                    <span class="course-instruc__skill"><i class="fas fa-users"></i>2,857,356 Students</span><br>
-                    <span class="course-instruc__skill"><i class="fas fa-play-circle"></i>50 Course</span><br>
-                </div>
+        <div class="course-review__wrap">
+            <div class="course-review__avt">
+                <img src="https://img-c.udemycdn.com/user/50x50/172051766_5a09.jpg" alt="">
             </div>
-            <p class="course-instruc__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium error
-                neque deleniti maxime ipsam, optio rem provident! Explicabo veritatis incidunt ullam quod dignissimos
-                harum! Consectetur vitae maxime sunt voluptatem quas.
-                Reiciendis maiores tempore ipsam eum commodi modi qui laboriosam ullam in illum at, officiis tenetur,
-                molestiae numquam sunt voluptates explicabo autem ratione recusandae cupiditate? Alias eum nobis numquam
-                consequuntur veritatis.
-                Nostrum ipsam harum reprehenderit doloribus soluta aliquam illum, tempore quas assumenda porro provident
-                est aperiam molestias nulla consequatur dolorem laboriosam earum id velit accusamus fugit? Quos
-                necessitatibus officia enim eligendi!
-                Quam, obcaecati enim? Voluptatibus esse, aliquid iure officia aliquam ipsa libero neque quibusdam unde
-                repellat autem! Similique, sequi eius itaque aspernatur placeat voluptates molestias ullam eligendi
-                alias odit ea iure!
-                Eos, sint sit amet eligendi nulla cum quisquam saepe suscipit et molestiae laudantium nihil placeat nemo
-                reprehenderit quaerat odit, iusto sapiente ab eius nisi. Iusto libero distinctio accusantium deleniti
-                adipisci!
-                Harum inventore quisquam minus distinctio obcaecati, a animi. Repellat pariatur inventore tenetur id
-                tempora! Ab consectetur iure cupiditate odio officiis fugiat, aspernatur sit a, itaque possimus dolor
-                repudiandae ducimus facere.
-                Provident quae veritatis ad rerum consequatur sed animi cupiditate iste. Molestiae earum est quibusdam
-                dicta, sequi nemo laudantium tempore odio magnam ad totam autem ut labore natus tenetur assumenda velit?
-                Culpa eligendi corporis ad accusantium quis saepe nostrum molestias voluptatibus dignissimos error non
-                eaque unde, dolores sunt magnam nemo earum qui ducimus fugit iste. Nostrum corporis eaque nobis porro
-                ullam.s</p>
-        </div>
-        <div class="course-feedback">
-            <h3 class="course-feedback__heading">Student feedback</h3>
-            <div class="course-feedback__wrap">
-                <div class="course-feedback__rating">
-                    <span class="course-feedback__total">4.7</span> <br>
-                    <div class="rate">
-                        <i data-star='0' class="fas fa-star stars starActive"></i>
-                        <i data-star='1' class="fas fa-star stars starActive"></i>
-                        <i data-star='2' class="fas fa-star stars starActive"></i>
-                        <i data-star='3' class="fas fa-star stars starActive"></i>
-                        <i data-star='4' class="fas fa-star stars starActive"></i>
-                    </div><br>
-                    <span class="course-feedback__lable">Course Rating</span>
-                </div>
-                <div class="course-feedback__range">
-                    <progress id="file" value="70" max="100"></progress>
-                    <div class="rate">
-                        <i data-star='0' class="fas fa-star stars starActive"></i>
-                        <i data-star='1' class="fas fa-star stars starActive"></i>
-                        <i data-star='2' class="fas fa-star stars starActive"></i>
-                        <i data-star='3' class="fas fa-star stars starActive"></i>
-                        <i data-star='4' class="fas fa-star stars starActive"></i>
-                    </div><span class="course-feedback__pt">70%</span><br>
-                    <progress id="file" value="25" max="100"></progress>
-                    <div class="rate">
-                        <i data-star='0' class="fas fa-star stars starActive"></i>
-                        <i data-star='1' class="fas fa-star stars starActive"></i>
-                        <i data-star='2' class="fas fa-star stars starActive"></i>
-                        <i data-star='3' class="fas fa-star stars starActive"></i>
-                        <i data-star='4' class="fas fa-star stars starActive"></i>
-                    </div><span class="course-feedback__pt">25%</span><br>
-                    <progress id="file" value="3" max="100"></progress>
-                    <div class="rate">
-                        <i data-star='0' class="fas fa-star stars starActive"></i>
-                        <i data-star='1' class="fas fa-star stars starActive"></i>
-                        <i data-star='2' class="fas fa-star stars starActive"></i>
-                        <i data-star='3' class="fas fa-star stars starActive"></i>
-                        <i data-star='4' class="fas fa-star stars starActive"></i>
-                    </div><span class="course-feedback__pt">4%</span><br>
-                    <progress id="file" value="1" max="100"></progress>
-                    <div class="rate">
-                        <i data-star='0' class="fas fa-star stars starActive"></i>
-                        <i data-star='1' class="fas fa-star stars starActive"></i>
-                        <i data-star='2' class="fas fa-star stars starActive"></i>
-                        <i data-star='3' class="fas fa-star stars starActive"></i>
-                        <i data-star='4' class="fas fa-star stars starActive"></i>
-                    </div><span class="course-feedback__pt">1%</span><br>
-                    <progress id="file" value="1" max="100"></progress>
-                    <div class="rate">
-                        <i data-star='0' class="fas fa-star stars starActive"></i>
-                        <i data-star='1' class="fas fa-star stars starActive"></i>
-                        <i data-star='2' class="fas fa-star stars starActive"></i>
-                        <i data-star='3' class="fas fa-star stars starActive"></i>
-                        <i data-star='4' class="fas fa-star stars starActive"></i>
-                    </div><span class="course-feedback__pt">1%</span><br>
-                </div>
+            <div class="course-review__cmt">
+                <h5 class="course-review__name">Bhuvana R.</h5>
+                <div class="rate">
+                    <i data-star='0' class="fas fa-star stars starActive"></i>
+                    <i data-star='1' class="fas fa-star stars starActive"></i>
+                    <i data-star='2' class="fas fa-star stars starActive"></i>
+                    <i data-star='3' class="fas fa-star stars starActive"></i>
+                    <i data-star='4' class="fas fa-star stars starActive"></i>
+                </div><br>
+                <p class="course-review__com">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
+                    expedita facere, officia vel, minus illum autem corrupti blanditiis aliquam id reiciendis odit
+                    asperiores iste nam quia ab, similique liberon
+                </p>
             </div>
         </div>
-        <div class="course-review">
-            <h3 class="course-review__heading">Reviews</h3>
-            <div class="course-review__srv">
-                <input type="text" class="course-review__input" placeholder="typing comment..."><button class="course-review__submit"><i class="fas fa-search"></i></button>
+        <div class="course-review__wrap">
+            <div class="course-review__avt">
+                <img src="https://img-c.udemycdn.com/user/50x50/172051766_5a09.jpg" alt="">
             </div>
-            <div class="course-review__wrap">
-                <div class="course-review__avt">
-                    <img src="https://img-c.udemycdn.com/user/50x50/172051766_5a09.jpg" alt="">
-                </div>
-                <div class="course-review__cmt">
-                    <h5 class="course-review__name">Bhuvana R.</h5>
-                    <div class="rate">
-                        <i data-star='0' class="fas fa-star stars starActive"></i>
-                        <i data-star='1' class="fas fa-star stars starActive"></i>
-                        <i data-star='2' class="fas fa-star stars starActive"></i>
-                        <i data-star='3' class="fas fa-star stars starActive"></i>
-                        <i data-star='4' class="fas fa-star stars starActive"></i>
-                    </div><br>
-                    <p class="course-review__com">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
-                        expedita facere, officia vel, minus illum autem corrupti blanditiis aliquam id reiciendis odit
-                        asperiores iste nam quia ab, similique liberon </p>
-                </div>
+            <div class="course-review__cmt">
+                <h5 class="course-review__name">Bhuvana R.</h5>
+                <div class="rate">
+                    <i data-star='0' class="fas fa-star stars starActive"></i>
+                    <i data-star='1' class="fas fa-star stars starActive"></i>
+                    <i data-star='2' class="fas fa-star stars starActive"></i>
+                    <i data-star='3' class="fas fa-star stars starActive"></i>
+                    <i data-star='4' class="fas fa-star stars starActive"></i>
+                </div><br>
+                <p class="course-review__com">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
+                    expedita facere, officia vel, minus illum autem corrupti blanditiis aliquam id reiciendis odit
+                    asperiores iste nam quia ab, similique liberon
+                </p>
             </div>
-            <div class="course-review__wrap">
-                <div class="course-review__avt">
-                    <img src="https://img-c.udemycdn.com/user/50x50/172051766_5a09.jpg" alt="">
-                </div>
-                <div class="course-review__cmt">
-                    <h5 class="course-review__name">Bhuvana R.</h5>
-                    <div class="rate">
-                        <i data-star='0' class="fas fa-star stars starActive"></i>
-                        <i data-star='1' class="fas fa-star stars starActive"></i>
-                        <i data-star='2' class="fas fa-star stars starActive"></i>
-                        <i data-star='3' class="fas fa-star stars starActive"></i>
-                        <i data-star='4' class="fas fa-star stars starActive"></i>
-                    </div><br>
-                    <p class="course-review__com">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
-                        expedita facere, officia vel, minus illum autem corrupti blanditiis aliquam id reiciendis odit
-                        asperiores iste nam quia ab, similique liberon </p>
-                </div>
-            </div>
-            <div class="course-review__wrap">
-                <div class="course-review__avt">
-                    <img src="https://img-c.udemycdn.com/user/50x50/172051766_5a09.jpg" alt="">
-                </div>
-                <div class="course-review__cmt">
-                    <h5 class="course-review__name">Bhuvana R.</h5>
-                    <div class="rate">
-                        <i data-star='0' class="fas fa-star stars starActive"></i>
-                        <i data-star='1' class="fas fa-star stars starActive"></i>
-                        <i data-star='2' class="fas fa-star stars starActive"></i>
-                        <i data-star='3' class="fas fa-star stars starActive"></i>
-                        <i data-star='4' class="fas fa-star stars starActive"></i>
-                    </div><br>
-                    <p class="course-review__com">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
-                        expedita facere, officia vel, minus illum autem corrupti blanditiis aliquam id reiciendis odit
-                        asperiores iste nam quia ab, similique liberon </p>
-                </div>
-            </div>
-            <div class="course-review__wrap">
-                <div class="course-review__avt">
-                    <img src="https://img-c.udemycdn.com/user/50x50/172051766_5a09.jpg" alt="">
-                </div>
-                <div class="course-review__cmt">
-                    <h5 class="course-review__name">Bhuvana R.</h5>
-                    <div class="rate">
-                        <i data-star='0' class="fas fa-star stars starActive"></i>
-                        <i data-star='1' class="fas fa-star stars starActive"></i>
-                        <i data-star='2' class="fas fa-star stars starActive"></i>
-                        <i data-star='3' class="fas fa-star stars starActive"></i>
-                        <i data-star='4' class="fas fa-star stars starActive"></i>
-                    </div><br>
-                    <p class="course-review__com">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
-                        expedita facere, officia vel, minus illum autem corrupti blanditiis aliquam id reiciendis odit
-                        asperiores iste nam quia ab, similique liberon </p>
-                </div>
-            </div>
-            <div class="course-review__wrap">
-                <div class="course-review__avt">
-                    <img src="https://img-c.udemycdn.com/user/50x50/172051766_5a09.jpg" alt="">
-                </div>
-                <div class="course-review__cmt">
-                    <h5 class="course-review__name">Bhuvana R.</h5>
-                    <div class="rate">
-                        <i data-star='0' class="fas fa-star stars starActive"></i>
-                        <i data-star='1' class="fas fa-star stars starActive"></i>
-                        <i data-star='2' class="fas fa-star stars starActive"></i>
-                        <i data-star='3' class="fas fa-star stars starActive"></i>
-                        <i data-star='4' class="fas fa-star stars starActive"></i>
-                    </div><br>
-                    <p class="course-review__com">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
-                        expedita facere, officia vel, minus illum autem corrupti blanditiis aliquam id reiciendis odit
-                        asperiores iste nam quia ab, similique liberon </p>
-                </div>
-            </div>
-            <div class="course-review__wrap">
-                <div class="course-review__avt">
-                    <img src="https://img-c.udemycdn.com/user/50x50/172051766_5a09.jpg" alt="">
-                </div>
-                <div class="course-review__cmt">
-                    <h5 class="course-review__name">Bhuvana R.</h5>
-                    <div class="rate">
-                        <i data-star='0' class="fas fa-star stars starActive"></i>
-                        <i data-star='1' class="fas fa-star stars starActive"></i>
-                        <i data-star='2' class="fas fa-star stars starActive"></i>
-                        <i data-star='3' class="fas fa-star stars starActive"></i>
-                        <i data-star='4' class="fas fa-star stars starActive"></i>
-                    </div><br>
-                    <p class="course-review__com">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
-                        expedita facere, officia vel, minus illum autem corrupti blanditiis aliquam id reiciendis odit
-                        asperiores iste nam quia ab, similique liberon </p>
-                </div>
-            </div>
-            <button class="course-review__more">See more reviews</button>
         </div>
+        <div class="course-review__wrap">
+            <div class="course-review__avt">
+                <img src="https://img-c.udemycdn.com/user/50x50/172051766_5a09.jpg" alt="">
+            </div>
+            <div class="course-review__cmt">
+                <h5 class="course-review__name">Bhuvana R.</h5>
+                <div class="rate">
+                    <i data-star='0' class="fas fa-star stars starActive"></i>
+                    <i data-star='1' class="fas fa-star stars starActive"></i>
+                    <i data-star='2' class="fas fa-star stars starActive"></i>
+                    <i data-star='3' class="fas fa-star stars starActive"></i>
+                    <i data-star='4' class="fas fa-star stars starActive"></i>
+                </div><br>
+                <p class="course-review__com">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
+                    expedita facere, officia vel, minus illum autem corrupti blanditiis aliquam id reiciendis odit
+                    asperiores iste nam quia ab, similique liberon
+                </p>
+            </div>
+        </div>
+        <div class="course-review__wrap">
+            <div class="course-review__avt">
+                <img src="https://img-c.udemycdn.com/user/50x50/172051766_5a09.jpg" alt="">
+            </div>
+            <div class="course-review__cmt">
+                <h5 class="course-review__name">Bhuvana R.</h5>
+                <div class="rate">
+                    <i data-star='0' class="fas fa-star stars starActive"></i>
+                    <i data-star='1' class="fas fa-star stars starActive"></i>
+                    <i data-star='2' class="fas fa-star stars starActive"></i>
+                    <i data-star='3' class="fas fa-star stars starActive"></i>
+                    <i data-star='4' class="fas fa-star stars starActive"></i>
+                </div><br>
+                <p class="course-review__com">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
+                    expedita facere, officia vel, minus illum autem corrupti blanditiis aliquam id reiciendis odit
+                    asperiores iste nam quia ab, similique liberon
+                </p>
+            </div>
+        </div>
+        <button class="course-review__more">See more reviews</button>
     </div>
+</div>
 
 
 @*<div>
-    <a asp-action="Edit" asp-route-id="@Model.CourseId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>*@
+        <a asp-action="Edit" asp-route-id="@Model.CourseId">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>*@
 
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
