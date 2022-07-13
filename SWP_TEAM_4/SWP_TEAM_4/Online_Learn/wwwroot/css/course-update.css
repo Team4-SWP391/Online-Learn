@@ -76,6 +76,12 @@
     font-weight: bold;
 }
 
+.listexam{
+    color: #a535f0cf;
+    font-size: 15px;
+    font-weight: bold;
+}
+
     .course-sidebar__link:hover {
         color: #a435f0;
     }
@@ -211,6 +217,27 @@
         background-color: orangered;
         color: #fff;
     }
+
+.windowdelete{
+    margin: 0 10px;
+    border: 1px solid #1b1c1f;
+    color: #1b1c1f;
+    font-weight: bold;
+    padding: 12px 36px;
+    transition: 0.25s linear;
+    background-color: #fff;
+    cursor: pointer;    
+}
+
+.windowdelete:hover{
+    background-color: mediumpurple;
+    color: #fff;
+}
+
+.aa:hover {
+    background-color: mediumpurple;
+    color: #fff;
+}
 
 .course-update__author {
     display: inline-block;

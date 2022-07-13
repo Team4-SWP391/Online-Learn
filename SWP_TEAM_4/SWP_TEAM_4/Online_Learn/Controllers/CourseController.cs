@@ -261,6 +261,10 @@ namespace Online_Learn.Controllers
                 return NotFound();
             }
             var lectures = _context.Lectures.Where(x => x.CourseId == id).ToList();
+            var exam = (from e in _context.Exams
+                        join l in _context.Lectures on e.LectureId equals l.LectureId
+                        join c in _context.Courses on l.CourseId equals c.CourseId where l.CourseId == id
+                        select e).ToList();
             ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "Password", course.AccountId);
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", course.DepartmentId);
             ViewData["LevelId"] = new SelectList(_context.Levels, "LevelId", "LevelId", course.LevelId);
@@ -269,6 +273,7 @@ namespace Online_Learn.Controllers
             ViewData["CoursePrice"] = course.Price;
             ViewData["CourseImage"] = course.Image;
             ViewBag.lectures = lectures;
+            ViewBag.exam = exam;
             return View(course);
         }
 

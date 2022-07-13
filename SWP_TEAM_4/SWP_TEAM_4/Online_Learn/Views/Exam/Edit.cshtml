@@ -11,51 +11,14 @@
 
 <div class="course">
 	<div class="course-header">
-		<a asp-action="List" class="course-header__back"><i class="fas fa-angle-left"></i>Back to Exam</a>
+		<a href="/Course/List" class="course-header__back"><i class="fas fa-angle-left"></i>Back to Exam</a>
 		<span class="course-header__key">Keyword research for bloggers</span>
 		<span class="course-header__bold">Draft</span>
 		<span class="course-header__tt">Omin of video contenet upload</span>
 	</div>
 	<div class="course-wrap">
-		<div class="course-sidebar">
-			<div class="course-sidebar__content">
-				<h4 class="course-sidebar__heading"><i class="fas fa-angle-down"></i>Lecture</h4>
-				<ul class="course-sidebar__list">
-					<li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Intro</a></li>
-					<li class="course-sidebar__item">
-						<a href="#lecture" class="course-sidebar__link">Hello world</a>
-					</li>
-					<li class="course-sidebar__item">
-						<a href="#lecture" class="course-sidebar__link">Lesson 1</a>
-					</li>
-				</ul>
-			</div>
-			<div class="course-sidebar__content">
-				<h4 class="course-sidebar__heading"><i class="fas fa-angle-down"></i>Exam</h4>
-
-				<ul class="course-sidebar__list">
-					<li class="course-sidebar__item">
-						<a href="#lecture" class="course-sidebar__link">
-							@*@foreach (Exam item in ViewBag.examName)
-                            {
-                              item.ExamName
-                            }*@
-						</a>
-					</li>
-					<li class="course-sidebar__item">
-						<a href="#lecture" class="course-sidebar__link">Progess Test 1</a>
-					</li>
-					<li class="course-sidebar__item">
-						<a href="#lecture" class="course-sidebar__link">Assigment</a>
-					</li>
-					<li class="course-sidebar__item">
-						<a href="#lecture" class="course-sidebar__link">Final Exam</a>
-					</li>
-				</ul>
-			</div>
-		</div>
 		<div class="course-update">
-			<h3 class="course-update__heading">Exam Detail</h3>
+			<h1 class="course-update__heading" style="color: #a435f0; margin-left: 30px">Exam Detail</h1>
 			<div class="container">
 				<div class="course-update__content">
 					<div class="course-update__form col">
@@ -92,7 +55,7 @@
 							<div class="course-update__formgr">
 								<button class="course-update__submit">Update</button>
 						</form>
-						<a href="/Exams/Delete?id=@ViewData["ExamId"]" class="windowdelete">Delete</a>
+						<a href="/Exam/Delete?id=@ViewData["ExamId"]" class="windowdelete">Delete</a>
 @*						<button id="/Course/Delete?id=@ViewData["ExamId"]" class="course-update__info">Delete</button>*@
 					</div>
 				</div>
