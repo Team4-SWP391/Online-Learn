@@ -70,7 +70,7 @@
 }
 
 .course-sidebar__link {
-    padding: 15px;
+    /*padding: 15px;*/
     color: #a535f0cf;
     font-size: 15px;
     font-weight: bold;
@@ -81,6 +81,9 @@
     font-size: 15px;
     font-weight: bold;
 }
+    .listexam:hover {
+        color: #a435f0;
+    }
 
     .course-sidebar__link:hover {
         color: #a435f0;
