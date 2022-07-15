@@ -35,57 +35,141 @@ namespace Online_Learn_Test
         }
 
         [Test]
-        [TestCaseSource("TestCases")]
-        public void TestHTTPPostSignup(Account account)
+        [TestCase]
+        public void TestHTTPPostSignup1()
         {
+            Account account = new Account() {
+                Username = "Tuan",
+                Email = "tuan@gmail.com",
+                Password = "tuan123"
+            };
             signupController = new SignupController(context);
-            var result = (RedirectResult)signupController.Register(account);
+            var result = signupController.Register(account) as RedirectResult;
             Assert.AreEqual("../Home/Index", result.Url);
         }
-        private static readonly object[] TestCases =
- {
-       new object[]{new Account(){Username = "Tuan",
-                Email = "tuan@gmail.com",
-                Password = "tuan123"} },
-      new object[]{new Account(){Username = "Tuan",
-                Email = "tuan@gmail.com",
-                Password = "tuan"} },
-      new object[]{new Account(){Username = "T",
-                Email = "tuan@gmail.com",
-                Password = "tuan123"} },
-      new object[]{new Account(){Username = "Tu",
-                Email = "tuan@gmail.com",
-                Password = "tuan**"} },
-      new object[]{new Account(){Username = "",
-                Email = "",
-                Password = ""} },
-      new object[]{new Account(){Username = "Tuan#@",
-                Email = "tuan@gmail.com",
-                Password = "tuan"} },
-      new object[]{new Account(){Username = "Tuan0908",
-                Email = "tuan@gmail.com",
-                Password = "12@"} },
-      new object[]{new Account(){Username = "tuan123",
-                Email = "tuan@gmail.com",
-                Password = "tuanadsffg34"} },
-      new object[]{new Account(){Username = "admin123",
-                Email = "tuan@gmail.com",
-                Password = "123456"} },
-      new object[]{new Account(){Username = "_32asdjg",
-                Email = "tuan@gmail.com",
-                Password = "1111111"} },
-};
 
         [TestCase]
-        public void TestViewDataTitleExist()
+        public void TestHTTPPostSignup2()
         {
+            Account account = new Account()
+            {
+                Username = "Tuan",
+                Email = "test1@gmail.com",
+                Password = "123456"
+            };
             signupController = new SignupController(context);
-            var result = signupController.Register() as ViewResult;
-            Assert.AreEqual("Register", result.ViewData["Title"]);
+            var result = signupController.Register(account) as RedirectResult;
+            Assert.AreEqual("../Home/Index", result.Url);
         }
+        [TestCase]
+        public void TestHTTPPostSignup3()
+        {
+            Account account = new Account()
+            {
+                Username = "Tuan",
+                Email = "test2@gmail.com",
+                Password = "123456"
+            };
+            signupController = new SignupController(context);
+            var result = signupController.Register(account) as RedirectResult;
+            Assert.AreEqual("../Home/Index", result.Url);
+        }
+        [TestCase]
+        public void TestHTTPPostSignup4()
+        {
+            Account account = new Account()
+            {
+                Username = "Tuan",
+                Email = "test3@gmail.com",
+                Password = "123456"
+            };
+            signupController = new SignupController(context);
+            var result = signupController.Register(account) as RedirectResult;
+            Assert.AreEqual("../Home/Index", result.Url);
+        }
+        [TestCase]
+        public void TestHTTPPostSignup5()
+        {
+            Account account = new Account()
+            {
+                Username = "",
+                Email = "test1@gmail.com",
+                Password = "123456"
+            };
+            signupController = new SignupController(context);
+            var result = signupController.Register(account) as RedirectResult;
+            Assert.AreEqual("../Home/Index", result.Url);
+        }
+        [TestCase]
+        public void TestHTTPPostSignup6()
+        {
+            Account account = new Account()
+            {
+                Username = "Tuan",
+                Email = "tesfds",
+                Password = "123456"
+            };
+            signupController = new SignupController(context);
+            var result = signupController.Register(account) as RedirectResult;
+            Assert.AreEqual("../Home/Index", result.Url);
+        }
+        [TestCase]
+        public void TestHTTPPostSignup7()
+        {
+            Account account = new Account()
+            {
+                Username = "Tuan",
+                Email = "test1@gmail.com",
+                Password = "123"
+            };
+            signupController = new SignupController(context);
+            var result = signupController.Register(account) as RedirectResult;
+            Assert.AreEqual("../Home/Index", result.Url);
+        }
+        [TestCase]
+        public void TestHTTPPostSignup8()
+        {
+            Account account = new Account()
+            {
+                Username = "Tuan@@",
+                Email = "test1@gmail.com",
+                Password = "123456"
+            };
+            signupController = new SignupController(context);
+            var result = signupController.Register(account) as RedirectResult;
+            Assert.AreEqual("../Home/Index", result.Url);
+        }
+        [TestCase]
+        public void TestHTTPPostSignup9()
+        {
+            Account account = new Account()
+            {
+                Username = "Tuan",
+                Email = "test1@gmail.com",
+                Password = "123456@@"
+            };
+            signupController = new SignupController(context);
+            var result = signupController.Register(account) as RedirectResult;
+            Assert.AreEqual("../Home/Index", result.Url);
+        }
+        [TestCase]
+        public void TestHTTPPostSignup10()
+        {
+            Account account = new Account()
+            {
+                Username = "Tuan",
+                Email = "test1@gmail.com",
+                Password = "1234561235342566768642352345325"
+            };
+            signupController = new SignupController(context);
+            var result = signupController.Register(account) as RedirectResult;
+            Assert.AreEqual("../Home/Index", result.Url);
+        }
+        
     }
 }
 
-    
+
+
 
 

@@ -75,6 +75,9 @@
     width: 24%;
     /* margin-right: 12px; */
 }
+.card-learning{
+    margin-right: 10px;
+}
 
 .card-learning:hover, card_img:hover {
     box-shadow: 0 0 1px 1px rgb(28 29 31 / 10%), 0 3px 1px 0 rgb(28 29 31 / 10%);
@@ -91,9 +94,23 @@ button {
     height: 120px;
 }
 
+    .details_instructor > span {
+        display: block;
+        display: -webkit-box;
+        font-size: 16px;
+        line-height: 1.2;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        margin-top: 10px;
+        width: 100%;
+    }
+
 .card-learning_details {
     height: 100%;
     border: 0.1px solid rgb(201, 204, 209);
+    padding-bottom: 0 !important;
 }
 
     .card-learning_details > .btn {

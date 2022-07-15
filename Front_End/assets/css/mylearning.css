@@ -75,6 +75,19 @@ button{
 .card-learning_details{
     border: 0.1px solid rgb(201, 204, 209);
 }
+
+.details_instructor > span {
+    display: block;
+    display: -webkit-box;
+    font-size: 16px;
+    line-height: 1.2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-top: 10px;
+    width: 100%;
+}
 .card-learning_details > .btn{
     padding: 0;
     border: 0;

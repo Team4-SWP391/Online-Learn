@@ -70,5 +70,9 @@ namespace Online_Learn.Controllers
                 return View("Forgot");
             }
         }
+        public bool SendMail(string email)
+        {
+            return email.Contains("@");
+        }
     }
 }
