@@ -39,9 +39,9 @@ namespace Online_Learn_Test
         public void TestSendMail(string email)
         {
             forgotPasswordController = new ForgotPasswordController(context);
-            var result = forgotPasswordController.ConfirmAsync(email);
-            result.Wait();
-            Assert.IsNotNull(result.Result);
+            var result = forgotPasswordController.SendMail(email);
+            Assert.AreEqual("True", result.ToString());
+
         }
         private static readonly object[] TestCases =
         {
@@ -54,17 +54,12 @@ namespace Online_Learn_Test
             new object[]{"tuannvhe151098@fpt.edu.vn"},
             new object[]{"admin"},
             new object[]{"tuan"},
-            new object[]{"13@"},
+            new object[]{"13345"},
             new object[]{"aaa"},
-             new object[]{"test2fdas@gmail.com"},
-            new object[]{"test3asf@gmail.com"},
-            new object[]{"tuanfasnvhe151098@fpt.edu.vn"},
-            new object[]{"adminafs"},
-            new object[]{"tuafasn"},
-            new object[]{"13@fa"},
-            new object[]{"aaaafs"},
-            new object[]{"aaaafwerwes"},
-            new object[]{"aaaafsds"},
+            new object[]{"khach@gmail.com"},
+            new object[]{"vinh@gmail.com"},
+
+
         };
    }
 }
