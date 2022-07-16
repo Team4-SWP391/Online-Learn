@@ -197,6 +197,7 @@ namespace Online_Learn.Controllers
                 .Include(c => c.Department)
                 .Include(c => c.Level)
                 .FirstOrDefaultAsync(m => m.CourseId == id);
+
             if (course == null)
             {
                 return NotFound();
@@ -209,6 +210,19 @@ namespace Online_Learn.Controllers
             {
                 owner = 1;
             }
+            
+            var lectures = _context.Lectures.Where(x => x.CourseId == id).ToList();
+           
+          
+            
+            ViewBag.lectures = lectures;
+           
+            var lesson = (from l in lectures
+                         join les in _context.Lessons on l.LectureId equals les.LectureId
+                         join co in _context.Courses on l.CourseId equals co.CourseId
+                        where l.CourseId==id
+                         select les).ToList();
+            ViewBag.lessons = lesson;
             ViewBag.owner = owner;
             ViewBag.courseId = course.CourseId;
             ViewData["CourseName"] = course.CourseName;
@@ -495,6 +509,10 @@ namespace Online_Learn.Controllers
             return Redirect($"/Course/Details?id={id}");
         }
 
+
+
+        
+
     }
 
     public class QuestionDetail
@@ -533,6 +551,9 @@ namespace Online_Learn.Controllers
             Author = author;
         }
     }
+
+
+    
 
 
 }

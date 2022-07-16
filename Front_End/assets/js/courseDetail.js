@@ -23,6 +23,8 @@ const arrows = document.querySelectorAll('.arrow');
 
 let isDrop = false;
 
+
+
 headerDrop.forEach(
     (item, index) =>
         (item.onclick = () => {
@@ -42,3 +44,4 @@ headerDrop.forEach(
             }
         }),
 );
+
