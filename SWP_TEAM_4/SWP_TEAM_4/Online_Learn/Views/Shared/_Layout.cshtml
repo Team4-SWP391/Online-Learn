@@ -198,10 +198,11 @@
                 </div>
             </div>
             <div class="header_center ">
-                <form action="">
+                <form id="formHeader" action="/Home/Search" method="GET">
                     <div class="header_center-search">
                         <i class="fal fa-search fs-5"></i>
-                        <input type="text" placeholder="Search For Anything..." class="outline-none" />
+                        <input type="text" name="txtSearch" placeholder="Search For Anything..." class="outline-none" />
+                        <button id="btnSubmit">Search</button>
                     </div>
                 </form>
             </div>
@@ -227,7 +228,7 @@
                                 <ul>
                                     <li class="list-course d-flex">
                                         <img src="https://img-c.udemycdn.com/course/240x135/1362070_b9a1_2.jpg" alt=""
-                                             class="list-course-img">
+                                         class="list-course-img">
                                         <div class="list-course-des">
                                             <p class="list-course-title fw-bold">Learn C++ Programming</p>
                                             <p class="list-course-author">FPT</p>
@@ -247,7 +248,7 @@
                                 <ul>
                                     <li class="wishlist_item d-flex">
                                         <img src="https://img-c.udemycdn.com/course/240x135/1362070_b9a1_2.jpg" alt=""
-                                             class="wishlist_item-img">
+                                         class="wishlist_item-img">
                                         <div class="wishlist_item-des">
                                             <p class="wishlist_item-title fw-bold">Learn C++ Programming</p>
                                             <p class="wishlist_item-author">FPT</p>
@@ -276,7 +277,7 @@
 
                                         <li class="cart_item d-flex">
                                             <img src="@item.Image" alt=""
-                                                 class="cart_item-img">
+                                         class="cart_item-img">
                                             <div class="cart_item-des">
                                                 <p class="cart_item-title fw-bold">@item.CourseName</p>
                                                 <p class="cart_item-author">@item.Language</p>
@@ -310,7 +311,7 @@
                                         <li style="padding-bottom: 10px"><a href="/Course/MyCourse">My Course</a></li>
                                         <li style="padding-bottom: 10px;" class="d-flex justify-content-between">
                                             <a href="">My Cart </a><span class="fw-bold text-white"
-                                                                         style="background-color: var(--main-color); border-radius: 50%; width: 20px;text-align: center;">1</span>
+                                                                     style="background-color: var(--main-color); border-radius: 50%; width: 20px;text-align: center;">1</span>
                                         </li>
                                         <li style="padding-bottom: 10px"><a href="/Wishlist">Wishlist</a></li>
                                     </ul>
@@ -396,5 +397,5 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
-
+<script src="~/js/header.js"></script>
 </html>
