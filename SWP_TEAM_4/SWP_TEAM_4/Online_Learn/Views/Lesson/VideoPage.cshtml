@@ -1,24 +1,56 @@
 ﻿@{
-    ViewData["Title"] = "VideoPage";
-  
+    Layout = "~/Views/Shared/LayoutEmpty.cshtml";
 }
- 
+@model dynamic
 
-<link rel="stylesheet" href="~/css/videoPage.css">
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Page</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="~/css/base.css" />
+    <link rel="stylesheet" href="~/css/videoPage.css" />
+</head>
 
- <div class="content">
+<body>
+    <div class="app">
+        <div class="header" style="position: fixed; top: 0; right: 0; width: 100%;">
+            <div class="header_left">
+                <div class="header_left-logo">
+                    <img src="~/img/logo-udemy-inverted.svg" alt="">
+                </div>
+                <div class="header_left-title">
+                    <span>Build Tic Tac Toe Game By React.js [Reducer Hook Tutorial]</span>
+                </div>
+            </div>
+            <div class="header_right">
+                <div class="header_right-progress d-flex align-items-center">
+                    <span class="fw-bold" style="margin-right:2px ;">1/12</span> <span>Lesson</span>
+                </div>
+                <div class="header_right-share d-flex align-items-center">
+                    <div class="share">Share</div>
+                    <div class="share-icon"><i class="fas fa-share"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="content">
             <div class="course">
                 <div class="" style="margin-top: var(--height-header-video-page)">
                     <!-- <iframe width="100%" height="650" src="https://www.youtube-nocookie.com/embed/BipDAx3U6VY"
                         title="YouTube video player" frameborder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowfullscreen></iframe> -->
-                           <iframe width="100%" height="650" src="@ViewBag.lesson.Video"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe>                    
-                    
+                    <iframe width="100%" height="650" src="https://www.youtube.com/embed/pYqNNxjP6tQ"
+                            title="YouTube video player" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
                     <div class="course_options">
                         <ul>
                             <li>
@@ -52,13 +84,15 @@
                             <p>Description</p>
                             <ul style="margin-right:50px ;">
                                 <li>
-                                    <p>Hello and Welcome to my coding course, Build Tic Tac Toe Game By React.js. In
+                                    <p>
+                                        Hello and Welcome to my coding course, Build Tic Tac Toe Game By React.js. In
                                         this course, you will learn the essential
                                         tools and skills to design, develop and deploy a react application from scratch.
                                     </p>
                                 </li>
                                 <li>
-                                    <p>Hello and Welcome to my coding course, Build Tic Tac Toe Game By React.js. In
+                                    <p>
+                                        Hello and Welcome to my coding course, Build Tic Tac Toe Game By React.js. In
                                         this course, you will learn the essential
                                         tools and skills to design, develop and deploy a react application from scratch.
                                     </p>
@@ -76,15 +110,17 @@
                                 <div class="text-center">
                                     <div>
                                         <span class="text-center"
-                                            style="font-size: 6rem; color: var(--star-color)">4</span>
+                                              style="font-size: 6rem; color: var(--star-color)">4</span>
                                     </div>
-                                    <div><span>
+                                    <div>
+                                        <span>
                                             <i class="fas fa-star stars starActive"></i>
                                             <i class="fas fa-star stars starActive"></i>
                                             <i class="fas fa-star stars starActive"></i>
                                             <i class="fas fa-star stars starActive"></i>
                                             <i class="fal fa-star star "></i>
-                                        </span></div>
+                                        </span>
+                                    </div>
                                     <div>
                                         <span>Course Rating</span>
                                     </div>
@@ -186,36 +222,26 @@
                         </div>
                     </div>
                     <div style="background-color: #f7f9fa; border-left: 1px solid #d1d7dc; ">
-                         @foreach(var item in ViewBag.lectures)
+                        @foreach (var lecture in @Model.listLecture)
                         {
-                        <div class="course_section">
-                            
-                            <div class="course_section-title" id="course_section-title">
-                       
-                             <h4>@item.LectureName</h4>
-                                <i class="fas fa-angle-up"></i>
-                        
-                       
+                            <div class="course_section">
+                                <div class="course_section-title" id="course_section-title">
+                                    <h4>@lecture.LectureName @lecture.LectureId</h4>
+                                    <i class="fas fa-angle-up"></i>
+                                </div>
+                                <ul class="course_section-list" id="course_section-list" style="padding-left: 0;">
+                                    @foreach (var lesson in @Model.listLesson)
+                                    {
+                                        @if (lesson.LectureId == lecture.LectureId)
+                                        {
+                                            <li class=" isActive">
+                                                <i class="fas fa-check"></i>
+                                                <a href="">@lesson.LessonName</a>
+                                            </li>
+                                        }
+                                    }
+                                </ul>
                             </div>
-                           @* <ul class="course_section-list" id="course_section-list" style="padding-left: 0;">
-
-                                @foreach (var items in ViewBag.lessons)
-                               {
-                                if(@items.LectureId == @item.LectureId)
-                                {
-                                   <li class="isActive">
-                                    <i class="fas fa-check"></i>
-                                    <a href="/Lesson/PageVideo?id=@items.LessonId">@items.LessonName</a>
-                                </li>
-                                }
-
-                                   
-                               }
-                                
-                                
-                            </ul>*@
-                            
-                        </div>
                         }
                     </div>
                 </div>
@@ -224,5 +250,12 @@
 
 
         </div>
-        <script src="~/js/videoPage.js"></script>
+        <div class="footer">
+        </div>
+    </div>
+</body>
 
+
+<script src="~/js/videoPage.js"></script>
+
+</html>

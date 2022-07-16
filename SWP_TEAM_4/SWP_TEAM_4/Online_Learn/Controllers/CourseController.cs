@@ -12,10 +12,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 
-namespace Online_Learn.Controllers
-{
-    public class CourseController : Controller
-    {
+namespace Online_Learn.Controllers {
+    public class CourseController : Controller {
         private readonly Online_LearnContext _context;
 
         public CourseController(Online_LearnContext context)
@@ -197,40 +195,35 @@ namespace Online_Learn.Controllers
                 .Include(c => c.Department)
                 .Include(c => c.Level)
                 .FirstOrDefaultAsync(m => m.CourseId == id);
-
             if (course == null)
             {
                 return NotFound();
             }
 
             int owner = 0;
-            var account_id = JsonSerializer.Deserialize<Account>(HttpContext.Session.GetString("User")).AccountId;
-            var ac = _context.AccountCourses.FirstOrDefault(x => x.AccountId == account_id && x.CourseId == id);
-            if(ac != null)
+            Account account = HttpContext.Session.GetString("User") != null ? JsonSerializer.Deserialize<Account>(HttpContext.Session.GetString("User")) : null;
+            if (account != null)
             {
-                owner = 1;
+                AccountCourse ac = _context.AccountCourses.FirstOrDefault(x => x.AccountId == account.AccountId && x.CourseId == id);
+                if (ac != null)
+                {
+                    owner = 1;
+                }
             }
-            
+
             var lectures = _context.Lectures.Where(x => x.CourseId == id).ToList();
-           
-          
-            
+
             ViewBag.lectures = lectures;
-           
-            var lesson = (from l in lectures
-                         join les in _context.Lessons on l.LectureId equals les.LectureId
-                         join co in _context.Courses on l.CourseId equals co.CourseId
-                        where l.CourseId==id
-                         select les).ToList();
-            ViewBag.lessons = lesson;
+
+            dynamic model = new System.Dynamic.ExpandoObject();
+            var listLecture = _context.Lectures.Where(l => l.CourseId == id).ToList();
+            var listLectureId = listLecture.Select(l => l.LectureId).ToList();
+            var listLesson = _context.Lessons.Where(l => listLectureId.Contains((int)l.LectureId)).ToList();
+            model.listLecture = listLecture;
+            model.listLesson = listLesson;
+            model.course = course;
             ViewBag.owner = owner;
-            ViewBag.courseId = course.CourseId;
-            ViewData["CourseName"] = course.CourseName;
-            ViewData["CourseDesc"] = course.Description;
-            ViewData["CourseImage"] = course.Image;
-            ViewData["CoursePrice"] = course.Price;
-            ViewData["CourseDepartment"] = course.Department.DepartmentName;
-            return View(course);
+            return View(model);
         }
 
         // GET: Courses/Create
@@ -277,7 +270,8 @@ namespace Online_Learn.Controllers
             var lectures = _context.Lectures.Where(x => x.CourseId == id).ToList();
             var exam = (from e in _context.Exams
                         join l in _context.Lectures on e.LectureId equals l.LectureId
-                        join c in _context.Courses on l.CourseId equals c.CourseId where l.CourseId == id
+                        join c in _context.Courses on l.CourseId equals c.CourseId
+                        where l.CourseId == id
                         select e).ToList();
             ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "Password", course.AccountId);
             ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", course.DepartmentId);
@@ -345,8 +339,8 @@ namespace Online_Learn.Controllers
                                                     where c.CourseId == id
                                                     join a in _context.Accounts on c.AccountId equals a.AccountId
                                                     select new QuestionDetail(q.QuestionId, q.Quiz, q.Op1, q.Op2, q.Op3, q.Op4, q.Solution, l.LectureName, c.CourseName, c.CourseId, a.FulllName)).ToList();
-             //List<QuestionDetail> questions = questionsSlider.Take(3).ToList();
-             model.questionsSlider = questionsSlider.ToList();
+            //List<QuestionDetail> questions = questionsSlider.Take(3).ToList();
+            model.questionsSlider = questionsSlider.ToList();
             //model.questions = questions.ToList();
             return View(model);
         }
@@ -363,9 +357,10 @@ namespace Online_Learn.Controllers
         public IActionResult DeleteQuestion(int id)
         {
             Question question = _context.Questions.FirstOrDefault(q => q.QuestionId == id);
-            var result = (from q in _context.Questions where q.QuestionId == id
-                            join l in _context.Lectures on q.LectureId equals l.LectureId
-                            select l).ToList();
+            var result = (from q in _context.Questions
+                          where q.QuestionId == id
+                          join l in _context.Lectures on q.LectureId equals l.LectureId
+                          select l).ToList();
             int courseId = result.FirstOrDefault().CourseId.Value;
             _context.Remove(question);
             _context.SaveChanges();
@@ -488,7 +483,7 @@ namespace Online_Learn.Controllers
             var wls = _context.WhistLists.ToList();
             foreach (var item in wls)
             {
-                if(item.AccountId == w.AccountId && item.CourseId == w.CourseId)
+                if (item.AccountId == w.AccountId && item.CourseId == w.CourseId)
                 {
                     check = true;
                 }
@@ -503,20 +498,31 @@ namespace Online_Learn.Controllers
             w.CourseId = id;
             if (!checkWLExist(w))
             {
-            _context.WhistLists.Add(w);
+                _context.WhistLists.Add(w);
             }
             _context.SaveChanges();
             return Redirect($"/Course/Details?id={id}");
         }
 
 
+        // GET: Course/VideoPage/5/https:///youtu.be/oS-m5-XikwA
+        public IActionResult Learn(int id, string video)
+        {
+            dynamic model = new System.Dynamic.ExpandoObject();
+            var listLecture = _context.Lectures.Where(l => l.CourseId == id).ToList();
+            var listLectureId = listLecture.Select(l => l.LectureId).ToList();
+            var listLesson = _context.Lessons.Where(l => listLectureId.Contains((int)l.LectureId)).ToList();
+            Course course = _context.Courses.Include(c => c.Level).FirstOrDefault(c => c.CourseId == id);
+            ViewBag.course = course;
+            model.listLecture = listLecture;
+            model.listLesson = listLesson;
+            return View("VideoPage", model);
+        }
 
-        
 
     }
 
-    public class QuestionDetail
-    {
+    public class QuestionDetail {
         public int QuestionId { get; set; }
         public string Quiz { get; set; }
         public string Op1 { get; set; }
@@ -553,7 +559,7 @@ namespace Online_Learn.Controllers
     }
 
 
-    
+
 
 
 }

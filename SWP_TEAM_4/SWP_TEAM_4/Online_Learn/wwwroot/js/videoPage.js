@@ -4,10 +4,10 @@ const options = document.querySelectorAll('#course_options-items');
 const courseDes = document.querySelector('.course_about');
 const courseRev = document.querySelector('.course_reviews');
 
+
 btns.forEach((btn, index) => {
     const icon = btn.querySelector('i');
     btn.addEventListener('click', e => {
-        console.log(icon.classList);
         list[index].classList.toggle('isToggle');
         const check = icon.classList.value == 'fas fa-angle-up';
         if (check) {
@@ -35,3 +35,13 @@ options.forEach(option => {
         }
     });
 });
+const changeVideo = (e, url) => {
+    e.style.color = 'var(--main-color)'
+    const iframe = document.querySelector('iframe');
+    iframe.src = `https://www.youtube.com/embed/${url}`;
+    setTimeout(() => {
+        iframe.onplay;
+    }, 2000)
+}
+
+
