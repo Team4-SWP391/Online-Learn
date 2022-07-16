@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -84,6 +86,57 @@ namespace Online_Learn.Controllers
         private bool LessonExists(int id)
         {
             return _context.Lessons.Any(e => e.LessonId == id);
+        }
+
+
+
+        // GET: Lesson/VideoPage/5
+        public async Task<IActionResult> VideoPage(int? id, int?courseid)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var lessons = await _context.Lessons.FirstOrDefaultAsync(l => l.LessonId == id);
+
+            if (lessons == null)
+            {
+                return NotFound();
+            }
+
+            int owner = 0;
+            var account_id = JsonSerializer.Deserialize<Account>(HttpContext.Session.GetString("User")).AccountId;
+            var ac = _context.AccountCourses.FirstOrDefault(x => x.AccountId == account_id && x.CourseId == id);
+            if (ac != null)
+            {
+                owner = 1;
+            }
+
+
+
+
+            //var course = _context.Courses.FirstOrDefault(c => c.CourseId == courseid);
+            //var lectures = from l in _context.Lectures
+            //               join c in _context.Courses on l.CourseId equals c.CourseId
+            //               join les in _context.Lessons on l.LectureId equals les.LectureId
+            //               where les.LessonId == id where l.CourseId == course.CourseId
+            //               select l;
+            var lectures = _context.Lectures.Where(x => x.LectureId ==lessons.LectureId).ToList();
+
+            ViewBag.lesson = lessons;
+
+            ViewBag.lectures = lectures;
+
+            //var lesson = (from l in lectures
+            //              join les in _context.Lessons on l.LectureId equals les.LectureId
+            //              join co in _context.Courses on l.CourseId equals co.CourseId
+            //              where l.CourseId == co.CourseId
+            //              select les).ToList();
+            //ViewBag.lessons = lesson;
+            ViewBag.owner = owner;
+
+            return View();
         }
     }
 }
