@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 using Newtonsoft.Json;
 
-
+using Online_Learn.AuthData;
 using Online_Learn.Models;
 
 namespace Online_Learn.Controllers {
@@ -23,6 +23,13 @@ namespace Online_Learn.Controllers {
             _context = context;
         }
 
+        public List<Blog> SearchBlog(string title)
+        {
+            List<Blog> ListBlog = new List<Blog>();
+            ListBlog = _context.Blogs.Include(b => b.Account).Include(b => b.Department)
+                    .Where(b => b.Title.Contains(title)).ToList();
+            return ListBlog;
+        }
         // GET: Blog
         public async Task<IActionResult> Index(int pageIndex, string title)
         {
@@ -55,7 +62,7 @@ namespace Online_Learn.Controllers {
             ViewData["title"] = title;
             return View(ListBlog);
         }
-
+        [AuthAttribute]
         // GET: Blog/MyBlog
         public async Task<IActionResult> MyBlog(string title)
         {
@@ -131,6 +138,7 @@ namespace Online_Learn.Controllers {
 
         }
 
+        [AuthAttribute]
         // GET: Blog/Create
         public IActionResult Create()
         {
@@ -142,6 +150,7 @@ namespace Online_Learn.Controllers {
         // POST: Blogs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [AuthAttribute]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BlogId,Title,UpdateAt,DepartmentId,Content,AccountId")] Blog blog)
@@ -180,6 +189,7 @@ namespace Online_Learn.Controllers {
         // POST: Blogs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [AuthAttribute]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("BlogId,Title,UpdateAt,DepartmentId,Content,AccountId")] Blog blog)
@@ -214,6 +224,7 @@ namespace Online_Learn.Controllers {
             return View(blog);
         }
 
+        [AuthAttribute]
         // GET: Blogs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {

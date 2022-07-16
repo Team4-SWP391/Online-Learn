@@ -111,9 +111,25 @@ namespace Online_Learn_Test {
             context.SaveChanges();
         }
 
-        //    public void testSearch()
-        //    {
 
-        //    }
+
+        [Test]
+        [TestCase("123")]
+        [TestCase("")]
+        [TestCase("0asdasd")]
+        [TestCase()]
+        [TestCase("asdasd")]
+        [TestCase("ss")]
+        [TestCase("react")]
+        [TestCase("react native")]
+        [TestCase("react js")]
+        [TestCase(null)]
+        public void testSearch(string title)
+        {
+            var result = blogController.SearchBlog(title);
+            Assert.IsNotNull(result);
+        }
+
+
     }
 }
