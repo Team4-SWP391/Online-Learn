@@ -47,6 +47,16 @@ namespace Online_Learn.Controllers {
             return View();
         }
 
+        // Get: /Home/Search
+        public IActionResult Search(string txtSearch)
+        {
+            List<Course> list = _context.Courses.Include(c => c.Account).Where(x => x.CourseName.Contains(txtSearch)).ToList();
+            ViewData["txtSearch"] = txtSearch;
+            ViewBag.listTopic = _context.Departments.ToList();
+            ViewBag.listLevel = _context.Levels.ToList();
+            return View("~/Views/Course/Search.cshtml", list);
+        }
+
         public IActionResult Privacy()
         {
             return View();

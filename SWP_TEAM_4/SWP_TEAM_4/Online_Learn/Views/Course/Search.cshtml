@@ -1,0 +1,244 @@
+﻿@model List<Course>
+@{
+}
+
+
+<link rel="stylesheet" href="~/css/home.css">
+<link rel="stylesheet" href="~/css/search.css">
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <b style="font-size: 32px;">@Model.Count result for "@ViewData["txtSearch"]"</b>
+        </div>
+        <div class="row pd-23">
+            <div class=" col-md-1">
+                <button type="submit" class="filter">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" fill="currentColor"
+                         class="bi bi-filter" viewBox="0 0 16 16">
+                        <path d="M6 10.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-2-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z">
+                        </path>
+                    </svg>
+
+                    <i class="bi bi-filter"></i>Filter
+                </button>
+            </div>
+            <div class="col-md-9"></div>
+            <div class="col-md-2 result">
+                @Model.Count results
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-2">
+            <div class=" topic">
+                <div class="row ke">
+                    <div class="topic-header" style="padding-left: 0px; padding-top: 10px; padding-right: 0px;">
+                        <span class="col-md-11" style="font-size: 19px;">
+                            <b>
+                                Topic
+                            </b>
+                        </span>
+                        <div class="arrow col-md-1" style="text-align: right;">
+                            <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <div class="topic-content">
+                    @foreach (Department depart in @ViewBag.listTopic)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" id="topic@(ViewBag.listTopic.IndexOf(depart))" value="">
+                            <label class="topic-item" for="topic@(ViewBag.listTopic.IndexOf(depart))">
+                                @depart.DepartmentName
+                            </label>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class=" topic">
+                <div class="row ke">
+                    <div class="topic-header" style="padding-left: 0px; padding-top: 10px; padding-right: 0px;">
+                        <span class="col-md-11" style="font-size: 19px;">
+                            <b>
+                                Level
+                            </b>
+                        </span>
+                        <div class="arrow col-md-1" style="text-align: right;">
+                            <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <div class="topic-content">
+
+                    @foreach (Level level in @ViewBag.listLevel)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" id="level@(ViewBag.listLevel.IndexOf(level))" value="">
+                            <label class="topic-item" for="level@(ViewBag.listLevel.IndexOf(level))">
+                                @level.Level1
+                            </label>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class=" topic">
+                <div class="row ke">
+                    <div class="topic-header" style="padding-left: 0px; padding-top: 10px; padding-right: 0px;">
+                        <span class="col-md-11" style="font-size: 19px;">
+                            <b>
+                                Price
+                            </b>
+                        </span>
+                        <div class="arrow col-md-1" style="text-align: right;">
+                            <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="topic-content">
+
+                    @foreach (Level level in @ViewBag.listLevel)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" id="level@(ViewBag.listLevel.IndexOf(level))" value="">
+                            <label class="topic-item" for="level@(ViewBag.listLevel.IndexOf(level))">
+                                @level.Level1
+                            </label>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class=" topic">
+                <div class="row ke">
+                    <div class="topic-header" style="padding-left: 0px; padding-top: 10px; padding-right: 0px;">
+                        <span class="col-md-11" style="font-size: 19px;">
+                            <b>
+                                Ratings
+                            </b>
+                        </span>
+                        <div class="arrow col-md-1" style="text-align: right;">
+                            <span><i class="fa fa-angle-down" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="topic-content">
+                    @for (int i = 1; i <= 5; i++)
+                    {
+                        <div class="form-check">
+                            <input type="checkbox" id="rate@(i)" value="">
+                            <label class="topic-item" for="rate@(i)">
+                                @for (int j = 0; j < i; j++)
+                                {
+                                    <i class="fas fa-star stars starActive"></i>
+                                }
+                                @for (int j = 0; j < 5 - i; j++)
+                                {
+                                    <i class="fal fa-star star "></i>
+                                }
+                                (@i)
+                            </label>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-1 cot">
+        </div>
+
+        <div class="col-lg-9">
+
+            @foreach (Course course in Model)
+            {
+                <div class="row course-item">
+                    <div class="col-md-3">
+                        <div>
+                            <img src="@course.Image"
+                             alt="" width="262px" ; height="148.25px">
+                        </div>
+                    </div>
+                    <div class="col-md-8 " style="padding-left: 45px;">
+                        <b>@course.CourseName</b>
+                        <p style="margin-bottom: 3px;">
+                            @course.Description
+                        </p>
+                        <div class="clb" style="font-size:13px;">
+                            @course.Account.Username
+                            <br>
+                            <div class="rate">
+                                <span>@course.Rate</span>
+                                @for (int i = 0; i < course.Rate; i++)
+                                {
+                                    <i class="fas fa-star stars starActive"></i>
+                                }
+                                @for (int i = 0; i < 5 - course.Rate; i++)
+                                {
+                                    <i class="fal fa-star star "></i>
+                                }
+                            </div>
+                            <br>
+                            <span>30 total hours • 265 lectures • Beginner</span>
+                        </div>
+                        <span class="best-seller"><strong>Bestseller</strong></span>
+                    </div>
+                    <div class="col-md-1 cost">
+                        @if (course.IsSale != null)
+                        {
+                            <b style="font-weight: 800;">
+                                $@(Convert.ToDouble((course.Price - course.Price*course.IsSale/100)).ToString("0.00"))
+                            </b>
+                            <p><del style="color: #6a6f73;">$@course.Price</del></p>
+                        }
+                        else
+                        {
+                            <b style="font-weight: 800;">
+                                $@course.Price
+                            </b>
+                        }
+                    </div>
+
+                </div>
+                <hr style="opacity: 0.1">
+            }
+            <div class="row"
+                 style=" border: 1px solid gainsboro; margin-left: 0px; margin-right: 0px;height: 100px;padding-top: 16px; ">
+                <div class="col-md-5">
+                    <b style="font-size: 19px;">
+                        Top companies trust <a style="color: #5624d0;">Udemy Business</a> to
+                        build in-demand career skills.
+                    </b>
+                </div>
+                <div class="col logo">
+                    <img src="https://s.udemycdn.com/partner-logos/v4/nasdaq-dark.svg" alt="">
+                </div>
+                <div class="col logo">
+                    <img src="https://s.udemycdn.com/partner-logos/v4/volkswagen-dark.svg" alt="">
+                </div>
+                <div class="col logo">
+                    <img src="https://s.udemycdn.com/partner-logos/v4/box-dark.svg" alt="">
+                </div>
+                <div class="col logo">
+                    <img src="https://s.udemycdn.com/partner-logos/v4/netapp-dark.svg" alt="">
+                </div>
+                <div class="col logo">
+                    <img src="https://s.udemycdn.com/partner-logos/v4/eventbrite-dark.svg" alt="">
+                </div>
+
+            </div>
+            <br>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://unpkg.com/tippy.js@6"></script>
+
+<script src="~/js/search.js"></script>

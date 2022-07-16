@@ -17,7 +17,6 @@
     padding: 5px;
 }
 
-
 .category_title {
     padding: 0 12px;
 }
@@ -29,7 +28,7 @@
 
 .category_list::before {
     position: absolute;
-    content: "";
+    content: '';
     display: block;
     width: 120px;
     height: 50px;
@@ -80,7 +79,6 @@
         cursor: pointer;
     }
 
-
 .category_list-items {
     position: absolute;
     z-index: 3;
@@ -119,7 +117,6 @@
         padding: 0 20px;
     }
 
-
         .header_center .header_center-search i {
             position: absolute;
             top: 50%;
@@ -139,6 +136,23 @@
                 outline: none;
             }
 
+    .header_center #btnSubmit {
+        position: absolute;
+        transform: translateY(-50%);
+        right: 30px;
+        top: 50%;
+        border-radius: 99px;
+        border: none;
+        padding: 5px;
+        background-color: var(--main-color);
+        color: white;
+        width: 100px;
+        font-weight: 600;
+        visibility: hidden;
+        opacity: 0;
+        transition: all .3s linear;
+    }
+
 .header_right {
     flex-basis: 20%;
     height: 48px;
@@ -155,7 +169,6 @@
     display: block;
 }
 
-
 .header_right-heart {
     margin-right: 10px;
 }
@@ -168,7 +181,7 @@
 .header_right-list-cart::before,
 .header_right-wishlist::before {
     position: absolute;
-    content: "";
+    content: '';
     display: block;
     width: 90px;
     height: 50px;
@@ -311,7 +324,7 @@
 
 .header_right-user::before {
     position: absolute;
-    content: "";
+    content: '';
     display: block;
     width: 120px;
     height: 30px;
