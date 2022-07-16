@@ -1,0 +1,228 @@
+﻿@{
+    ViewData["Title"] = "VideoPage";
+  
+}
+ 
+
+<link rel="stylesheet" href="~/css/videoPage.css">
+
+
+ <div class="content">
+            <div class="course">
+                <div class="" style="margin-top: var(--height-header-video-page)">
+                    <!-- <iframe width="100%" height="650" src="https://www.youtube-nocookie.com/embed/BipDAx3U6VY"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe> -->
+                           <iframe width="100%" height="650" src="@ViewBag.lesson.Video"
+                        title="YouTube video player" frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>                    
+                    
+                    <div class="course_options">
+                        <ul>
+                            <li>
+                                <span id="course_options-items" style="color: var(--main-color) ;">Overview</span>
+                            </li>
+                            <li>
+                                <span id="course_options-items">Reviews</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="course_about">
+                        <div style="border-bottom: 1px solid #d1d7dc; padding: 30px 0;">
+                            <h2>About This Course</h2>
+                            <p>Be master in react development and learn component decomposition in action</p>
+                        </div>
+                        <div class="course_about-des">
+                            <p>By the numbers</p>
+                            <ul style="margin-right:50px ;">
+                                <li>
+                                    <p>Skill level: All Levels</p>
+                                </li>
+                                <li>
+                                    <p>Students: 10418</p>
+                                </li>
+                                <li>
+                                    <p>Languages: English</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="course_about-des">
+                            <p>Description</p>
+                            <ul style="margin-right:50px ;">
+                                <li>
+                                    <p>Hello and Welcome to my coding course, Build Tic Tac Toe Game By React.js. In
+                                        this course, you will learn the essential
+                                        tools and skills to design, develop and deploy a react application from scratch.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>Hello and Welcome to my coding course, Build Tic Tac Toe Game By React.js. In
+                                        this course, you will learn the essential
+                                        tools and skills to design, develop and deploy a react application from scratch.
+                                    </p>
+                                </li>
+                                <li>
+                                    <p>Languages: English</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="course_reviews">
+                        <div style="border-bottom: 1px solid #d1d7dc; padding: 30px 0;">
+                            <h2>Student feedback</h2>
+                            <div class="course_reviews-rate d-flex">
+                                <div class="text-center">
+                                    <div>
+                                        <span class="text-center"
+                                            style="font-size: 6rem; color: var(--star-color)">4</span>
+                                    </div>
+                                    <div><span>
+                                            <i class="fas fa-star stars starActive"></i>
+                                            <i class="fas fa-star stars starActive"></i>
+                                            <i class="fas fa-star stars starActive"></i>
+                                            <i class="fas fa-star stars starActive"></i>
+                                            <i class="fal fa-star star "></i>
+                                        </span></div>
+                                    <div>
+                                        <span>Course Rating</span>
+                                    </div>
+                                </div>
+                                <div style="flex: 1">
+                                    <progress id="file" value="60" max="100"> 32% </progress>
+                                    <span style="display:inline-block; width: 100px">
+                                        <i class="fas fa-star stars starActive"></i>
+                                        <i class="fas fa-star stars starActive"></i>
+                                        <i class="fas fa-star stars starActive"></i>
+                                        <i class="fas fa-star stars starActive"></i>
+                                        <i class="fas fa-star stars starActive"></i>
+                                    </span>
+                                    <span>40%</span>
+                                    <progress id="file" value="32" max="100"> 32% </progress>
+                                    <span style="display:inline-block; width: 100px">
+                                        <i class="fas fa-star stars starActive"></i>
+                                        <i class="fas fa-star stars starActive"></i>
+                                        <i class="fas fa-star stars starActive"></i>
+                                        <i class="fas fa-star stars starActive"></i>
+                                    </span>
+                                    <span>40%</span>
+                                    <progress id="file" value="32" max="100"> 32% </progress>
+                                    <span style="display:inline-block; width: 100px">
+                                        <i class="fas fa-star stars starActive"></i>
+                                        <i class="fas fa-star stars starActive"></i>
+                                        <i class="fas fa-star stars starActive"></i>
+                                    </span>
+                                    <span>40%</span>
+                                    <progress id="file" value="32" max="100"> 32% </progress>
+                                    <span style="display:inline-block; width: 100px">
+                                        <i class="fas fa-star stars starActive"></i>
+                                        <i class="fas fa-star stars starActive"></i>
+                                    </span>
+                                    <span>40%</span>
+                                    <progress id="file" value="32" max="100"> 32% </progress>
+                                    <span style="display:inline-block; width: 100px">
+                                        <i class="fas fa-star stars starActive"></i>
+                                    </span>
+                                    <span>40%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="mt-3">Reviews</h3>
+                            <div class="comment">
+                                <div class="comment_avt">
+                                    <span>VV</span>
+                                </div>
+                                <div class="comment_content">
+                                    <div class="comment_content-title">
+                                        <span style="font-size: 1.5rem; font-weight: 500">Barbara V.</span>
+                                        <div class="comment_content-star">
+                                            <span class="rate">
+                                                <i class="fas fa-star stars starActive"></i>
+                                                <i class="fas fa-star stars starActive"></i>
+                                                <i class="fas fa-star stars starActive"></i>
+                                                <i class="fas fa-star stars starActive"></i>
+                                                <i class="fal fa-star stars starActive"></i>
+                                            </span>
+                                            <span style="margin-left: 10px; font-size: 1.1rem">4 months ago</span>
+                                        </div>
+                                        <div class="comment_content-main">
+                                            <p>good</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="comment">
+                                <div class="comment_avt">
+                                    <span>VV</span>
+                                </div>
+                                <div class="comment_content">
+                                    <div class="comment_content-title">
+                                        <span style="font-size: 1.5rem; font-weight: 500">Barbara V.</span>
+                                        <div class="comment_content-star">
+                                            <span class="rate">
+                                                <i class="fas fa-star stars starActive"></i>
+                                                <i class="fas fa-star stars starActive"></i>
+                                                <i class="fas fa-star stars starActive"></i>
+                                                <i class="fas fa-star stars starActive"></i>
+                                                <i class="fal fa-star stars starActive"></i>
+                                            </span>
+                                            <span style="margin-left: 10px; font-size: 1.1rem">4 months ago</span>
+                                        </div>
+                                        <div class="comment_content-main">
+                                            <p>good</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="lesson">
+                    <div style="border-bottom: 1px solid #d1d7dc; padding-left: 20px; padding-right: 10px;">
+                        <div class=" lesson_title">
+                            <span class="text-center fw-bold">Content Course</span>
+                        </div>
+                    </div>
+                    <div style="background-color: #f7f9fa; border-left: 1px solid #d1d7dc; ">
+                         @foreach(var item in ViewBag.lectures)
+                        {
+                        <div class="course_section">
+                            
+                            <div class="course_section-title" id="course_section-title">
+                       
+                             <h4>@item.LectureName</h4>
+                                <i class="fas fa-angle-up"></i>
+                        
+                       
+                            </div>
+                           @* <ul class="course_section-list" id="course_section-list" style="padding-left: 0;">
+
+                                @foreach (var items in ViewBag.lessons)
+                               {
+                                if(@items.LectureId == @item.LectureId)
+                                {
+                                   <li class="isActive">
+                                    <i class="fas fa-check"></i>
+                                    <a href="/Lesson/PageVideo?id=@items.LessonId">@items.LessonName</a>
+                                </li>
+                                }
+
+                                   
+                               }
+                                
+                                
+                            </ul>*@
+                            
+                        </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <script src="~/js/videoPage.js"></script>
+

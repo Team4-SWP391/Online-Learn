@@ -1,0 +1,37 @@
+﻿@model Online_Learn.Models.Exam
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+<link rel="stylesheet" href="~/css/home.css">
+<link rel="stylesheet" href="~/css/delete.css">
+<link rel="stylesheet" href="~/css/course-update.css">
+
+<div class="course-header">
+		<a href="/Course/List" class="course-header__back"><i class="fas fa-angle-left"></i>Back to Exam</a>
+		<span class="course-header__key">Keyword research for bloggers</span>
+		<span class="course-header__bold">Draft</span>
+		<span class="course-header__tt">Omin of video contenet upload</span>
+</div>
+<div style="text-align:center">
+    <h1>Are you sure you want to delete Exam?</h1>
+    <h1>
+	<form asp-action="Delete">
+        <input type="hidden" value="@ViewData["ExamId"]" name="id" />
+        @*<input type="submit" value="Delete" class="windowdelete" />*@
+		<button class="custom-btn btn-12"><span>Really!</span><span>Delete</span></button>
+	</form>
+	</h1>
+    <div class="course_create__imageit">
+		<img src="~/css/Studying-bro.svg" width="500px" alt="" srcset="">
+		<img src="~/css/Exams-bro.svg" width="500px" alt="" srcset="">
+    </div>
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migstars starActive-1.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="~/js/home.js"></script>
+<script src="~/js/course-update.js"></script>

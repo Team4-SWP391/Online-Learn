@@ -54,23 +54,28 @@ namespace Online_Learn_Test {
             context.SaveChanges();
         }
 
-        [Test]
-        [TestCase("admin@gmail.com", "123")]
-        [TestCase("admin@gmail.com", null)]
-        [TestCase("", "123")]
-        [TestCase("123", "123")]
-        [TestCase("admin", "admin")]
-        [TestCase("admin@gmail.com", "123admin")]
-        [TestCase("adminadmin", "123@@@@")]
-        [TestCase("vinhlqhe153037@fpt.edu.vn", "123")]
-        [TestCase("adminadmin", "******")]
-        [TestCase("********", "123@@@@")]
+        //[Test]
+        //[TestCase("admin@gmail.com", "123")]
+        //[TestCase("admin@gmail.com", null)]
+        //[TestCase("", "123")]
+        //[TestCase("123", "123")]
+        //[TestCase("admin", "admin")]
+        //[TestCase("admin@gmail.com", "123admin")]
+        //[TestCase("adminadmin", "123@@@@")]
+        //[TestCase("vinhlqhe153037@fpt.edu.vn", "123")]
+        //[TestCase("adminadmin", "******")]
+        //[TestCase("********", "123@@@@")]
 
-        public async Task TestLogin(string email, string pass)
-        {
-            var result = loginController.GetAccount(email, pass);
-            Assert.IsNotNull(result);
-        }
+        //public async Task TestLogin(string email, string pass)
+        //{
+
+        //    loginController = new LoginController(context);
+        //    var result = loginController.GetAccount("hainam123", "123456");
+        //    Assert.AreEqual(result, null);
+
+        //    var result = loginController.GetAccount(email, pass);
+        //    Assert.IsNotNull(result);
+        //}
 
         [Test]
         [TestCase("123")]
@@ -97,6 +102,7 @@ namespace Online_Learn_Test {
 
             }
             return byte2String;
+
         }
     }
 

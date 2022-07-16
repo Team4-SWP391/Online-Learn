@@ -1,0 +1,186 @@
+﻿@model dynamic
+
+@{
+    ViewData["Title"] = "Question Course";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="~/css/questionList.css">
+<link href="~/css/questions.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+
+<div class="content container">
+    <div class="content_header" style="text-align: center; display: block;">
+        <h2>Course: @ViewData["CourseName"]</h2>
+    </div>
+    <div class="slider" data-total="@Enumerable.Count(Model.questionsSlider)">
+        <div class="slider_list">
+            @foreach (var question in Model.questionsSlider)
+            {
+                <div class="slider_question" style="display: flex;">
+                    <div class="front">
+                        <span>
+                            @question.Quiz
+                        </span>
+                        <span>1. @question.Op1</span>
+                        <span>2. @question.Op2</span>
+                        <span>3. @question.Op3</span>
+                        <span>4. @question.Op4</span>
+                    </div>
+                    <div class="back">
+                        <span>@question.Solution</span>
+                    </div>
+                </div>
+            }
+        </div>
+        <div class="slider_total">
+            <span class="current">1</span>
+            <span>/</span>
+            <span class="total">@Enumerable.Count(Model.questionsSlider)</span>
+        </div>
+    </div>
+    <div class="question">
+        <div class="d-flex justify-content-between">
+            <h3>All Question</h3>
+            <button id="myBtn" class="question-add">
+                + Add question
+            </button>
+            <form action="/Course/CreateQuestion" id="myQuestionCreate" class="question-form">
+                <div class="question-create">
+                    <input type="hidden" name="CourseID" value="@ViewData["CourseID"]" />
+                    <div id="close" style="float: right; font-size: 20px; font-weight:bold;cursor: pointer">X</div><br />
+                    <div class="form-group">
+                        <label for="quiz">Quiz</label><br>
+                        <textarea id="quiz" class="form-control" name="Quiz" rows="4" cols="68"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="op1">Option 1</label><br>
+                        <input type="text" id="op1" name="Op1" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="op2">Option 2</label><br>
+                        <input type="text" id="op2" name="Op2" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="op3">Option 3</label><br>
+                        <input type="text" id="op3" name="Op3" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="op4">Option 4</label><br>
+                        <input type="text" id="op4" name="Op4" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="sol">Solution</label><br>
+                        <input type="number" id="sol" min="1" max="4" name="Solution" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="lecture">Lecture</label><br>
+                        <select name="LectureID" id="lecture" class="form-control">
+                            @foreach (Lecture item in ViewBag.ListLecture)
+                            {
+                                <option value="@item.LectureId">@item.LectureName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="question-detail__footer">
+                        <button>Create</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+        <div class="question_list">
+            @foreach (var question in Model.questionsSlider)
+            {
+                <div class="question_list-item">
+                    <input id="id" type="text" hidden value="@question.QuestionId">
+                    <div class="question_list-item-info">
+                        <span class="title">
+                            Question <span class="count"></span>: @question.Quiz
+                        </span>
+                        <div class="inputHidden">
+                            <textarea class="questionInfo"
+                                      rows="2">@question.Quiz</textarea>
+                        </div>
+
+                        <div class="choice">
+                            <span>1: @question.Op1</span>
+                            <div class="inputHidden">
+                                1:<textarea class="questionInfo" style="width: 100%; margin-left: 5px;"
+                                            rows="2">@question.Op1</textarea>
+                            </div>
+                            <span>2:@question.Op2</span>
+                            <div class="inputHidden">
+                                2:<textarea class="questionInfo" style="width: 100%; margin-left: 5px;"
+                                            rows="2">@question.Op2</textarea>
+                            </div>
+                            <span>3: @question.Op3</span>
+                            <div class="inputHidden">
+                                3:<textarea class="questionInfo" style="width: 100%; margin-left: 5px;"
+                                            rows="2">@question.Op3</textarea>
+                            </div>
+                            <span>4: @question.Op4</span>
+                            <div class="inputHidden">
+                                4:<textarea class="questionInfo" style="width: 100%; margin-left: 5px;"
+                                            rows="2">@question.Op4</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="question_list-item-result">
+                        <span class="result">@question.Solution</span>
+                        <div class="inputHidden">
+                            <input oninput="validate(this)" type="text" class="questionInfo" value="@question.Solution"
+                                   style="height: 30px; padding-left: 5px;">
+                        </div>
+
+                        <div class="question_action">
+                            <span>
+                                <i class="fa fa-info btnInfo"></i>
+                            </span>
+                            <div class="question-detail">
+                                <div class="question-detail__inner">
+                                    <div class="question-detail__header">
+                                        <p>Question Detail</p>
+                                    </div>
+                                    <div class="question-detail__body">
+                                        <h2>Quiz: @question.Quiz</h2>
+                                        @{
+                                            @if (question.Solution.Equals("1"))
+                                            {<p>Solution: <span style="color:darkred">@question.Op1</span></p>}
+                                            @if (question.Solution.Equals("2"))
+                                            {<p>Solution: <span style="color:darkred">@question.Op2</span></p>}
+                                            @if (question.Solution.Equals("3"))
+                                            {<p>Solution: <span style="color:darkred">@question.Op3</span></p>}
+                                            @if (question.Solution.Equals("4"))
+                                            {<p>Solution: <span style="color:darkred">@question.Op4</span></p>}
+                                        }
+                                        <p>Lecture: <span style="font-weight: bold">@question.Lecture</span></p>
+                                        <p>Course: <span style="font-weight: bold">@question.CourseName</span></p>
+                                        <p>Created By: <span style="font-weight: bold; color: darkred">@question.Author</span></p>
+                                    </div>
+                                    <div class="question-detail__footer">
+                                        <button>Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <span id="btnEdit" onclick="editQuestion(@Model.questionsSlider.IndexOf(question))"><i class="fal fa-edit"></i> </span>
+                                <span class="btnHidden" onclick="finishEdit(@Model.questionsSlider.IndexOf(question))"><i class="fal fa-check"></i></span>
+                            </div>
+                            <span onclick="confirm('Do you want to delete this question?') == true ?
+                                window.parent.location.href = '/Course/DeleteQuestion/@question.QuestionId' : ''"
+                                  class=""><i class="fal fa-trash-alt"></i></span>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+    </div>
+</div>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migstars starActive-1.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="~/js/questions.js"></script>
+<script src="~/js/question-edit.js"></script>
+

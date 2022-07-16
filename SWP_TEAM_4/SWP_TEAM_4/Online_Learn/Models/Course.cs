@@ -40,21 +40,9 @@ namespace Online_Learn.Models
 
         public double getPriceByDiscount()
         {
-            double price = 0;
-            if (IsSale == null || IsSale == 0)
-            {
-                price = Price;
-            }
-            else
-            {
-                price = Price;
-            }
-            return price;
-        }
-
-        public string getAuthor()
-        {
-            return Account.FulllName;
+            return Price;
         }
     }
+
+
 }

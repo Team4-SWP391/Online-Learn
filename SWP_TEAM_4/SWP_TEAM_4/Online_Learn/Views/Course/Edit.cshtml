@@ -21,31 +21,24 @@
 			<div class="course-sidebar__content">
 				<h4 class="course-sidebar__heading"><i class="fas fa-angle-down"></i>Lecture</h4>
 				<ul class="course-sidebar__list">
-					<li class="course-sidebar__item"><a href="#lecture" class="course-sidebar__link">Intro</a></li>
-					<li class="course-sidebar__item">
-						<a href="#lecture" class="course-sidebar__link">Hello world</a>
-					</li>
-					<li class="course-sidebar__item">
-						<a href="#lecture" class="course-sidebar__link">Lesson 1</a>
-					</li>
+					@foreach (var item in ViewBag.lectures)
+					{
+						<li class="course-sidebar__item">
+							<a href="../Lecture/Detail?id=@item.LectureId" class="course-sidebar__link">@item.LectureName</a>
+						</li>
+					}
 				</ul>
 			</div>
 			<div class="course-sidebar__content">
 				<h4 class="course-sidebar__heading"><i class="fas fa-angle-down"></i>Exam</h4>
 
 				<ul class="course-sidebar__list">
-					<li class="course-sidebar__item">
-						<a href="#lecture" class="course-sidebar__link">
-							Progess Test
-							1
-						</a>
-					</li>
-					<li class="course-sidebar__item">
-						<a href="#lecture" class="course-sidebar__link">Assigment</a>
-					</li>
-					<li class="course-sidebar__item">
-						<a href="#lecture" class="course-sidebar__link">Final Exam</a>
-					</li>
+					@foreach (var item in ViewBag.exam)
+					{
+						<li class="listexam">
+							<a href="../Exam/Edit?id=@item.ExamId" class="course-sidebar__link">@item.ExamName</a>
+						</li>
+					}
 				</ul>
 			</div>
 		</div>
@@ -102,7 +95,7 @@
 							<div class="form-group">
 								<input asp-for="AccountId" class="course-update__select" asp-items="ViewBag.AccountId" hidden />
 								<span asp-validation-for="AccountId" class="text-danger"></span>
-							</div> <br/>
+							</div> <br />
 							<div class="course-update__formgr">
 								<p class="course-update__lbp">
 									Program</><br>
@@ -125,7 +118,7 @@
 							<div class="course-update__formgr">
 								<button class="course-update__submit">Update</button>
 						</form>
-					<a href="/Course/Delete?id=@ViewData["CourseId"]" class="windowdelete">Delete</a>
+						<a href="/Course/Delete?id=@ViewData["CourseId"]" class="windowdelete">Delete</a>
 					</div>
 				</div>
 				<div class="course-update__image col img1">
@@ -146,8 +139,9 @@
 					<span class="course-update__lct">8 lecture - 16 lesson - 3 Exam</span>
 					<div class="course-update__question">
 						<a href="#" class="course-update__qslink">View list question</a>
-						<a href="/Lecture/Create/@ViewData["CourseId"]" class="course-update__qslink">Add new Lecture</a>
-						<a href="#" class="course-update__qslink">Add new Exam</a>
+						@*<a href="/Lecture/Create/@ViewData["CourseId"]" class="course-update__qslink">Add new Lecture</a>*@
+						<button class="lecture-create" data-cid="@ViewData["CourseId"]">Add new Lecture</button>
+						<a href="/Exam/Create" class="course-update__qslink">Add new Exam</a>
 					</div>
 				</div>
 			</div>

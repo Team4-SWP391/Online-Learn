@@ -31,7 +31,7 @@ namespace Online_Learn.Models
         public string Language { get; set; }
         public string Image { get; set; }
         public string Email { get; set; }
-        public int? Amount { get; set; }
+        public double? Amount { get; set; }
         public string Desc { get; set; }
 
         public virtual ICollection<AccountCourse> AccountCourses { get; set; }

@@ -114,7 +114,7 @@ namespace Online_Learn.Controllers {
                 .FirstOrDefaultAsync(m => m.BlogId == id);
 
 
-            var listCourse = await _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).OrderBy(x => Guid.NewGuid()).Take(8).ToListAsync();
+            var listCourse = await _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).OrderBy(x => Guid.NewGuid()).Take(10).ToListAsync();
             ViewBag.listCourse = listCourse;
 
             var relate = await _context.Blogs.Include(b => b.Account).Include(b => b.Department).
@@ -249,6 +249,8 @@ namespace Online_Learn.Controllers {
         {
             return _context.Blogs.Any(e => e.BlogId == id);
         }
+
+
 
     }
 
