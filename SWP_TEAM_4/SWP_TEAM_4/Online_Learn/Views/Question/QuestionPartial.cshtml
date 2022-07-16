@@ -44,8 +44,8 @@
             </div>
             <div class="question_action">
                 <div>
-                    <span id="btnEdit"><i class="fal fa-edit"></i> </span>
-                    <span class="btnHidden"><i class="fal fa-check"></i></span>
+                    <span id="btnEdit" onclick="editQuestion(@Model.IndexOf(question))"><i class="fal fa-edit"></i> </span>
+                    <span class="btnHidden" onclick="finishEdit(@Model.IndexOf(question))"><i class="fal fa-check"></i></span>
                 </div>
                 <span onclick="confirm('Do you want to delete this question?') == true ?
                                 window.location.href = 'Question/Delete/@question.QuestionId' : ''"
