@@ -3,10 +3,8 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace Online_Learn.Models
-{
-    public partial class Level
-    {
+namespace Online_Learn.Models {
+    public partial class Level {
         public Level()
         {
             Courses = new HashSet<Course>();

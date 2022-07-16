@@ -18,10 +18,6 @@ namespace Online_Learn.AuthData {
             {
                 context.Result = new RedirectResult("/Login/Login_Udemy");
             }
-            else
-            {
-                context.HttpContext.Items["MyObject"] = _context.Courses.ToList();
-            }
         }
     }
 
