@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewData["Title"] = "UserList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<link rel="stylesheet" href="~/css/user-list.css">
+<div class="sidebar">
+        <div class="sidebar-logo">
+            <a href="#home" class="sidebar-link"><img src="./assets/image/logo-udemy-inverted.svg" alt="" width="120"
+                    height="50"></a>
+        </div>
+        <div class="sidebar-category">
+            <ul class="sidebar-list">
+                <li class="sidebar-item"><a href="#cate" class="sidebar-item__link"><i class="fad fa-book-alt"></i>Staff
+                </li></a>
+                <li class="sidebar-item"><a href="#cate" class="sidebar-item__link"><i
+                            class="fad fa-book-alt"></i>Marketting / Sale</li></a>
+                <li class="sidebar-item"><a href="#cate" class="sidebar-item__link"><i
+                            class="fad fa-book-alt"></i>Student</li></a>
+            </ul>
+        </div>
+    </div>
+    <div class="course-contact">
+        <div class="course-contact__header">
+            <span class="course-contact__heading">User Manager</span> <a href="/Account/Add" class="course-contact__link"><i
+                    class="fal fa-plus"></i>Add</a>
+        </div>
+        <div class="course-contact__account">
+            <div class="course-contact__avt">
+                <a href="#"><img src="https://source.unsplash.com/random" alt=""></a>
+            </div>
+            <div class="course-contact__user">
+                <div class="course-contact__profile">
+                    <div class="course-contact__avt">
+                        <a href="#"><img src="https://source.unsplash.com/random" alt=""></a>
+                    </div>
+                    <div class="course-contact__name">
+                        <span class="course-contact__fn">My full name</span><br>
+                        <span class="course-contact__email">My email</span>
+                    </div>
+                </div>
+                <div class="course-contact__pf">
+                    <span class="course-contact__pr"><a href="#">Public Profile</a></span><br>
+                    <span class="course-contact__pr"><a href="#">Edit Profile</a></span>
+                </div>
+                <div class="course-contact__logout">
+                    <span class="course-contact__lg"><a href="#">Logout</a></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="user">
+        <div class="user-main__search">
+            <form>
+                <button class="user-main__btn"><i class="fas fa-search"></i></button>
+                <input type="text" class="user-main__input" placeholder="Start typing to search for user...">
+            </form>
+        </div>
+        <div class="user-main__list">
+            @foreach (var item in ViewBag.user)
+           {
+            
+        
+        <div class="user-main__item">
+                <a class="user-main__href" href="/Account/Edit/@item.AccountId">
+                    <div class="user-main__img">
+                        <div class="user-main__avt">
+                            <span>@item.Username</span>
+                        </div>
+                    </div>
+                    <div class="user-main__info">
+                        <div class="user-main__name">
+                            <h4>@item.FulllName</h4>
+                        </div>
+                        <div class="user-main__role">
+                            <p>Staff</p>
+                        </div>
+                        <div class="user-main__email">
+                            <p>@item.Email</p>
+                        </div>
+                        <div class="user-main__phone">
+                            <p>@item.Phone</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            }         
+        </div>
+    </div>
+
+    <div class="pagination" id="pagger">
+        <div class="pagination-item">
+            <a href="#" class="pagination-link"><i class="far fa-angle-left"></i></a>
+        </div>
+        <div class="pagination-item">
+            <a href="#" class="pagination-link">1</a>
+        </div>
+        <div class="pagination-item">
+            <a href="#" class="pagination-link">2</a>
+        </div>
+        <div class="pagination-item">
+            <a href="#" class="pagination-link">3</a>
+        </div>
+        <div class="pagination-item">
+            <a href="#" class="pagination-link">4</a>
+        </div>
+        <div class="pagination-item">
+            <a href="#" class="pagination-link">5</a>
+        </div>
+        <div class="pagination-index">
+            <span href="#" class="pagination-span">...</span>
+        </div>
+        <div class="pagination-item">
+            <a href="#" class="pagination-link">6</a>
+        </div>
+        <div class="pagination-item">
+            <a href="#" class="pagination-link">7</a>
+        </div>
+        <div class="pagination-item">
+            <a href="#" class="pagination-link"><i class="fas fa-angle-right"></i></a>
+        </div>
+    </div>
+      <script src="~/js/user-list.js"></script>
+
