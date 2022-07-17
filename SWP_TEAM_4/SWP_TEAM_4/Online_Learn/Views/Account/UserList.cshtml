@@ -1,13 +1,13 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "UserList";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    
 }
+
 
 <link rel="stylesheet" href="~/css/user-list.css">
 <div class="sidebar">
         <div class="sidebar-logo">
-            <a href="#home" class="sidebar-link"><img src="./assets/image/logo-udemy-inverted.svg" alt="" width="120"
+            <a href="#home" class="sidebar-link"><img src="~/css/logo-udemy-inverted.svg" alt="" width="120"
                     height="50"></a>
         </div>
         <div class="sidebar-category">
@@ -52,14 +52,15 @@
 
     </div>
     <div class="user">
+        
         <div class="user-main__search">
             <form>
                 <button class="user-main__btn"><i class="fas fa-search"></i></button>
-                <input type="text" class="user-main__input" placeholder="Start typing to search for user...">
+                <input type="text" class="user-main__input" placeholder="Start typing to search for user..." value="@ViewBag.name_search">
             </form>
         </div>
         <div class="user-main__list">
-            @foreach (var item in ViewBag.user)
+            @foreach (var item in ViewBag.list_user)
            {
             
         
@@ -88,39 +89,50 @@
             </div>
             }         
         </div>
-    </div>
 
-    <div class="pagination" id="pagger">
-        <div class="pagination-item">
-            <a href="#" class="pagination-link"><i class="far fa-angle-left"></i></a>
-        </div>
-        <div class="pagination-item">
-            <a href="#" class="pagination-link">1</a>
-        </div>
-        <div class="pagination-item">
-            <a href="#" class="pagination-link">2</a>
-        </div>
-        <div class="pagination-item">
-            <a href="#" class="pagination-link">3</a>
-        </div>
-        <div class="pagination-item">
-            <a href="#" class="pagination-link">4</a>
-        </div>
-        <div class="pagination-item">
-            <a href="#" class="pagination-link">5</a>
-        </div>
-        <div class="pagination-index">
-            <span href="#" class="pagination-span">...</span>
-        </div>
-        <div class="pagination-item">
-            <a href="#" class="pagination-link">6</a>
-        </div>
-        <div class="pagination-item">
-            <a href="#" class="pagination-link">7</a>
-        </div>
-        <div class="pagination-item">
-            <a href="#" class="pagination-link"><i class="fas fa-angle-right"></i></a>
-        </div>
+        
+
+            @if (ViewBag.maxPage > 1)
+            {
+                @if (ViewBag.checkPage == 1)
+                {
+                    <div class="pagination" id="pagger">
+                        <div class="pagination-item">
+                            <a href="/Account/UserList?pageIndex=@(ViewBag.prevPage <= 0 ? 1 : ViewBag.prevPage)&&name_search=@ViewBag.name_search" class="pagination-link"><i class="far fa-angle-left"></i></a>
+                        </div>
+                        @for (int i = 1; i <= ViewBag.maxPage; i++)
+                        {
+                            <div class="pagination-item">
+                                <a href="/Account/UserList?pageIndex=@i&&name_search=@ViewBag.name_search" class="pagination-link @(i == ViewBag.pageIndex ?"page-active":"")">@i</a>
+                            </div>
+                        }
+                        <div class="pagination-item">
+                            <a href="/Account/UserList?pageIndex=@(ViewBag.nextPage > ViewBag.maxPage ? 1 : ViewBag.nextPage)&&name_search=@ViewBag.name_search" class="pagination-link"><i class="fas fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                }
+                else if (ViewBag.checkPage == 2)
+                {
+                    <div class="pagination" id="pagger">
+                        <div class="pagination-item">
+                            <a href="/Account/UserList?pageIndex=@(ViewBag.prevPage <= 0 ? 1 : ViewBag.prevPage)" class="pagination-link"><i class="far fa-angle-left"></i></a>
+                        </div>
+                        @for (int i = 1; i <= ViewBag.maxPage; i++)
+                        {
+                            <div class="pagination-item">
+                                <a href="/Account/UserList?pageIndex=@i" class="pagination-link @(i == ViewBag.pageIndex ?"page-active":"")">@i</a>
+                            </div>
+                        }
+                        <div class="pagination-item">
+                            <a href="/Account/UserList?pageIndex=@(ViewBag.nextPage > ViewBag.maxPage ? 1 : ViewBag.nextPage)" class="pagination-link"><i class="fas fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                }
+            }
     </div>
+  
+
+
+    
       <script src="~/js/user-list.js"></script>
 
