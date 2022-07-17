@@ -196,6 +196,12 @@ body {
 .course-contact__lg a:hover {
   color: #a435f0;
 }
+.user-main {
+    margin-top: 100px;
+    margin-left: 360px;
+    width: 100%;
+    padding: 15px 35px 35px 35px;
+}
 
 .user-main__search {
   width: 100%;

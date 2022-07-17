@@ -23,6 +23,9 @@ namespace Online_Learn.Controllers {
             _context = context;
         }
 
+
+
+
         public List<Blog> SearchBlog(string title)
         {
             List<Blog> ListBlog = new List<Blog>();
@@ -100,7 +103,7 @@ namespace Online_Learn.Controllers {
             return View(model);
         }
         // GET: Blogs/Detail/5
-        public async Task<IActionResult> Detail(int? id, int? depaid, int? acid)
+        public async Task<IActionResult> Detail(int? id)
         {
             Random rand = new Random();
 
@@ -114,15 +117,16 @@ namespace Online_Learn.Controllers {
                 .FirstOrDefaultAsync(m => m.BlogId == id);
 
 
-            var listCourse = await _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).OrderBy(x => Guid.NewGuid()).Take(10).ToListAsync();
+            var listCourse = await _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).OrderBy(x => Guid.NewGuid()).Take(5).ToListAsync();
             ViewBag.listCourse = listCourse;
 
             var relate = await _context.Blogs.Include(b => b.Account).Include(b => b.Department).
-                OrderBy(b => Guid.NewGuid()).Take(5).ToListAsync();
+                OrderBy(b => Guid.NewGuid()).Take(3).ToListAsync();
 
 
             ViewBag.relate = relate;
-
+            var listCou = await _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).OrderBy(x => Guid.NewGuid()).Take(3).ToListAsync();
+            ViewBag.listCou = listCou;
 
             if (blog == null)
             {
@@ -137,6 +141,9 @@ namespace Online_Learn.Controllers {
 
 
         }
+
+
+
 
         [AuthAttribute]
         // GET: Blog/Create

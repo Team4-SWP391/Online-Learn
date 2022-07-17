@@ -49,18 +49,18 @@ namespace Online_Learn_Test {
             Assert.IsNotNull(result);
         }
 
-        [Test]
-        [TestCase("Delete")]
-        [TestCase(" ")]
-        [TestCase("null")]
-        [TestCase(null)]
-        [TestCase(1)]
-        [TestCase("@ads")]
-        public void TestReadExcel(string file)
-        {
-            var result = QuestionController.ReadExcel(file);
-            Assert.IsNotNull(result);
-        }
+        //[Test]
+        //[TestCase("Delete")]
+        //[TestCase(" ")]
+        //[TestCase("null")]
+        //[TestCase(null)]
+        //[TestCase(1)]
+        //[TestCase("@ads")]
+        //public void TestReadExcel(string file)
+        //{
+        //    var result = QuestionController.ReadExcel(file);
+        //    Assert.IsNotNull(result);
+        //}
 
     }
 }
