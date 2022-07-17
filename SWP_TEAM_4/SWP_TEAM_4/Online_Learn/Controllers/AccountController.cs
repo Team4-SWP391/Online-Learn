@@ -84,5 +84,143 @@ namespace Online_Learn.Controllers {
             }
             return Redirect(nameof(Profile));
         }
+
+
+
+        public async Task<IActionResult> UserList()
+        {
+
+            var customer = context.Accounts.Where(a=> a.RoleId == 1).ToList();
+            var user = context.Accounts.ToList();
+            ViewBag.user = user;
+
+            return View(await context.Accounts.ToListAsync());
+        }
+        public IActionResult Add()
+        {
+            return View();
+        }
+
+        // POST: Account/Add
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Add([Bind("AccountId,Username,Password,FulllName,RoleId,Gender,Dob,Address,Phone,Language,Image,Email,Amount,Desc")] Account account)
+        {
+            if (ModelState.IsValid)
+            {
+                context.Add(account);
+                await context.SaveChangesAsync();
+                return RedirectToAction(nameof(UserList));
+            }
+            return View(account);
+        }
+
+        public async Task<IActionResult> Detail(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var account = await context.Accounts
+                .FirstOrDefaultAsync(m => m.AccountId == id);
+            if (account == null)
+            {
+                return NotFound();
+            }
+            
+            return View(account);
+        }
+
+
+
+
+        // GET: Account/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var account = await context.Accounts.FindAsync(id);
+            if (account == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.AccountId = id;
+            return View(account);
+           
+
+
+        }
+
+        // POST: Account/Edit/5
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("AccountId,Username,Password,FulllName,RoleId,Gender,Dob,Address,Phone,Language,Image,Email,Amount,Desc")] Account account)
+        {
+           
+
+            if (id != account.AccountId)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    context.Update(account);
+                    await context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!AccountExists(account.AccountId))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(UserList));
+            }
+
+           
+            return View(account);
+        }
+
+
+        public async Task<IActionResult> Delete(int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var account = await context.Accounts.FindAsync(id);
+            context.Accounts.Remove(account);
+            await context.SaveChangesAsync();
+
+            if (account == null)
+            {
+                return NotFound();
+            }
+          
+           
+            return RedirectToAction(nameof(UserList));
+        }
+
+
+        private bool AccountExists(int id)
+        {
+            return context.Accounts.Any(e => e.AccountId == id);
+        }
     }
 }
