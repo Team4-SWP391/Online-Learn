@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 using Newtonsoft.Json;
 
-
+using Online_Learn.AuthData;
 using Online_Learn.Models;
 
 namespace Online_Learn.Controllers {
@@ -23,6 +23,16 @@ namespace Online_Learn.Controllers {
             _context = context;
         }
 
+
+
+
+        public List<Blog> SearchBlog(string title)
+        {
+            List<Blog> ListBlog = new List<Blog>();
+            ListBlog = _context.Blogs.Include(b => b.Account).Include(b => b.Department)
+                    .Where(b => b.Title.Contains(title)).ToList();
+            return ListBlog;
+        }
         // GET: Blog
         public async Task<IActionResult> Index(int pageIndex, string title)
         {
@@ -55,7 +65,7 @@ namespace Online_Learn.Controllers {
             ViewData["title"] = title;
             return View(ListBlog);
         }
-
+        [AuthAttribute]
         // GET: Blog/MyBlog
         public async Task<IActionResult> MyBlog(string title)
         {
@@ -93,7 +103,7 @@ namespace Online_Learn.Controllers {
             return View(model);
         }
         // GET: Blogs/Detail/5
-        public async Task<IActionResult> Detail(int? id, int? depaid, int? acid)
+        public async Task<IActionResult> Detail(int? id)
         {
             Random rand = new Random();
 
@@ -107,30 +117,37 @@ namespace Online_Learn.Controllers {
                 .FirstOrDefaultAsync(m => m.BlogId == id);
 
 
-            var listCourse = await _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).OrderBy(x => Guid.NewGuid()).Take(8).ToListAsync();
+            var listCourse = await _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).OrderBy(x => Guid.NewGuid()).Take(5).ToListAsync();
             ViewBag.listCourse = listCourse;
 
             var relate = await _context.Blogs.Include(b => b.Account).Include(b => b.Department).
-                OrderBy(b => Guid.NewGuid()).Take(5).ToListAsync();
+                OrderBy(b => Guid.NewGuid()).Take(3).ToListAsync();
 
 
             ViewBag.relate = relate;
-
+            var listCou = await _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).OrderBy(x => Guid.NewGuid()).Take(3).ToListAsync();
+            ViewBag.listCou = listCou;
 
             if (blog == null)
             {
                 return NotFound();
             }
             ViewData["BlogId"] = blog.BlogId;
-            ViewData["AccountName"] = blog.Account.Username;
+            ViewData["AccountName"] = blog.Account.FulllName;
             ViewData["AccountImg"] = blog.Account.Image;
             ViewData["user"] = blog.Account.FulllName;
+            ViewData["AccountDes"] = blog.Account.Desc;
+            
 
             return View(blog);
 
 
         }
 
+
+
+
+        [AuthAttribute]
         // GET: Blog/Create
         public IActionResult Create()
         {
@@ -142,6 +159,7 @@ namespace Online_Learn.Controllers {
         // POST: Blogs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [AuthAttribute]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BlogId,Title,UpdateAt,DepartmentId,Content,AccountId")] Blog blog)
@@ -180,6 +198,7 @@ namespace Online_Learn.Controllers {
         // POST: Blogs/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [AuthAttribute]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("BlogId,Title,UpdateAt,DepartmentId,Content,AccountId")] Blog blog)
@@ -214,6 +233,7 @@ namespace Online_Learn.Controllers {
             return View(blog);
         }
 
+        [AuthAttribute]
         // GET: Blogs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -238,6 +258,8 @@ namespace Online_Learn.Controllers {
         {
             return _context.Blogs.Any(e => e.BlogId == id);
         }
+
+
 
     }
 

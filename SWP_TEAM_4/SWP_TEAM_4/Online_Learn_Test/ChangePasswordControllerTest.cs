@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -37,20 +38,20 @@ namespace Online_Learn_Test
 
         [Test]
         [TestCaseSource("TestCases")]
-        public void TestChangePassword(string newpass, string email)
+        public void TestChangingPassword(string newpass, string email)
         {
             changepasswordController = new ChangepasswordController(context);
-            var result = changepasswordController.Change(newpass, email) as ViewResult;
-            Assert.AreEqual(null, result.ViewName);
+            var result = changepasswordController.CheckChangingNewPasswordSuccess(newpass, email);
+            Assert.AreEqual("True", result.ToString());
         }
         private static readonly object[] TestCases =
     {
-            new object[]{"12456","tuan@gmail.com"},
+            new object[]{"123456","tuan@gmail.com"},
             new object[]{"sqddsaf","test@gmail.com"},
             new object[]{"1245asdf6","tuan@gmail.com"},
             new object[]{"asd","tuan@gmail.com"},
             new object[]{"12456","admin@123"},
-            new object[]{"","tuan@gmail.com"},
+            new object[]{"djkashfgdjks","tuan@gmail.com"},
             new object[]{"1245asfd6","tuan@gmail.com"},
             new object[]{"as","tuan@gmail.com"},
             new object[]{"1245@#6","tuan@gmail.com"},

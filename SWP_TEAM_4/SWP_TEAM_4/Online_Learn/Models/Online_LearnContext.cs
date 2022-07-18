@@ -42,7 +42,12 @@ namespace Online_Learn.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+<<<<<<< HEAD
             optionsBuilder.UseSqlServer("server=localhost; database=Online_Learn;uid=sa;pwd=sa;");
+=======
+                optionsBuilder.UseSqlServer("server =DESKTOP-NB2DNI9\\VINH; database=Online_Learn;uid=sa;pwd=0775122001;");
+            }
+>>>>>>> f8654a48020cbcb3bcac4c83e7cd5f6e2313d210
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -123,7 +128,11 @@ namespace Online_Learn.Models
 
             modelBuilder.Entity<AccountLesson>(entity =>
             {
+<<<<<<< HEAD
                 entity.HasKey(e => new { e.AccountId, e.LessonId });
+=======
+                entity.HasKey(e => new { e.AccountId, e.LessonId, e.CourseId });
+>>>>>>> f8654a48020cbcb3bcac4c83e7cd5f6e2313d210
 
                 entity.ToTable("Account_Lesson");
 
@@ -131,12 +140,26 @@ namespace Online_Learn.Models
 
                 entity.Property(e => e.LessonId).HasColumnName("lesson_id");
 
+<<<<<<< HEAD
+=======
+                entity.Property(e => e.CourseId).HasColumnName("course_id");
+
+>>>>>>> f8654a48020cbcb3bcac4c83e7cd5f6e2313d210
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.AccountLessons)
                     .HasForeignKey(d => d.AccountId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Account_Lesson_Account");
 
+<<<<<<< HEAD
+=======
+                entity.HasOne(d => d.Course)
+                    .WithMany(p => p.AccountLessons)
+                    .HasForeignKey(d => d.CourseId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Account_Lesson_Course");
+
+>>>>>>> f8654a48020cbcb3bcac4c83e7cd5f6e2313d210
                 entity.HasOne(d => d.Lesson)
                     .WithMany(p => p.AccountLessons)
                     .HasForeignKey(d => d.LessonId)

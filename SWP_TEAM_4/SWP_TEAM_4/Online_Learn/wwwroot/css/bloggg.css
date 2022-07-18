@@ -1,0 +1,119 @@
+
+
+body {
+    background-color: #FAFAFA;
+}
+
+.imgggg {
+    width: 37px;
+    border-radius: 50px;
+}
+
+.imgg2 {
+    width: 65px;
+    border-radius: 50px;
+    margin-left: -22px;
+}
+
+.as {
+    background-color: #a435f0;
+}
+
+    .as:hover {
+        background-color: orange;
+    }
+
+.post {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    width: 248px;
+    border: 1px solid rgb(219,219,219);
+    border-radius: 3px;
+}
+
+.user_author {
+    margin-left: 2px;
+    color: rgb(131, 131, 131);
+}
+
+.bodiii {
+    background-color: white;
+}
+
+.text {
+    margin-right: 0px;
+    padding-right: 35px;
+    margin-left: 0px;
+    padding-left: 10px;
+    font-size: 18px;
+}
+
+.text2 {
+    margin-right: 18px;
+    border: 1px solid #FAFAFA;
+    background-color: #FAFAFA;
+}
+
+.text3 {
+    margin-left: 20px;
+    margin-right: 10px;
+    margin-top: 10px;
+    color: black;
+}
+
+.face {
+    color: white;
+}
+
+    .face:hover {
+        background-color: white;
+    }
+
+.cachle {
+    margin-left: 20px;
+}
+
+.booo {
+    border: 1px solid white;
+    background-color: white;
+}
+
+.anh {
+    width: 45px;
+    border-radius: 50px;
+    margin-left: -22px;
+}
+
+.cah {
+    margin-left: 18px;
+    margin-right: 17px;
+}
+
+.madi.modify {
+    position: fixed;
+    top: 51%;
+    width: 415px;
+    transform: translateY(-50%);
+}
+
+.anhmoi {
+    height: 80px;
+    width: 130px;
+    border-radius: 10px;
+}
+
+.anhcu {
+    width: 35px;
+    border-radius: 50px;
+    margin-left: -22px;
+}
+
+.imgg3 {
+    width: 271px;
+    height: 170px;
+}
+
+.drop {
+    color: #9b9b9b;
+}

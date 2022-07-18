@@ -46,6 +46,8 @@ namespace Online_Learn.Controllers
             
 
         }
+
+        
         //create a string MD5
         public static string GetMD5(string str)
         {

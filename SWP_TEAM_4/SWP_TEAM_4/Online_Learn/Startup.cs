@@ -48,8 +48,14 @@ namespace Online_Learn {
             //    googleOptions.ClientSecret = googleAuthNSection["ClientSecret"];
             //    // Cấu hình Url callback lại từ Google (không thiết lập thì mặc định là /signin-google)
             //    googleOptions.CallbackPath = "/Login_Google";
+<<<<<<< HEAD
 
             //});
+=======
+
+            //});
+
+>>>>>>> f8654a48020cbcb3bcac4c83e7cd5f6e2313d210
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -77,6 +83,10 @@ namespace Online_Learn {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "Course",
+                    pattern: "{controller=Home}/{action=Index}/{id?}/{video?}");
             });
         }
     }

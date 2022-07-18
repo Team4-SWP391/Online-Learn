@@ -2,15 +2,27 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
+<<<<<<< HEAD
 using System.Text.Json;
+=======
+
+using Microsoft.AspNetCore.Http;
+>>>>>>> f8654a48020cbcb3bcac4c83e7cd5f6e2313d210
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
+//using Newtonsoft.Json;
+using System.Text.Json;
 using Online_Learn.AuthData;
 using Online_Learn.Models;
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Http;
+=======
+using Newtonsoft.Json;
+>>>>>>> f8654a48020cbcb3bcac4c83e7cd5f6e2313d210
 
 namespace Online_Learn.Controllers {
     public class HomeController : Controller {
@@ -46,6 +58,39 @@ namespace Online_Learn.Controllers {
             ViewBag.list9 = list9;
             ViewBag.course_rcm = course_rcm.CourseName;
             return View();
+        }
+        // Get: /Home/Search
+        public IActionResult Search(string txtSearch)
+        {
+            var list = _context.Courses.Include(c => c.Account)
+                .Include(c => c.Level).Where(x => x.CourseName.Contains(txtSearch)).ToList();
+            ViewData["txtSearch"] = txtSearch;
+            ViewBag.listTopic = _context.Departments.ToList();
+            ViewBag.listLevel = _context.Levels.ToList();
+            return View("~/Views/Course/Search.cshtml", list);
+        }
+
+        public IActionResult AdvanceSearch(string txtSearch, int valueSearch, string type)
+        {
+            List<Course> list = _context.Courses.Include(c => c.Account).Include(c => c.Level).Where(x => x.CourseName.Contains(txtSearch)).ToList();
+            switch (type)
+            {
+                case "Department":
+                    list = list.Where(c => c.DepartmentId == valueSearch).ToList();
+                    break;
+                case "Level":
+                    list = list.Where(c => c.LevelId == valueSearch).ToList();
+                    break;
+                case "Rate":
+                    list = list.Where(c => c.Rate >= valueSearch).ToList();
+                    break;
+                case "Price":
+                    list = list.Where(c => c.Price >= valueSearch).ToList();
+                    break;
+                default:
+                    break;
+            }
+            return PartialView("~/Views/Course/SearchPartial.cshtml", list);
         }
 
         public IActionResult Privacy()
