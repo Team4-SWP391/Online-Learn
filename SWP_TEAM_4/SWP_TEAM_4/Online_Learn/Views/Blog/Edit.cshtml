@@ -4,14 +4,14 @@
     ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<link rel="stylesheet" href="~/css/blogAdd.css">
+<link rel="stylesheet" href="~/css/blog_add.css">
 <link rel="stylesheet" href="~/css/richtext.min.css">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
 <div class="course">
         <div class="course-header">
-            <a class="course-header__back"asp-action="Index"><i class="fas fa-angle-left"></i>Back to your blog</a>
+            <a class="course-header__back"asp-action="MyBlog"><i class="fas fa-angle-left"></i>Back to your blog</a>
             <span class="course-header__key">Keyword research for bloggers</span>
             <span class="course-header__bold">Draft</span>
             <span class="course-header__tt">Omin of video contenet upload</span>
@@ -30,14 +30,14 @@
                                 @*<label asp-for="Title" class="course-create__lable">Blog Title</label><br>
                                 <input asp-for="Title" type="text" class="course-create__input">*@
                                 <label asp-for="Title" class="control-label course-create__lable"></label>
-                                <input asp-for="Title" class="form-control" />
+                                <input asp-for="Title" class="course-create__input"  />
                                 <span asp-validation-for="Title" class="text-danger"></span>
 
                             </div>
                            
                             <div class="course-create__formgr">
                                 <label asp-for="DepartmentId" class="control-label course-create__lable"></label>
-                                <select asp-for="DepartmentId" class="form-control" asp-items="ViewBag.DepartmentId"></select>
+                                <select asp-for="DepartmentId" class="course-create__input" asp-items="ViewBag.DepartmentId"></select>
                                 <span asp-validation-for="DepartmentId" class="text-danger"></span>
                             </div>
                             <div class="form-group">
@@ -59,7 +59,7 @@
                                 <select hidden asp-for="AccountId" class ="form-control" asp-items="ViewBag.AccountId"></select>
                             </div>
                             <div class="course-create__formgr">
-                                <button class="course-create__submit" value="Create">Save</button>
+                                <button class="course-create__submit" type="submit">Update</button>
                             </div>
                             <script>
                                  $(document).ready(function() {

@@ -64,7 +64,7 @@
 										<label asp-for="LessonName" class="mb-0"><h5>Lesson Name</h5></label>
 									</div>
 									<div class="col-sm-8 text-secondary">   
-										<input  asp-for="LessonName" type="text" class="form-control" style="border: 1px solid grey;">
+										<input  asp-for="LessonName" type="text" class="inputt form-control" style="border: 1px solid grey;">
 									</div>
 								</div>
 								<div class="row mb-4">
@@ -72,7 +72,7 @@
 										<label asp-for="Video" class="mb-0"><h5>Video</h5></label>
 									</div>
 									<div class="col-sm-8 text-secondary">
-										<input asp-for="Video" type="text" class="form-control" style="border: 1px solid grey;">
+										<input asp-for="Video" type="text" class=" inputt form-control" style="border: 1px solid grey;">
 									</div>
 								</div>
 								<div class="row mb-3">
@@ -80,7 +80,7 @@
 										<label asp-for="Main" class="mb-0"><h5>About Lesson</h5></label>
 									</div>
 									<div class="col-sm-8 text-secondary">
-										<textarea asp-for="Main" class="form-control" rows="4" style="border: 1px solid grey;"></textarea>
+										<textarea asp-for="Main" class="inputt form-control" rows="4" style="border: 1px solid grey;"></textarea>
 									</div>
 								</div>
 								<div class="row mb-3" hidden>
@@ -134,42 +134,4 @@
 		</div>
 	</div>
 
-
-
-
-@*<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="LessonId" />
-            <div class="form-group">
-                <label asp-for="LessonName" class="control-label"></label>
-                <input asp-for="LessonName" class="form-control" />
-                <span asp-validation-for="LessonName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Video" class="control-label"></label>
-                <input asp-for="Video" class="form-control" />
-                <span asp-validation-for="Video" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Main" class="control-label"></label>
-                <input asp-for="Main" class="form-control" />
-                <span asp-validation-for="Main" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="LectureId" class="control-label"></label>
-                <select asp-for="LectureId" class="form-control" asp-items="ViewBag.LectureId"></select>
-                <span asp-validation-for="LectureId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
-    </div>
-</div>*@
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 

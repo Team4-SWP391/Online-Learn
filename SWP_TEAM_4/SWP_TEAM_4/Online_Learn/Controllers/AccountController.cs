@@ -124,16 +124,11 @@ namespace Online_Learn.Controllers {
             return View();
 
 
-
-
-
-
-            //var customer = context.Accounts.Where(a=> a.RoleId == 1).ToList();
-            //var user = context.Accounts.ToList();
-            //ViewBag.user = user;
-
-            //return View(await context.Accounts.ToListAsync());
         }
+
+
+
+
         public IActionResult Add()
         {
             return View();
