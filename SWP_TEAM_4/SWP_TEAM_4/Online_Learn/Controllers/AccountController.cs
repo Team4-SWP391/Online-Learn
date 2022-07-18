@@ -79,7 +79,7 @@ namespace Online_Learn.Controllers {
                 a.Email = NewAccount.Email;
                 a.Image = a.Image;
                 a.Desc = a.Desc;
-                //a.Amount = NewAccount.Amount;
+                a.Amount = NewAccount.Amount;
                 context.SaveChangesAsync();
             }
             return Redirect(nameof(Profile));

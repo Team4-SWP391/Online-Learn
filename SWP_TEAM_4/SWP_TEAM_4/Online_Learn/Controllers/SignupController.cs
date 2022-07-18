@@ -33,6 +33,7 @@ namespace Online_Learn.Controllers
                 if (check == null)
                 {
                     account.Password = GetMD5(account.Password);
+                account.Amount = 500;
                     _context.Accounts.Add(account);
                     _context.SaveChanges();
                     return Redirect("../Home/Index");

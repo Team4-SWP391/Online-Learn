@@ -60,7 +60,7 @@
                             </div>
                             (11.269)
                         </span><br>
-                        <span class="course-price">@item.Price <span class="course-discount"></span></span><br>
+                        <span class="course-price">@item.getPriceByDiscount() <span class="course-discount">@(item.Price == item.getPriceByDiscount() ? item.Price :"")</span></span><br>
                         <span class="best-seller"><strong>Bestseller</strong></span>
                     </div>
                 </div>
@@ -93,7 +93,7 @@
                             </div>
                             (11.269)
                         </span><br>
-                        <span class="course-price">@item.Price <span class="course-discount">@item.getPriceByDiscount()</span></span><br>
+                        <span class="course-price">@item.getPriceByDiscount() <span class="course-discount">@(item.Price == item.getPriceByDiscount() ? item.Price :"")</span></span><br>
                         <span class="best-seller"><strong>Bestseller</strong></span>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                             </div>
                             (11.269)
                         </span><br>
-                        <span class="course-price">@item.Price <span class="course-discount">@item.getPriceByDiscount()</span></span><br>
+                        <span class="course-price">@item.getPriceByDiscount() <span class="course-discount">@(item.Price == item.getPriceByDiscount() ? item.Price :"")</span></span><br>
                         <span class="best-seller"><strong>Bestseller</strong></span>
                     </div>
                 </div>
@@ -159,7 +159,7 @@
                             </div>
                             (11.269)
                         </span><br>
-                        <span class="course-price">@item.Price <span class="course-discount">@item.getPriceByDiscount()</span></span><br>
+                        <span class="course-price">@item.getPriceByDiscount() <span class="course-discount">@(item.Price == item.getPriceByDiscount() ? item.Price :"")</span></span><br>
                         <span class="best-seller"><strong>Bestseller</strong></span>
                     </div>
                 </div>
@@ -192,7 +192,7 @@
                             </div>
                             (11.269)
                         </span><br>
-                        <span class="course-price">@item.Price <span class="course-discount">@item.getPriceByDiscount()</span></span><br>
+                        <span class="course-price">@item.getPriceByDiscount() <span class="course-discount">@(item.Price == item.getPriceByDiscount() ? item.Price :"")</span></span><br>
                         <span class="best-seller"><strong>Bestseller</strong></span>
                     </div>
                 </div>
@@ -225,7 +225,7 @@
                             </div>
                             (11.269)
                         </span><br>
-                        <span class="course-price">@item.Price <span class="course-discount">@item.getPriceByDiscount()</span></span><br>
+                        <span class="course-price">@item.getPriceByDiscount().ToString("0.00") <span class="course-discount">@(item.Price == item.getPriceByDiscount() ? item.Price :"")</span></span><br>
                         <span class="best-seller"><strong>Bestseller</strong></span>
                     </div>
                 </div>
@@ -258,7 +258,7 @@
                             </div>
                             (11.269)
                         </span><br>
-                        <span class="course-price">@item.Price <span class="course-discount">@item.getPriceByDiscount()</span></span><br>
+                        <span class="course-price">@item.getPriceByDiscount().ToString("0.00") <span class="course-discount">@(item.Price == item.getPriceByDiscount() ? item.Price :"")</span></span><br>
                         <span class="best-seller"><strong>Bestseller</strong></span>
                     </div>
                 </div>
@@ -291,7 +291,7 @@
                             </div>
                             (11.269)
                         </span><br>
-                        <span class="course-price">@item.Price <span class="course-discount">@item.getPriceByDiscount()</span></span><br>
+                        <span class="course-price">@item.getPriceByDiscount().ToString("0.00") <span class="course-discount">@(item.Price == item.getPriceByDiscount() ? item.Price :"")</span></span><br>
                         <span class="best-seller"><strong>Bestseller</strong></span>
                     </div>
                 </div>
@@ -324,7 +324,7 @@
                             </div>
                             (11.269)
                         </span><br>
-                        <span class="course-price">@item.Price <span class="course-discount">@item.getPriceByDiscount()</span></span><br>
+                        <span class="course-price">@item.getPriceByDiscount().ToString("0.00") <span class="course-discount">@(item.Price == item.getPriceByDiscount() ? item.Price :"")</span></span><br>
                         <span class="best-seller"><strong>Bestseller</strong></span>
                     </div>
                 </div>

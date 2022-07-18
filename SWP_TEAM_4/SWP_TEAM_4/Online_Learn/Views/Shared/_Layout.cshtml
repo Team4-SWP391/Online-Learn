@@ -7,9 +7,15 @@
 
     string jsonCart = Context.Session.GetString("cart");
     List<Course> cart = new List<Course>();
+    int gotoCheck = 0;
     if (jsonCart != null)
     {
         cart = JsonSerializer.Deserialize<List<Course>>(jsonCart);
+    }
+    else
+    {
+        gotoCheck = 1;
+
     }
     string price = Context.Session.GetString("TotalPrice");
 }
@@ -267,8 +273,8 @@
                             </div>
                             <div class="header_right-list-cart">
                                 <!-- <span>Your Cart Is Empty</span>
-                                <br>
-                                <a href="" class="fw-bold" style="color: var(--main-color);">Your Cart Is Empty</a> -->
+    <br>
+    <a href="" class="fw-bold" style="color: var(--main-color);">Your Cart Is Empty</a> -->
                                 <ul>
 
                                     @foreach (var item in cart)
@@ -285,8 +291,16 @@
                                         </li>
                                     }
                                 </ul>
-                                <span class="fw-bold text-start fs-4">Amount: @user.Amount $</span>
-                                <div class="cart-btn"><a href="/Cart/ViewCart">Go To Cart</a></div>
+                                <span class="fw-bold text-start fs-4">Amount: @(Convert.ToDouble(user.Amount).ToString("0.00")) $</span>
+                                @if (gotoCheck == 1)
+                                {
+                                    <div class="cart-btn"><a style="color: #fff">Go To Cart</a></div>
+                                }
+                                else
+                                {
+                                    <div class="cart-btn"><a href="/Cart/ViewCart">Go To Cart</a></div>
+
+                                }
                             </div>
                         </li>
                         <li class="header_right-user-profile">
@@ -309,8 +323,8 @@
                                     <ul class="p-0">
                                         <li style="padding-bottom: 10px"><a href="/Course/MyCourse">My Course</a></li>
                                         <li style="padding-bottom: 10px;" class="d-flex justify-content-between">
-                                            <a href="">My Cart </a><span class="fw-bold text-white"
-                                                                         style="background-color: var(--main-color); border-radius: 50%; width: 20px;text-align: center;">1</span>
+                                            <a href="/Cart/ViewCart">My Cart </a><span class="fw-bold text-white"
+      style="background-color: var(--main-color); border-radius: 50%; width: 20px;text-align: center;">@cart.Count</span>
                                         </li>
                                         <li style="padding-bottom: 10px"><a href="/Wishlist">Wishlist</a></li>
                                     </ul>

@@ -1,18 +1,18 @@
-﻿.course-header {
+.course-header {
     width: 100%;
     background-color: #1b1c1f;
     color: #fff;
     padding: 12px;
 }
 
-    .course-header a {
-        color: #fff;
-        margin-right: 12px;
-    }
+.course-header a {
+    color: #fff;
+    margin-right: 12px;
+}
 
-        .course-header a i {
-            margin-right: 8px;
-        }
+.course-header a i {
+    margin-right: 8px;
+}
 
 .course-header__key {
     font-weight: bold;
@@ -43,10 +43,10 @@
     margin-right: 85px;
 }
 
-    .course-update__image img {
-        width: 400px;
-        object-fit: cover;
-    }
+.course-update__image img {
+    width: 400px;
+    object-fit: cover;
+}
 
 .course-update__heading {
     padding: 25px;
@@ -106,10 +106,10 @@
     transition: 0.25s linear;
 }
 
-    .course-update__submit:hover {
-        background-color: #1b6a40c9;
-        color: #fff;
-    }
+.course-update__submit:hover {
+    background-color: #1b6a40c9;
+    color: #fff;
+}
 
 .course-update__select {
     width: 200px;
@@ -132,10 +132,10 @@
     cursor: pointer;
 }
 
-    .course-update__info:hover {
-        background-color: orangered;
-        color: #fff;
-    }
+.course-update__info:hover {
+    background-color: orangered;
+    color: #fff;
+}
 
 .course-update__author {
     display: inline-block;
@@ -153,13 +153,13 @@
     margin-top: 60px;
 }
 
-    .course-update__question a {
-        color: #1b1c1f;
-        font-weight: bold;
-        padding: 12px;
-        border: 1px solid #1b1c1f;
-        transition: 0.25s linear;
-    }
+.course-update__question a {
+    color: #1b1c1f;
+    font-weight: bold;
+    padding: 12px;
+    border: 1px solid #1b1c1f;
+    transition: 0.25s linear;
+}
 
 .containers {
     width: 1800px;
@@ -198,11 +198,11 @@
     transition: 0.25s linear;
 }
 
-    .lesson-add:hover {
-        border: 1px solid #a435f0;
-        background-color: #a435f0;
-        color: #fff;
-    }
+.lesson-add:hover {
+    border: 1px solid #a435f0;
+    background-color: #a435f0;
+    color: #fff;
+}
 
 .lecture-wrap {
     width: 100%;
@@ -214,12 +214,12 @@
     border: 1px solid rgba(153, 153, 153, 0.612);
 }
 
-    .lecture-filter i {
-        margin: 0 5px;
-        padding: 13px;
-        font-size: 16px;
-        color: rgba(153, 153, 153, 0.612);
-    }
+.lecture-filter i {
+    margin: 0 5px;
+    padding: 13px;
+    font-size: 16px;
+    color: rgba(153, 153, 153, 0.612);
+}
 
 .lecture-input {
     border: none;
@@ -253,9 +253,9 @@
     color: #1b1c1f;
 }
 
-    .lecture-action:hover {
-        color: #a435f0;
-    }
+.lecture-action:hover {
+    color: #a435f0;
+}
 
 .lecture-item i {
     margin: 0 10px;
@@ -265,9 +265,9 @@
     color: #1b1c1f;
 }
 
-    .lecture-link:hover {
-        color: #1b1c1f;
-    }
+.lecture-link:hover {
+    color: #1b1c1f;
+}
 
 .lecture-action {
     margin-top: 35px;
@@ -283,11 +283,11 @@
     transition: 0.25s linear;
 }
 
-    .lecture-update:hover {
-        color: #fff;
-        background-color: #a435f0;
-        border: 1px solid #a435f0;
-    }
+.lecture-update:hover {
+    color: #fff;
+    background-color: #a435f0;
+    border: 1px solid #a435f0;
+}
 
 .delete {
     position: fixed;
@@ -310,9 +310,9 @@
     border-bottom: 1px solid #eee;
 }
 
-    .delete-heading p {
-        font-size: 16px;
-    }
+.delete-heading p {
+    font-size: 16px;
+}
 
 .delete-icon i {
     cursor: pointer;
@@ -332,11 +332,11 @@
     transition: 0.25s linear;
 }
 
-    .delete-acpt:hover {
-        border: 1px solid #a435f0;
-        background-color: #a435f0;
-        color: #fff;
-    }
+.delete-acpt:hover {
+    border: 1px solid #a435f0;
+    background-color: #a435f0;
+    color: #fff;
+}
 
 .delete-cancel {
     padding: 10px 15px;
@@ -345,11 +345,11 @@
     transition: 0.25s linear;
 }
 
-    .delete-cancel:hover {
-        border: 1px solid #a435f0;
-        background-color: #a435f0;
-        color: #fff;
-    }
+.delete-cancel:hover {
+    border: 1px solid #a435f0;
+    background-color: #a435f0;
+    color: #fff;
+}
 
 .update {
     position: fixed;
@@ -367,10 +367,10 @@
     visibility: hidden;
 }
 
-    .update.show-update {
-        opacity: 1;
-        visibility: visible;
-    }
+.update.show-update {
+    opacity: 1;
+    visibility: visible;
+}
 
 .update-heading {
     display: flex;
@@ -418,9 +418,9 @@
     border-radius: 8px;
 }
 
-    .update-input:focus {
-        border: 1px solid #a435f0;
-    }
+.update-input:focus {
+    border: 1px solid #a435f0;
+}
 
 .update-submit {
     margin-top: 10px;
@@ -437,10 +437,10 @@
     margin-left: 345px;
 }
 
-    .update-submit:hover {
-        background-color: #a435f0;
-        color: #fff;
-    }
+.update-submit:hover {
+    background-color: #a435f0;
+    color: #fff;
+}
 
 .update-create {
     border: 1px solid #1b1c1f;
@@ -451,10 +451,10 @@
     background-color: #fff;
 }
 
-    .update-create:hover {
-        background-color: #a435f0;
-        color: #fff;
-    }
+.update-create:hover {
+    background-color: #a435f0;
+    color: #fff;
+}
 
 .update-textar {
     resize: none;
@@ -465,9 +465,9 @@
     border-radius: 10px;
 }
 
-    .update-textar:focus {
-        border: 1px solid #a435f0;
-    }
+.update-textar:focus {
+    border: 1px solid #a435f0;
+}
 
 
 

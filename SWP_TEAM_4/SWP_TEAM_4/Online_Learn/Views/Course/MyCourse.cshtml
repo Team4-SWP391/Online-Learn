@@ -1,4 +1,10 @@
-﻿
+﻿@using Microsoft.EntityFrameworkCore;
+@using System.Text.Json;
+@using Microsoft.AspNetCore.Http;
+@using System.Linq;
+@{
+    var user = JsonSerializer.Deserialize<Account>(Context.Session.GetString("User"));
+}
 <link rel="stylesheet" href="~/css/mylearning.css">
 <link rel="stylesheet" href="~/css/blog.css">
 
@@ -41,12 +47,12 @@
                 @foreach (AccountCourse item in ViewBag.MyCourse)
                 {
                     <div class="card card-learning col-3 p-0">
-                        <a href="#" class="card-learning_img" tabindex="-1">
+                        <a href="/Learning/Course?course_id=@item.CourseId" class="card-learning_img" tabindex="-1">
                             <div class="card_img">
                                 <img class="img-fluid"
-                             alt="Complete JAVASCRIPT with HTML5,CSS3 from zero to Expert-2022" width="100%"
-                             src="@item.Course.Image"
-                             srcset="@item.Course.Image 1x">
+                                     alt="Complete JAVASCRIPT with HTML5,CSS3 from zero to Expert-2022" width="100%"
+                                     src="@item.Course.Image"
+                                     srcset="@item.Course.Image 1x">
                             </div>
                         </a>
                         <div class="card-learning_details p-2">
@@ -56,17 +62,40 @@
                                 </strong>
                             </a><br>
                             <div class="details_instructor">
-                                <span>@item.Course.CourseName</span><span>
+                                <span>@item.CourseId</span><span>
                                     , Data Scientist | AI Entrepreneur and
                                     Developer
                                 </span>
                             </div>
                             <div class="details_bottom">
-                                <div class="progress">
-                                    <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25"
-                                 aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                                <div class="progress-value">25% Complete</div>
+                                @{
+                                    using (var db = new Online_LearnContext())
+                                    {
+                                        var lesson_list = (from l in db.Lessons
+                                                           join lec in db.Lectures
+                                                           on l.LectureId equals lec.LectureId
+                                                           where lec.CourseId == item.CourseId
+                                                           select l).ToList();
+                                        var total_lesson = lesson_list.Count == 0 ? 0.0000001 : lesson_list.Count;
+
+                                        var finish_list = (from al in db.AccountLessons
+                                                           join l in db.Lessons
+                                                           on al.LessonId equals l.LessonId
+                                                           join lec in db.Lectures
+                                                           on l.LectureId equals lec.LectureId
+                                                           where lec.CourseId == item.CourseId
+                                                           select al).ToList();
+                                        var finish = finish_list.Count == 0 ? 0.0000001 : lesson_list.Count;
+
+                                        var progess = $"{finish / total_lesson}%";
+
+                                        <div class="progress">
+                                            <div class="progress-bar" role="progressbar" style="width: @progess;" aria-valuenow="@progess"
+                                                 aria-valuemin="0" aria-valuemax="100"></div>
+                                        </div>
+                                        <div class="progress-value">@(progess == "1%" ? 0 : progess) Complete</div>
+                                    }
+                                }
                                 <button>
                                     <div class="details_rating">
                                         <div class="rate">

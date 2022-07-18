@@ -63,7 +63,7 @@ namespace Online_Learn.Controllers
             var acs = _context.AccountCourses.ToList();
             foreach (var item in acs)
             {
-                if(item.AccountId == ac.AccountId && item.CourseId == ac.CourseId)
+                if (item.AccountId == ac.AccountId && item.CourseId == ac.CourseId)
                 {
                     return true;
                 }
@@ -77,14 +77,14 @@ namespace Online_Learn.Controllers
             var user = JsonSerializer.Deserialize<Account>(HttpContext.Session.GetString("User"));
             Account account = await _context.Accounts.FirstOrDefaultAsync(x => x.AccountId == user.AccountId);
             var cart = JsonSerializer.Deserialize<List<Course>>(HttpContext.Session.GetString("cart"));
-            if(amount > account.Amount)
+            double price = 0;
+            foreach (var item in cart)
+            {
+                price += item.Price;
+            }
+            if (amount > account.Amount)
             {
                 ViewBag.err = "Customer's account does not have enough money to make a transaction";
-                double price = 0;
-                foreach (var item in cart)
-                {
-                    price += item.Price;
-                }
                 ViewBag.price = price;
                 ViewBag.cart = cart;
                 return View();
@@ -94,20 +94,31 @@ namespace Online_Learn.Controllers
             {
                 account.Amount = account.Amount - amount;
                 user.Amount = user.Amount - amount;
+                Order od = new Order();
+                od.AccountId = user.AccountId;
+                od.TotalPrice = price;
+                _context.Orders.Add(od);
+                _context.SaveChanges();
                 foreach (var item in cart)
                 {
                     AccountCourse ac = new AccountCourse();
                     ac.AccountId = user.AccountId;
                     ac.CourseId = item.CourseId;
+                    OrderDetail odt = new OrderDetail();
+                    odt.CourseId = item.CourseId;
+                    odt.OrderId = od.OrderId;
+                    odt.Quantity = 1;
+                    _context.OrderDetails.Add(odt);
                     if (!CourseOwner(ac))
                     {
-                      _context.AccountCourses.Add(ac);
+                        _context.AccountCourses.Add(ac);
                     }
                 }
                 _context.SaveChanges();
             }
             HttpContext.Session.SetString("User", JsonConvert.SerializeObject(user));
-            HttpContext.Session.Remove("cart");
+            cart.Clear();
+            HttpContext.Session.SetString("cart", JsonSerializer.Serialize(cart));
             return Redirect("/Cart/ThankYou");
         }
         public async Task<IActionResult> ThankYou()

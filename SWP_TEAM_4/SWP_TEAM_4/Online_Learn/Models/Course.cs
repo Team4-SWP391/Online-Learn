@@ -37,10 +37,23 @@ namespace Online_Learn.Models
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ICollection<Technology> Technologies { get; set; }
         public virtual ICollection<WhistList> WhistLists { get; set; }
-
         public double getPriceByDiscount()
         {
-            return Price;
+            if (IsSale == null)
+            {
+                IsSale = 0;
+            }
+            double sale = Convert.ToDouble(IsSale);
+            if (sale == 0)
+            {
+                return Price;
+            }
+            else
+            {
+                double percent = sale / 100;
+                double money = Price * percent;
+                return Price * (1 - percent);
+            }
         }
     }
 }

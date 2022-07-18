@@ -1,4 +1,4 @@
-﻿const update = document.querySelector('#lecture-update');
+const update = document.querySelector('#lecture-update');
 const del = document.querySelector('#lecture-delete');
 
 const value_id = del.getAttribute('data-id');
