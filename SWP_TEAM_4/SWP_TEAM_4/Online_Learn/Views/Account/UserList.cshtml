@@ -12,11 +12,11 @@
         </div>
         <div class="sidebar-category">
             <ul class="sidebar-list">
-                <li class="sidebar-item"><a href="#cate" class="sidebar-item__link"><i class="fad fa-book-alt"></i>Staff
+                <li class="sidebar-item"><a href="/Account/Role/2" class="sidebar-item__link"><i class="fad fa-book-alt"></i>Staff
                 </li></a>
-                <li class="sidebar-item"><a href="#cate" class="sidebar-item__link"><i
+                <li class="sidebar-item"><a href="/Account/Role/3" class="sidebar-item__link"><i
                             class="fad fa-book-alt"></i>Marketting / Sale</li></a>
-                <li class="sidebar-item"><a href="#cate" class="sidebar-item__link"><i
+                <li class="sidebar-item"><a href="/Account/Role/1" class="sidebar-item__link"><i
                             class="fad fa-book-alt"></i>Student</li></a>
             </ul>
         </div>
@@ -56,7 +56,7 @@
         <div class="user-main__search">
             <form>
                 <button class="user-main__btn"><i class="fas fa-search"></i></button>
-                <input type="text" class="user-main__input" placeholder="Start typing to search for user..." value="@ViewBag.name_search">
+                <input type="text" class="user-main__input" name="name_search" placeholder="Start typing to search for user..." value="@ViewBag.name_search">
             </form>
         </div>
         <div class="user-main__list">
@@ -76,7 +76,18 @@
                             <h4>@item.FulllName</h4>
                         </div>
                         <div class="user-main__role">
-                            <p>Staff</p>
+                             @switch (@item.RoleId)
+                                {
+                                    case 1:
+                                        <p>Student</p>
+                                        break;
+                                    case 2:
+                                       <p>Staff</p>
+                                        break;
+                                    case 3:
+                                         <p>Marketing/Sale</p>
+                                        break;
+                                }
                         </div>
                         <div class="user-main__email">
                             <p>@item.Email</p>
@@ -135,4 +146,3 @@
 
     
       <script src="~/js/user-list.js"></script>
-

@@ -133,9 +133,11 @@ namespace Online_Learn.Controllers {
                 return NotFound();
             }
             ViewData["BlogId"] = blog.BlogId;
-            ViewData["AccountName"] = blog.Account.Username;
+            ViewData["AccountName"] = blog.Account.FulllName;
             ViewData["AccountImg"] = blog.Account.Image;
             ViewData["user"] = blog.Account.FulllName;
+            ViewData["AccountDes"] = blog.Account.Desc;
+            
 
             return View(blog);
 
