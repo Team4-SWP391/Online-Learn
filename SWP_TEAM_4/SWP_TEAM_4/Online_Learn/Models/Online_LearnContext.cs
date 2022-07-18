@@ -126,7 +126,7 @@ namespace Online_Learn.Models
 
             modelBuilder.Entity<AccountLesson>(entity =>
             {
-                entity.HasKey(e => new { e.AccountId, e.LessonId });
+                entity.HasKey(e => new { e.AccountId, e.LessonId, e.CourseId });
 
                 entity.ToTable("Account_Lesson");
 
@@ -134,11 +134,19 @@ namespace Online_Learn.Models
 
                 entity.Property(e => e.LessonId).HasColumnName("lesson_id");
 
+                entity.Property(e => e.CourseId).HasColumnName("course_id");
+
                 entity.HasOne(d => d.Account)
                     .WithMany(p => p.AccountLessons)
                     .HasForeignKey(d => d.AccountId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Account_Lesson_Account");
+
+                entity.HasOne(d => d.Course)
+                    .WithMany(p => p.AccountLessons)
+                    .HasForeignKey(d => d.CourseId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Account_Lesson_Course");
 
                 entity.HasOne(d => d.Lesson)
                     .WithMany(p => p.AccountLessons)

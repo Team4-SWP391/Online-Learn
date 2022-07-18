@@ -505,9 +505,10 @@ namespace Online_Learn.Controllers {
         }
 
 
-        // GET: Course/VideoPage/5/https:///youtu.be/oS-m5-XikwA
-        public IActionResult Learn(int id, string video)
+        // GET: Course/VideoPage/5
+        public IActionResult Learn(int id)
         {
+            Account user = JsonConvert.DeserializeObject<Account>(HttpContext.Session.GetString("User"));
             dynamic model = new System.Dynamic.ExpandoObject();
             var listLecture = _context.Lectures.Where(l => l.CourseId == id).ToList();
             var listLectureId = listLecture.Select(l => l.LectureId).ToList();
@@ -516,7 +517,22 @@ namespace Online_Learn.Controllers {
             ViewBag.course = course;
             model.listLecture = listLecture;
             model.listLesson = listLesson;
+            ViewBag.listLessonsOfAccount = _context.AccountLessons.Where(al => al.AccountId == user.AccountId && al.CourseId == id)
+                .Select(al => al.LessonId).ToList();
+            ViewBag.listExam = _context.Exams.Where(e => listLectureId.Contains(e.LectureId)).ToList();
             return View("VideoPage", model);
+        }
+
+        public IActionResult Progress(int lessonId, int accountId, int courseId)
+        {
+            AccountLesson accountLesson = _context.AccountLessons.FirstOrDefault(x => x.AccountId == accountId && x.LessonId == lessonId && x.CourseId == courseId);
+            if (accountLesson == null)
+            {
+                _context.AccountLessons.Add(new AccountLesson() { AccountId = accountId, LessonId = lessonId, CourseId = courseId });
+                _context.SaveChanges();
+                return Json(new { status = "Insert Success" });
+            }
+            return Json(new { status = "Lesson id is exist" });
         }
 
 

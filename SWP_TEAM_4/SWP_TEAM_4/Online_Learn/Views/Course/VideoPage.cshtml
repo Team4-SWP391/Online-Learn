@@ -1,7 +1,15 @@
-﻿@{
+﻿@using Newtonsoft.Json;
+@using Microsoft.AspNetCore.Http
+@{
     Layout = "~/Views/Shared/LayoutEmpty.cshtml";
     Course course = @ViewBag.course;
+    Account user = null;
+    if (Context.Session.GetString("User") != null)
+    {
+        user = JsonConvert.DeserializeObject<Account>(Context.Session.GetString("User"));
+    }
 }
+
 @model dynamic
 
 <!DOCTYPE html>
@@ -35,7 +43,9 @@
             </div>
             <div class="header_right">
                 <div class="header_right-progress d-flex align-items-center">
-                    <span class="fw-bold" style="margin-right:2px ;">1/@Model.listLesson.Count</span> <span>Lesson</span>
+                    <span class="fw-bold" id="progress" style="margin-right:2px ;">
+                        @ViewBag.listLessonsOfAccount.Count/@Model.listLesson.Count
+                    </span> <span>Lesson</span>
                 </div>
                 <div class="header_right-share d-flex align-items-center">
                     <div class="share">Share</div>
@@ -219,7 +229,7 @@
                             <span class="text-center fw-bold">Content Course</span>
                         </div>
                     </div>
-                    <div style="background-color: #f7f9fa; border-left: 1px solid #d1d7dc; ">
+                    <div style="background-color: #f7f9fa; border-left: 1px solid #d1d7dc; padding-bottom: 100px">
                         @foreach (var lecture in @Model.listLecture)
                         {
                             <div class="course_section">
@@ -228,13 +238,13 @@
                                     <i class="fas fa-angle-up"></i>
                                 </div>
                                 <ul class="course_section-list" id="course_section-list" style="padding-left: 0;">
-                                    @foreach (var lesson in @Model.listLesson)
+                                    @foreach (Lesson lesson in @Model.listLesson)
                                     {
-                                        @if (lesson.LectureId == lecture.LectureId)
+                                        if (lesson.LectureId == lecture.LectureId)
                                         {
-                                            <li class=" isActive"
-                                    style="color: @(Model.listLesson.IndexOf(lesson) == 0 ? "var(--main-color)" : "")"
-                                    onclick="changeVideo(this,'@lesson.Video')">
+                                            <li style="color: @(ViewBag.listLessonsOfAccount.Contains(lesson.LessonId) ? "var(--main-color)" : "")"
+                                    class="isActive"
+                                    onclick="changeVideo(this,'@lesson.Video',@course.CourseId, @lesson.LessonId, @user.AccountId)">
                                                 <i class="fas fa-check"></i>
                                                 <p>@lesson.LessonName</p>
                                             </li>
@@ -243,6 +253,21 @@
                                 </ul>
                             </div>
                         }
+                        <div class="course_section">
+                            <div class="course_section-title" id="course_section-title">
+                                <h4>Exam</h4>
+                                <i class="fas fa-angle-up"></i>
+                            </div>
+                            <ul class="course_section-list" id="course_section-list" style="padding-left: 0;">
+                                @foreach (Exam exam in @ViewBag.listExam)
+                                {
+                                    <li class="isActive">
+                                        <i class="fal fa-pencil-alt"></i>
+                                        <p>Exam</p>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -251,6 +276,9 @@
         </div>
     </div>
 </body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migstars starActive-1.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script src="~/js/videoPage.js"></script>
 
 </html>

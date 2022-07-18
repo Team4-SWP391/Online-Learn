@@ -8,6 +8,7 @@ namespace Online_Learn.Models {
         public Course()
         {
             AccountCourses = new HashSet<AccountCourse>();
+            AccountLessons = new HashSet<AccountLesson>();
             Feedbacks = new HashSet<Feedback>();
             OrderDetails = new HashSet<OrderDetail>();
             Technologies = new HashSet<Technology>();
@@ -31,6 +32,7 @@ namespace Online_Learn.Models {
         public virtual Department Department { get; set; }
         public virtual Level Level { get; set; }
         public virtual ICollection<AccountCourse> AccountCourses { get; set; }
+        public virtual ICollection<AccountLesson> AccountLessons { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ICollection<Technology> Technologies { get; set; }
