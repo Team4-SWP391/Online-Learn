@@ -3,6 +3,7 @@
 }
 
 
+
 <link rel="stylesheet" href="~/css/home.css">
 <link rel="stylesheet" href="~/css/search.css">
 
@@ -50,8 +51,10 @@
                 <div class="topic-content">
                     @foreach (Department depart in @ViewBag.listTopic)
                     {
-                        <div class="form-check">
-                            <input type="checkbox" id="topic@(ViewBag.listTopic.IndexOf(depart))" value="">
+                        <div class="form-check"
+                         onclick='AdvanceSearch("@ViewData["txtSearch"]",@depart.DepartmentId, "Department")'>
+                            <input name="topic" class="department" type="checkbox" id="topic@(ViewBag.listTopic.IndexOf(depart))"
+                               value="@depart.DepartmentId">
                             <label class="topic-item" for="topic@(ViewBag.listTopic.IndexOf(depart))">
                                 @depart.DepartmentName
                             </label>
@@ -73,16 +76,15 @@
                         </div>
                     </div>
                 </div>
-
                 <br>
                 <div class="topic-content">
-
                     @foreach (Level level in @ViewBag.listLevel)
                     {
-                        <div class="form-check">
-                            <input type="checkbox" id="level@(ViewBag.listLevel.IndexOf(level))" value="">
+                        <div class="form-check" onclick='AdvanceSearch("@ViewData["txtSearch"]",@level.LevelId, "Level" )'>
+                            <input name="level" class="level" type="checkbox"
+                               id="level@(ViewBag.listLevel.IndexOf(level))" value="@level.LevelId">
                             <label class="topic-item" for="level@(ViewBag.listLevel.IndexOf(level))">
-                                @level.Level1
+                                @level.Level1.ToUpper()
                             </label>
                         </div>
                     }
@@ -103,13 +105,12 @@
                 </div>
                 <br>
                 <div class="topic-content">
-
-                    @foreach (Level level in @ViewBag.listLevel)
+                    @for (int i = 0; i < 4; i++)
                     {
-                        <div class="form-check">
-                            <input type="checkbox" id="level@(ViewBag.listLevel.IndexOf(level))" value="">
-                            <label class="topic-item" for="level@(ViewBag.listLevel.IndexOf(level))">
-                                @level.Level1
+                        <div class="form-check" onclick='AdvanceSearch("@ViewData["txtSearch"]",@(50*i), "Price" )'>
+                            <input name="price" type="checkbox" class="price" id="price@(i)" value="@(50*i)">
+                            <label class="topic-item" for="price@(i)">
+                                > $@(50*i)
                             </label>
                         </div>
                     }
@@ -133,8 +134,8 @@
                 <div class="topic-content">
                     @for (int i = 1; i <= 5; i++)
                     {
-                        <div class="form-check">
-                            <input type="checkbox" id="rate@(i)" value="">
+                        <div class="form-check" onclick='AdvanceSearch("@ViewData["txtSearch"]",(@i), "Rate" )'>
+                            <input name="rate" class="rate" type="checkbox" id="rate@(i)" value="@i">
                             <label class="topic-item" for="rate@(i)">
                                 @for (int j = 0; j < i; j++)
                                 {
@@ -155,59 +156,71 @@
         </div>
 
         <div class="col-lg-9">
-
-            @foreach (Course course in Model)
-            {
-                <div class="row course-item">
-                    <div class="col-md-3">
-                        <div>
-                            <img src="@course.Image"
-                             alt="" width="262px" ; height="148.25px">
+            <div class="course-list">
+                @if (@Model.Count == 0)
+                {
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h1>No result found</h1>
                         </div>
                     </div>
-                    <div class="col-md-8 " style="padding-left: 45px;">
-                        <b>@course.CourseName</b>
-                        <p style="margin-bottom: 3px;">
-                            @course.Description
-                        </p>
-                        <div class="clb" style="font-size:13px;">
-                            @course.Account.Username
-                            <br>
-                            <div class="rate">
-                                <span>@course.Rate</span>
-                                @for (int i = 0; i < course.Rate; i++)
+                }
+                else
+                {
+                    @foreach (Course course in Model)
+                    {
+                        <div class="row course-item">
+                            <div class="col-md-3">
+                                <div>
+                                    <img src="@course.Image"
+                                 alt="" width="262px" ; height="148.25px">
+                                </div>
+                            </div>
+                            <div class="col-md-8 " style="padding-left: 45px;">
+                                <b>@course.CourseName</b>
+                                <p style="margin-bottom: 3px;">
+                                    @course.Description
+                                </p>
+                                <div class="clb" style="font-size:13px;">
+                                    @course.Account.Username
+                                    <br>
+                                    <div class="rate">
+                                        <span>@course.Rate</span>
+                                        @for (int i = 0; i < course.Rate; i++)
+                                        {
+                                            <i class="fas fa-star stars starActive"></i>
+                                        }
+                                        @for (int i = 0; i < 5 - course.Rate; i++)
+                                        {
+                                            <i class="fal fa-star star "></i>
+                                        }
+                                    </div>
+                                    <br>
+                                    <span>30 total hours • 265 lectures • @course.Level.Level1.ToUpper()</span>
+                                </div>
+                                <span class="best-seller"><strong>Bestseller</strong></span>
+                            </div>
+                            <div class="col-md-1 cost">
+                                @if (course.IsSale != null)
                                 {
-                                    <i class="fas fa-star stars starActive"></i>
+                                    <b style="font-weight: 800;">
+                                        $@(Convert.ToDouble((course.Price - course.Price*course.IsSale/100)).ToString("0.00"))
+                                    </b>
+                                    <p><del style="color: #6a6f73;">$@course.Price</del></p>
                                 }
-                                @for (int i = 0; i < 5 - course.Rate; i++)
+                                else
                                 {
-                                    <i class="fal fa-star star "></i>
+                                    <b style="font-weight: 800;">
+                                        $@course.Price
+                                    </b>
                                 }
                             </div>
-                            <br>
-                            <span>30 total hours • 265 lectures • Beginner</span>
-                        </div>
-                        <span class="best-seller"><strong>Bestseller</strong></span>
-                    </div>
-                    <div class="col-md-1 cost">
-                        @if (course.IsSale != null)
-                        {
-                            <b style="font-weight: 800;">
-                                $@(Convert.ToDouble((course.Price - course.Price*course.IsSale/100)).ToString("0.00"))
-                            </b>
-                            <p><del style="color: #6a6f73;">$@course.Price</del></p>
-                        }
-                        else
-                        {
-                            <b style="font-weight: 800;">
-                                $@course.Price
-                            </b>
-                        }
-                    </div>
 
-                </div>
-                <hr style="opacity: 0.1">
-            }
+                        </div>
+                        <hr style="opacity: 0.1">
+                    }
+                }
+            </div>
             <div class="row"
                  style=" border: 1px solid gainsboro; margin-left: 0px; margin-right: 0px;height: 100px;padding-top: 16px; ">
                 <div class="col-md-5">
@@ -237,8 +250,29 @@
         </div>
     </div>
 </div>
-
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migstars starActive-1.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
 <script src="https://unpkg.com/tippy.js@6"></script>
 
 <script src="~/js/search.js"></script>
+
+<script>
+    $(".price").change(function() {
+        $(".price").prop('checked', false);
+        $(this).prop('checked', true);
+    });
+    $(".department").change(function() {
+        $(".department").prop('checked', false);
+        $(this).prop('checked', true);
+    });
+    $(".rate").change(function() {
+        $(".rate").prop('checked', false);
+        $(this).prop('checked', true);
+    });
+    $(".level").change(function() {
+        $(".level").prop('checked', false);
+        $(this).prop('checked', true);
+    });
+</script>

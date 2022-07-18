@@ -35,13 +35,24 @@ options.forEach(option => {
         }
     });
 });
-const changeVideo = (e, url) => {
+const changeVideo = (e, url, courseId, lessonId, accountId) => {
+    const progress = document.querySelector('#progress').textContent.trim();
+    var current = progress.split('/')[0];
+    const total = progress.split('/')[1];
+    current = current < total ? parseInt(current) + 1 : current;
+    document.querySelector('#progress').textContent = `${current}/${total}`;
     e.style.color = 'var(--main-color)'
     const iframe = document.querySelector('iframe');
     iframe.src = `https://www.youtube.com/embed/${url}`;
-    setTimeout(() => {
-        iframe.onplay;
-    }, 2000)
+    $.ajax({
+        url: '/Course/Progress',
+        type: 'POST',
+        data: { accountId: accountId, lessonId: lessonId, courseId: courseId },
+        dataType: 'json',
+        success: function (res) {
+            console.log(res.status)
+        },
+    });
 }
 
 

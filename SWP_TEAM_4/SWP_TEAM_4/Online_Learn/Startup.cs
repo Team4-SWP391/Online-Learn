@@ -50,6 +50,7 @@ namespace Online_Learn {
             //    googleOptions.CallbackPath = "/Login_Google";
 
             //});
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
