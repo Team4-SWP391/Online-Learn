@@ -32,6 +32,9 @@ body {
   text-transform: uppercase;
   cursor: pointer;
 }
+.sidebar-item__link.active {
+    color: #a435f0;
+}
 
 .sidebar-item__link {
   color: #fff;
