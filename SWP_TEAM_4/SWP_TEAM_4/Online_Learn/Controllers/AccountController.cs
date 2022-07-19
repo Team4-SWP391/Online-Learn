@@ -270,7 +270,7 @@ namespace Online_Learn.Controllers {
                 return RedirectToAction(nameof(UserList));
             }
 
-           
+           ViewBag.role_id = account.RoleId;
             return View(account);
         }
 
