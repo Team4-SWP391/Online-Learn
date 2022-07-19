@@ -14,7 +14,7 @@
                 <form asp-action="Edit">
                     <div class="row">
                          <input type="hidden" asp-for="AccountId" />
-                        <div class="col-md-6" style="margin-bottom: 30px;">
+                        @*<div class="col-md-6" style="margin-bottom: 30px;">
                             <label for="exampleFormControlTextarea1" class="form-label">
                                 <h4 class="headtext">User name</h4>
                             </label>
@@ -27,7 +27,7 @@
                             </label>
                             <input asp-for="Password" class="form-control form-control-lg inputt" type="text" placeholder="@@123456..."
                                 aria-label=".form-control-lg example" />
-                        </div>
+                        </div>*@
                     </div>
                     <div style="margin-bottom: 30px;">
                         <label for="exampleFormControlTextarea1" class="form-label">
@@ -39,7 +39,7 @@
                     </div>
 
 
-                    <div style="margin-bottom: 10px;">
+                   @* <div style="margin-bottom: 10px;">
                         <label for="exampleFormControlTextarea1" class="form-label">
                             <h4 class="headtext">Gender</h4>
                         </label>
@@ -47,10 +47,10 @@
 
                         <input class="in_ra" type="radio" value="1" name=""/>
                         <label for="html" class="la_ra">Male</label>
-                        <input class="in_ra" type="radio" value="1" name=""/>
+                        <input class="in_ra" type="radio" value="0" name=""/>
                         <label for="html" class="la_ra">Female</label>
 
-                    </div>
+                    </div>*@
 
                     <div style="margin-bottom: 30px;">
                         <label for="exampleFormControlTextarea1" class="form-label">
@@ -81,11 +81,12 @@
                             <h4 class="headtext">Email</h4>
                         </label>
                         <input asp-for="Email" class="form-control form-control-lg inputt" type="text" placeholder="email@gmail.com"
-                            aria-label=".form-control-lg example" value="">
+                            aria-label=".form-control-lg example">
                         <span style="color: rgb(159, 156, 156);">Your email for marketplace notification.</span>
                     </div>
+                    <input  asp-for="RoleId" hidden/>
 
-                    <div style="margin-bottom: 30px;">
+                    @*<div style="margin-bottom: 30px;">
                         <label for="exampleFormControlTextarea1" class="form-label">
                             <h4 class="headtext">Role</h4>
                         </label>
@@ -97,7 +98,7 @@
                         <label for="html" class="la_ra">Marketing/Sale</label>
                         <input class="in_ra" type="radio" value="1" name="Staff">
                         <label for="html" class="la_ra">Student</label>
-                    </div>
+                    </div>*@
 
                     
                     <div style="margin-bottom: 30px;">
@@ -181,6 +182,7 @@
             </div>
         </div>
     </div>
+    <br /><br />
 
 
 

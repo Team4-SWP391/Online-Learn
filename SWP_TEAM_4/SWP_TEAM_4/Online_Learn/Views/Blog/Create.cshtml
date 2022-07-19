@@ -10,7 +10,7 @@
 }
 
 
-<link rel="stylesheet" href="~/css/blogAdd.css">
+<link rel="stylesheet" href="~/css/blog_add.css">
 <link rel="stylesheet" href="~/css/richtext.min.css">
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -19,7 +19,7 @@
 
 <div class="course">
         <div class="course-header">
-            <a class="course-header__back"asp-action="Index"><i class="fas fa-angle-left"></i>Back to your blog</a>
+            <a class="course-header__back"asp-action="MyBlog"><i class="fas fa-angle-left"></i>Back to your blog</a>
             <span class="course-header__key">Keyword research for bloggers</span>
             <span class="course-header__bold">Draft</span>
             <span class="course-header__tt">Omin of video contenet upload</span>
@@ -39,6 +39,7 @@
                             <div class="course-create__formgr">
                                 <label asp-for="Title" class="course-create__lable">Blog Title</label><br>
                                 <input asp-for="Title" type="text" class="course-create__input">
+                                <span asp-validation-for="Title" class="text-danger"></span>
                             </div>
                            
                             <div class="course-create__formgr">
@@ -47,15 +48,15 @@
                                 </Select>
                             </div>
                             <div class="course-create__formgr">
-                                <textarea asp-for="Content" class="content" cols="163" rows="8"></textarea>
-                            </div>
+                                <textarea asp-for="Content" class="content" cols="163" rows="8"></textarea>       
+                                </div>
 
                           
                             <div class="form-group">
                                  <input hidden asp-for="AccountId" class ="form-control" value="@user.AccountId" name="AccountId" />
                             </div>
                             <div class="course-create__formgr">
-                                <button class="course-create__submit" value="Create">Save</button>
+                                <button class="course-create__submit">Save</button>
                             </div>
 
                             <script>

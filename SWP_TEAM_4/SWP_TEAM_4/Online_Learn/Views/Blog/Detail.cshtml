@@ -12,37 +12,44 @@
 <link rel="stylesheet" href="~/css/bloggg.css">
 <link rel="stylesheet" href="~/css/lecture-detail.css">
 <style>
- ul.dropdown-menu > li > a.dropdown-item:active {
-   background: #a435f0 !important;
- }
-  </style>
+    ul.dropdown-menu > li > a.dropdown-item:active {
+        background: #a435f0 !important;
+    }
+</style>
+
+
+
+
 <div class="container mt-5">
-        <div class="row">
-            <!-- content blog -->
-            <div class="col-md-8">
-                <div class="bodiii">
-                    <div class="cachle" style="color: rgb(131, 131, 131);">
-                        <br>
-                        <a href="" style="color: #1E73BE;">Blog</a>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-                        </svg>
-                        Blog Detail
+    <div class="row">
+        <!-- content blog -->
+        <div class="col-md-8">
+            <div class="bodiii">
+                <div class="cachle" style="color: rgb(131, 131, 131);">
+                    <br>
+                    <a href="/Blog" style="color: #a435f0;">Blog</a>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                    </svg>
+                    Blog Detail
+                </div>
+                <div class="cachle">
+                    <h1 style="font-weight: 700;">@Html.DisplayFor(model => model.Title)</h1>
+                </div><br>
+                <div class="row cachle">
+                    <div class="col-md-11">
+                        <span class="col-md-6">
+                            <img class="imgggg" src="@ViewData["AccountImg"]" alt="">
+                        </span>
+                        <span class="user_author">
+                            by <a style="color: #a435f0; font-weight: 600;">@ViewData["AccountName"]</a> • Published on @Model.UpdateAt.ToString("MMMM dd, yyyy")
+                        </span>
                     </div>
-                    <div class="cachle">
-                        <h1 style="font-weight: 700;">@Html.DisplayFor(model => model.Title)</h1>
-                    </div><br>
-                    <div class="row cachle">
-                        <div class="col-md-11">
-                            <span class="col-md-6">
-                                <img class="imgggg" src="https://kenh14cdn.com/2018/3/4/2846802318924576207879858810573997153717090n-1520142824274618702811.jpg" alt="">
-                            </span>
-                            <span class="user_author">
-                                by <a style="color: #1E73BE; font-weight: 600;">@ViewData["AccountName"]</a> • Published on @Model.UpdateAt.ToString("MMMM dd, yyyy")
-                            </span>
-                        </div>
+                     
                         <div class="col-md-1">
-                           <div class="dropdown">                       
+                            @if (idAccount == Model.AccountId)
+                        {
+                            <div class="dropdown">
                                 <button class="" style="border: 0px;
                                     background-color:white;" type="button" data-bs-toggle="dropdown" id="dropdownMenuButton1" aria-expanded="false">
                                     <i class="fal fa-ellipsis-h" style="font-size: 30px"></i>
@@ -58,112 +65,115 @@
                                             <i class="fas fa-trash"></i> Delete this post
                                         </a>
                                     </li>
-                                 
-                                    
                                 </ul>
-                                  </div>
-                           
-                        </div><br><br><br>
-                        <div class="imagee">
-                            <img src="https://1.bp.blogspot.com/-24ujRwuFre8/YOyNg1PV8BI/AAAAAAAAAJc/8rKzOd-JFiQ0ToQoztC0Gxy47O8L5-kgQCLcBGAsYHQ/s16000/p9.jpg" width="800px" height="533px">
+                            </div>
+                        }
+                    </div><br><br><br>
+                    <div class="imagee">
+                        <img src="https://1.bp.blogspot.com/-24ujRwuFre8/YOyNg1PV8BI/AAAAAAAAAJc/8rKzOd-JFiQ0ToQoztC0Gxy47O8L5-kgQCLcBGAsYHQ/s16000/p9.jpg" width="800px" height="533px">
+                    </div>
+                    <div class="text my-5">
+                        <div style="margin-left: 20px; margin-right: 40px;">
+                       <p>@Html.Raw(Model.Content)</p>
+                       </div>
+                        <br><br>
+                        <span style="font-weight: 700;">Tags: </span><a href="">Editor's Picks</a>. <a href="">Mobile Search</a>. <a href="">SEO News</a><br><br>
+                        <span>
+                            <button type="button" class="btn face" style="background-color: #3b5999;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                                </svg>
+                                | Facebook
+                            </button>
+                        </span>
+                        <span>
+                            <button type="button" class="btn face" style="background-color: #00acee;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+                                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                                </svg>
+                                | Twitter
+                            </button>
+                        </span>
+                        <span>
+                            <button type="button" class="btn face" style="background-color: #3fbb50;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                                    <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
+                                </svg>
+                            </button>
+                        </span>
+                        <span>
+                            <button type="button" class="btn face" style="background-color: #ca2127;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pinterest" viewBox="0 0 16 16">
+                                    <path d="M8 0a8 8 0 0 0-2.915 15.452c-.07-.633-.134-1.606.027-2.297.146-.625.938-3.977.938-3.977s-.239-.479-.239-1.187c0-1.113.645-1.943 1.448-1.943.682 0 1.012.512 1.012 1.127 0 .686-.437 1.712-.663 2.663-.188.796.4 1.446 1.185 1.446 1.422 0 2.515-1.5 2.515-3.664 0-1.915-1.377-3.254-3.342-3.254-2.276 0-3.612 1.707-3.612 3.471 0 .688.265 1.425.595 1.826a.24.24 0 0 1 .056.23c-.061.252-.196.796-.222.907-.035.146-.116.177-.268.107-1-.465-1.624-1.926-1.624-3.1 0-2.523 1.834-4.84 5.286-4.84 2.775 0 4.932 1.977 4.932 4.62 0 2.757-1.739 4.976-4.151 4.976-.811 0-1.573-.421-1.834-.919l-.498 1.902c-.181.695-.669 1.566-.995 2.097A8 8 0 1 0 8 0z" />
+                                </svg>
+                            </button>
+                        </span>
+                        <span>
+                            <button type="button" class="btn face" style="background-color: #888;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                                    <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+                                </svg>
+                            </button>
+                        </span>
+                        <br><br>
+                    </div>
+                </div>
+            </div><br><br>
+            <div class="bodiii">
+                <div class="cachle">
+                    <br>
+                    <div class="row">
+                        <div class="col-md-1" style="margin-left: 20px;">
+                            <img class="imgg2" src="@ViewData["AccountImg"]" alt="">
                         </div>
-                        <div class="text my-5">
-                          @Html.Raw(Model.Content)
-                          <br><br>
-                            <span style="font-weight: 700;">Tags: </span><a href="">Editor's Picks</a>. <a href="">Mobile Search</a>. <a href="">SEO News</a><br><br>
+                        <div class="col-md-10">
+                            <div class="user" style="font-size: 20px; font-weight: 700; margin-left: 1px;">
+                                <a href="" style="color: black;">@ViewData["AccountName"]</a>
+            
+                            </div>
+                            <div style="font-size: 18px;">@ViewData["AccountDes"]
+                                
+                            </div><br>
                             <span>
-                                <button type="button" class="btn face" style="background-color: #3b5999;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
-                                        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
-                                    </svg>
-                                    | Facebook
-                                </button>
+                                <svg xmlns="http://www.w3.org/2000/svg" style="color: #3b5999;" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                                </svg>
                             </span>
-                            <span>
-                                <button type="button" class="btn face" style="background-color: #00acee;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
-                                        <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
-                                    </svg>
-                                    | Twitter
-                                </button>
+                            <span style="margin-left: 10px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" style="color: #00acee;" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+                                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                                </svg>
                             </span>
-                            <span>
-                                <button type="button" class="btn face" style="background-color: #3fbb50;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
-                                        <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
-                                    </svg>
-                                </button>
+                            <span style="margin-left: 10px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" style="color: #3fbb50;" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                                    <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z" />
+                                </svg>
                             </span>
-                            <span>
-                                <button type="button" class="btn face" style="background-color: #ca2127;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pinterest" viewBox="0 0 16 16">
-                                        <path d="M8 0a8 8 0 0 0-2.915 15.452c-.07-.633-.134-1.606.027-2.297.146-.625.938-3.977.938-3.977s-.239-.479-.239-1.187c0-1.113.645-1.943 1.448-1.943.682 0 1.012.512 1.012 1.127 0 .686-.437 1.712-.663 2.663-.188.796.4 1.446 1.185 1.446 1.422 0 2.515-1.5 2.515-3.664 0-1.915-1.377-3.254-3.342-3.254-2.276 0-3.612 1.707-3.612 3.471 0 .688.265 1.425.595 1.826a.24.24 0 0 1 .056.23c-.061.252-.196.796-.222.907-.035.146-.116.177-.268.107-1-.465-1.624-1.926-1.624-3.1 0-2.523 1.834-4.84 5.286-4.84 2.775 0 4.932 1.977 4.932 4.62 0 2.757-1.739 4.976-4.151 4.976-.811 0-1.573-.421-1.834-.919l-.498 1.902c-.181.695-.669 1.566-.995 2.097A8 8 0 1 0 8 0z"/>
-                                    </svg>
-                                </button>
+                            <span style="margin-left: 10px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" style="color: #ca2127;" width="16" height="16" fill="currentColor" class="bi bi-pinterest" viewBox="0 0 16 16">
+                                    <path d="M8 0a8 8 0 0 0-2.915 15.452c-.07-.633-.134-1.606.027-2.297.146-.625.938-3.977.938-3.977s-.239-.479-.239-1.187c0-1.113.645-1.943 1.448-1.943.682 0 1.012.512 1.012 1.127 0 .686-.437 1.712-.663 2.663-.188.796.4 1.446 1.185 1.446 1.422 0 2.515-1.5 2.515-3.664 0-1.915-1.377-3.254-3.342-3.254-2.276 0-3.612 1.707-3.612 3.471 0 .688.265 1.425.595 1.826a.24.24 0 0 1 .056.23c-.061.252-.196.796-.222.907-.035.146-.116.177-.268.107-1-.465-1.624-1.926-1.624-3.1 0-2.523 1.834-4.84 5.286-4.84 2.775 0 4.932 1.977 4.932 4.62 0 2.757-1.739 4.976-4.151 4.976-.811 0-1.573-.421-1.834-.919l-.498 1.902c-.181.695-.669 1.566-.995 2.097A8 8 0 1 0 8 0z" />
+                                </svg>
                             </span>
-                            <span>
-                                <button type="button" class="btn face" style="background-color: #888;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-                                        <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"/>
-                                    </svg>
-                                </button>
+                            <span style="margin-left: 10px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" style="color: #ca2127;" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+                                    <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z" />
+                                </svg>
                             </span>
                             <br><br>
                         </div>
                     </div>
-                </div><br><br>
-                <div class="bodiii">
-                    <div class="cachle">
-                        <br>
-                        <div class="row">
-                            <div class="col-md-1" style="margin-left: 20px;">
-                                <img class="imgg2" src="https://kenh14cdn.com/2018/3/4/2846802318924576207879858810573997153717090n-1520142824274618702811.jpg" alt="">
-                            </div>
-                            <div class="col-md-10">
-                                <div class="user" style="font-size: 20px; font-weight: 700; margin-left: 1px;">
-                                    <a href="" style="color: black;"> John Doe</a>
-                                </div>
-                                <div style="font-size: 18px;">
-                                    Pro Blogger Templates is a site where you find unique and professional blogger templates, Improve your blog now for free.
-                                </div><br>
-                                <span>
-                                    <svg xmlns="http://www.w3.org/2000/svg" style="color: #3b5999;" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
-                                        <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
-                                    </svg>
-                                </span>
-                                <span style="margin-left: 10px;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" style="color: #00acee;" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
-                                        <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
-                                    </svg>
-                                </span>
-                                <span style="margin-left: 10px;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" style="color: #3fbb50;" width="16" height="16" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
-                                        <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
-                                    </svg>
-                                </span>
-                                <span style="margin-left: 10px;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" style="color: #ca2127;" width="16" height="16" fill="currentColor" class="bi bi-pinterest" viewBox="0 0 16 16">
-                                        <path d="M8 0a8 8 0 0 0-2.915 15.452c-.07-.633-.134-1.606.027-2.297.146-.625.938-3.977.938-3.977s-.239-.479-.239-1.187c0-1.113.645-1.943 1.448-1.943.682 0 1.012.512 1.012 1.127 0 .686-.437 1.712-.663 2.663-.188.796.4 1.446 1.185 1.446 1.422 0 2.515-1.5 2.515-3.664 0-1.915-1.377-3.254-3.342-3.254-2.276 0-3.612 1.707-3.612 3.471 0 .688.265 1.425.595 1.826a.24.24 0 0 1 .056.23c-.061.252-.196.796-.222.907-.035.146-.116.177-.268.107-1-.465-1.624-1.926-1.624-3.1 0-2.523 1.834-4.84 5.286-4.84 2.775 0 4.932 1.977 4.932 4.62 0 2.757-1.739 4.976-4.151 4.976-.811 0-1.573-.421-1.834-.919l-.498 1.902c-.181.695-.669 1.566-.995 2.097A8 8 0 1 0 8 0z"/>
-                                    </svg>
-                                </span>
-                                <span style="margin-left: 10px;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" style="color: #ca2127;" width="16" height="16" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
-                                        <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
-                                      </svg>
-                                </span>
-                                <br><br>
-                            </div>
-                        </div>
-                    </div>
-                </div><br><br>
-                <h4>You might like
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
-                    </svg>
-                </h4><br>
-                <div class="row">
+                </div>
+            </div><br><br>
+            <h4>
+                You might like
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z" />
+                </svg>
+            </h4><br>
+            <div class="row">
 
-                    @foreach(var item in ViewBag.listCou){                    
+                @foreach (var item in ViewBag.listCou)
+                {
                     <div class="col-md-4">
                         <div class="booo" style="height: 325px;">
                             <img class="imgg3" src="@item.Image" alt="">
@@ -171,123 +181,127 @@
                             <p style="color: rgb(131, 131, 131); margin-left: 15px;">July 12, 2021</p>
                         </div>
                     </div>
-                    }
-                   
-                </div><br>
-                <h4>All Comments</h4>
-                <i style="font-size: 18px; color: rgb(131, 131, 131);">To be published, comments must be reviewed by the administrator.</i>
-                <br><br>
-                <div class="d-flex flex-row align-items-start">
-                    <img class="rounded-circle"
-                         src="https://1.bp.blogspot.com/-m3UYn4_PEms/Xnch6mOTHJI/AAAAAAAAZkE/GuepXW9p7MA6l81zSCnmNaFFhfQASQhowCLcBGAsYHQ/s1600/Cach-Lam-Avatar-Dang-Hot%2B%25281%2529.jpg"
-                         width="50" style="margin-right: 10px;">
-                    <textarea placeholder="Write a response..."class="form-control ml-1 shadow-none textarea" style="height: 120px;"></textarea>
-                </div><br>
-                <div class="bodiii row" style="margin-right: 0px;">
-                    <div class="col-md-1" style="margin-left: 27px;">
-                        <br>
-                        <img class="anh" src="https://kenh14cdn.com/2018/3/4/2846802318924576207879858810573997153717090n-1520142824274618702811.jpg" alt="">
-                    </div>
-                    <div class="col-md-10">
-                        <br>
-                        <div style="font-size: 17px; font-weight: 700; margin-left: -25px;">
-                            <a href="" style="color: black;"> John Doe</a>
-                            <p style="color: rgb(131, 131, 131); margin-left: -1px; font-size: 12px;">July 12, 2021</p>
-                        </div>
-                    </div>
-                    <p style="margin-left: 27px;">If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-                    <a href="" style="margin-left: 27px; font-size: 17px;">Reply</a><br><br>
-                </div><br>
-                <div class="bodiii row" style="margin-right: 0px;">
-                    <div class="col-md-1" style="margin-left: 27px;">
-                        <br>
-                        <img class="anh" src="https://scr.vn/wp-content/uploads/2020/07/Avatar-m%E1%BA%B7c-%C4%91%E1%BB%8Bnh-n%E1%BB%AF-c%C3%B3-m%C3%A0u.jpg" alt="">
-                    </div>
-                    <div class="col-md-10">
-                        <br>
-                        <div style="font-size: 17px; font-weight: 700; margin-left: -25px;">
-                            <a href="" style="color: black;"> Anonymous</a>
-                            <p style="color: rgb(131, 131, 131); margin-left: -1px; font-size: 12px;">July 12, 2021</p>
-                        </div>
-                    </div>
-                    <p style="margin-left: 27px;">If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-                    <a href="" style="margin-left: 27px; font-size: 17px;">Reply</a><br><br>
-                </div><br>
-                
-            </div>
+                }
 
-            <!-- contact -->
-            <div class="col-md-4">
-                <div class="madi" id="test">
-                    <div class="bodiii">
-                        <div class="cah">
-                            <br>
-                            <h4>Follow Us</h4>
+            </div><br>
+            <h4>All Comments</h4>
+            <i style="font-size: 18px; color: rgb(131, 131, 131);">To be published, comments must be reviewed by the administrator.</i>
+            <br><br>
+            <div class="d-flex flex-row align-items-start">
+                <img class="rounded-circle"
+                     src="https://1.bp.blogspot.com/-m3UYn4_PEms/Xnch6mOTHJI/AAAAAAAAZkE/GuepXW9p7MA6l81zSCnmNaFFhfQASQhowCLcBGAsYHQ/s1600/Cach-Lam-Avatar-Dang-Hot%2B%25281%2529.jpg"
+                     width="50" style="margin-right: 10px;">
+                <textarea placeholder="Write a response..." class="form-control ml-1 shadow-none textarea" style="height: 120px;"></textarea>
+            </div><br>
+            <div class="bodiii row" style="margin-right: 0px;">
+                <div class="col-md-1" style="margin-left: 27px;">
+                    <br>
+                    <img class="anh" src="https://kenh14cdn.com/2018/3/4/2846802318924576207879858810573997153717090n-1520142824274618702811.jpg" alt="">
+                </div>
+                <div class="col-md-10">
+                    <br>
+                    <div style="font-size: 17px; font-weight: 700; margin-left: -25px;">
+                        <a href="" style="color: black;"> John Doe</a>
+                        <p style="color: rgb(131, 131, 131); margin-left: -1px; font-size: 12px;">July 12, 2021</p>
+                    </div>
+                </div>
+                <p style="margin-left: 27px;">If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+                <a href="" style="margin-left: 27px; font-size: 17px;">Reply</a><br><br>
+            </div><br>
+            <div class="bodiii row" style="margin-right: 0px;">
+                <div class="col-md-1" style="margin-left: 27px;">
+                    <br>
+                    <img class="anh" src="https://scr.vn/wp-content/uploads/2020/07/Avatar-m%E1%BA%B7c-%C4%91%E1%BB%8Bnh-n%E1%BB%AF-c%C3%B3-m%C3%A0u.jpg" alt="">
+                </div>
+                <div class="col-md-10">
+                    <br>
+                    <div style="font-size: 17px; font-weight: 700; margin-left: -25px;">
+                        <a href="" style="color: black;"> Anonymous</a>
+                        <p style="color: rgb(131, 131, 131); margin-left: -1px; font-size: 12px;">July 12, 2021</p>
+                    </div>
+                </div>
+                <p style="margin-left: 27px;">If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
+                <a href="" style="margin-left: 27px; font-size: 17px;">Reply</a><br><br>
+            </div><br>
+
+        </div>
+
+        <!-- contact -->
+        <div class="col-md-4">
+            <div class="madi" id="test" style="position:-webkit-sticky; position:sticky; top: 0;">
+                <div class="bodiii">
+                    <div class="cah">
+                        <br>
+                        <h4>Follow Us</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <span>
+                                    <button type="button" class="btn face" style="background-color: #3b5999; width: 100%; margin-top: 6px; text-align: left;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
+                                            <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z" />
+                                        </svg>
+                                        | Facebook
+                                    </button>
+                                </span>
+                                <span>
+                                    <button type="button" class="btn face" style="background-color: #dc2228; width: 100%; margin-top: 6px; text-align: left;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
+                                            <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z" />
+                                        </svg>
+                                        | Youtube
+                                    </button>
+                                </span>
+                            </div>
+                            <div class="col-md-6">
+                                <span>
+                                    <button type="button" class="btn face" style="background-color: #00acee; width: 100%; margin-top: 6px; text-align: left;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
+                                            <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z" />
+                                        </svg>
+                                        | Twitter
+                                    </button>
+                                </span>
+                                <span>
+                                    <button type="button" class="btn face" style="background: linear-gradient(15deg,#ffb13d,#dd277b,#4d5ed4); width: 100%; margin-top: 6px; text-align: left;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
+                                            <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
+                                        </svg>
+                                        | Instagram
+                                    </button>
+                                </span>
+                            </div>
+                        </div><br>
+                    </div>
+                </div><br>
+
+
+                <div class="bodiii">
+                    <div class="cah">
+                        <br>
+                        <h4>Popular Posts</h4><br>
+
+                        @foreach (var relate in ViewBag.relate)
+                        {
                             <div class="row">
-                                <div class="col-md-6">
-                                    <span>
-                                        <button type="button" class="btn face" style="background-color: #3b5999; width: 100%; margin-top: 6px; text-align: left;">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-facebook" viewBox="0 0 16 16">
-                                                <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
-                                            </svg>
-                                            | Facebook
-                                        </button>
-                                    </span>
-                                    <span>
-                                        <button type="button" class="btn face" style="background-color: #dc2228; width: 100%; margin-top: 6px; text-align: left;">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-youtube" viewBox="0 0 16 16">
-                                                <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
-                                              </svg>
-                                            | Youtube
-                                        </button>
-                                    </span>
-                                </div>
-                                <div class="col-md-6">
-                                    <span>
-                                        <button type="button" class="btn face" style="background-color: #00acee; width: 100%; margin-top: 6px; text-align: left;">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-twitter" viewBox="0 0 16 16">
-                                                <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
-                                            </svg>
-                                            | Twitter
-                                        </button>
-                                    </span>
-                                    <span>
-                                        <button type="button" class="btn face" style="background: linear-gradient(15deg,#ffb13d,#dd277b,#4d5ed4); width: 100%; margin-top: 6px; text-align: left;">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-instagram" viewBox="0 0 16 16">
-                                                <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
-                                            </svg>
-                                            | Instagram
-                                        </button>
-                                    </span>
-                                </div>
-                            </div><br>
-                        </div>
-                    </div><br>
-                    
-                    
-                    <div class="bodiii">
-                        <div class="cah">
-                            <br>
-                            <h4>Popular Posts</h4><br>
-
-                            @foreach(var relate in ViewBag.relate){
-                            <div class="row">                               
                                 <div class="col-md-12">
                                     <div style="margin-left: 15px;">
                                         <a href="/Blog/Detail/@relate.BlogId" style="font-weight: 700; font-size: 17px; color: black;">@relate.Title</a>
                                     </div>
                                     <p style="color: rgb(131, 131, 131); margin-left: 15px; font-size: 12px;">@relate.UpdateAt.ToString("MMMM dd, yyyy")</p>
                                 </div>
-                            </div><br>
-                            }
-                           
-                        </div>
-                    </div><br>
-                    <div class="bodiii">
-                        <div class="cah">
+                            </div>
+
                             <br>
-                            <h4>Popular Course</h4><br>
-                             @foreach(var course in  ViewBag.listCourse){
+                        }
+
+                    </div>
+                </div><br>
+                <div class="bodiii">
+                    <div class="cah">
+                        <br>
+                        <h4>Popular Courses</h4><br>
+                        @foreach (var course in ViewBag.listCourse)
+                        {
                             <div class="row">
                                 <div class="col-md-4">
                                     <img class="anhmoi" src="@course.Image" alt="">
@@ -298,82 +312,49 @@
                                     </div>
                                     <p style="color: rgb(131, 131, 131); margin-left: 15px; font-size: 12px;">@course.UpdateAt.ToString("MMMM dd, yyyy")</p>
                                 </div>
-                            </div><br>
-                            }                                                                  
-                        </div>
-                    </div><br>
-                   @* <div class="bodiii">
-                        <div class="cah">
+                            </div>
+
                             <br>
-                            <h4>Categories</h4><br>
-                            <div class="row" style="margin-bottom: 6px;">
-                                <div class="col-md-4">
-                                    <a href="">Categories1</a>
-                                </div>
-                                <div class="col-md-6"></div>
-                                <div class="col-md-1">(1)</div>
-                            </div>
-                            <div class="row" style="margin-bottom: 6px;">
-                                <div class="col-md-4">
-                                    <a href="">Categories2</a>
-                                </div>
-                                <div class="col-md-6"></div>
-                                <div class="col-md-1">(1)</div>
-                            </div>
-                            <div class="row" style="margin-bottom: 6px;">
-                                <div class="col-md-4">
-                                    <a href="">Categories3</a>
-                                </div>
-                                <div class="col-md-6"></div>
-                                <div class="col-md-1">(1)</div>
-                            </div>
-                            <div class="row" style="margin-bottom: 6px;">
-                                <div class="col-md-4">
-                                    <a href="">Categories4</a>
-                                </div>
-                                <div class="col-md-6"></div>
-                                <div class="col-md-1">(1)</div>
-                            </div><br>
-                        </div>
-                    </div>*@
-                </div>
+                        }
+                    </div>
+                </div><br>       
             </div>
         </div>
     </div>
+</div>
 
 <script>
 
-                                        function deleteBlog(id) {
-                                            const template_deletelesson = `<div class="delete">
-                                        <div class="delete-heading">
-                                            <div class="delete-add">
-                                                <p>Do you want to delete this post?</p>
-                                            </div>
-                                            <div class="delete-icon">
-                                                <i class="fas fa-times" id="delete-close"></i>
-                                            </div>
-                                        </div>
-                                        <div class="delete-footer">
-                                            <a href="/Blog/Delete/${id}" class="delete-acpt">Ok</a>
-                                            <span class="delete-cancel">Cancel</span>
-                                        </div>
-                                        </div>`;
-                                            document.body.insertAdjacentHTML('beforeend', template_deletelesson);
+    function deleteBlog(id) {
+        const template_deletelesson = `<div class="delete">
+    <div class="delete-heading">
+        <div class="delete-add">
+            <p>Do you want to delete this post?</p>
+        </div>
+        <div class="delete-icon">
+            <i class="fas fa-times" id="delete-close"></i>
+        </div>
+    </div>
+    <div class="delete-footer">
+        <a href="/Blog/Delete/${id}" class="delete-acpt">Ok</a>
+        <span class="delete-cancel">Cancel</span>
+    </div>
+    </div>`;
+        document.body.insertAdjacentHTML('beforeend', template_deletelesson);
 
-                                            lessondel.setAttribute('disabled', '');
-                                        }
+        lessondel.setAttribute('disabled', '');
+    }
 
 
-                                        document.addEventListener('click', (e) => {
-                                            const tpl_deleteles = document.querySelector('.delete');
-                                            const close_deleteles = document.querySelector('#delete-close');
-                                            const cancelles = document.querySelector('.delete-cancel');
-                                            if (e.target.matches('#delete-close') || e.target.matches('.delete-cancel')) {
-                                                document.body.removeChild(tpl_deleteles);
-                                                lessonupdate.removeAttribute('disabled');
-                                                lessondel.removeAttribute('disabled');
-                                            }
-                                        })
-                                    </script>
+    document.addEventListener('click', (e) => {
+        const tpl_deleteles = document.querySelector('.delete');
+        const close_deleteles = document.querySelector('#delete-close');
+        const cancelles = document.querySelector('.delete-cancel');
+        if (e.target.matches('#delete-close') || e.target.matches('.delete-cancel')) {
+            document.body.removeChild(tpl_deleteles);
+            lessonupdate.removeAttribute('disabled');
+            lessondel.removeAttribute('disabled');
+        }
+    })
+</script>
 
-<script src="~/js/blogg.js"></script>
