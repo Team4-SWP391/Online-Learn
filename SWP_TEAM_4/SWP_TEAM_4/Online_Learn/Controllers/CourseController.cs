@@ -390,76 +390,8 @@ namespace Online_Learn.Controllers {
                                                     select new QuestionDetail(q.QuestionId, q.Quiz, q.Op1, q.Op2, q.Op3, q.Op4, q.Solution, l.LectureName, c.CourseName, c.CourseId, a.FulllName)).ToList();
             return PartialView("QuestionPartial", questionsSlider);
         }
-        //List Question By Course
-        public IActionResult Questions(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            Course course = _context.Courses.FirstOrDefault(c => c.CourseId == id);
-            ViewData["CourseName"] = course.CourseName;
-            ViewData["CourseID"] = id;
-            List<Lecture> listLectureByCourse = _context.Lectures.Where(l => l.CourseId == id).ToList();
-            //ViewData["ListLecture"] = listLectureByCourse;
-            ViewBag.ListLecture = listLectureByCourse;
-            dynamic model = new System.Dynamic.ExpandoObject();
-            List<QuestionDetail> questionsSlider = (from q in _context.Questions
-                                                    join l in _context.Lectures on q.LectureId equals l.LectureId
-                                                    join c in _context.Courses on l.CourseId equals c.CourseId
-                                                    where c.CourseId == id
-                                                    join a in _context.Accounts on c.AccountId equals a.AccountId
-                                                    select new QuestionDetail(q.QuestionId, q.Quiz, q.Op1, q.Op2, q.Op3, q.Op4, q.Solution, l.LectureName, c.CourseName, c.CourseId, a.FulllName)).ToList();
-             //List<QuestionDetail> questions = questionsSlider.Take(3).ToList();
-             model.questionsSlider = questionsSlider.ToList();
-            //model.questions = questions.ToList();
-            return View(model);
-        }
 
-        //Create Question in Course
-        public IActionResult CreateQuestion(string CourseID, Question question)
-        {
-            _context.Questions.Add(question);
-            _context.SaveChanges();
-            return Redirect($"/Course/Questions/{CourseID}");
-        }
-
-        //Delete Question Course
-        public IActionResult DeleteQuestion(int id)
-        {
-            Question question = _context.Questions.FirstOrDefault(q => q.QuestionId == id);
-            var result = (from q in _context.Questions where q.QuestionId == id
-                            join l in _context.Lectures on q.LectureId equals l.LectureId
-                            select l).ToList();
-            int courseId = result.FirstOrDefault().CourseId.Value;
-            _context.Remove(question);
-            _context.SaveChanges();
-            return Redirect($"/Course/Questions/{courseId}");
-        }
-
-        //Edit Question Course
-        [HttpPost]
-        public IActionResult EditQuestion(int id, string quiz, string op1, string op2, string op3, string op4, string solution, int totalQuestion)
-        {
-            Question question = _context.Questions.FirstOrDefault(q => q.QuestionId == id);
-            question.Quiz = quiz;
-            question.Op1 = op1;
-            question.Op2 = op2;
-            question.Op3 = op3;
-            question.Op4 = op4;
-            question.Solution = solution;
-            _context.Update(question);
-            _context.SaveChanges();
-            Lecture lecture = _context.Lectures.FirstOrDefault(l => l.LectureId == question.LectureId);
-            Course course = _context.Courses.FirstOrDefault(c => c.CourseId == lecture.CourseId);
-            List<QuestionDetail> questionsSlider = (from q in _context.Questions
-                                                    join l in _context.Lectures on q.LectureId equals l.LectureId
-                                                    join c in _context.Courses on l.CourseId equals c.CourseId
-                                                    where c.CourseId == course.CourseId
-                                                    join a in _context.Accounts on c.AccountId equals a.AccountId
-                                                    select new QuestionDetail(q.QuestionId, q.Quiz, q.Op1, q.Op2, q.Op3, q.Op4, q.Solution, l.LectureName, c.CourseName, c.CourseId, a.FulllName)).ToList();
-            return PartialView("QuestionPartial", questionsSlider);
-        }
+       
         // GET: Courses/Delete/5
         public async Task<IActionResult> Delete(int id)
         {
@@ -644,45 +576,10 @@ namespace Online_Learn.Controllers {
             CourseID = courseID;
             Author = author;
         }
-    public class QuestionDetail
-    {
-        public int QuestionId { get; set; }
-        public string Quiz { get; set; }
-        public string Op1 { get; set; }
-        public string Op2 { get; set; }
-
-        public string Op3 { get; set; }
-
-        public string Op4 { get; set; }
-
-        public string Solution { get; set; }
-
-        public string Lecture { get; set; }
-
-        public string CourseName { get; set; }
-
-        public int CourseID { get; set; }
-
-        public string Author { get; set; }
-
-        public QuestionDetail(int questionId, string quiz, string op1, string op2, string op3, string op4, string solution, string lecture, string courseName, int courseID, string author)
-        {
-            QuestionId = questionId;
-            Quiz = quiz;
-            Op1 = op1;
-            Op2 = op2;
-            Op3 = op3;
-            Op4 = op4;
-            Solution = solution;
-            Lecture = lecture;
-            CourseName = courseName;
-            CourseID = courseID;
-            Author = author;
-        }
     }
 
 
 
 
 
-}
+

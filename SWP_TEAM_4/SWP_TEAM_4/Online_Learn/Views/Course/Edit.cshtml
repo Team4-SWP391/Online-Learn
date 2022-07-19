@@ -137,12 +137,12 @@
 						(11.296)
 					</span><br />
 					<span class="course-update__lct">8 lecture - 16 lesson - 3 Exam</span>
-					<div class="course-update__question row" style="margin-top: 22px">
-						<a href="#" class="course-update__qslink col-md-4" style="text-align: center">View question</a>
-						@*<a href="/Lecture/Create/@ViewData["CourseId"]" class="course-update__qslink">Add new Lecture</a>*@
-						<button class="lecture-create col-md-4" style="text-align: center" data-cid="@ViewData["CourseId"]">Add new Lecture</button>
-						<a href="/Exam/Create" class="course-update__qslink col-md-4" style="text-align: center">Add new Exam</a>
-					</div>
+                    <div class="course-update__question row" style="margin-top: 22px">
+                        <a href="/Course/Questions/@ViewData["CourseId"]" class="course-update__qslink">View list question</a>
+                        @*<a href="/Lecture/Create/@ViewData["CourseId"]" class="course-update__qslink">Add new Lecture</a>*@
+                        <button class="lecture-create col-md-4" style="text-align: center" data-cid="@ViewData["CourseId"]">Add new Lecture</button>
+                        <a href="/Exam/Create" class="course-update__qslink col-md-4" style="text-align: center">Add new Exam</a>
+                    </div>
 				</div>
 			</div>
 		</div>
