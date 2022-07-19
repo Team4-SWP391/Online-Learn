@@ -119,16 +119,16 @@
     display: flex;
     justify-content: space-between;
     padding: 35px;
-    gap:250px;
+    gap:60px;
 }
 
 .course-update__image {
     margin-top: 45px;
-    margin-right: 85px;
+    margin-right: 0px;
 }
 
     .course-update__image img {
-        width: 400px;
+        width: 100%;
         object-fit: cover;
     }
 
