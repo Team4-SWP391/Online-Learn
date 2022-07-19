@@ -1,3 +1,25 @@
+
+  option:hover {
+    cursor: pointer;
+}
+.course-create__option:hover{
+  background: #a435f0;
+}
+  option:hover,
+  option:checked,
+  option:active,
+  option:focus {
+      background: #a435f0;
+      position: relative;
+  }
+
+  select:focus > option:checked:before {
+    color: #A52A2A;
+    position: absolute;
+    content: attr(course-create__option);
+}
+
+
 .course-header {
     width: 100%;
     background-color: #1b1c1f;

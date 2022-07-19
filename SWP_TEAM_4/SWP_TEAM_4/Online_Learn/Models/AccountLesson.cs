@@ -9,8 +9,10 @@ namespace Online_Learn.Models
     {
         public int AccountId { get; set; }
         public int LessonId { get; set; }
+        public int CourseId { get; set; }
 
         public virtual Account Account { get; set; }
+        public virtual Course Course { get; set; }
         public virtual Lesson Lesson { get; set; }
     }
 }

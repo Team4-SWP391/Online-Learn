@@ -7,6 +7,8 @@ using System.Linq;
 
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 
 using OfficeOpenXml;
 
@@ -29,7 +31,21 @@ namespace Online_Learn.Controllers {
             model.questions = questions;
             return View(model);
         }
-
+        public List<Question> EditQuestionTest(int id, string quiz, string op1, string op2, string op3, string op4, string solution)
+        {
+            Question question = _context.Questions.FirstOrDefault(q => q.QuestionId == id);
+            question.Quiz = quiz;
+            question.Op1 = op1;
+            question.Op2 = op2;
+            question.Op3 = op3;
+            question.Op4 = op4;
+            question.Solution = solution;
+            _context.Update(question);
+            _context.SaveChanges();
+            List<Question> questions = new List<Question>();
+            questions = _context.Questions.ToList();
+            return questions;
+        }
         [HttpPost]
         public IActionResult Edit(int id, string quiz, string op1, string op2, string op3, string op4, string solution, int totalQuestion)
         {
@@ -80,7 +96,6 @@ namespace Online_Learn.Controllers {
             ReadExcel(fileUpload.FileName);
             return RedirectToAction("Index");
         }
-
         public void ReadExcel(string fileName)
         {
             var package = new ExcelPackage(new FileInfo("FileUpload/" + fileName));
@@ -103,7 +118,9 @@ namespace Online_Learn.Controllers {
         }
         public IActionResult ExportExcel()
         {
-            var questions = _context.Questions.ToList();
+            dynamic questions = (from q in _context.Questions
+                                 join l in _context.Lectures on q.LectureId equals l.LectureId
+                                 select new { Quiz = q.Quiz, Op1 = q.Op1, Op2 = q.Op2, Op3 = q.Op3, Op4 = q.Op4, Solution = q.Solution, LectureName = l.LectureName });
             WriteExcel(questions);
             var path = @"Questions.xlsx";
             var memory = new MemoryStream();
@@ -114,7 +131,7 @@ namespace Online_Learn.Controllers {
             memory.Position = 0;
             return File(memory, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Questions.xlsx");
         }
-        public void WriteExcel(List<Question> questions)
+        public void WriteExcel(dynamic questions)
         {
             var package = new ExcelPackage();
             var workSheet = package.Workbook.Worksheets.Add("Questions");
@@ -134,7 +151,7 @@ namespace Online_Learn.Controllers {
                 workSheet.Cells["D" + row].Value = question.Op3;
                 workSheet.Cells["E" + row].Value = question.Op4;
                 workSheet.Cells["F" + row].Value = question.Solution;
-                workSheet.Cells["G" + row].Value = question.LectureId;
+                workSheet.Cells["G" + row].Value = question.LectureName;
                 row++;
             }
             package.SaveAs(new FileInfo("Questions.xlsx"));

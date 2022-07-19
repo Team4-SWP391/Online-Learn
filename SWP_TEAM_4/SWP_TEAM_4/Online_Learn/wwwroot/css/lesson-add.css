@@ -18,10 +18,21 @@ body{
     margin-right: .5rem!important;
 }
 
-.buton:hover {
+.butonnn:hover {
     color: #fff;
-    background-color: #ae30d5;
+    background-color: #a435f0;
 }
 .input[type=text]:focus {
     border: 1px solid #a435f0;
 }
+
+
+
+
+    .inputt:focus {
+        color: #495057;
+        background-color: #fff;
+        border-color: #b180ff;
+        outline: 0;
+        box-shadow: 0 0 0 .2rem rgba(119, 0, 255, 0.25)
+    }

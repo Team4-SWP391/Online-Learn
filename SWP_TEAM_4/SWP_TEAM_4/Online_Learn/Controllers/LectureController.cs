@@ -36,12 +36,24 @@ namespace Online_Learn.Controllers
             ViewBag.lessons = lessons;
             ViewBag.total_lesson = total_lesson;
             return View();
+            
         }
+        public async Task<IActionResult> DetailLesson(int id)
+        {
 
+            var lesson = await _context.Lessons.FindAsync(id);
+
+            ViewBag.lessonss = lesson;
+       
+         
+            return View();
+
+        }
         [HttpPost]
         public async Task<IActionResult> Detail(Lecture NewLecture)
         {
             var lecture = await _context.Lectures.Where(x => x.LectureId == NewLecture.LectureId).FirstOrDefaultAsync();
+           
             if(lecture != null)
             {
                 lecture.LectureName = NewLecture.LectureName;
@@ -62,5 +74,44 @@ namespace Online_Learn.Controllers
             return Redirect($"../Course/Edit?id={lecture.CourseId}");
         }
 
+
+        public async Task<IActionResult> addLesson(Lesson NewLesson)
+        {
+            
+            _context.Lessons.Add(NewLesson);
+            await _context.SaveChangesAsync();
+            return Redirect($"Detail?id={NewLesson.LectureId}");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DetailLesson(Lesson Newlesson)
+        {
+            var lesson= await _context.Lessons.Where(x => x.LessonId == Newlesson.LessonId).FirstOrDefaultAsync();
+           
+
+            if (lesson!= null)
+            {
+                lesson.LessonName = Newlesson.LessonName;
+                lesson.Video = Newlesson.Video;
+                lesson.Main = Newlesson.Main;
+                await _context.SaveChangesAsync();
+            }
+            return Redirect($"/Lecture/Detail?id={lesson.LectureId}");
+        }
+
+
+        public async Task<IActionResult> DeleteLesson(int id)
+        {
+           
+            var lesson = await _context.Lessons.Where(x => x.LessonId == id).FirstOrDefaultAsync();
+            var lecture = await _context.Lectures.FirstOrDefaultAsync(x => x.LectureId == lesson.LectureId);
+
+            if (lesson != null)
+            {
+                _context.Remove(lesson);
+                await _context.SaveChangesAsync();
+            }
+            return Redirect($"/Lecture/Detail?id={lecture.LectureId}");
+        }
     }
 }

@@ -1,0 +1,65 @@
+﻿@model List<Course>
+
+@if (@Model.Count == 0)
+{
+    <div class="row">
+        <div class="col-md-12">
+            <h1>No result found</h1>
+        </div>
+    </div>
+}
+else
+{
+    @foreach (Course course in Model)
+    {
+        <div class="row course-item">
+            <div class="col-md-3">
+                <div>
+                    <img src="@course.Image"
+                 alt="" width="262px" ; height="148.25px">
+                </div>
+            </div>
+            <div class="col-md-8 " style="padding-left: 45px;">
+                <b>@course.CourseName</b>
+                <p style="margin-bottom: 3px;">
+                    @course.Description
+                </p>
+                <div class="clb" style="font-size:13px;">
+                    @course.Account.Username
+                    <br>
+                    <div class="rate">
+                        <span>@course.Rate</span>
+                        @for (int i = 0; i < course.Rate; i++)
+                        {
+                            <i class="fas fa-star stars starActive"></i>
+                        }
+                        @for (int i = 0; i < 5 - course.Rate; i++)
+                        {
+                            <i class="fal fa-star star "></i>
+                        }
+                    </div>
+                    <br>
+                    <span>30 total hours • 265 lectures • @course.Level.Level1.ToUpper()</span>
+                </div>
+                <span class="best-seller"><strong>Bestseller</strong></span>
+            </div>
+            <div class="col-md-1 cost">
+                @if (course.IsSale != null)
+                {
+                    <b style="font-weight: 800;">
+                        $@(Convert.ToDouble((course.Price - course.Price*course.IsSale/100)).ToString("0.00"))
+                    </b>
+                    <p><del style="color: #6a6f73;">$@course.Price</del></p>
+                }
+                else
+                {
+                    <b style="font-weight: 800;">
+                        $@course.Price
+                    </b>
+                }
+            </div>
+
+        </div>
+        <hr style="opacity: 0.1">
+    }
+}

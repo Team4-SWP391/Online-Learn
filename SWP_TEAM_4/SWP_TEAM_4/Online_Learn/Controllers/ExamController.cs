@@ -9,11 +9,11 @@ using Online_Learn.Models;
 
 namespace Online_Learn.Controllers
 {
-    public class ExamsController : Controller
+    public class ExamController : Controller
     {
         private readonly Online_LearnContext _context;
 
-        public ExamsController(Online_LearnContext context)
+        public ExamController(Online_LearnContext context)
         {
             _context = context;
         }
@@ -107,14 +107,16 @@ namespace Online_Learn.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ExamId,ExamName,Quantity,Time,StartDate,LectureId")] Exam exam)
         {
+            var lecture = await _context.Lectures.Where(x => x.LectureId == exam.LectureId).FirstOrDefaultAsync();
+           
             if (ModelState.IsValid)
             {
                 _context.Add(exam);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(List));
+                return Redirect($"../Course/Edit?id={lecture.CourseId}");
             }
             ViewData["LectureId"] = new SelectList(_context.Lectures, "LectureId", "LectureName", exam.LectureId);
-            return View(exam);
+            return Redirect($"../Course/Edit?id={lecture.CourseId}");
         }
 
         // GET: Exams/Edit/5
@@ -141,11 +143,7 @@ namespace Online_Learn.Controllers
 
         public async Task<IActionResult> Edit(int id, [Bind("ExamId,ExamName,Quantity,Time,StartDate,LectureId")] Exam exam)
         {
-            if (id != exam.ExamId)
-            {
-                return NotFound();
-            }
-
+            var lecture = await _context.Lectures.Where(x => x.LectureId == exam.LectureId).FirstOrDefaultAsync();
             if (ModelState.IsValid)
             {
                 try
@@ -164,10 +162,10 @@ namespace Online_Learn.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(List));
+                return Redirect($"../Course/Edit?id={lecture.CourseId}");
             }
             ViewData["LectureId"] = new SelectList(_context.Lectures, "LectureId", "LectureName", exam.LectureId);
-            return View(exam);
+            return Redirect($"../Course/Edit?id={lecture.CourseId}");
         }
 
         // GET: Exams/Delete/5
@@ -194,10 +192,12 @@ namespace Online_Learn.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             Exam exam = await _context.Exams.FirstOrDefaultAsync(x => x.ExamId == id);
+            var lecture = await _context.Lectures.Where(x => x.LectureId == exam.LectureId).FirstOrDefaultAsync();
+
             //var exam = await _context.Exams.FindAsync(id);
             _context.Exams.Remove(exam);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(List));
+            return Redirect($"../Course/Edit?id={lecture.CourseId}");
         }
 
         private bool ExamExists(int id)
