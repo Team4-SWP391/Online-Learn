@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.png">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="./assets/css/base.css">
+    <link rel="stylesheet" href="./assets/css/header.css">
+    <link rel="stylesheet" href="./assets/css/footer.css">
+    <link rel="stylesheet" href="./assets/css/questionList.css">
+    <link rel="stylesheet" href="./assets/css/question.css">
+</head>
+
+<body>
+    <form action="a" class="question-form">
+        <div class="question-create">
+                <div class="form-group">
+                    <label for="quiz">Quiz</label><br>
+                    <textarea id="quiz" class="form-control" name="quiz" rows="4" cols="68"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="op1">Option 1</label><br>
+                    <input type="text" id="op1" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="op2">Option 2</label><br>
+                    <input type="text" id="op2" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="op3">Option 3</label><br>
+                    <input type="text" id="op3" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="op4">Option 4</label><br>
+                    <input type="text" id="op4" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="sol">Solution</label><br>
+                    <input type="number" id="sol" min="1" max="4" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="lecture">Lecture</label><br>
+                    <select name="" id="lecture" class="form-control">
+
+                    </select>
+                </div>
+            <div class="question-detail__footer">
+                <button>Create</button>
+            </div>
+        </div>
+    </form>
+</body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-migstars starActive-1.2.1.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script src="./assets/js/questionList.js"></script>
+
+</html>

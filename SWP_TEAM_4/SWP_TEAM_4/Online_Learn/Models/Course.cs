@@ -37,7 +37,6 @@ namespace Online_Learn.Models
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ICollection<Technology> Technologies { get; set; }
         public virtual ICollection<WhistList> WhistLists { get; set; }
-
         public double getPriceByDiscount()
         {
             return Price;

@@ -10,12 +10,13 @@ namespace Online_Learn.Models
         public Account()
         {
             AccountCourses = new HashSet<AccountCourse>();
+            AccountLessons = new HashSet<AccountLesson>();
             Blogs = new HashSet<Blog>();
             Courses = new HashSet<Course>();
             FeedbackAccounts = new HashSet<FeedbackAccount>();
             LectureAccounts = new HashSet<LectureAccount>();
             Orders = new HashSet<Order>();
-            ResultExams = new HashSet<ResultExam>();
+            Results = new HashSet<Result>();
             WhistLists = new HashSet<WhistList>();
         }
 
@@ -35,12 +36,13 @@ namespace Online_Learn.Models
         public string Desc { get; set; }
 
         public virtual ICollection<AccountCourse> AccountCourses { get; set; }
+        public virtual ICollection<AccountLesson> AccountLessons { get; set; }
         public virtual ICollection<Blog> Blogs { get; set; }
         public virtual ICollection<Course> Courses { get; set; }
         public virtual ICollection<FeedbackAccount> FeedbackAccounts { get; set; }
         public virtual ICollection<LectureAccount> LectureAccounts { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
-        public virtual ICollection<ResultExam> ResultExams { get; set; }
+        public virtual ICollection<Result> Results { get; set; }
         public virtual ICollection<WhistList> WhistLists { get; set; }
     }
 }

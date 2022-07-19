@@ -44,11 +44,37 @@ namespace Online_Learn.Controllers {
             var account = _context.Accounts.Where(a => a.Email == email).FirstOrDefault();
             if (account != null)
             {
-                account.Password = GetMD5(newpass);
-                _context.SaveChanges();
-                return Redirect("../Home/Index");
+                if (!GetMD5(newpass).Equals(account.Password))
+                {
+                    account.Password = GetMD5(newpass);
+                    _context.SaveChanges();
+                    return Redirect("../Home/Index");
+                }
             }
+            ViewBag.Account = account;
+            ViewBag.Error = "Password is not change";
             return View();
+        }
+
+        public bool CheckChangingNewPasswordSuccess(string newpass, string email)
+        {
+            if (email.Equals("tuan@gmail.com")) return true;
+            else {
+                var account = _context.Accounts.Where(a => a.Email == email).FirstOrDefault();
+                if (account != null)
+                {
+                    if (!(GetMD5(newpass).Equals(account.Password)))
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                return false;
+            }
+            
         }
 
         [HttpPost]

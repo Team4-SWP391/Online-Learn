@@ -1,0 +1,244 @@
+﻿@using Microsoft.AspNetCore.Http
+@*@using Newtonsoft.Json*@
+@using System.Text.Json
+@{
+    Account user = Context.Session.GetString("User") != null ?
+    JsonSerializer.Deserialize<Account>(Context.Session.GetString("User")) : null;
+    ViewData["Title"] = "Dashboard";
+    Layout = "~/Views/Shared/LayoutEmpty.cshtml";
+}
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="stylesheet" href="~/css/base.css">
+    <link rel="stylesheet" href="~/css//header.css"/>
+    <link rel="stylesheet" href="~/css/headerAdmin.css">
+    <link rel="stylesheet" href="~/css/dashBoard.css">
+    
+</head>
+<body>
+    <div class="app">
+        <div class="header">
+            <div class="header_back">
+                <a href="/Home">Back To Udemy</a>
+            </div>
+            <div class="header_logo">
+                <h3>Dashboard</h3>
+            </div>
+
+            <div class="header_right-avt">
+                <a href="/Account/Profile">@user.Username</a>
+            </div>
+        </div>
+        <div class="main" style="margin-bottom: 100px;">
+            <div>
+                <img src="	https://theme.zdassets.com/theme_assets/1073405/dc95487621be854e172a2017d178bdb87e031a88.jpg"
+                     alt="" height="430" width="100%" style="object-fit: cover;">
+            </div>
+            <div class="content container">
+                <ul class="tabs">
+                    @if (user.RoleId == 3)
+                    {
+                        <li class="tab-title active" data-role="3">
+                            <span>Sale</span>
+                        </li>
+                    }
+                    @if (user.RoleId == 2)
+                    {
+                        <li class="tab-title active" data-role="2">
+                            <span>Course Creator</span>
+                        </li>
+                    }
+                    @if (user.RoleId == 4)
+                    {
+                        <li class="tab-title active" data-role="4">
+                            <span>Admin</span>
+                        </li>
+                    }
+                </ul>
+                <h2 class="text-center" style="margin: 40px 0;">Select Function You Want To Use</h2>
+                @* Sale *@
+                <ul class="list_items" style="">
+                    <li class="item">
+                        <a href="">
+                            <div class="item_wrap">
+                                <i class="fal fa-shopping-cart"></i>
+                                <h3>Order</h3>
+                                <p>Manage All Order</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="">
+                            <div class="item_wrap">
+                                <i class="fal fa-bags-shopping"></i>
+                                <h3>Order Detail</h3>
+                                <p>Manage All Order Detail</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="">
+                            <div class="item_wrap">
+                                <i class="fal fa-blog"></i>
+                                <h3>Blog</h3>
+                                <p>Manage All Blog</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="/Statistic">
+                            <div class="item_wrap">
+                                <i class="fal fa-chart-line"></i>
+                                <h3>Statistical</h3>
+                                <p>View system statistics</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+                @*Course Creator*@
+                <ul class="list_items" style="display: none;">
+                    <li class="item">
+                        <a href="/Course/List/3">
+                            <div class="item_wrap">
+                                <i class="fal fa-book-open"></i>
+                                <h3>Course</h3>
+                                <p>Manage Your Course</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="">
+                            <div class="item_wrap">
+                                <i class="fal fa-map-marker-question"></i>
+                                <h3>Quiz</h3>
+                                <p>Manage Quiz of Your Course</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="">
+                            <div class="item_wrap">
+                                <i class="fal fa-pen-nib"></i>
+                                <h3>Exam</h3>
+                                <p>Manage All Exam Of Your Course</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="">
+                            <div class="item_wrap">
+                                <i class="fal fa-poll"></i>
+                                <h3>Result Of Exam</h3>
+                                <p>Manage Result Of Exam</p>
+                            </div>
+                        </a>
+                    </li>
+
+                </ul>
+                @*Admin*@
+                <ul class="list_items" style="display: none;">
+                    <li class="item">
+                        <a href="/User/UserList">
+                            <div class="item_wrap">
+                                <i class="fal fa-users"></i>
+                                <h3>User</h3>
+                                <p>Manage All User</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="">
+                            <div class="item_wrap">
+                                <i class="fal fa-shopping-cart"></i>
+                                <h3>Order</h3>
+                                <p>Manage All Order</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="">
+                            <div class="item_wrap">
+                                <i class="fal fa-bags-shopping"></i>
+                                <h3>Order Detail</h3>
+                                <p>Manage All Order Detail</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="">
+                            <div class="item_wrap">
+                                <i class="fal fa-blog"></i>
+                                <h3>Blog</h3>
+                                <p>Manage All Blog</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="/Course/List">
+                            <div class="item_wrap">
+                                <i class="fal fa-book-open"></i>
+                                <h3>Course</h3>
+                                <p>Manage All Course</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="/Question">
+                            <div class="item_wrap">
+                                <i class="fal fa-map-marker-question"></i>
+                                <h3>Quiz</h3>
+                                <p>Manage Quiz of Course</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="/Exams">
+                            <div class="item_wrap">
+                                <i class="fal fa-pen-nib"></i>
+                                <h3>Exam</h3>
+                                <p>Manage All Exam Of Course</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="">
+                            <div class="item_wrap">
+                                <i class="fal fa-poll"></i>
+                                <h3>Result Of Exam</h3>
+                                <p>Manage Result Of Exam</p>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="item">
+                        <a href="/Statistic">
+                            <div class="item_wrap">
+                                <i class="fal fa-chart-line"></i>
+                                <h3>Statistical</h3>
+                                <p>View system statistics</p>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+<script src="~/js/dashBoard.js"></script>
+</html>
