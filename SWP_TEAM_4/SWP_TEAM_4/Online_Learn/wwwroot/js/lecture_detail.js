@@ -68,6 +68,7 @@ const template_lecture = `<div class="lesson">
         <div class="lesson-form__group">
             <label for="" class="lesson-lable">Name lesson</label><br>
             <input type="text" name="NewLesson.LessonName" class="lesson-input" placeholder="Create new Lesson...">
+               
             
                 
          

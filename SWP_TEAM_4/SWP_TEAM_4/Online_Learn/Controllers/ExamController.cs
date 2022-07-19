@@ -108,6 +108,7 @@ namespace Online_Learn.Controllers
         public async Task<IActionResult> Create([Bind("ExamId,ExamName,Quantity,Time,StartDate,LectureId")] Exam exam)
         {
             var lecture = await _context.Lectures.Where(x => x.LectureId == exam.LectureId).FirstOrDefaultAsync();
+           
             if (ModelState.IsValid)
             {
                 _context.Add(exam);

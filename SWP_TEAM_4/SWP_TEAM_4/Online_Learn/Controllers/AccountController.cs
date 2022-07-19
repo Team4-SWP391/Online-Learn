@@ -87,8 +87,9 @@ namespace Online_Learn.Controllers {
 
 
 
-        public async Task<IActionResult> UserList(string name_search, int pageIndex)
+        public async Task<IActionResult> UserList(int id,string name_search, int pageIndex)
         {
+            
 
             List<Account> list_user = new List<Account>();
             if (pageIndex <= 0 || pageIndex == null)
@@ -100,20 +101,64 @@ namespace Online_Learn.Controllers {
             int totalUser = 0;
             if (name_search != null)
             {
-                list_user = await context.Accounts.Where(x => x.FulllName.ToLower().Contains(name_search.ToLower())).
+                if(id == 1)
+                {
+                    list_user = await context.Accounts.Where(x=> x.RoleId == 1).Where(x => x.FulllName.ToLower().Contains(name_search.ToLower())).
                     Skip(((pageIndex - 1) * pageSize)).Take(pageSize).ToListAsync();
-                totalUser = context.Accounts.Where(x => x.FulllName.ToLower().Contains(name_search.ToLower())).ToList().Count;
+                    totalUser = context.Accounts.Where(r=>r.RoleId == 1).Where(x => x.FulllName.ToLower().Contains(name_search.ToLower())).ToList().Count;
+                }
+                else if (id == 2)
+                {
+                    list_user = await context.Accounts.Where(x => x.RoleId == 2).Where(x => x.FulllName.ToLower().Contains(name_search.ToLower())).
+                    Skip(((pageIndex - 1) * pageSize)).Take(pageSize).ToListAsync();
+                    totalUser = context.Accounts.Where(r => r.RoleId == 2).Where(x => x.FulllName.ToLower().Contains(name_search.ToLower())).ToList().Count;
+                }
+                else if (id == 3)
+                {
+                    list_user = await context.Accounts.Where(x => x.RoleId == 3).Where(x => x.FulllName.ToLower().Contains(name_search.ToLower())).
+                    Skip(((pageIndex - 1) * pageSize)).Take(pageSize).ToListAsync();
+                    totalUser = context.Accounts.Where(r => r.RoleId == 3).Where(x => x.FulllName.ToLower().Contains(name_search.ToLower())).ToList().Count;
+                }
+                else
+                {
+                    list_user = await context.Accounts.Where(x => x.FulllName.ToLower().Contains(name_search.ToLower())).
+                    Skip(((pageIndex - 1) * pageSize)).Take(pageSize).ToListAsync();
+                    totalUser = context.Accounts.Where(x => x.FulllName.ToLower().Contains(name_search.ToLower())).ToList().Count;
+                }
+
+               
+                
                 checkPage = 1;
             }
             else
             {
-                list_user = await context.Accounts.Skip(((pageIndex - 1) * pageSize)).Take(pageSize).ToListAsync();
-                totalUser = context.Accounts.ToList().Count;
+                if(id == 1)
+                {
+                    list_user = await context.Accounts.Where(r=>r.RoleId == 1).Skip(((pageIndex - 1) * pageSize)).Take(pageSize).ToListAsync();
+                    totalUser = context.Accounts.Where(r=>r.RoleId ==1).ToList().Count;
+                }
+                else if (id == 2)
+                {
+                    list_user = await context.Accounts.Where(r => r.RoleId == 2).Skip(((pageIndex - 1) * pageSize)).Take(pageSize).ToListAsync();
+                    totalUser = context.Accounts.Where(r => r.RoleId == 2).ToList().Count;
+                }
+                else if (id == 3)
+                {
+                    list_user = await context.Accounts.Where(r => r.RoleId == 3).Skip(((pageIndex - 1) * pageSize)).Take(pageSize).ToListAsync();
+                    totalUser = context.Accounts.Where(r => r.RoleId == 3).ToList().Count;
+                }
+                else
+                {
+                    list_user = await context.Accounts.Skip(((pageIndex - 1) * pageSize)).Take(pageSize).ToListAsync();
+                    totalUser = context.Accounts.ToList().Count;
+                }
+
+
                 checkPage = 2;
             }
 
             int maxPage = totalUser / pageSize + (totalUser % pageSize != 0 ? 1 : 0);
-           
+            ViewBag.roleid = id;
             ViewBag.list_user = list_user;
             ViewBag.checkPage = checkPage;
             ViewBag.MaxPage = maxPage;
@@ -121,19 +166,15 @@ namespace Online_Learn.Controllers {
             ViewBag.pageIndex = pageIndex;
             ViewBag.prevPage = pageIndex - 1;
             ViewBag.nextPage = pageIndex + 1;
+            ViewBag.student = 1;
             return View();
 
 
-
-
-
-
-            //var customer = context.Accounts.Where(a=> a.RoleId == 1).ToList();
-            //var user = context.Accounts.ToList();
-            //ViewBag.user = user;
-
-            //return View(await context.Accounts.ToListAsync());
         }
+
+
+
+
         public IActionResult Add()
         {
             return View();

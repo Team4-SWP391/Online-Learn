@@ -1,0 +1,52 @@
+﻿.wrapper {
+    width: 1000px;
+    margin: 35px auto;
+    padding: 25px;
+}
+
+.thankyou-heading {
+    width: 100%;
+    font-weight: bold;
+    font-size: 60px;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.thankyou-icon {
+    width: 100%;
+    font-size: 135px;
+    color: #a435f0;
+    text-align: center;
+    margin-bottom: 35px;
+    position: relative;
+    z-index: 9999;
+}
+
+.thankyou-content {
+    width: 50%;
+    margin: 0 auto;
+    font-size: 18px;
+}
+
+.thankyou-title {
+    text-align: center;
+}
+
+.thankyou-home {
+    width: 100%;
+}
+
+.thankyou-link {
+    margin-top: 45px;
+    display: block;
+    text-align: center;
+    padding: 13px;
+    border: 1px solid #a435f0;
+    background-color: #fff;
+    transition: .30s linear;
+}
+
+    .thankyou-link:hover {
+        background-color: #a435f0;
+        color: #fff;
+    }
