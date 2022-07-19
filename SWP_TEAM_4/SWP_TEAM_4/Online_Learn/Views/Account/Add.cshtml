@@ -41,10 +41,10 @@
                         </label>
                         <br>
 
-                        <input class="in_ra" type="radio" value="1" name=""/>
-                        <label for="html" class="la_ra">Male</label>
-                        <input class="in_ra" type="radio" value="1" name=""/>
-                        <label for="html" class="la_ra">Female</label>
+                       <input class="in_ra"  name="gender" type="radio" id="male" value="1" asp-for="Gender" checked>
+                        <label class="label_radio la_ra" for="male">Male</label>
+                         <input class="in_ra"  name="gender" type="radio" id="female" value="0" asp-for="Gender">
+                        <label class="label_radio la_ra" for="female">Female</label>
 
                     </div>
 
@@ -87,12 +87,17 @@
                         </label>
                         <br>
 
-                        <input class="in_ra" type="radio" value="1" name="Staff">
-                        <label for="html" class="la_ra">Staff</label>
-                        <input class="in_ra" type="radio" value="1" name="Staff">
-                        <label for="html" class="la_ra">Marketing/Sale</label>
-                        <input class="in_ra" type="radio" value="1" name="Staff">
-                        <label for="html" class="la_ra">Student</label>
+                       <input class="in_ra"  name="roleid" type="radio" id="student" value="1">
+                        <label class="label_radio la_ra" for="student">Student</label>
+                    
+
+                    
+                        <input class="in_ra" name="roleid" type="radio" id="staff" value="2">
+                        <label class="label_radio la_ra" for="staff">Staff</label>
+                        
+
+                        <input class="in_ra" name="roleid" type="radio" id="sale" value="3">
+                        <label class="label_radio la_ra" for="sale">Marketing/Sale</label>
                     </div>
 
                     <div style="margin-bottom: 30px;">
