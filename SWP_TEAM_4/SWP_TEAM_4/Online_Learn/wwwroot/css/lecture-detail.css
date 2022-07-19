@@ -1,4 +1,120 @@
-﻿.course-header {
+﻿
+
+.lesson {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 25px;
+    width: 500px;
+    height: auto;
+    border: 1px solid #eee;
+    border-radius: 1rem;
+    background-color: #fff;
+    box-shadow: 1px 2px 10px 3px #eee;
+}
+
+.lesson-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+}
+
+.lesson-add h3 {
+    padding: 0 0 14px 0;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #1b1c1f;
+}
+
+.lesson-icon i {
+    text-align: center;
+    padding: 0 0 14px 0;
+    font-size: 25px;
+    cursor: pointer;
+    color: #20E3B2;
+}
+
+.lesson-form {
+    margin-top: 20px;
+}
+
+.lesson-form__group {
+    width: 100%;
+    margin-top: 10px;
+}
+
+
+.lesson-lable {
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.lesson-input {
+    border: none;
+    outline: none;
+    width: 100%;
+    border: 1px solid #999;
+    padding: 13px;
+    border-radius: 8px;
+}
+
+    .lesson-input:focus {
+        border: 1px solid #a435f0;
+    }
+
+.lesson-submit {
+    margin-top: 10px;
+    border: none;
+    outline: none;
+    padding: 12px;
+    border: 1px solid #a435f0;
+    background-color: #fff;
+    color: #a435f0;
+    font-weight: bold;
+    align-items: flex-end;
+    cursor: pointer;
+    transition: .25s linear;
+    margin-left: 350px;
+}
+
+    .lesson-submit:hover {
+        background-color: #a435f0;
+        color: #fff
+    }
+
+.lesson-create {
+    border: 1px solid #1b1c1f;
+    padding: 12.5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: .25s linear;
+    background-color: #fff;
+}
+
+    .lesson-create:hover {
+        background-color: #a435f0;
+        color: #fff;
+    }
+
+.lesson-textar {
+    resize: none;
+    border: none;
+    outline: none;
+    border: 1px solid #999;
+    padding: 13px;
+    border-radius: 10px;
+}
+
+    .lesson-textar:focus {
+        border: 1px solid #a435f0;
+    }
+
+
+
+.course-header {
     width: 100%;
     background-color: #1b1c1f;
     color: #fff;
@@ -190,7 +306,7 @@
     justify-content: space-between;
 }
 
-.lesson-add {
+.lesson-addd {
     padding: 10px;
     border: 1px solid #1b1c1f;
     background-color: #fff;
@@ -198,7 +314,7 @@
     transition: 0.25s linear;
 }
 
-    .lesson-add:hover {
+    .lesson-addd:hover {
         border: 1px solid #a435f0;
         background-color: #a435f0;
         color: #fff;

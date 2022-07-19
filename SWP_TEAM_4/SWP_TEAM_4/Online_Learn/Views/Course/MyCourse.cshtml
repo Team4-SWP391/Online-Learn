@@ -35,7 +35,7 @@
 <!-- My courses -->
 <div class="mycourses">
     <div class="container">
-        <div class="row d-flex justify-content-between mb-3 wrap">
+        <div class="row d-flex mb-3">
             @if (ViewBag.MyCourse.Count > 0)
             {
                 @foreach (AccountCourse item in ViewBag.MyCourse)
@@ -44,7 +44,7 @@
                         <a href="#" class="card-learning_img" tabindex="-1">
                             <div class="card_img">
                                 <img class="img-fluid"
-                             alt="Complete JAVASCRIPT with HTML5,CSS3 from zero to Expert-2022" width="100%"
+                              width="100%"
                              src="@item.Course.Image"
                              srcset="@item.Course.Image 1x">
                             </div>
@@ -56,10 +56,7 @@
                                 </strong>
                             </a><br>
                             <div class="details_instructor">
-                                <span>@item.Course.CourseName</span><span>
-                                    , Data Scientist | AI Entrepreneur and
-                                    Developer
-                                </span>
+                                <span>@item.Course.CourseName</span>
                             </div>
                             <div class="details_bottom">
                                 <div class="progress">
