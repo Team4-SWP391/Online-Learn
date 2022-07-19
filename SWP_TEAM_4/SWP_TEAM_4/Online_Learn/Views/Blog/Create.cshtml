@@ -39,6 +39,7 @@
                             <div class="course-create__formgr">
                                 <label asp-for="Title" class="course-create__lable">Blog Title</label><br>
                                 <input asp-for="Title" type="text" class="course-create__input">
+                                <span asp-validation-for="Title" class="text-danger"></span>
                             </div>
                            
                             <div class="course-create__formgr">
@@ -48,7 +49,7 @@
                             </div>
                             <div class="course-create__formgr">
                                 <textarea asp-for="Content" class="content" cols="163" rows="8"></textarea>
-                            
+                                <span asp-validation-for="Content" class="text-danger"></span>
                             </div>
 
                           
