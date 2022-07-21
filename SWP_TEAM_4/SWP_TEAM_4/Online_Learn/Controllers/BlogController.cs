@@ -260,6 +260,27 @@ namespace Online_Learn.Controllers {
             return RedirectToAction(nameof(MyBlog));
         }
 
+        public IActionResult AddComment(int blogId, int accountId, string comment)
+        {
+            Feedback fb = new Feedback()
+            {
+                BlogId = blogId,
+                CreateDate = DateTime.Now,
+                Message = comment
+            };
+            _context.Feedbacks.Add(fb);
+            _context.SaveChanges();
+            _context.FeedbackAccounts.Add(new FeedbackAccount()
+            {
+                AccountId = accountId,
+                FeedbackId = fb.FeedbackId
+            });
+            _context.SaveChanges();
+            List<Feedback> listComment = _context.Feedbacks.Where(x => x.BlogId == blogId).OrderByDescending(fb => fb.FeedbackId).ToList();
+            return PartialView("FeedbackPartial", listComment);
+        }
+
+
         private bool BlogExists(int id)
         {
             return _context.Blogs.Any(e => e.BlogId == id);

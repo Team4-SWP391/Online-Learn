@@ -1,0 +1,25 @@
+﻿@model List<Feedback>
+@using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json
+@{
+    Account user = Context.Session.GetString("User") != null ?
+         JsonConvert.DeserializeObject<Account>(Context.Session.GetString("User")) : null;
+}
+@foreach (Feedback feedback in Model)
+{
+    <div class="bodiii row" style="margin-right: 0px;">
+        <div class="col-md-1" style="margin-left: 27px;">
+            <br>
+            <img class="anh" src="https://picsum.photos/200" alt="">
+        </div>
+        <div class="col-md-10">
+            <br>
+            <div style="font-size: 17px; font-weight: 700; margin-left: -25px;">
+                <a href="" style="color: black;">@user.Username</a>
+                <p style="color: rgb(131, 131, 131); margin-left: -1px; font-size: 12px;">@feedback.CreateDate</p>
+            </div>
+        </div>
+        <p style="margin-left: 27px;">@feedback.Message</p>
+    </div>
+    <br>
+}
