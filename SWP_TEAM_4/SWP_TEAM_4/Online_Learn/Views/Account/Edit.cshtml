@@ -14,20 +14,20 @@
                 <form asp-action="Edit">
                     <div class="row">
                          <input type="hidden" asp-for="AccountId" />
-                        @*<div class="col-md-6" style="margin-bottom: 30px;">
+                        <div class="col-md-6" style="margin-bottom: 30px;" hidden>
                             <label for="exampleFormControlTextarea1" class="form-label">
                                 <h4 class="headtext">User name</h4>
                             </label>
                             <input asp-for="Username" class="form-control form-control-lg inputt" type="text" placeholder="TH"
                                 aria-label=".form-control-lg example"/>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-6" hidden>
                             <label for="exampleFormControlTextarea1" class="form-label">
                                 <h4 class="headtext">Password</h4>
                             </label>
                             <input asp-for="Password" class="form-control form-control-lg inputt" type="text" placeholder="@@123456..."
                                 aria-label=".form-control-lg example" />
-                        </div>*@
+                        </div>
                     </div>
                     <div style="margin-bottom: 30px;">
                         <label for="exampleFormControlTextarea1" class="form-label">
@@ -38,19 +38,6 @@
                             aria-label=".form-control-lg example" />
                     </div>
 
-
-                   @* <div style="margin-bottom: 10px;">
-                        <label for="exampleFormControlTextarea1" class="form-label">
-                            <h4 class="headtext">Gender</h4>
-                        </label>
-                        <br>
-
-                        <input class="in_ra" type="radio" value="1" name=""/>
-                        <label for="html" class="la_ra">Male</label>
-                        <input class="in_ra" type="radio" value="0" name=""/>
-                        <label for="html" class="la_ra">Female</label>
-
-                    </div>*@
 
                     <div style="margin-bottom: 30px;">
                         <label for="exampleFormControlTextarea1" class="form-label">
@@ -84,22 +71,28 @@
                             aria-label=".form-control-lg example">
                         <span style="color: rgb(159, 156, 156);">Your email for marketplace notification.</span>
                     </div>
-                    <input  asp-for="RoleId" hidden/>
+                   
 
-                    @*<div style="margin-bottom: 30px;">
+                    <div style="margin-bottom: 30px;">
                         <label for="exampleFormControlTextarea1" class="form-label">
                             <h4 class="headtext">Role</h4>
                         </label>
                         <br>
 
-                        <input class="in_ra" type="radio" value="1" name="Staff">
-                        <label for="html" class="la_ra">Staff</label>
-                        <input class="in_ra" type="radio" value="1" name="Staff">
-                        <label for="html" class="la_ra">Marketing/Sale</label>
-                        <input class="in_ra" type="radio" value="1" name="Staff">
-                        <label for="html" class="la_ra">Student</label>
-                    </div>*@
+                       
+                        <input class="in_ra"  name="roleid" type="radio" id="student" value="1" asp-for="RoleId">
+                        <label class="label_radio la_ra" for="student">Student</label>
+                    
 
+                    
+                        <input class="in_ra" name="roleid" type="radio" id="staff" value="2"  asp-for="RoleId">
+                        <label class="label_radio la_ra" for="staff">Staff</label>
+                        
+
+                        <input class="in_ra" name="roleid" type="radio" id="sale" value="3" asp-for="RoleId">
+                        <label class="label_radio la_ra" for="sale">Marketing/Sale</label>
+                    </div>
+                   
                     
                     <div style="margin-bottom: 30px;">
                         <button type="submit" class="add_user div-left">Update</button>

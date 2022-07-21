@@ -11,12 +11,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using JsonSerializer = System.Text.Json.JsonSerializer;
+using Online_Learn.AuthData;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
-namespace Online_Learn.Controllers
-{
-    public class CartController : Controller
-    {
+namespace Online_Learn.Controllers {
+    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "author")]
+    [Authorize(Roles = "student")]
+    [Authorize(Roles = "sale")]
+    public class CartController : Controller {
         private readonly Online_LearnContext _context;
+
 
         public CartController(Online_LearnContext context)
         {
@@ -63,14 +69,13 @@ namespace Online_Learn.Controllers
             var acs = _context.AccountCourses.ToList();
             foreach (var item in acs)
             {
-                if(item.AccountId == ac.AccountId && item.CourseId == ac.CourseId)
+                if (item.AccountId == ac.AccountId && item.CourseId == ac.CourseId)
                 {
                     return true;
                 }
             }
             return false;
         }
-
         [HttpPost]
         public async Task<IActionResult> CheckOut(double amount)
         {

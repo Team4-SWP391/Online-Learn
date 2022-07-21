@@ -35,6 +35,7 @@ body {
 
 .la_ra {
     font-size: 19px;
+    padding-right:30px;
 }
 
 input[type=text]:focus {
@@ -88,7 +89,7 @@ input[type=radio]:checked {
     background-color: rgb(168, 57, 212);
     color: white;
     border-radius: 50px;
-    margin-bottom: -108px;
+    margin-bottom: -90px;
     margin-left: -64px;
 }
 
@@ -97,7 +98,7 @@ input[type=radio]:checked {
     background-color: rgb(53, 53, 53);
     color: white;
     border-radius: 50px;
-    margin-top: -11px;
+    margin-top: -15px;
     margin-left: 296px;
 }
 

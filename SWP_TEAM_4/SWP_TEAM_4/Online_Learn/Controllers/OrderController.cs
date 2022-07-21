@@ -1,15 +1,17 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
+using Online_Learn.AuthData;
 using Online_Learn.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Online_Learn.Controllers
-{
-    public class OrderController : Controller
-    {
+namespace Online_Learn.Controllers {
+    [AuthAttribute]
+    public class OrderController : Controller {
         private readonly Online_LearnContext _context;
 
         public OrderController(Online_LearnContext context)

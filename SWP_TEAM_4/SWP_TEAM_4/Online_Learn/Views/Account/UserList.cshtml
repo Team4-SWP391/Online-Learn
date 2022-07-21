@@ -1,5 +1,6 @@
 ﻿@{
     ViewData["Title"] = "UserList";
+    Layout = "~/Views/Shared/_Layout_No_Footer.cshtml";
     
 }
 <style>
@@ -27,8 +28,8 @@
     </div>
     <div class="course-contact">
         <div class="course-contact__header">
-            <span class="course-contact__heading">User Manager</span> <a href="/Account/Add" class="course-contact__link"><i
-                    class="fal fa-plus"></i>Add</a>
+            <span class="course-contact__heading">User Manager</span> @*<a href="/Account/Add" class="course-contact__link"><i
+                    class="fal fa-plus"></i>Add</a>*@
         </div>
         <div class="course-contact__account">
             <div class="course-contact__avt">
@@ -111,7 +112,7 @@
             {
                 @if (ViewBag.checkPage == 1)
                 {
-                    <div class="pagination" id="pagger">
+                    <div class="pagination" style="margin-left:0px;" id="pagger">
                         <div class="pagination-item">
                             <a href="/Account/UserList/@ViewBag.roleid?pageIndex=@(ViewBag.prevPage <= 0 ? 1 : ViewBag.prevPage)&&name_search=@ViewBag.name_search" class="pagination-link"><i class="far fa-angle-left"></i></a>
                         </div>

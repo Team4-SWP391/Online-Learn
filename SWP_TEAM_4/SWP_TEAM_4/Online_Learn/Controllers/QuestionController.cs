@@ -12,9 +12,11 @@ using Microsoft.EntityFrameworkCore;
 
 using OfficeOpenXml;
 
+using Online_Learn.AuthData;
 using Online_Learn.Models;
 
 namespace Online_Learn.Controllers {
+    [AuthAttribute]
     public class QuestionController : Controller {
         private readonly Online_LearnContext _context;
 

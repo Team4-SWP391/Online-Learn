@@ -1,0 +1,44 @@
+﻿.header {
+    height: var(--height-header);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 1.2rem;
+    z-index: 1;
+}
+
+.header_back {
+    font-weight: 600;
+}
+
+    .header_back a {
+        color: var(--main-color);
+    }
+
+.header_logo {
+    text-transform: uppercase;
+}
+
+.header_signin {
+    font-weight: 600;
+    color: var(--main-color);
+    border: 1px solid black;
+}
+
+    .header_signin a {
+        display: block;
+        padding: 10px;
+        color: var(--main-color);
+    }
+
+        .header_signin a:hover {
+            color: white;
+            background-color: black;
+        }
+.header_right-avt a {
+    font-size: 14px;
+}
+.header_right-avt a:hover {
+    cursor: pointer;
+    color: var(--main-color);
+}

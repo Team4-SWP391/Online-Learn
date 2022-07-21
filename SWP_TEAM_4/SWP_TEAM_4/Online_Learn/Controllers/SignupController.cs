@@ -25,28 +25,35 @@ namespace Online_Learn.Controllers
         {
             return View();
         }
+        
         [HttpPost]
-        public ActionResult Register(Account account)
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(AccountSignup accountsignup)
         {
-            
-                var check = _context.Accounts.FirstOrDefault(a => a.Email == account.Email);
+            if (ModelState.IsValid)
+            {
+                var check = _context.Accounts.FirstOrDefault(a => a.Email == accountsignup.Email);
                 if (check == null)
                 {
-                    account.Password = GetMD5(account.Password);
+                    Account account = new Account();
+                    account.Password = GetMD5(accountsignup.Password);
+                    account.Username = accountsignup.Username;
+                    account.Email = accountsignup.Email;
                     _context.Accounts.Add(account);
                     _context.SaveChanges();
-                    return Redirect("../Home/Index");
+                    return Redirect("../Login/Login_Udemy");
                 }
                 else
                 {
                     ViewBag.error = "Email is exist!";
                     return View();
-                }
-            
 
+                }
+            }
+            return View();
         }
 
-        
+
         //create a string MD5
         public static string GetMD5(string str)
         {

@@ -1,9 +1,8 @@
-﻿@model Online_Learn.Models.Account
+﻿@model Online_Learn.Models.AccountSignup
 
 @{
     ViewData["Title"] = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    string error = ViewBag.error == null ? "" : ViewBag.error.ToString();
 }
 <link href="~/css/signup.css" rel="stylesheet" />
 <div class="content">
@@ -12,26 +11,30 @@
         learning
     </h4>
     <div class="signup">
-        <form class="signup_form" action="register" method="post">
-            <div class="signup_account-form">
-                <input data-index="0" class="form_signup" name="username" value="" type="text" placeholder="Username">
-                <span class="form_message"></span>
+        @*<form class="signup_form" action="register" method="post">*@
+        @using (Html.BeginForm("Register", "SignUp", FormMethod.Post, new { @class = "signup_form" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="signup_account-form">
+                <input asp-for="Username" data-index="0" class="form_signup" type="text" placeholder="Username">
+                <span asp-validation-for="Username" class="form_message"></span>
             </div>
             <div class="signup_account-form">
-                <input data-index="1" class="form_signup" name="email" value="" type="email" placeholder="Email (example: email@domain.com)">
-                <span class="form_message" data-error="@ViewBag.error" id="existEmail">@ViewBag.error</span>
+                <input asp-for="Email" data-index="1" class="form_signup" placeholder="Email (example: email@domain.com)">
+                <span asp-validation-for="Email" class="form_message" id="existEmail">@ViewBag.error</span>
             </div>
             <div class="signup_account-form">
-                <input data-index="2" class="form_signup" name="password" value="" type="password" placeholder="Password">
+                <input asp-for="Password" data-index="2" class="form_signup" type="password" placeholder="Password">
                 <i class="far fa-eye" id="togglePassword"></i>
                 <br />
-                <span class="form_message"></span>
+                <span asp-validation-for="Password" class="form_message"></span>
             </div>
             <div class="signup_account-form">
-                <input data-index="3" class="form_signup" name="confirm password" value="" type="password" placeholder="Confirm password">
+                <input asp-for="CfPassword" data-index="3" class="form_signup" type="password" placeholder="Confirm password">
                 <i class="far fa-eye" id="togglePassword2"></i>
                 <br />
-                <span class="form_message"></span>
+                <span asp-validation-for="CfPassword" class="form_message"></span>
             </div>
             <div class="signup_account-form">
                 <div class="login_account-role">
@@ -49,10 +52,11 @@
             <div class="signup_account-submit">
                 <button type="submit">Sign Up</button>
             </div>
+        }
 
-        </form>
+        @*</form>*@
         <div class="signup_login">
-            <span>Already have an account? <a href="">Log In</a></span>
+            <span>Already have an account? <a href="/Login/Login_Udemy">Log In</a></span>
         </div>
     </div>
 </div>

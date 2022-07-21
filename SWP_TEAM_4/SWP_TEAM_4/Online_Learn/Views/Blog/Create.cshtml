@@ -5,8 +5,8 @@
 @{
     ViewData["Title"] = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
-     Account user = Context.Session.GetString("User") != null ?
-    JsonConvert.DeserializeObject<Account>(Context.Session.GetString("User")) : null;
+    Account user = Context.Session.GetString("User") != null ?
+           JsonConvert.DeserializeObject<Account>(Context.Session.GetString("User")) : null;
 }
 
 
@@ -18,58 +18,57 @@
 
 
 <div class="course">
-        <div class="course-header">
-            <a class="course-header__back"asp-action="MyBlog"><i class="fas fa-angle-left"></i>Back to your blog</a>
-            <span class="course-header__key">Keyword research for bloggers</span>
-            <span class="course-header__bold">Draft</span>
-            <span class="course-header__tt">Omin of video contenet upload</span>
-        </div>
-        <div class="course-wrap">
-            
-            <div class="course-create">
-                <h3 class="course-create__heading">Write post</h3>
-                <div class="course-create__content">
+    <div class="course-header">
+        <a class="course-header__back" asp-action="Index"><i class="fas fa-angle-left"></i>Back to your blog</a>
+        <span class="course-header__key">Keyword research for bloggers</span>
+        <span class="course-header__bold">Draft</span>
+        <span class="course-header__tt">Omin of video contenet upload</span>
+    </div>
+    <div class="course-wrap">
 
-                    <div class="course-create__form">
-                        <form asp-action="Create">
-                             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                            <div class="course-create__formgr">
-                                <input type="text" class="course-create__input" hidden>
-                            </div>
-                            <div class="course-create__formgr">
-                                <label asp-for="Title" class="course-create__lable">Blog Title</label><br>
-                                <input asp-for="Title" type="text" class="course-create__input">
-                                <span asp-validation-for="Title" class="text-danger"></span>
-                            </div>
-                           
-                            <div class="course-create__formgr">
-                                <label class="course-create__lable">Department ID</label><br>
-                                <Select asp-for="DepartmentId" asp-items="ViewBag.DepartmentId" class="course-create__select">
-                                </Select>
-                            </div>
-                            <div class="course-create__formgr">
-                                <textarea asp-for="Content" class="content" cols="163" rows="8"></textarea>       
-                                </div>
+        <div class="course-create">
+            <h3 class="course-create__heading">Write post</h3>
+            <div class="course-create__content">
 
-                          
-                            <div class="form-group">
-                                 <input hidden asp-for="AccountId" class ="form-control" value="@user.AccountId" name="AccountId" />
-                            </div>
-                            <div class="course-create__formgr">
-                                <button class="course-create__submit">Save</button>
-                            </div>
+                <div class="course-create__form">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="course-create__formgr">
+                            <input type="text" class="course-create__input" hidden>
+                        </div>
+                        <div class="course-create__formgr">
+                            <label asp-for="Title" class="course-create__lable">Blog Title</label><br>
+                            <input asp-for="Title" type="text" class="course-create__input">
+                        </div>
 
-                            <script>
-                                 $(document).ready(function() {
-                                    $('.content').richText();
-                                 });
-                            </script>
-                        </form>
-                    </div>
+                        <div class="course-create__formgr">
+                            <label class="course-create__lable">Department ID</label><br>
+                            <Select asp-for="DepartmentId" asp-items="ViewBag.DepartmentId" class="course-create__select">
+                            </Select>
+                        </div>
+                        <div class="course-create__formgr">
+                            <textarea asp-for="Content" class="content" cols="163" rows="8"></textarea>
+                        </div>
+
+
+                        <div class="form-group">
+                            <input hidden asp-for="AccountId" class="form-control" value="@user.AccountId" name="AccountId" />
+                        </div>
+                        <div class="course-create__formgr">
+                            <button class="course-create__submit" value="Create">Save</button>
+                        </div>
+
+                        <script>
+                            $(document).ready(function() {
+                                $('.content').richText();
+                            });
+                        </script>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
 
 <script type="text/javascript" src="~/js/jquery.richtext.js"></script>

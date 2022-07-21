@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 using Online_Learn.AuthData;
 
+
 namespace Online_Learn.Controllers {
     public class CourseController : Controller {
         private readonly Online_LearnContext _context;
@@ -22,6 +23,10 @@ namespace Online_Learn.Controllers {
             _context = context;
         }
 
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
+        [Authorize(Roles = "sale")]
         public async Task<IActionResult> List(string name_search, int pageIndex)
         {
             List<Course> list_course = new List<Course>();
@@ -62,6 +67,10 @@ namespace Online_Learn.Controllers {
             return View();
         }
 
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
+        [Authorize(Roles = "sale")]
         public async Task<IActionResult> Category(int department_id, string name_search, int pageIndex)
         {
             List<Course> list_course = new List<Course>();
@@ -108,7 +117,10 @@ namespace Online_Learn.Controllers {
             ViewBag.nextPage = pageIndex + 1;
             return View();
         }
-
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
+        [Authorize(Roles = "sale")]
         public List<Course> getAllCourse(string name_search)
         {
             var list_course = _context.Courses.
@@ -117,6 +129,10 @@ namespace Online_Learn.Controllers {
             return list_course;
         }
 
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
+        [Authorize(Roles = "sale")]
         public List<Course> getAllCourseByDepartment(string name_search, int department)
         {
             var list_course = _context.Courses.
@@ -125,6 +141,10 @@ namespace Online_Learn.Controllers {
             return list_course;
         }
 
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
+        [Authorize(Roles = "sale")]
         public List<Course> Pagging(int pageIndex, int pageSize)
         {
             int size = pageSize;
@@ -136,6 +156,10 @@ namespace Online_Learn.Controllers {
             return list;
         }
 
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
+        [Authorize(Roles = "sale")]
         public async Task<IActionResult> MyCourse(string name_search, int pageIndex)
         {
             Account user = JsonSerializer.Deserialize<Account>(HttpContext.Session.GetString("User"));
@@ -183,6 +207,10 @@ namespace Online_Learn.Controllers {
             return View();
         }
 
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
+        [Authorize(Roles = "sale")]
         // GET: Courses/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -227,6 +255,8 @@ namespace Online_Learn.Controllers {
             return View(model);
         }
 
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
         // GET: Courses/Create
         public IActionResult Create()
         {
@@ -239,6 +269,9 @@ namespace Online_Learn.Controllers {
         // POST: Courses/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CourseId,CourseName,Price,DepartmentId,Image,Rate,Language,AccountId,Description,IsSale,UpdateAt,LevelId")] Course course)
@@ -255,6 +288,8 @@ namespace Online_Learn.Controllers {
             return View(course);
         }
 
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
         // GET: Courses/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -289,8 +324,9 @@ namespace Online_Learn.Controllers {
         // POST: Courses/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
         [HttpPost]
-
         public async Task<IActionResult> Edit(int id, [Bind("CourseId,CourseName,Price,DepartmentId,Image,Rate,Language,AccountId,Description,IsSale,UpdateAt,LevelId")] Course course)
         {
 
@@ -321,6 +357,9 @@ namespace Online_Learn.Controllers {
         }
 
         //List Question By Course
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+
         public IActionResult Questions(int? id)
         {
             if (id == null)
@@ -347,6 +386,9 @@ namespace Online_Learn.Controllers {
         }
 
         //Create Question in Course
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+
         public IActionResult CreateQuestion(string CourseID, Question question)
         {
             _context.Questions.Add(question);
@@ -355,6 +397,9 @@ namespace Online_Learn.Controllers {
         }
 
         //Delete Question Course
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+
         public IActionResult DeleteQuestion(int id)
         {
             Question question = _context.Questions.FirstOrDefault(q => q.QuestionId == id);
@@ -369,6 +414,9 @@ namespace Online_Learn.Controllers {
         }
 
         //Edit Question Course
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+
         [HttpPost]
         public IActionResult EditQuestion(int id, string quiz, string op1, string op2, string op3, string op4, string solution, int totalQuestion)
         {
@@ -388,10 +436,15 @@ namespace Online_Learn.Controllers {
                                                     join c in _context.Courses on l.CourseId equals c.CourseId
                                                     where c.CourseId == course.CourseId
                                                     join a in _context.Accounts on c.AccountId equals a.AccountId
-                                                    select new QuestionDetail(q.QuestionId, q.Quiz, q.Op1, q.Op2, q.Op3, q.Op4, q.Solution, l.LectureName, c.CourseName, c.CourseId, a.FulllName)).ToList();
+                                                    select new QuestionDetail(q.QuestionId, q.Quiz, q.Op1, q.Op2, q.Op3, q.Op4, q.Solution, l.LectureName, c.CourseName, c.CourseId, a.Username)).ToList();
             return PartialView("QuestionPartial", questionsSlider);
         }
+
+
         // GET: Courses/Delete/5
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+
         public async Task<IActionResult> Delete(int id)
         {
             if (id == null)
@@ -413,6 +466,9 @@ namespace Online_Learn.Controllers {
         }
 
         // POST: Courses/Delete/5
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+
         [HttpPost, ActionName("Delete")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -426,7 +482,8 @@ namespace Online_Learn.Controllers {
             return _context.Courses.Any(e => e.CourseId == id);
         }
 
-
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
         public async Task<IActionResult> addLecture(Lecture NewLecture)
         {
             _context.Lectures.Add(NewLecture);
@@ -447,6 +504,11 @@ namespace Online_Learn.Controllers {
             }
             return check;
         }
+
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
+        [Authorize(Roles = "sale")]
         public IActionResult AddToCart(int id)
         {
             string gh = HttpContext.Session.GetString("cart");
@@ -491,6 +553,11 @@ namespace Online_Learn.Controllers {
             }
             return check;
         }
+
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
+        [Authorize(Roles = "sale")]
         public async Task<IActionResult> AddToWL(int id)
         {
             var account_id = JsonSerializer.Deserialize<Account>(HttpContext.Session.GetString("User")).AccountId;
@@ -507,6 +574,10 @@ namespace Online_Learn.Controllers {
 
 
         // GET: Course/VideoPage/5
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
+        [Authorize(Roles = "sale")]
         public IActionResult Learn(int id)
         {
             Account user = JsonConvert.DeserializeObject<Account>(HttpContext.Session.GetString("User"));
@@ -514,6 +585,8 @@ namespace Online_Learn.Controllers {
             var listLecture = _context.Lectures.Where(l => l.CourseId == id).ToList();
             var listLectureId = listLecture.Select(l => l.LectureId).ToList();
             var listLesson = _context.Lessons.Where(l => listLectureId.Contains((int)l.LectureId)).ToList();
+
+
             Course course = _context.Courses.Include(c => c.Level).FirstOrDefault(c => c.CourseId == id);
             ViewBag.course = course;
             model.listLecture = listLecture;
@@ -524,6 +597,10 @@ namespace Online_Learn.Controllers {
             return View("VideoPage", model);
         }
 
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
+        [Authorize(Roles = "sale")]
         public IActionResult Progress(int lessonId, int accountId, int courseId)
         {
             AccountLesson accountLesson = _context.AccountLessons.FirstOrDefault(x => x.AccountId == accountId && x.LessonId == lessonId && x.CourseId == courseId);
@@ -539,44 +616,46 @@ namespace Online_Learn.Controllers {
 
     }
 
-    public class QuestionDetail {
-        public int QuestionId { get; set; }
-        public string Quiz { get; set; }
-        public string Op1 { get; set; }
-        public string Op2 { get; set; }
-
-        public string Op3 { get; set; }
-
-        public string Op4 { get; set; }
-
-        public string Solution { get; set; }
-
-        public string Lecture { get; set; }
-
-        public string CourseName { get; set; }
-
-        public int CourseID { get; set; }
-
-        public string Author { get; set; }
-
-        public QuestionDetail(int questionId, string quiz, string op1, string op2, string op3, string op4, string solution, string lecture, string courseName, int courseID, string author)
-        {
-            QuestionId = questionId;
-            Quiz = quiz;
-            Op1 = op1;
-            Op2 = op2;
-            Op3 = op3;
-            Op4 = op4;
-            Solution = solution;
-            Lecture = lecture;
-            CourseName = courseName;
-            CourseID = courseID;
-            Author = author;
-        }
-    }
-
-
-
-
-
 }
+
+public class QuestionDetail {
+    public int QuestionId { get; set; }
+    public string Quiz { get; set; }
+    public string Op1 { get; set; }
+    public string Op2 { get; set; }
+
+    public string Op3 { get; set; }
+
+    public string Op4 { get; set; }
+
+    public string Solution { get; set; }
+
+    public string Lecture { get; set; }
+
+    public string CourseName { get; set; }
+
+    public int CourseID { get; set; }
+
+    public string Author { get; set; }
+
+    public QuestionDetail(int questionId, string quiz, string op1, string op2, string op3, string op4, string solution, string lecture, string courseName, int courseID, string author)
+    {
+        QuestionId = questionId;
+        Quiz = quiz;
+        Op1 = op1;
+        Op2 = op2;
+        Op3 = op3;
+        Op4 = op4;
+        Solution = solution;
+        Lecture = lecture;
+        CourseName = courseName;
+        CourseID = courseID;
+        Author = author;
+    }
+}
+
+
+
+
+
+

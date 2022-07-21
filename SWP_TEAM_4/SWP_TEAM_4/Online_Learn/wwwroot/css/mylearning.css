@@ -76,7 +76,7 @@
     /* margin-right: 12px; */
 }
 .card-learning{
-    margin-right: 10px;
+    margin: 0 10px 10px 0;
 }
 
 .card-learning:hover, card_img:hover {

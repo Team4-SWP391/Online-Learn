@@ -43,7 +43,7 @@ const changeVideo = (e, url, courseId, lessonId, accountId) => {
     document.querySelector('#progress').textContent = `${current}/${total}`;
     e.style.color = 'var(--main-color)'
     const iframe = document.querySelector('iframe');
-    iframe.src = `https://www.youtube.com/embed/${url}`;
+    iframe.src = `${url}`;
     $.ajax({
         url: '/Course/Progress',
         type: 'POST',

@@ -56,11 +56,7 @@
         <div class="content">
             <div class="course">
                 <div class="" style="margin-top: var(--height-header-video-page)">
-                    <!-- <iframe width="100%" height="650" src="https://www.youtube-nocookie.com/embed/BipDAx3U6VY"
-                        title="YouTube video player" frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowfullscreen></iframe> -->
-                    <iframe width="100%" height="650" src="https://www.youtube.com/embed/@Model.listLesson[0].Video"
+                    <iframe width="100%" height="650" src="@Model.listLesson[0].Video"
                             title="YouTube video player" frameborder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowfullscreen></iframe>
@@ -263,7 +259,7 @@
                                 {
                                     <li class="isActive">
                                         <i class="fal fa-pencil-alt"></i>
-                                        <p>Exam</p>
+                                        <p>@exam.ExamName</p>
                                     </li>
                                 }
                             </ul>
