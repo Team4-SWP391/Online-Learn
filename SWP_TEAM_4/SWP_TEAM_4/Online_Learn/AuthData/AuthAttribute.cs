@@ -1,5 +1,5 @@
 ﻿using System.Linq;
-
+using System.Text.Json;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using Online_Learn.Models;
 
 namespace Online_Learn.AuthData {
-
 
     public class AuthAttribute : ActionFilterAttribute, IAuthorizationFilter {
         private readonly Online_LearnContext _context = new Online_LearnContext();

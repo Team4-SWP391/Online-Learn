@@ -136,5 +136,47 @@ namespace Online_Learn.Controllers
             HttpContext.Session.SetString("cart", JsonSerializer.Serialize(cart));
             return Redirect("/Cart/ViewCart");
         }
+
+        public bool checkCourseExist(List<Course> list, Course course)
+        {
+            bool check = false;
+            foreach (var item in list)
+            {
+                if (item.CourseId == course.CourseId)
+                {
+                    check = true;
+                }
+            }
+            return check;
+        }
+        public async Task<IActionResult> BuyNow(int id)
+        {
+            string gh = HttpContext.Session.GetString("cart");
+            Course c = _context.Courses.FirstOrDefault(x => x.CourseId == id);
+            List<Course> cart = new List<Course>();
+            if (gh != null)
+            {
+                cart = JsonSerializer.Deserialize<List<Course>>(gh);
+                if (!checkCourseExist(cart, c))
+                {
+                    cart.Add(c);
+                }
+            }
+            else
+            {
+                if (!checkCourseExist(cart, c))
+                {
+                    cart.Add(c);
+                }
+            }
+            double price = 0;
+            foreach (var item in cart)
+            {
+                price += item.Price;
+            }
+            HttpContext.Session.SetString("cart", JsonConvert.SerializeObject(cart));
+            HttpContext.Session.SetString("TotalPrice", price.ToString());
+            return Redirect($"/Cart/ViewCart");
+        }
     }
 }

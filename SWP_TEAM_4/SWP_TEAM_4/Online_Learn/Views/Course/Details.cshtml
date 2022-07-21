@@ -22,7 +22,7 @@
             <img src="@course.Image" alt="">
         </div>
         <div class="course-preview__cart">
-            <h1 class="course-preview__price">@course.Price</h1>
+            <h1 class="course-preview__price">@course.Price $</h1>
             @if (ViewBag.owner == 0)
             {
                 <a href="/Course/AddToCart?id=@course.CourseId" class="course-preview__btnatc">Add to cart</a>
@@ -38,7 +38,19 @@
 
 
             <a href="/Course/AddToWL?id=@course.CourseId" class="course-preview__btnatw">Add to WistList</a><br>
-            <button class="course-preview__btnbn">Buy now</button><br>
+            @if (ViewBag.owner == 0)
+            {
+                <a href="/Cart/BuyNow?id=@course.CourseId" class="course-preview__btnbn">Buy now</a><br>
+
+                <br>
+            }
+            else
+            {
+
+                <a class="course-preview__btnbn">Buy now</a><br>
+
+                <br>
+            }
             <span class="course-preview__gua">30-Day Money-Black Guarantee</span>
         </div>
         <div class="course-preview__info">
