@@ -8,11 +8,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using OfficeOpenXml;
 using Microsoft.AspNetCore.Http;
+using Online_Learn.AuthData;
 
-namespace Online_Learn.Controllers
-{
-    public class ResultController : Controller
-    {
+namespace Online_Learn.Controllers {
+    [AuthAttribute]
+    public class ResultController : Controller {
         private readonly Online_LearnContext _context;
 
         public ResultController(Online_LearnContext context)

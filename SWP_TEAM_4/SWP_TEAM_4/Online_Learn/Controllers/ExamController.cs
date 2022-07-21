@@ -1,16 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+
+using Online_Learn.AuthData;
 using Online_Learn.Models;
 
-namespace Online_Learn.Controllers
-{
-    public class ExamController : Controller
-    {
+namespace Online_Learn.Controllers {
+
+    public class ExamController : Controller {
         private readonly Online_LearnContext _context;
 
         public ExamController(Online_LearnContext context)
@@ -19,6 +23,8 @@ namespace Online_Learn.Controllers
         }
 
         // GET: Do Exam
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
         public async Task<IActionResult> Index(int quantity)
         {
             List<Question> list = _context.Questions.OrderBy(x => Guid.NewGuid()).Take(10).ToList();
@@ -27,6 +33,10 @@ namespace Online_Learn.Controllers
 
 
         //Post: Do Exam/ViewResult
+
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
+
         [HttpPost]
         public async Task<IActionResult> ViewResult(ListResult[] listRes, string time, int examId, int totalQuestion)
         {
@@ -56,6 +66,9 @@ namespace Online_Learn.Controllers
         }
 
         [HttpGet]
+
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
         public IActionResult ViewResult(int id)
         {
             var Result = _context.Results.ToList().FirstOrDefault(x => x.ResultId == id);
@@ -66,6 +79,8 @@ namespace Online_Learn.Controllers
         }
 
         // GET: Exams
+
+        [Authorize(Roles = "author")]
         public async Task<IActionResult> List()
         {
             var online_LearnContext = _context.Exams.Include(e => e.Lecture);
@@ -108,7 +123,7 @@ namespace Online_Learn.Controllers
         public async Task<IActionResult> Create([Bind("ExamId,ExamName,Quantity,Time,StartDate,LectureId")] Exam exam)
         {
             var lecture = await _context.Lectures.Where(x => x.LectureId == exam.LectureId).FirstOrDefaultAsync();
-           
+
             if (ModelState.IsValid)
             {
                 _context.Add(exam);
@@ -205,8 +220,7 @@ namespace Online_Learn.Controllers
             return _context.Exams.Any(e => e.ExamId == id);
         }
     }
-    public class ListResult
-    {
+    public class ListResult {
         public int id { get; set; }
         public string answer { get; set; }
     }

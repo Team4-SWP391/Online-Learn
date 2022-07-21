@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 //using Google.Apis.Auth.AspNetCore3;
 //using Google.Apis.Services;
@@ -37,7 +41,7 @@ namespace Online_Learn.Controllers {
 
 
         // GET: Login_Udemy
-        public IActionResult Login_Udemy()
+        public IActionResult Login_Udemy(string ReturnUrl)
         {
             string email = HttpContext.Request.Cookies["email"];
             string pass = HttpContext.Request.Cookies["pass"];
@@ -45,6 +49,7 @@ namespace Online_Learn.Controllers {
             ViewData["email"] = email;
             ViewData["pass"] = pass;
             ViewData["remember"] = remember == "on" ? "checked" : "";
+            ViewBag.ReturnUrl = ReturnUrl;
             return View("Login");
         }
 
@@ -56,7 +61,7 @@ namespace Online_Learn.Controllers {
 
         [HttpPost]
         // POST: Login/Login
-        public async Task<IActionResult> Login(string email, string pass, string remember)
+        public async Task<IActionResult> Login(string email, string pass, string remember, string ReturnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +82,28 @@ namespace Online_Learn.Controllers {
                         HttpContext.Response.Cookies.Delete("remember");
                     }
                     HttpContext.Session.SetString("User", JsonConvert.SerializeObject(user));
-                    return Redirect("/Home");
+                    string role = "";
+                    switch (user.RoleId)
+                    {
+                        case 1:
+                            role = "student";
+                            break;
+                        case 2:
+                            role = "author";
+                            break;
+                        case 3:
+                            role = "sale";
+                            break;
+                        case 4:
+                            role = "admin";
+                            break;
+                    }
+                    var claims = new List<Claim>();
+                    claims.Add(new Claim(ClaimTypes.Role, role));
+                    var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    var claimsPrincipal = new ClaimsPrincipal(claimIdentity);
+                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal, new AuthenticationProperties());
+                    return ReturnUrl == null ? RedirectToAction("Index", "Home") : Redirect(ReturnUrl);
                 }
                 else
                 {

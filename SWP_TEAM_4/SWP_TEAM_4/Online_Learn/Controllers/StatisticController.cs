@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+
 using Online_Learn.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Online_Learn.Controllers
-{
-    public class StatisticController : Controller
-    {
+namespace Online_Learn.Controllers {
+    public class StatisticController : Controller {
         private readonly Online_LearnContext _context;
 
         public StatisticController(Online_LearnContext context)
@@ -22,7 +22,8 @@ namespace Online_Learn.Controllers
         public IActionResult GetBestSellCourses()
         {
             dynamic courses = _context.Courses.Join(_context.OrderDetails, c => c.CourseId, od => od.CourseId, (c, od) => new { c, od })
-                .GroupBy(x => new {
+                .GroupBy(x => new
+                {
                     x.c.CourseId,
                     x.c.CourseName,
                     x.c.Price,
@@ -71,15 +72,18 @@ namespace Online_Learn.Controllers
         }
         public IActionResult GetRevenueMonthly()
         {
-            dynamic revenue = (from o in _context.Orders 
-                               select new { 
+            dynamic revenue = (from o in _context.Orders
+                               select new
+                               {
                                    o.OrderDate.Value.Year,
                                    o.OrderDate.Value.Month,
                                    o.TotalPrice
-                               }).GroupBy(x => new { 
-                                x.Year,
-                                x.Month
-                               }).Select(x => new { 
+                               }).GroupBy(x => new
+                               {
+                                   x.Year,
+                                   x.Month
+                               }).Select(x => new
+                               {
                                    x.Key.Year,
                                    x.Key.Month,
                                    revenueMonth = x.Sum(x => x.TotalPrice)
