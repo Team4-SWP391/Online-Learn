@@ -22,14 +22,15 @@
             <div class="changepass_form">
                 <i class="fal fa-lock"></i>
                 <input type="password" class="pwform" name="newpass" placeholder="New Password">
+                <span class="form_message"></span>
                 @if (ViewBag.Error != null)
                 {
-                <span class="form_message">@ViewBag.Error</span>
+                    <span class="form_message">@ViewBag.Error</span>
                 }
             </div>
             <div class="changepass_form">
                 <i class="fal fa-lock"></i>
-                <input type="password" class="pwform" name="confirm new pass" placeholder="Confirm New Password">
+                <input type="password" class="pwform" name="cfpass" placeholder="Confirm New Password">
                 <span class="form_message"></span>
             </div>
             <input type="hidden" name="token" />

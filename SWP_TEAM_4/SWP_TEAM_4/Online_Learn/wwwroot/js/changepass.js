@@ -65,12 +65,8 @@ form.addEventListener('submit', function (e) {
     }
     if (validatePass(newpass.value) && newpass.value === cfnewpass.value) {
         form.submit();
-        show_alert();
     } else {
         e.preventDefault()
     }
 
 })
-function show_alert() {
-    alert("Change password Successful!");
-}

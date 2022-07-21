@@ -437,7 +437,7 @@ namespace Online_Learn.Controllers {
                                                     join c in _context.Courses on l.CourseId equals c.CourseId
                                                     where c.CourseId == course.CourseId
                                                     join a in _context.Accounts on c.AccountId equals a.AccountId
-                                                    select new QuestionDetail(q.QuestionId, q.Quiz, q.Op1, q.Op2, q.Op3, q.Op4, q.Solution, l.LectureName, c.CourseName, c.CourseId, a.FulllName)).ToList();
+                                                    select new QuestionDetail(q.QuestionId, q.Quiz, q.Op1, q.Op2, q.Op3, q.Op4, q.Solution, l.LectureName, c.CourseName, c.CourseId, a.Username)).ToList();
             return PartialView("QuestionPartial", questionsSlider);
         }
 

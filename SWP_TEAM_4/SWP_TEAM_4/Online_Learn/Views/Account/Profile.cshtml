@@ -25,7 +25,7 @@
                 </div>
                 <div class="profile-from__group">
                     <label class="profile-lable">Day of birth</label><br>
-                    <input type="date" class="profile-input" id="profile-date" name="NewAccount.Dob" value="@(Convert.ToDateTime(ViewBag.account.Dob).ToString("yyyy-MM-dd"))"/>
+                    <input type="date" class="profile-input" id="profile-date" name="NewAccount.Dob" value="@(Convert.ToDateTime(ViewBag.account.Dob).ToString("yyyy-MM-dd"))" />
                 </div>
                 <div class="profile-from__group">
                     <label class="profile-lable">Address</label><br>
@@ -54,7 +54,8 @@
         </div>
         <div class="profile-image">
             <div class="profile-avt">
-                <img src="https://source.unsplash.com/random" alt="">
+                <img src="https://source.unsplash.com/random" alt=""><br />
+                <a href="/Changepassword/Change"><button type="button" class="btn_changepass">Change password</button></a>
             </div>
         </div>
     </div>
