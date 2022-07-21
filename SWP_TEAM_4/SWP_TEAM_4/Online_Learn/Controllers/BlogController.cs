@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,7 +13,7 @@ using Microsoft.EntityFrameworkCore;
 
 using Newtonsoft.Json;
 
-
+using Online_Learn.AuthData;
 using Online_Learn.Models;
 
 namespace Online_Learn.Controllers {
@@ -23,6 +25,16 @@ namespace Online_Learn.Controllers {
             _context = context;
         }
 
+
+
+
+        public List<Blog> SearchBlog(string title)
+        {
+            List<Blog> ListBlog = new List<Blog>();
+            ListBlog = _context.Blogs.Include(b => b.Account).Include(b => b.Department)
+                    .Where(b => b.Title.Contains(title)).ToList();
+            return ListBlog;
+        }
         // GET: Blog
         public async Task<IActionResult> Index(int pageIndex, string title)
         {
@@ -92,8 +104,9 @@ namespace Online_Learn.Controllers {
             model.listYear = listYear;
             return View(model);
         }
-        // GET: Blogs/Detail/5
-        public async Task<IActionResult> Detail(int? id, int? depaid, int? acid)
+
+        // GET: Blogs/Detail/5  
+        public async Task<IActionResult> Detail(int? id)
         {
             Random rand = new Random();
 
@@ -107,30 +120,35 @@ namespace Online_Learn.Controllers {
                 .FirstOrDefaultAsync(m => m.BlogId == id);
 
 
-            var listCourse = await _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).OrderBy(x => Guid.NewGuid()).Take(8).ToListAsync();
+            var listCourse = await _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).OrderBy(x => Guid.NewGuid()).Take(5).ToListAsync();
             ViewBag.listCourse = listCourse;
 
             var relate = await _context.Blogs.Include(b => b.Account).Include(b => b.Department).
-                OrderBy(b => Guid.NewGuid()).Take(5).ToListAsync();
+                OrderBy(b => Guid.NewGuid()).Take(3).ToListAsync();
 
 
             ViewBag.relate = relate;
-
+            var listCou = await _context.Courses.Include(x => x.Account).Include(x => x.Department).Include(x => x.Level).OrderBy(x => Guid.NewGuid()).Take(3).ToListAsync();
+            ViewBag.listCou = listCou;
 
             if (blog == null)
             {
                 return NotFound();
             }
             ViewData["BlogId"] = blog.BlogId;
-            ViewData["AccountName"] = blog.Account.Username;
+            ViewData["AccountName"] = blog.Account.FulllName;
             ViewData["AccountImg"] = blog.Account.Image;
             ViewData["user"] = blog.Account.FulllName;
-
+            ViewData["AccountDes"] = blog.Account.Desc;
             return View(blog);
 
 
         }
 
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
+        [Authorize(Roles = "sale")]
         // GET: Blog/Create
         public IActionResult Create()
         {
@@ -157,6 +175,10 @@ namespace Online_Learn.Controllers {
             return View(blog);
         }
 
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
+        [Authorize(Roles = "sale")]
         // GET: Blogs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -214,6 +236,10 @@ namespace Online_Learn.Controllers {
             return View(blog);
         }
 
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
+        [Authorize(Roles = "sale")]
         // GET: Blogs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -238,6 +264,7 @@ namespace Online_Learn.Controllers {
         {
             return _context.Blogs.Any(e => e.BlogId == id);
         }
+
 
     }
 

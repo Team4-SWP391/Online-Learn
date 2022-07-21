@@ -23,6 +23,10 @@ input[type=text] {
     border: 2px solid black;   
 }
 
+input[type=text]:focus {
+    border: 2px solid #a435f0;   
+}
+
 .inn {
     border: 2px solid black;   
 }

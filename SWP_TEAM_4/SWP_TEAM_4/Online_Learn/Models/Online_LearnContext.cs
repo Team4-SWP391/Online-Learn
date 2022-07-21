@@ -19,6 +19,7 @@ namespace Online_Learn.Models
 
         public virtual DbSet<Account> Accounts { get; set; }
         public virtual DbSet<AccountCourse> AccountCourses { get; set; }
+        public virtual DbSet<AccountLesson> AccountLessons { get; set; }
         public virtual DbSet<AccountToken> AccountTokens { get; set; }
         public virtual DbSet<Blog> Blogs { get; set; }
         public virtual DbSet<Course> Courses { get; set; }
@@ -35,7 +36,6 @@ namespace Online_Learn.Models
         public virtual DbSet<Program> Programs { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<Result> Results { get; set; }
-        public virtual DbSet<ResultExam> ResultExams { get; set; }
         public virtual DbSet<Technology> Technologies { get; set; }
         public virtual DbSet<WhistList> WhistLists { get; set; }
 
@@ -44,6 +44,7 @@ namespace Online_Learn.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("server=DESKTOP-UKC2529\\TUAN; database=Online_Learn;uid=sa;pwd=123;");
                 optionsBuilder.UseSqlServer("server =DESKTOP-NB2DNI9\\VINH; database=Online_Learn;uid=sa;pwd=0775122001;");
             }
         }
@@ -122,6 +123,60 @@ namespace Online_Learn.Models
                     .HasForeignKey(d => d.CourseId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Account_Course_Course");
+            });
+
+            modelBuilder.Entity<AccountLesson>(entity =>
+            {
+                entity.HasKey(e => new { e.AccountId, e.LessonId });
+
+                entity.ToTable("Account_Lesson");
+
+                entity.Property(e => e.AccountId).HasColumnName("account_id");
+
+                entity.Property(e => e.LessonId).HasColumnName("lesson_id");
+
+                entity.HasOne(d => d.Account)
+                    .WithMany(p => p.AccountLessons)
+                    .HasForeignKey(d => d.AccountId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Account_Lesson_Account");
+
+                entity.HasOne(d => d.Lesson)
+                    .WithMany(p => p.AccountLessons)
+                    .HasForeignKey(d => d.LessonId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Account_Lesson_Lesson");
+            });
+
+            modelBuilder.Entity<AccountLesson>(entity =>
+            {
+                entity.HasKey(e => new { e.AccountId, e.LessonId, e.CourseId });
+
+                entity.ToTable("Account_Lesson");
+
+                entity.Property(e => e.AccountId).HasColumnName("account_id");
+
+                entity.Property(e => e.LessonId).HasColumnName("lesson_id");
+
+                entity.Property(e => e.CourseId).HasColumnName("course_id");
+
+                entity.HasOne(d => d.Account)
+                    .WithMany(p => p.AccountLessons)
+                    .HasForeignKey(d => d.AccountId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Account_Lesson_Account");
+
+                entity.HasOne(d => d.Course)
+                    .WithMany(p => p.AccountLessons)
+                    .HasForeignKey(d => d.CourseId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Account_Lesson_Course");
+
+                entity.HasOne(d => d.Lesson)
+                    .WithMany(p => p.AccountLessons)
+                    .HasForeignKey(d => d.LessonId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Account_Lesson_Lesson");
             });
 
             modelBuilder.Entity<AccountToken>(entity =>
@@ -254,6 +309,7 @@ namespace Online_Learn.Models
                 entity.Property(e => e.ExamId).HasColumnName("exam_id");
 
                 entity.Property(e => e.ExamName)
+                    .IsRequired()
                     .IsUnicode(false)
                     .HasColumnName("exam_name");
 
@@ -271,6 +327,7 @@ namespace Online_Learn.Models
                 entity.HasOne(d => d.Lecture)
                     .WithMany(p => p.Exams)
                     .HasForeignKey(d => d.LectureId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Exam_Lecture");
             });
 
@@ -328,13 +385,21 @@ namespace Online_Learn.Models
 
                 entity.Property(e => e.LectureId).HasColumnName("lecture_id");
 
+                entity.Property(e => e.CourseId).HasColumnName("course_id");
+
+                entity.Property(e => e.CreateAt)
+                    .HasColumnType("date")
+                    .HasColumnName("create_at")
+                    .HasDefaultValueSql("(getdate())");
+
+                entity.Property(e => e.Description)
+                    .IsUnicode(false)
+                    .HasColumnName("description");
+
                 entity.Property(e => e.LectureName)
+                    .IsRequired()
                     .IsUnicode(false)
                     .HasColumnName("lecture_name");
-
-                entity.Property(e => e.Main).HasColumnName("main");
-
-                entity.Property(e => e.Video).HasColumnName("video");
             });
 
             modelBuilder.Entity<LectureAccount>(entity =>
@@ -364,28 +429,24 @@ namespace Online_Learn.Models
             {
                 entity.ToTable("Lesson");
 
-                entity.Property(e => e.LessonId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("lesson_id");
-
-                entity.Property(e => e.CourseId).HasColumnName("course_id");
+                entity.Property(e => e.LessonId).HasColumnName("lesson_id");
 
                 entity.Property(e => e.LectureId).HasColumnName("lecture_id");
 
                 entity.Property(e => e.LessonName)
+                    .IsRequired()
                     .IsUnicode(false)
                     .HasColumnName("lesson_name");
 
-                entity.HasOne(d => d.Course)
-                    .WithMany(p => p.Lessons)
-                    .HasForeignKey(d => d.CourseId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Lesson_Course");
+                entity.Property(e => e.Main).HasColumnName("main");
+
+                entity.Property(e => e.Video)
+                    .IsRequired()
+                    .HasColumnName("video");
 
                 entity.HasOne(d => d.Lecture)
                     .WithMany(p => p.Lessons)
                     .HasForeignKey(d => d.LectureId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Lesson_Lecture");
             });
 
@@ -502,40 +563,32 @@ namespace Online_Learn.Models
 
                 entity.Property(e => e.ResultId).HasColumnName("result_id");
 
+                entity.Property(e => e.AccountId).HasColumnName("account_id");
+
+                entity.Property(e => e.CorrectAnswer).HasColumnName("correctAnswer");
+
                 entity.Property(e => e.ExamId).HasColumnName("exam_id");
 
                 entity.Property(e => e.Score).HasColumnName("score");
 
-                entity.Property(e => e.Status).HasColumnName("status");
+                entity.Property(e => e.Status)
+                    .IsRequired()
+                    .HasMaxLength(50)
+                    .IsUnicode(false)
+                    .HasColumnName("status");
+
+                entity.Property(e => e.Time).HasColumnName("time");
+
+                entity.HasOne(d => d.Account)
+                    .WithMany(p => p.Results)
+                    .HasForeignKey(d => d.AccountId)
+                    .HasConstraintName("FK_Result_Account");
 
                 entity.HasOne(d => d.Exam)
                     .WithMany(p => p.Results)
                     .HasForeignKey(d => d.ExamId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Result_Exam1");
-            });
-
-            modelBuilder.Entity<ResultExam>(entity =>
-            {
-                entity.HasKey(e => new { e.ResultId, e.AccountId });
-
-                entity.ToTable("Result_Exam");
-
-                entity.Property(e => e.ResultId).HasColumnName("result_id");
-
-                entity.Property(e => e.AccountId).HasColumnName("account_id");
-
-                entity.HasOne(d => d.Account)
-                    .WithMany(p => p.ResultExams)
-                    .HasForeignKey(d => d.AccountId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Result_Exam_Account");
-
-                entity.HasOne(d => d.Result)
-                    .WithMany(p => p.ResultExams)
-                    .HasForeignKey(d => d.ResultId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Result_Exam_Result");
             });
 
             modelBuilder.Entity<Technology>(entity =>

@@ -17,8 +17,9 @@ namespace Online_Learn.Models
 
         public int LectureId { get; set; }
         public string LectureName { get; set; }
-        public string Video { get; set; }
-        public string Main { get; set; }
+        public int? CourseId { get; set; }
+        public DateTime? CreateAt { get; set; }
+        public string Description { get; set; }
 
         public virtual ICollection<Exam> Exams { get; set; }
         public virtual ICollection<LectureAccount> LectureAccounts { get; set; }

@@ -1,8 +1,23 @@
 ﻿@using Microsoft.AspNetCore.Http
-@using Newtonsoft.Json
+@*@using Newtonsoft.Json*@
+@using System.Text.Json
 @{
     Account user = Context.Session.GetString("User") != null ?
-    JsonConvert.DeserializeObject<Account>(Context.Session.GetString("User")) : null;
+    JsonSerializer.Deserialize<Account>(Context.Session.GetString("User")) : null;
+
+    string jsonCart = Context.Session.GetString("cart");
+    List<Course> cart = new List<Course>();
+    int gotoCheck = 0;
+    if (jsonCart != null)
+    {
+        cart = JsonSerializer.Deserialize<List<Course>>(jsonCart);
+    }
+    else
+    {
+        gotoCheck = 1;
+
+    }
+    string price = Context.Session.GetString("TotalPrice");
 }
 
 <!DOCTYPE html>
@@ -13,7 +28,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"]</title>
-    <link rel="icon" type="image/x-icon" href="./assets/img/favicon.png">
+    <link rel="icon" type="image/x-icon" href="./css//icons8-udemy.com-is-an-online-learning-and-teaching-platform.-32.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
@@ -189,10 +204,11 @@
                 </div>
             </div>
             <div class="header_center ">
-                <form action="">
+                <form id="formHeader" action="/Home/Search" method="GET">
                     <div class="header_center-search">
                         <i class="fal fa-search fs-5"></i>
-                        <input type="text" placeholder="Search For Anything..." class="outline-none" />
+                        <input type="text" name="txtSearch" placeholder="Search For Anything..." class="outline-none" />
+                        <button id="btnSubmit">Search</button>
                     </div>
                 </form>
             </div>
@@ -210,7 +226,7 @@
                     else
                     {
                         <li class="header_right-course" style="width: 100px;">
-                            <a href="">My Course</a>
+                            <a href="/Course/MyCourse">My Course</a>
                             <div class="header_right-list-course">
                                 <!-- <span>Your Course Is Empty</span>
                                 <br>
@@ -230,7 +246,7 @@
                             </div>
                         </li>
                         <li class="header_right-heart">
-                            <a href=""><i class="fal fa-heart fs-4"></i></a>
+                            <a href="#"><i class="fal fa-heart fs-4"></i></a>
                             <div class="header_right-wishlist">
                                 <!-- <span>Your Wish List Is Empty</span>
                                 <br>
@@ -250,28 +266,42 @@
                                 <div class="wishlist-btn-go"><a>Go To Wishlist</a></div>
                             </div>
                         </li>
+
                         <li class="header_right-cart">
                             <a href=""><i class="fal fa-shopping-cart fs-4"></i></a>
                             <div class="header_right-cart-quantity d-flex justify-content-center align-items-center">
-                                <span>1</span>
+                                <span>@cart.Count<span>
                             </div>
                             <div class="header_right-list-cart">
                                 <!-- <span>Your Cart Is Empty</span>
                                 <br>
                                 <a href="" class="fw-bold" style="color: var(--main-color);">Your Cart Is Empty</a> -->
                                 <ul>
-                                    <li class="cart_item d-flex">
-                                        <img src="https://img-c.udemycdn.com/course/240x135/1362070_b9a1_2.jpg" alt=""
+
+                                    @foreach (var item in cart)
+                                    {
+
+                                        <li class="cart_item d-flex">
+                                            <img src="@item.Image" alt=""
                                          class="cart_item-img">
-                                        <div class="cart_item-des">
-                                            <p class="cart_item-title fw-bold">Learn C++ Programming</p>
-                                            <p class="cart_item-author">FPT</p>
-                                            <p class="cart_item-price fw-bold">$100</p>
-                                        </div>
-                                    </li>
+                                            <div class="cart_item-des">
+                                                <p class="cart_item-title fw-bold">@item.CourseName</p>
+                                                <p class="cart_item-author">@item.Language</p>
+                                                <p class="cart_item-price fw-bold">@item.Price $</p>
+                                            </div>
+                                        </li>
+                                    }
                                 </ul>
-                                <span class="fw-bold text-start fs-4">Total: 100$</span>
-                                <div class="cart-btn"><a>Go To Cart</a></div>
+                                <span class="fw-bold text-start fs-4">Amount: @(Convert.ToDouble(user.Amount).ToString("0.00")) $</span>
+                                @if (gotoCheck == 1)
+                                {
+                                    <div class="cart-btn"><a style="color: #fff">Go To Cart</a></div>
+                                }
+                                else
+                                {
+                                    <div class="cart-btn"><a href="/Cart/ViewCart">Go To Cart</a></div>
+
+                                }
                             </div>
                         </li>
                         <li class="header_right-user-profile">
@@ -294,8 +324,8 @@
                                     <ul class="p-0">
                                         <li style="padding-bottom: 10px"><a href="/Course/MyCourse">My Course</a></li>
                                         <li style="padding-bottom: 10px;" class="d-flex justify-content-between">
-                                            <a href="">My Cart </a><span class="fw-bold text-white"
-                                                                     style="background-color: var(--main-color); border-radius: 50%; width: 20px;text-align: center;">1</span>
+                                            <a href="/Cart/ViewCart">My Cart </a><span class="fw-bold text-white"
+                                                                                   style="background-color: var(--main-color); border-radius: 50%; width: 20px;text-align: center;">@cart.Count</span>
                                         </li>
                                         <li style="padding-bottom: 10px"><a href="/Wishlist">Wishlist</a></li>
                                     </ul>
@@ -307,7 +337,7 @@
                                 </div>
                                 <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
                                     <ul class="p-0">
-                                        <li style="padding-bottom: 10px"><a href="">Public Profile</a></li>
+                                        <li style="padding-bottom: 10px"><a href="/Account/Profile">Public Profile</a></li>
                                         <li style="padding-bottom: 10px"><a href="">Edit Profile</a></li>
                                     </ul>
                                 </div>
@@ -375,11 +405,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
         crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
         crossorigin="anonymous"></script>
-
+<script src="~/js/header.js"></script>
 </html>

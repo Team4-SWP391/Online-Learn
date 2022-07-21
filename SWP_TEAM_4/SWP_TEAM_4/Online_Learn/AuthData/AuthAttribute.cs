@@ -1,5 +1,6 @@
 ﻿using System.Linq;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
@@ -18,11 +19,19 @@ namespace Online_Learn.AuthData {
             {
                 context.Result = new RedirectResult("/Login/Login_Udemy");
             }
-            else
-            {
-                context.HttpContext.Items["MyObject"] = _context.Courses.ToList();
-            }
         }
     }
+    //public class AuthAttribute : AuthorizeAttribute {
+    //    private readonly Online_LearnContext _context = new Online_LearnContext();
+    //    private readonly string[] allowedroles;
+    //    public void CustomAuthorizeAttribute(params string[] roles)
+    //    {
+    //        this.allowedroles = roles;
+    //    }
+
+    //    public AuthorizeAttribute(string policy)
+    //    {
+
+    //    }
 
 }

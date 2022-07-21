@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,31 +26,36 @@ namespace Online_Learn {
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddSession();
+            services.AddSession(options =>
+                {
+                    options.IdleTimeout = TimeSpan.FromSeconds(10 * 60);
+                });
             services.AddControllersWithViews();
             var connection = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<Online_LearnContext>(options => options.UseSqlServer(connection));
-            //services
-                //.AddAuthentication().AddFacebook(facebookOptions =>
-                //{
-                //    IConfigurationSection facebookAuthNSection = Configuration.GetSection("Authentication:Facebook");
-                //    facebookOptions.AppId = facebookAuthNSection["AppId"];
-                //    facebookOptions.AppSecret = facebookAuthNSection["AppSecret"];
-                //    // Thiết lập đường dẫn Facebook chuyển hướng đến
-                //    facebookOptions.CallbackPath = "/Login/Login_Facebook";
-                //})
-                //.AddGoogle(googleOptions =>
-                //{
-                //    // Đọc thông tin Authentication:Google từ appsettings.json
-                //    IConfigurationSection googleAuthNSection = Configuration.GetSection("Authentication:Google");
 
-                //    // Thiết lập ClientID và ClientSecret để truy cập API google
-                //    googleOptions.ClientId = googleAuthNSection["ClientId"];
-                //    googleOptions.ClientSecret = googleAuthNSection["ClientSecret"];
-                //    // Cấu hình Url callback lại từ Google (không thiết lập thì mặc định là /signin-google)
-                //    googleOptions.CallbackPath = "/Login_Google";
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.AccessDeniedPath = "/Access/AccessDenied";
+                options.LoginPath = "/Login/Login_Udemy";
+                options.Events = new CookieAuthenticationEvents()
+                {
+                    OnSigningIn = async context =>
+                     {
+                         await Task.CompletedTask;
+                     },
+                    OnSignedIn = async context =>
+                    {
+                        await Task.CompletedTask;
+                    },
+                    OnValidatePrincipal = async context =>
+                    {
+                        await Task.CompletedTask;
+                    }
+                };
+            });
 
-                //});
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -68,7 +74,7 @@ namespace Online_Learn {
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseSession();
 
@@ -77,6 +83,10 @@ namespace Online_Learn {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllerRoute(
+                    name: "Course",
+                    pattern: "{controller=Home}/{action=Index}/{id?}/{video?}");
             });
         }
     }

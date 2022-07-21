@@ -52,7 +52,7 @@ namespace Online_Learn.Controllers
                 }
                 var token = new String(stringChars);
 
-                string body = $"<p>You must to change your password in <a href=\"https://localhost:44396/changepassword/changepassword?token={token}\"  target=\"_blank\">here<a><p>";
+                string body = $"<p>You must to change your password in <a href=\"https://localhost:5001/changepassword/changepassword?token={token}\"  target=\"_blank\">here<a><p>";
                 AccountToken account = new AccountToken();
                 DateTime time = DateTime.Now;
                 account.Email = email;

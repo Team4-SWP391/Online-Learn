@@ -11,9 +11,11 @@
     <div class="content_header">
         <h2>Question List</h2>
         <div class="action_excel">
-            <input type="file" name="file" id="file" class="inputfile" accept=".xlsx, .xls, .csv" />
-            <label for="file">Choose a file to import</label>
-            <a href="#">Export Excel</a>
+            <form method="POST" action="Question/ImportExcel" enctype="multipart/form-data">
+                <input type="file" onchange="form.submit()" name="fileUpload" id="file" class="inputfile" accept=".xlsx, .xls, .csv" />
+                <label for="file">Choose a file to import</label>
+            </form>
+            <a href="Question/ExportExcel">Export Excel</a>
         </div>
     </div>
     <div class="slider" data-total="@Model.questionsSlider.Count">
@@ -45,6 +47,7 @@
     <div class="question">
         <h3>All Question</h3>
         <div class="question_list">
+
             @foreach (var question in Model.questions)
             {
                 <div class="question_list-item">
@@ -64,7 +67,7 @@
                                 1:<textarea class="questionInfo" style="width: 100%; margin-left: 5px;"
                                         rows="2">@question.Op1</textarea>
                             </div>
-                            <span>2:@question.Op2</span>
+                            <span>2: @question.Op2</span>
                             <div class="inputHidden">
                                 2:<textarea class="questionInfo" style="width: 100%; margin-left: 5px;"
                                         rows="2">@question.Op2</textarea>

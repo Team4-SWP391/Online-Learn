@@ -1,0 +1,153 @@
+﻿@{
+    ViewData["Title"] = "UserList";
+    Layout = "~/Views/Shared/_Layout_No_Footer.cshtml";
+    
+}
+<style>
+.sidebar-item__link.active {
+    color: #a435f0;
+}
+</style>
+
+<link rel="stylesheet" href="~/css/user-list.css">
+<div class="sidebar">
+        <div class="sidebar-logo">
+            <a href="/Account/UserList" class="sidebar-link"><img src="~/css/logo-udemy-inverted.svg" alt="" width="120"
+                    height="50"></a>
+        </div>
+        <div class="sidebar-category">
+            <ul class="sidebar-list">
+                <li class="sidebar-item"><a href="/Account/UserList/2" class="sidebar-item__link @(ViewBag.roleid == 2 ? "active":"")"><i class="fad fa-book-alt"></i>Staff
+                </li></a>
+                <li class="sidebar-item"><a href="/Account/UserList/3" class="sidebar-item__link @(ViewBag.roleid == 3 ? "active":"")"><i
+                            class="fad fa-book-alt"></i>Marketting / Sale</li></a>
+                <li class="sidebar-item"><a href="/Account/UserList/1" class="sidebar-item__link @(ViewBag.roleid == 1 ? "active":"")"><i
+                            class="fad fa-book-alt"></i>Student</li></a>
+            </ul>
+        </div>
+    </div>
+    <div class="course-contact">
+        <div class="course-contact__header">
+            <span class="course-contact__heading">User Manager</span> @*<a href="/Account/Add" class="course-contact__link"><i
+                    class="fal fa-plus"></i>Add</a>*@
+        </div>
+        <div class="course-contact__account">
+            <div class="course-contact__avt">
+                <a href="#"><img src="https://source.unsplash.com/random" alt=""></a>
+            </div>
+            <div class="course-contact__user">
+                <div class="course-contact__profile">
+                    <div class="course-contact__avt">
+                        <a href="#"><img src="https://source.unsplash.com/random" alt=""></a>
+                    </div>
+                    <div class="course-contact__name">
+                        <span class="course-contact__fn">My full name</span><br>
+                        <span class="course-contact__email">My email</span>
+                    </div>
+                </div>
+                <div class="course-contact__pf">
+                    <span class="course-contact__pr"><a href="#">Public Profile</a></span><br>
+                    <span class="course-contact__pr"><a href="#">Edit Profile</a></span>
+                </div>
+                <div class="course-contact__logout">
+                    <span class="course-contact__lg"><a href="#">Logout</a></span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="user">
+        
+        <div class="user-main__search">
+            <form>
+                <button class="user-main__btn"><i class="fas fa-search"></i></button>
+                <input type="text" class="user-main__input" name="name_search" placeholder="Start typing to search for user..." value="@ViewBag.name_search">
+            </form>
+        </div>
+        <div class="user-main__list">
+            @foreach (var item in ViewBag.list_user)
+           {
+            
+        
+        <div class="user-main__item">
+                <a class="user-main__href" href="/Account/Edit/@item.AccountId">
+                    <div class="user-main__img">
+                        <div class="user-main__avt">
+                            <span>@item.Username</span>
+                        </div>
+                    </div>
+                    <div class="user-main__info">
+                        <div class="user-main__name">
+                            <h4>@item.FulllName</h4>
+                        </div>
+                        <div class="user-main__role">
+                             @switch (@item.RoleId)
+                                {
+                                    case 1:
+                                        <p>Student</p>
+                                        break;
+                                    case 2:
+                                       <p>Staff</p>
+                                        break;
+                                    case 3:
+                                         <p>Marketing/Sale</p>
+                                        break;
+                                }
+                        </div>
+                        <div class="user-main__email">
+                            <p>@item.Email</p>
+                        </div>
+                        <div class="user-main__phone">
+                            <p>@item.Phone</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            }         
+        </div>
+
+        
+
+            @if (ViewBag.maxPage > 1)
+            {
+                @if (ViewBag.checkPage == 1)
+                {
+                    <div class="pagination" style="margin-left:0px;" id="pagger">
+                        <div class="pagination-item">
+                            <a href="/Account/UserList/@ViewBag.roleid?pageIndex=@(ViewBag.prevPage <= 0 ? 1 : ViewBag.prevPage)&&name_search=@ViewBag.name_search" class="pagination-link"><i class="far fa-angle-left"></i></a>
+                        </div>
+                        @for (int i = 1; i <= ViewBag.maxPage; i++)
+                        {
+                            <div class="pagination-item">
+                                <a href="/Account/UserList/@ViewBag.roleid?pageIndex=@i&&name_search=@ViewBag.name_search" class="pagination-link @(i == ViewBag.pageIndex ?"page-active":"")">@i</a>
+                            </div>
+                        }
+                        <div class="pagination-item">
+                            <a href="/Account/UserList/@ViewBag.roleid?pageIndex=@(ViewBag.nextPage > ViewBag.maxPage ? 1 : ViewBag.nextPage)&&name_search=@ViewBag.name_search" class="pagination-link"><i class="fas fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                }
+                else if (ViewBag.checkPage == 2)
+                {
+                    <div class="pagination" id="pagger">
+                        <div class="pagination-item">
+                            <a href="/Account/UserList/@ViewBag.roleid?pageIndex=@(ViewBag.prevPage <= 0 ? 1 : ViewBag.prevPage)" class="pagination-link"><i class="far fa-angle-left"></i></a>
+                        </div>
+                        @for (int i = 1; i <= ViewBag.maxPage; i++)
+                        {
+                            <div class="pagination-item">
+                                <a href="/Account/UserList/@ViewBag.roleid?pageIndex=@i" class="pagination-link @(i == ViewBag.pageIndex ?"page-active":"")">@i</a>
+                            </div>
+                        }
+                        <div class="pagination-item">
+                            <a href="/Account/UserList/@ViewBag.roleid?pageIndex=@(ViewBag.nextPage > ViewBag.maxPage ? 1 : ViewBag.nextPage)" class="pagination-link"><i class="fas fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                }
+            }
+    </div>
+  
+
+
+    
+      <script src="~/js/user-list.js"></script>

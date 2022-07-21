@@ -22,7 +22,7 @@
                 </span>
             </a>
             <div class="login_account">
-                <form action="Login" method="post">
+                <form action="Login?ReturnUrl=@ViewBag.ReturnUrl" method="post">
                     <div class="login_account-form">
                         <i class="fal fa-envelope"></i>
                         <input name="email" type="email" value="@ViewData["email"]" class="form" placeholder="Email">

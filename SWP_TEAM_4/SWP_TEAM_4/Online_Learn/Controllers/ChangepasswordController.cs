@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -16,6 +18,10 @@ using Online_Learn.Models;
 
 
 namespace Online_Learn.Controllers {
+    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "author")]
+    [Authorize(Roles = "student")]
+    [Authorize(Roles = "sale")]
     public class ChangepasswordController : Controller {
         private readonly Online_LearnContext _context;
 
@@ -51,13 +57,17 @@ namespace Online_Learn.Controllers {
                     return Redirect("../Home/Index");
                 }
             }
+            ViewBag.Account = account;
+            ViewBag.Error = "Password is not change";
             return View();
         }
 
         public bool CheckChangingNewPasswordSuccess(string newpass, string email)
         {
-            if (email.Equals("tuan@gmail.com")) return true;
-            else {
+            if (email.Equals("tuan@gmail.com"))
+                return true;
+            else
+            {
                 var account = _context.Accounts.Where(a => a.Email == email).FirstOrDefault();
                 if (account != null)
                 {
@@ -72,7 +82,7 @@ namespace Online_Learn.Controllers {
                 }
                 return false;
             }
-            
+
         }
 
         [HttpPost]

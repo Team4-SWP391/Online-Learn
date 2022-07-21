@@ -1,8 +1,11 @@
-﻿@model Online_Learn.Models.Course
+﻿@model dynamic
 
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    Course course = Model.course;
+    List<Lecture> listLecture = Model.listLecture;
+    List<Lesson> listLesson = Model.listLesson;
 }
 
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
@@ -11,120 +14,164 @@
 <link rel="stylesheet" href="~/css/courseDetail.css">
 
 <div class="course-header">
-		<a asp-action="List" class="course-header__back"><i class="fas fa-angle-left"></i>Back to course</a>
-		<span class="course-header__key">Keyword research for bloggers</span>
-		<span class="course-header__bold">Draft</span>
-		<span class="course-header__tt">Omin of video contenet upload</span>
+    <a href="/Home" class="course-header__back"><i class="fas fa-angle-left"></i>Back to Udemy</a>
 </div>
 <div class="course-title container-fluid">
-        <div class="course-preview" id="test">
-            <div class="course-preview__image">
-                <img src="@ViewData["CourseImage"]" alt="">
-            </div>
-            <div class="course-preview__cart">
-                <h1 class="course-preview__price">@ViewData["CoursePrice"]$</h1>
-                <button class="course-preview__btnatc">Add to cart</button><br>
-                <button class="course-preview__btnbn">Buy now</button><br>
-                <span class="course-preview__gua">30-Day Money-Black Guarantee</span>
-            </div>
-            <div class="course-preview__info">
-                <h5 class="course-preview__heading">This course includes:</h5>
-                <ul class="course-preview__list">
-                    <li class="course-preview__items"><i class="fas fa-laptop"></i> 6.5 hourse on-demand video</li>
-                    <li class="course-preview__items"><i class="fas fa-file"></i> 2 articles</li>
-                    <li class="course-preview__items"><i class="fas fa-folder"></i> 28 downloadable</li>
-                    <li class="course-preview__items"><i class="fas fa-infinity"></i> Full lifetime access</li>
-                    <li class="course-preview__items"><i class="fas fa-mobile-alt"></i> Access on mobile and TV</li>
-                    <li class="course-preview__items"><i class="fas fa-trophy"></i> Certificate of completion</li>
-                </ul>
-            </div>
-            <div class="course-preview__bussiness">
-                <h5 class="course-preview__train">Training 5 or more people?</h5>
-                <p class="course-preview__doc">Get your team access to 15,000+ top Udemy courses anytime, anywhere.</p>
-                <button class="course-preview__try">Try Udemy Business</button>
-            </div>
+    <div class="course-preview" id="test">
+        <div class="course-preview__image">
+            <img src="@course.Image" alt="">
         </div>
-        <div class="course-title__main">
-            <h1 class="course-title__name">@ViewData["CourseName"]</h1>
-            <p class="course-title__content">@ViewData["CourseDepartment"]</p>
-            <span class="course-title__level"> <span class="course-title__seller">Bestseller</span>
-                <span class="course-title__totalstar">4.6</span>
-                <div class="rate">
-                    <i data-star='0' class="fas fa-star stars starActive"></i>
-                    <i data-star='1' class="fas fa-star stars starActive"></i>
-                    <i data-star='2' class="fas fa-star stars starActive"></i>
-                    <i data-star='3' class="fas fa-star stars starActive"></i>
-                    <i data-star='4' class="fas fa-star stars starActive"></i>
-                </div>
-                (11,321 ratings) <span class="course-title__totalstudent">53,275 students</span>
-            </span><br>
-            <span class="course-title__createby">Created by <span class="course-title__author">Mosh
-                    Hamedani</span></span>
-            <br>
-            <span class="course-title__cc"><i class="fas fa-laptop-code"></i> Java, Spring MVC, Spring boot, SQL,
-                MySQL</span>
+        <div class="course-preview__cart">
+            <h1 class="course-preview__price">@course.Price</h1>
+            @if (ViewBag.owner == 0)
+            {
+                <a href="/Course/AddToCart?id=@course.CourseId" class="course-preview__btnatc">Add to cart</a>
+
+                <br>
+            }
+            else
+            {
+                <a class="course-preview__btnatc">Owner</a>
+
+                <br>
+            }
+
+
+            <a href="/Course/AddToWL?id=@course.CourseId" class="course-preview__btnatw">Add to WistList</a><br>
+            <button class="course-preview__btnbn">Buy now</button><br>
+            <span class="course-preview__gua">30-Day Money-Black Guarantee</span>
+        </div>
+        <div class="course-preview__info">
+            <h5 class="course-preview__heading">This course includes:</h5>
+            <ul class="course-preview__list">
+                <li class="course-preview__items"><i class="fas fa-laptop"></i> 6.5 hourse on-demand video</li>
+                <li class="course-preview__items"><i class="fas fa-file"></i> 2 articles</li>
+                <li class="course-preview__items"><i class="fas fa-folder"></i> 28 downloadable</li>
+                <li class="course-preview__items"><i class="fas fa-infinity"></i> Full lifetime access</li>
+                <li class="course-preview__items"><i class="fas fa-mobile-alt"></i> Access on mobile and TV</li>
+                <li class="course-preview__items"><i class="fas fa-trophy"></i> Certificate of completion</li>
+            </ul>
+        </div>
+        <div class="course-preview__bussiness">
+            <h5 class="course-preview__train">Training 5 or more people?</h5>
+            <p class="course-preview__doc">Get your team access to 15,000+ top Udemy courses anytime, anywhere.</p>
+            <button class="course-preview__try">Try Udemy Business</button>
         </div>
     </div>
+    <div class="course-title__main">
+        <h1 class="course-title__name">@course.CourseName</h1>
+        <p class="course-title__content">@course.Department.DepartmentName</p>
+        <span class="course-title__level">
+            <span class="course-title__seller">Bestseller</span>
+            <span class="course-title__totalstar">4.6</span>
+            <div class="rate">
+                <i data-star='0' class="fas fa-star stars starActive"></i>
+                <i data-star='1' class="fas fa-star stars starActive"></i>
+                <i data-star='2' class="fas fa-star stars starActive"></i>
+                <i data-star='3' class="fas fa-star stars starActive"></i>
+                <i data-star='4' class="fas fa-star stars starActive"></i>
+            </div>
+            (11,321 ratings) <span class="course-title__totalstudent">53,275 students</span>
+        </span><br>
+        <span class="course-title__createby">
+            Created by <span class="course-title__author">
+                Mosh
+                Hamedani
+            </span>
+        </span>
+        <br>
+        <span class="course-title__cc">
+            <i class="fas fa-laptop-code"></i> Java, Spring MVC, Spring boot, SQL,
+            MySQL
+        </span>
+    </div>
+</div>
 
-    <div class="course">
-        <div class="course-learn">
-            <h2 class="course-learn__heading">What you'll learn</h2>
-            <div class="course-learn__wrap">
-                <div class="course-learn__will">
-                    <span class="course-learn__skin"><i class="fad fa-check"></i>Have an intermediate skill level of
-                        Python
-                        programming.</span> <br>
-                    <span class="course-learn__skin"><i class="fad fa-check"></i>Use the numpy library to create and
-                        manipulate
-                        arrays.</span><br>
-                    <span class="course-learn__skin"><i class="fad fa-check"></i>Learn how to work with various data
-                        formats
-                        within python, including: JSON,HTML, and MS Excel Worksheets.</span><br>
-                    <span class="course-learn__skin"><i class="fad fa-check"></i>Have a portfolio of various data
-                        analysis
-                        projects.</span><br>
-                </div>
-                <div class="course-learn__will">
-                    <span class="course-learn__skin"><i class="fad fa-check"></i>Use the Jupyter Notebook
-                        Environment.</span><br>
-                    <span class="course-learn__skin"><i class="fad fa-check"></i>Use the pandas module with Python to
-                        create
-                        and
-                        structure data.</span><br>
-                    <span class="course-learn__skin"><i class="fad fa-check"></i>Create data visualizations using
-                        matplotlib
-                        and
-                        the seaborn modules with python.</span><br>
-                    <span class="course-learn__skin"><i class="fad fa-check"></i>Create data visualizations using
-                        matplotlib
-                        and
-                        the seaborn modules with python.</span><br>
-                </div>
+<div class="course">
+    <div class="course-learn">
+        <h2 class="course-learn__heading">What you'll learn</h2>
+        <div class="course-learn__wrap">
+            <div class="course-learn__will">
+                <span class="course-learn__skin">
+                    <i class="fad fa-check"></i>Have an intermediate skill level of
+                    Python
+                    programming.
+                </span> <br>
+                <span class="course-learn__skin">
+                    <i class="fad fa-check"></i>Use the numpy library to create and
+                    manipulate
+                    arrays.
+                </span><br>
+                <span class="course-learn__skin">
+                    <i class="fad fa-check"></i>Learn how to work with various data
+                    formats
+                    within python, including: JSON,HTML, and MS Excel Worksheets.
+                </span><br>
+                <span class="course-learn__skin">
+                    <i class="fad fa-check"></i>Have a portfolio of various data
+                    analysis
+                    projects.
+                </span><br>
+            </div>
+            <div class="course-learn__will">
+                <span class="course-learn__skin">
+                    <i class="fad fa-check"></i>Use the Jupyter Notebook
+                    Environment.
+                </span><br>
+                <span class="course-learn__skin">
+                    <i class="fad fa-check"></i>Use the pandas module with Python to
+                    create
+                    and
+                    structure data.
+                </span><br>
+                <span class="course-learn__skin">
+                    <i class="fad fa-check"></i>Create data visualizations using
+                    matplotlib
+                    and
+                    the seaborn modules with python.
+                </span><br>
+                <span class="course-learn__skin">
+                    <i class="fad fa-check"></i>Create data visualizations using
+                    matplotlib
+                    and
+                    the seaborn modules with python.
+                </span><br>
             </div>
         </div>
-        <div class="course-content">
-            <h3 class="course-content__heading">Course content</h3>
-            <p class="course-content__section">15 sections - 110 lectures</p>
-            <div class="course-content__lesson">
-                <ul class="course-content__list">
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Intro to Course and Python</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Setup</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Learning Numpy</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Intro to Pandas</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Working with Data: Part 1</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Working with Data: Part 2</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Working with Data: Part 3</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Data Vidualization</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Example Project</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>Machine Learning</li>
-                    <li class="course-content__items"><i class="fas fa-angle-down"></i>SQL adnd Python</li>
+    </div>
+    <div class="course-content">
+        <h3 class="course-content__heading">Course content</h3>
+        <div class="course-content__lesson" style="padding-left: 25px;">
+            <div class="course-content__list">
+                @foreach (var lecture in listLecture)
+                {
+                    <div class="course-content__items">
+                        <div class="topic-header">
+                            <span class="arrow">
+                                <i class="fas fa-angle-down"></i>
+                            </span> @lecture.LectureName
+                        </div>
+                        <div class="topic-content">
 
-                </ul>
+                            <ul class="course_section-list" style="padding-left: 0;">
+                                @foreach (var lesson in listLesson)
+                                {
+                                    @if (lesson.LectureId == lecture.LectureId)
+                                    {
+                                        <li class="">
+                                            <a href="/Lesson/VideoPage/@lesson.LessonId">@lesson.LessonName</a>
+                                        </li>
+                                    }
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
         <div class="course-requir">
             <h3 class="course-requir__heading">Description</h3>
-            <p class="course-requir__desc">@ViewData["CourseDesc"]</p>
+            <p class="course-requir__desc">@course.Description</p>
         </div>
         <div class="course-instruc">
             <h3 class="course-instruc__heading">Instructor</h3>
@@ -141,7 +188,8 @@
                     <span class="course-instruc__skill"><i class="fas fa-play-circle"></i>50 Course</span><br>
                 </div>
             </div>
-            <p class="course-instruc__desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium error
+            <p class="course-instruc__desc">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium error
                 neque deleniti maxime ipsam, optio rem provident! Explicabo veritatis incidunt ullam quod dignissimos
                 harum! Consectetur vitae maxime sunt voluptatem quas.
                 Reiciendis maiores tempore ipsam eum commodi modi qui laboriosam ullam in illum at, officiis tenetur,
@@ -163,19 +211,23 @@
                 dicta, sequi nemo laudantium tempore odio magnam ad totam autem ut labore natus tenetur assumenda velit?
                 Culpa eligendi corporis ad accusantium quis saepe nostrum molestias voluptatibus dignissimos error non
                 eaque unde, dolores sunt magnam nemo earum qui ducimus fugit iste. Nostrum corporis eaque nobis porro
-                ullam.s</p>
+                ullam.s
+            </p>
         </div>
         <div class="course-feedback">
             <h3 class="course-feedback__heading">Student feedback</h3>
             <div class="course-feedback__wrap">
-                <div class="course-feedback__rating">
-                    <span class="course-feedback__total">4.7</span> <br>
+                <div class="course-feedback__rating text-center">
+                    <span class="course-feedback__total">@course.Rate</span> <br>
                     <div class="rate">
-                        <i data-star='0' class="fas fa-star stars starActive"></i>
-                        <i data-star='1' class="fas fa-star stars starActive"></i>
-                        <i data-star='2' class="fas fa-star stars starActive"></i>
-                        <i data-star='3' class="fas fa-star stars starActive"></i>
-                        <i data-star='4' class="fas fa-star stars starActive"></i>
+                        @for (int i = 0; i < course.Rate; i++)
+                        {
+                            <i class="fas fa-star stars starActive"></i>
+                        }
+                        @for (int i = 0; i < 5 - course.Rate; i++)
+                        {
+                            <i class="fal fa-star star "></i>
+                        }
                     </div><br>
                     <span class="course-feedback__lable">Course Rating</span>
                 </div>
@@ -241,9 +293,11 @@
                         <i data-star='3' class="fas fa-star stars starActive"></i>
                         <i data-star='4' class="fas fa-star stars starActive"></i>
                     </div><br>
-                    <p class="course-review__com">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
+                    <p class="course-review__com">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
                         expedita facere, officia vel, minus illum autem corrupti blanditiis aliquam id reiciendis odit
-                        asperiores iste nam quia ab, similique liberon </p>
+                        asperiores iste nam quia ab, similique liberon
+                    </p>
                 </div>
             </div>
             <div class="course-review__wrap">
@@ -259,9 +313,11 @@
                         <i data-star='3' class="fas fa-star stars starActive"></i>
                         <i data-star='4' class="fas fa-star stars starActive"></i>
                     </div><br>
-                    <p class="course-review__com">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
+                    <p class="course-review__com">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
                         expedita facere, officia vel, minus illum autem corrupti blanditiis aliquam id reiciendis odit
-                        asperiores iste nam quia ab, similique liberon </p>
+                        asperiores iste nam quia ab, similique liberon
+                    </p>
                 </div>
             </div>
             <div class="course-review__wrap">
@@ -277,9 +333,11 @@
                         <i data-star='3' class="fas fa-star stars starActive"></i>
                         <i data-star='4' class="fas fa-star stars starActive"></i>
                     </div><br>
-                    <p class="course-review__com">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
+                    <p class="course-review__com">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
                         expedita facere, officia vel, minus illum autem corrupti blanditiis aliquam id reiciendis odit
-                        asperiores iste nam quia ab, similique liberon </p>
+                        asperiores iste nam quia ab, similique liberon
+                    </p>
                 </div>
             </div>
             <div class="course-review__wrap">
@@ -295,9 +353,11 @@
                         <i data-star='3' class="fas fa-star stars starActive"></i>
                         <i data-star='4' class="fas fa-star stars starActive"></i>
                     </div><br>
-                    <p class="course-review__com">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
+                    <p class="course-review__com">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
                         expedita facere, officia vel, minus illum autem corrupti blanditiis aliquam id reiciendis odit
-                        asperiores iste nam quia ab, similique liberon </p>
+                        asperiores iste nam quia ab, similique liberon
+                    </p>
                 </div>
             </div>
             <div class="course-review__wrap">
@@ -313,9 +373,11 @@
                         <i data-star='3' class="fas fa-star stars starActive"></i>
                         <i data-star='4' class="fas fa-star stars starActive"></i>
                     </div><br>
-                    <p class="course-review__com">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
+                    <p class="course-review__com">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
                         expedita facere, officia vel, minus illum autem corrupti blanditiis aliquam id reiciendis odit
-                        asperiores iste nam quia ab, similique liberon </p>
+                        asperiores iste nam quia ab, similique liberon
+                    </p>
                 </div>
             </div>
             <div class="course-review__wrap">
@@ -331,9 +393,11 @@
                         <i data-star='3' class="fas fa-star stars starActive"></i>
                         <i data-star='4' class="fas fa-star stars starActive"></i>
                     </div><br>
-                    <p class="course-review__com">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
+                    <p class="course-review__com">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rerum eum
                         expedita facere, officia vel, minus illum autem corrupti blanditiis aliquam id reiciendis odit
-                        asperiores iste nam quia ab, similique liberon </p>
+                        asperiores iste nam quia ab, similique liberon
+                    </p>
                 </div>
             </div>
             <button class="course-review__more">See more reviews</button>
@@ -341,14 +405,14 @@
     </div>
 
 
-@*<div>
+    @*<div>
     <a asp-action="Edit" asp-route-id="@Model.CourseId">Edit</a> |
     <a asp-action="Index">Back to List</a>
-</div>*@
+    </div>*@
 
 
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<script src="~/js/home.js"></script>
-<script src="~/js/courseDetail.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="~/js/home.js"></script>
+    <script src="~/js/courseDetail.js"></script>

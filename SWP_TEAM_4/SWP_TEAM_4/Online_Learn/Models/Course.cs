@@ -8,8 +8,8 @@ namespace Online_Learn.Models {
         public Course()
         {
             AccountCourses = new HashSet<AccountCourse>();
+            AccountLessons = new HashSet<AccountLesson>();
             Feedbacks = new HashSet<Feedback>();
-            Lessons = new HashSet<Lesson>();
             OrderDetails = new HashSet<OrderDetail>();
             Technologies = new HashSet<Technology>();
             WhistLists = new HashSet<WhistList>();
@@ -32,31 +32,14 @@ namespace Online_Learn.Models {
         public virtual Department Department { get; set; }
         public virtual Level Level { get; set; }
         public virtual ICollection<AccountCourse> AccountCourses { get; set; }
+        public virtual ICollection<AccountLesson> AccountLessons { get; set; }
         public virtual ICollection<Feedback> Feedbacks { get; set; }
-        public virtual ICollection<Lesson> Lessons { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
         public virtual ICollection<Technology> Technologies { get; set; }
         public virtual ICollection<WhistList> WhistLists { get; set; }
-
         public double getPriceByDiscount()
         {
-            double price = 0;
-            if (IsSale == null || IsSale == 0)
-            {
-                price = Price;
-            }
-            else
-            {
-                price = Price;
-            }
-            return price;
-        }
-
-        public string getAuthor()
-        {
-            return Account.FulllName;
+            return Price;
         }
     }
-
-
 }

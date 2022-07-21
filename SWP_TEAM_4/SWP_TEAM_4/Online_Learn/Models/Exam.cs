@@ -14,10 +14,10 @@ namespace Online_Learn.Models
 
         public int ExamId { get; set; }
         public string ExamName { get; set; }
-        public int? Quantity { get; set; }
-        public int? Time { get; set; }
-        public DateTime? StartDate { get; set; }
-        public int? LectureId { get; set; }
+        public int Quantity { get; set; }
+        public int Time { get; set; }
+        public DateTime StartDate { get; set; }
+        public int LectureId { get; set; }
 
         public virtual Lecture Lecture { get; set; }
         public virtual ICollection<Result> Results { get; set; }
