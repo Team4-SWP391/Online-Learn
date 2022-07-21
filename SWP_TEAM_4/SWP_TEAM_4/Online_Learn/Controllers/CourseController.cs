@@ -12,8 +12,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using JsonSerializer = System.Text.Json.JsonSerializer;
 using Online_Learn.AuthData;
-using Microsoft.AspNetCore.Authorization;
-using System.Data;
+
 
 namespace Online_Learn.Controllers {
     public class CourseController : Controller {

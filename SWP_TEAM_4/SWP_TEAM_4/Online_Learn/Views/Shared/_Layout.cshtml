@@ -324,31 +324,41 @@
                                     <ul class="p-0">
                                         <li style="padding-bottom: 10px"><a href="/Course/MyCourse">My Course</a></li>
                                         <li style="padding-bottom: 10px;" class="d-flex justify-content-between">
-                                            <a href="/Cart/ViewCart">My Cart </a><span class="fw-bold text-white"
-                                                                                   style="background-color: var(--main-color); border-radius: 50%; width: 20px;text-align: center;">@cart.Count</span>
-                                        </li>
-                                        <li style="padding-bottom: 10px"><a href="/Wishlist">Wishlist</a></li>
-                                    </ul>
+
+                                            @if (gotoCheck == 1)
+                                            {
+                                                <a>My Cart </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="/Cart/ViewCart">My Cart </a>
+                                            }
+                                            <span class="fw-bold text-white"
+                                                  style="background-color: var(--main-color); border-radius: 50%; width: 20px;text-align: center;">@cart.Count</span>
+                                            </li>
+                                            <li style="padding-bottom: 10px"><a href="/Wishlist">Wishlist</a></li>
+                                        </ul>
+                                    </div>
+                                    <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
+                                        <ul class="p-0">
+                                            <li style="padding-bottom: 10px"><a href="/Blog/MyBlog">My Blog</a></li>
+                                        </ul>
+                                    </div>
+                                    <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
+                                        <ul class="p-0">
+                                            <li style="padding-bottom: 10px"><a href="/Account/Profile">Public Profile</a></li>
+                                            <li style="padding-bottom: 10px"><a href="">Edit Profile</a></li>
+                                        </ul>
+                                    </div>
+                                    <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
+                                        <ul class="p-0">
+                                            <li style="padding-bottom: 10px"><a href="/Logout">Log Out</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
-                                    <ul class="p-0">
-                                        <li style="padding-bottom: 10px"><a href="/Blog/MyBlog">My Blog</a></li>
-                                    </ul>
-                                </div>
-                                <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
-                                    <ul class="p-0">
-                                        <li style="padding-bottom: 10px"><a href="/Account/Profile">Public Profile</a></li>
-                                        <li style="padding-bottom: 10px"><a href="">Edit Profile</a></li>
-                                    </ul>
-                                </div>
-                                <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
-                                    <ul class="p-0">
-                                        <li style="padding-bottom: 10px"><a href="/Logout">Log Out</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </li>
-                    }
+                            </li>
+                        }
+
                 </ul>
             </div>
         </div>
