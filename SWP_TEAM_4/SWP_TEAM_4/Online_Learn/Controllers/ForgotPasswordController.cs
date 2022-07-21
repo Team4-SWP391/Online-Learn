@@ -38,7 +38,7 @@ namespace Online_Learn.Controllers
                 {
                     Mail = "Tuannvhe151098@fpt.edu.vn",
                     DisplayName = "OnlineLearning",
-                    Password = "tuanHe151098",
+                    Password = "tuan@He151098",
                     Host = "smtp.gmail.com",
                     Port = 587
                 });
