@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 using Newtonsoft.Json;
 
+using Online_Learn.AuthData;
 using Online_Learn.Models;
 
 using System;
@@ -13,10 +14,9 @@ using System.Linq;
 using System.Threading.Tasks;
 
 
-namespace Online_Learn.Controllers
-{
-    public class LectureController : Controller
-    {
+namespace Online_Learn.Controllers {
+    [AuthAttribute]
+    public class LectureController : Controller {
         private readonly Online_LearnContext _context;
 
         public LectureController(Online_LearnContext context)
@@ -36,7 +36,7 @@ namespace Online_Learn.Controllers
             ViewBag.lessons = lessons;
             ViewBag.total_lesson = total_lesson;
             return View();
-            
+
         }
         public async Task<IActionResult> DetailLesson(int id)
         {
@@ -44,8 +44,8 @@ namespace Online_Learn.Controllers
             var lesson = await _context.Lessons.FindAsync(id);
 
             ViewBag.lessonss = lesson;
-       
-         
+
+
             return View();
 
         }
@@ -53,8 +53,8 @@ namespace Online_Learn.Controllers
         public async Task<IActionResult> Detail(Lecture NewLecture)
         {
             var lecture = await _context.Lectures.Where(x => x.LectureId == NewLecture.LectureId).FirstOrDefaultAsync();
-           
-            if(lecture != null)
+
+            if (lecture != null)
             {
                 lecture.LectureName = NewLecture.LectureName;
                 lecture.Description = NewLecture.Description;
@@ -66,10 +66,10 @@ namespace Online_Learn.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var lecture = await _context.Lectures.Where(x => x.LectureId == id).FirstOrDefaultAsync();
-            if(lecture != null)
+            if (lecture != null)
             {
-                  _context.Lectures.Remove(lecture);
-                  _context.SaveChanges();
+                _context.Lectures.Remove(lecture);
+                _context.SaveChanges();
             }
             return Redirect($"../Course/Edit?id={lecture.CourseId}");
         }
@@ -77,7 +77,7 @@ namespace Online_Learn.Controllers
 
         public async Task<IActionResult> addLesson(Lesson NewLesson)
         {
-            
+
             _context.Lessons.Add(NewLesson);
             await _context.SaveChangesAsync();
             return Redirect($"Detail?id={NewLesson.LectureId}");
@@ -86,10 +86,10 @@ namespace Online_Learn.Controllers
         [HttpPost]
         public async Task<IActionResult> DetailLesson(Lesson Newlesson)
         {
-            var lesson= await _context.Lessons.Where(x => x.LessonId == Newlesson.LessonId).FirstOrDefaultAsync();
-           
+            var lesson = await _context.Lessons.Where(x => x.LessonId == Newlesson.LessonId).FirstOrDefaultAsync();
 
-            if (lesson!= null)
+
+            if (lesson != null)
             {
                 lesson.LessonName = Newlesson.LessonName;
                 lesson.Video = Newlesson.Video;
@@ -102,7 +102,7 @@ namespace Online_Learn.Controllers
 
         public async Task<IActionResult> DeleteLesson(int id)
         {
-           
+
             var lesson = await _context.Lessons.Where(x => x.LessonId == id).FirstOrDefaultAsync();
             var lecture = await _context.Lectures.FirstOrDefaultAsync(x => x.LectureId == lesson.LectureId);
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,6 +9,7 @@ using Online_Learn.Models;
 
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -20,6 +22,10 @@ namespace Online_Learn.Controllers {
             context = _context;
         }
         //GET
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
+        [Authorize(Roles = "sale")]
         [HttpGet]
         public async Task<IActionResult> Profile()
         {
@@ -29,7 +35,10 @@ namespace Online_Learn.Controllers {
             return View();
         }
 
-
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
+        [Authorize(Roles = "sale")]
         public int ProfileTest(Account NewAccount)
         {
             Account a = context.Accounts.FirstOrDefault(x => x.AccountId == NewAccount.AccountId);
@@ -50,16 +59,20 @@ namespace Online_Learn.Controllers {
                 a.Desc = a.Desc;
                 //a.Amount = NewAccount.Amount;
             }
-                if(context.SaveChanges() > 0)
-                {
-                    return 1;
-                }
-                else
-                {
-                    return -1;
-                }
+            if (context.SaveChanges() > 0)
+            {
+                return 1;
+            }
+            else
+            {
+                return -1;
+            }
         }
 
+        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "author")]
+        [Authorize(Roles = "student")]
+        [Authorize(Roles = "sale")]
         [HttpPost]
         public async Task<IActionResult> Profile(Account NewAccount)
         {
@@ -86,10 +99,10 @@ namespace Online_Learn.Controllers {
         }
 
 
-
-        public async Task<IActionResult> UserList(int id,string name_search, int pageIndex)
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> UserList(int id, string name_search, int pageIndex)
         {
-            
+
 
             List<Account> list_user = new List<Account>();
             if (pageIndex <= 0 || pageIndex == null)
@@ -101,11 +114,11 @@ namespace Online_Learn.Controllers {
             int totalUser = 0;
             if (name_search != null)
             {
-                if(id == 1)
+                if (id == 1)
                 {
-                    list_user = await context.Accounts.Where(x=> x.RoleId == 1).Where(x => x.FulllName.ToLower().Contains(name_search.ToLower())).
+                    list_user = await context.Accounts.Where(x => x.RoleId == 1).Where(x => x.FulllName.ToLower().Contains(name_search.ToLower())).
                     Skip(((pageIndex - 1) * pageSize)).Take(pageSize).ToListAsync();
-                    totalUser = context.Accounts.Where(r=>r.RoleId == 1).Where(x => x.FulllName.ToLower().Contains(name_search.ToLower())).ToList().Count;
+                    totalUser = context.Accounts.Where(r => r.RoleId == 1).Where(x => x.FulllName.ToLower().Contains(name_search.ToLower())).ToList().Count;
                 }
                 else if (id == 2)
                 {
@@ -126,16 +139,16 @@ namespace Online_Learn.Controllers {
                     totalUser = context.Accounts.Where(x => x.FulllName.ToLower().Contains(name_search.ToLower())).ToList().Count;
                 }
 
-               
-                
+
+
                 checkPage = 1;
             }
             else
             {
-                if(id == 1)
+                if (id == 1)
                 {
-                    list_user = await context.Accounts.Where(r=>r.RoleId == 1).Skip(((pageIndex - 1) * pageSize)).Take(pageSize).ToListAsync();
-                    totalUser = context.Accounts.Where(r=>r.RoleId ==1).ToList().Count;
+                    list_user = await context.Accounts.Where(r => r.RoleId == 1).Skip(((pageIndex - 1) * pageSize)).Take(pageSize).ToListAsync();
+                    totalUser = context.Accounts.Where(r => r.RoleId == 1).ToList().Count;
                 }
                 else if (id == 2)
                 {
@@ -174,7 +187,7 @@ namespace Online_Learn.Controllers {
 
 
 
-
+        [Authorize(Roles = "admin")]
         public IActionResult Add()
         {
             return View();
@@ -195,6 +208,7 @@ namespace Online_Learn.Controllers {
             return View(account);
         }
 
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> Detail(int? id)
         {
             if (id == null)
@@ -208,12 +222,13 @@ namespace Online_Learn.Controllers {
             {
                 return NotFound();
             }
-            
+
             return View(account);
         }
 
 
 
+        [Authorize(Roles = "admin")]
 
         // GET: Account/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -231,18 +246,20 @@ namespace Online_Learn.Controllers {
 
             ViewBag.AccountId = id;
             return View(account);
-           
+
 
 
         }
 
         // POST: Account/Edit/5
 
+        [Authorize(Roles = "admin")]
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("AccountId,Username,Password,FulllName,RoleId,Gender,Dob,Address,Phone,Language,Image,Email,Amount,Desc")] Account account)
         {
-           
+
 
             if (id != account.AccountId)
             {
@@ -270,10 +287,11 @@ namespace Online_Learn.Controllers {
                 return RedirectToAction(nameof(UserList));
             }
 
-           
+
             return View(account);
         }
 
+        [Authorize(Roles = "admin")]
 
         public async Task<IActionResult> Delete(int? id)
         {
@@ -291,8 +309,8 @@ namespace Online_Learn.Controllers {
             {
                 return NotFound();
             }
-          
-           
+
+
             return RedirectToAction(nameof(UserList));
         }
 

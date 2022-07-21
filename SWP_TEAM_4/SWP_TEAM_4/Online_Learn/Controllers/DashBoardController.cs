@@ -1,15 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+
 using Online_Learn.AuthData;
+
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Online_Learn.Controllers
-{
-    [AuthAttribute]
-    public class DashBoardController : Controller
-    {
+namespace Online_Learn.Controllers {
+    [Authorize(Roles = "admin")]
+    [Authorize(Roles = "author")]
+    [Authorize(Roles = "sale")]
+    public class DashBoardController : Controller {
+
         public IActionResult Index()
         {
             return View();
