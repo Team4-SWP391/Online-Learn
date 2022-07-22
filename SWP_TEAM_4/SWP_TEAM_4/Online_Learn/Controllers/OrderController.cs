@@ -51,7 +51,6 @@ namespace Online_Learn.Controllers {
             else
             {
                 ViewBag.end = end;
-
             }
             if (to == null)
             {
