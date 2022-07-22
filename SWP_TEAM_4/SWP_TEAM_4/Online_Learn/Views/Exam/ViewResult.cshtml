@@ -37,7 +37,7 @@
                 <span class="text-center"><span id="quiz_done"></span>/10</span>
             </div>
             <div class="header_right d-flex justify-content-end">
-                <a href="">Cancel</a>
+                <a href="/Home">Cancel</a>
             </div>
         </div>
         <div class="content" style="background-color: #f6f7fb;">
@@ -60,7 +60,7 @@
                     <span>You got <span style="color: @(Result.Score >= 5 ? "green" :"red")">@Result.Score</span> point</span>
                 </div>
                 <div class="retest">
-                    <a href="">new test</a>
+                    <a href="/Course/Learn/@ViewBag.courseId">Return Course</a>
                 </div>
             </div>
         </div>

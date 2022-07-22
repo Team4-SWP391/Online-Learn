@@ -10,9 +10,7 @@ using System.Linq;
 using System.Threading.Tasks;
 
 namespace Online_Learn.Controllers {
-    [Authorize(Roles = "admin")]
-    [Authorize(Roles = "author")]
-    [Authorize(Roles = "sale")]
+
     public class DashBoardController : Controller {
 
         public IActionResult Index()

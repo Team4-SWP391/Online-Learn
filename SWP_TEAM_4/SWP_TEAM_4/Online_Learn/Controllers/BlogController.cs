@@ -146,9 +146,6 @@ namespace Online_Learn.Controllers {
         }
 
         [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
-        [Authorize(Roles = "student")]
-        [Authorize(Roles = "sale")]
         // GET: Blog/Create
         public IActionResult Create()
         {
