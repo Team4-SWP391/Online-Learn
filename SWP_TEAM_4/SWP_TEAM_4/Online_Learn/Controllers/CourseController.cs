@@ -207,10 +207,10 @@ namespace Online_Learn.Controllers {
             return View();
         }
 
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
-        [Authorize(Roles = "student")]
-        [Authorize(Roles = "sale")]
+        //[Authorize(Roles = "admin")]
+        //[Authorize(Roles = "author")]
+        //[Authorize(Roles = "student")]
+        //[Authorize(Roles = "sale")]
         // GET: Courses/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -505,10 +505,10 @@ namespace Online_Learn.Controllers {
             return check;
         }
 
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
-        [Authorize(Roles = "student")]
-        [Authorize(Roles = "sale")]
+        //[Authorize(Roles = "admin")]
+        //[Authorize(Roles = "author")]
+        //[Authorize(Roles = "student")]
+        //[Authorize(Roles = "sale")]
         public IActionResult AddToCart(int id)
         {
             string gh = HttpContext.Session.GetString("cart");
