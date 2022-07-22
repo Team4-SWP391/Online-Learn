@@ -84,7 +84,7 @@ namespace Online_Learn.Controllers {
             {
                 price += item.Price;
             }
-            if (amount > account.Amount)
+            if (amount > account.Amount || account.Amount == null)
             {
                 ViewBag.err = "Customer's account does not have enough money to make a transaction";
                 ViewBag.price = price;
@@ -123,6 +123,7 @@ namespace Online_Learn.Controllers {
             HttpContext.Session.SetString("cart", JsonSerializer.Serialize(cart));
             return Redirect("/Cart/ThankYou");
         }
+
         public async Task<IActionResult> ThankYou()
         {
             return View();
