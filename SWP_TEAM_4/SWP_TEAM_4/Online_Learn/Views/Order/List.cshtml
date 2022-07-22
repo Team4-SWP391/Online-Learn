@@ -9,7 +9,7 @@
 
 <div class="course-contact">
     <div class="course-contact__header">
-        <a href="#"><img src="~/css/Udemy_logo.svg" alt="" width="91" height="34" /></a>
+        <a href="/DashBoard/Index"><img src="~/css/Udemy_logo.svg" alt="" width="91" height="34" /></a>
         <span class="course-contact__heading">Order Manager</span>
     </div>
     <div class="course-contact__account">
@@ -27,11 +27,11 @@
                 </div>
             </div>
             <div class="course-contact__pf">
-                <span class="course-contact__pr"><a href="#">Public Profile</a></span><br>
-                <span class="course-contact__pr"><a href="#">Edit Profile</a></span>
+                <span class="course-contact__pr"><a href="/Account/Profile">Public Profile</a></span><br>
+                <span class="course-contact__pr"><a href="/Account/Profile">Edit Profile</a></span>
             </div>
             <div class="course-contact__logout">
-                <span class="course-contact__lg"><a href="#">Logout</a></span>
+                <span class="course-contact__lg"><a href="/Logout">Logout</a></span>
             </div>
         </div>
     </div>
@@ -43,24 +43,25 @@
         <div class="order-filter">
             <h2 class="order-heading">Order Filter</h2>
             <div class="order-filter__form">
-                <form action="/Order/List" method="POST">
+                <form action="/Order/List" method="get">
                     <div class="order-filter__formgr">
                         <label for="" class="order-filter__lable">Name Customer</label> <br>
-                        <input type="text" name="name" class="order-filter__input">
+                        <input type="text" name="pageIndex" value="1" class="order-filter__input" hidden>
+                        <input type="text" name="name" value="@ViewBag.name" class="order-filter__input">
                     </div>
                     <div class="order-filter__formgr">
                         <label for="" class="order-filter__lable">Start Date</label><br>
-                        <input type="date" name="start" class="order-filter__input">
+                        <input type="date" name="start" value="@(Convert.ToDateTime(ViewBag.start).ToString("yyyy-MM-dd"))"class="order-filter__input">
                     </div>
                     <div class="order-filter__formgr">
                         <label for="" class="order-filter__lable">End Date</label><br>
-                        <input type="date" name="end" class="order-filter__input">
+                        <input type="date" name="end" value="@(Convert.ToDateTime(ViewBag.end).ToString("yyyy-MM-dd"))" class="order-filter__input">
                     </div>
                     <div class="order-filter__formgr">
                         <label for="" class="order-filter__lable">Price</label><br>
-                        <input type="number" min="0" style="width: 75px;" name="to" class="order-filter__input">
+                        <input type="number" min="0" style="width: 75px;" value="@ViewBag.to" name="to" class="order-filter__input">
                         <span class="order-filter__to">to</span>
-                        <input type="number" min="0" style="width: 75px;" name="from" class="order-filter__input">
+                        <input type="number" min="0" style="width: 75px;" value="@ViewBag.from" name="from" class="order-filter__input">
                     </div>
                     <div class="order-filter__formgr">
                         <button class="order-filter__submit">Filter</button>
@@ -85,36 +86,38 @@
                     <tbody>
                         @foreach (var item in ViewBag.orders)
                         {
-                        <tr>
-                            <td>#@item.OrderId</td>
-                            <td>@item.Account.FulllName</td>
-                            <td>@item.Account.Phone</td>
-                            <td>@item.Account.Email</td>
-                            <td>@item.OrderDate</td>
-                            <td>@item.TotalPrice</td>
-                            <td><a href="/Order/Detail?id=@item.OrderId"><i class="fas fa-file-search"></i></a></td>
-                        </tr>
+                            <tr>
+                                <td>#@item.OrderId</td>
+                                <td>@item.Account.FulllName</td>
+                                <td>@item.Account.Phone</td>
+                                <td>@item.Account.Email</td>
+                                <td>@(item.OrderDate.ToString("dd/MM/yyyy"))</td>
+                                <td>@item.TotalPrice $</td>
+                                <td><a href="/Order/Detail?id=@item.OrderId"><i class="fas fa-file-search"></i></a></td>
+                            </tr>
                         }
                     </tbody>
                 </table>
             </div>
-            @if(ViewBag.maxPage <= 1)
+            @if (ViewBag.maxPage > 1)
             {
-            <div class="pagination" id="pagger">
-                <div class="pagination-item">
-                    <a href="Order/List?pageIndex=@ViewBag.prevPage" class="pagination-link"><i class="far fa-angle-left"></i></a>
+                <div class="pagination" id="pagger">
+                    <div class="pagination-item">
+                        <a href="/Order/List?pageIndex=@(ViewBag.prevPage < 1 ? 1 : ViewBag.prevPage)&name=@ViewBag.name&start=@ViewBag.start&end=@ViewBag.end&to=@ViewBag.to&from=@ViewBag.from"
+                           class="pagination-link"><i class="far fa-angle-left"></i></a>
+                    </div>
+                    @for (int i = 1; i <= ViewBag.maxPage; i++)
+                    {
+                        <div class="pagination-item">
+                            <a href="/Order/List?pageIndex=@i&name=@ViewBag.name&start=@ViewBag.start&end=@ViewBag.end&to=@ViewBag.to&from=@ViewBag.from"
+                               class="pagination-link">@i</a>
+                        </div>
+                    }
+                    <div class="pagination-item">
+                        <a href="/Order/List?pageIndex=@(ViewBag.nextPage > ViewBag.maxPage ? 1 : ViewBag.nextPage)&name=@ViewBag.name&start=@ViewBag.start&end=@ViewBag.end&to=@ViewBag.to&from=@ViewBag.from"
+                           class="pagination-link"><i class="fas fa-angle-right"></i></a>
+                    </div>
                 </div>
-                @for (int i = 1; i < ViewBag.maxPage; i++)
-                {
-                <div class="pagination-item">
-                    <a href="Order/List?pageIndex=@i" class="pagination-link">@i</a>
-                </div>
-                }
-                
-                <div class="pagination-item">
-                    <a href="Order/List?pageIndex=@ViewBag.next" class="pagination-link"><i class="fas fa-angle-right"></i></a>
-                </div>
-            </div>
             }
         </div>
     </div>

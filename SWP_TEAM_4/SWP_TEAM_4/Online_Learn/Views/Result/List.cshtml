@@ -8,7 +8,7 @@
 
 <div class="course-contact">
     <div class="course-contact__header">
-        <a href="#Home"><img src="./assets/img/Udemy_logo.svg" alt="" width="91" height="34" /></a>
+        <a href="/DashBoard/Index"><img src="./assets/img/Udemy_logo.svg" alt="" width="91" height="34" /></a>
         <span class="course-contact__heading">Result List</span>
     </div>
     <div class="course-contact__account">
@@ -26,11 +26,11 @@
                 </div>
             </div>
             <div class="course-contact__pf">
-                <span class="course-contact__pr"><a href="#">Public Profile</a></span><br>
-                <span class="course-contact__pr"><a href="#">Edit Profile</a></span>
+                <span class="course-contact__pr"><a href="/Account/Profile">Public Profile</a></span><br>
+                <span class="course-contact__pr"><a href="/Account/Profile">Edit Profile</a></span>
             </div>
             <div class="course-contact__logout">
-                <span class="course-contact__lg"><a href="#">Logout</a></span>
+                <span class="course-contact__lg"><a href="/Logout">Logout</a></span>
             </div>
         </div>
     </div>
@@ -76,9 +76,9 @@
         <div class="order-info">
             <div class="order-action__excel">
                 <form method="POST" action="/Result/Import" enctype="multipart/form-data">
-                    <input type="file" onchange="form.submit()" name="fileUpload" id="file" class="inputfile"
+                    @*<input type="file" onchange="form.submit()" name="fileUpload" id="file" class="inputfile"
                            accept=".xlsx, .xls, .csv" />
-                    <label for="file" class="order-action__label">Choose a file to import</label>
+                    <label for="file" class="order-action__label">Choose a file to import</label>*@
                     <a href="/Result/Export">Export Excel</a>
                 </form>
             </div>
