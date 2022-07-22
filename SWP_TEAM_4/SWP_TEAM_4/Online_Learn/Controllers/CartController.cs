@@ -16,10 +16,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Data;
 
 namespace Online_Learn.Controllers {
-    [Authorize(Roles = "admin")]
-    [Authorize(Roles = "author")]
-    [Authorize(Roles = "student")]
-    [Authorize(Roles = "sale")]
+
     public class CartController : Controller {
         private readonly Online_LearnContext _context;
 

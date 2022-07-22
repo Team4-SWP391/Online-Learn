@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 using Online_Learn.AuthData;
 using Online_Learn.Models;
+
 
 namespace Online_Learn.Controllers {
 
@@ -23,23 +26,25 @@ namespace Online_Learn.Controllers {
         }
 
         // GET: Do Exam
-        [Authorize(Roles = "author")]
-        [Authorize(Roles = "student")]
-        public async Task<IActionResult> Index(int quantity)
+
+        public async Task<IActionResult> Index(int quantity, string time, string examName)
         {
-            List<Question> list = _context.Questions.OrderBy(x => Guid.NewGuid()).Take(10).ToList();
+            var list = _context.Questions.OrderBy(x => Guid.NewGuid()).Take(quantity).ToList();
+            ViewBag.quantity = quantity;
+            ViewBag.time = time;
+            ViewBag.examName = examName;
             return View(list);
         }
 
 
         //Post: Do Exam/ViewResult
 
-        [Authorize(Roles = "author")]
-        [Authorize(Roles = "student")]
 
         [HttpPost]
         public async Task<IActionResult> ViewResult(ListResult[] listRes, string time, int examId, int totalQuestion)
         {
+            var user = JsonSerializer.Deserialize<Account>(HttpContext.Session.GetString("User"));
+
             int result = 0;
             foreach (var item in listRes)
             {
@@ -57,8 +62,10 @@ namespace Online_Learn.Controllers {
                 Score = score,
                 CorrectAnswer = result,
                 Status = score >= 5 ? "Pass" : "Not Pass",
-                Time = Convert.ToInt32(time)
-            });
+                Time = Convert.ToInt32(time),
+                AccountId = user.AccountId
+            })
+            ;
             await _context.SaveChangesAsync();
             int length = _context.Results.Count();
             int id = _context.Results.OrderByDescending(x => x.ResultId).First().ResultId;
@@ -66,21 +73,21 @@ namespace Online_Learn.Controllers {
         }
 
         [HttpGet]
-
-        [Authorize(Roles = "author")]
-        [Authorize(Roles = "student")]
         public IActionResult ViewResult(int id)
         {
+            string courseId = HttpContext.Session.GetString("courseId");
+            HttpContext.Session.Remove("courseId");
             var Result = _context.Results.ToList().FirstOrDefault(x => x.ResultId == id);
             int? totalQuestion = _context.Exams.FirstOrDefault(x => x.ExamId == Result.ExamId).Quantity;
             ViewBag.Result = Result;
             ViewBag.totalQuestion = totalQuestion;
+            ViewBag.courseId = courseId;
             return View();
         }
 
         // GET: Exams
 
-        [Authorize(Roles = "author")]
+
         public async Task<IActionResult> List()
         {
             var online_LearnContext = _context.Exams.Include(e => e.Lecture);

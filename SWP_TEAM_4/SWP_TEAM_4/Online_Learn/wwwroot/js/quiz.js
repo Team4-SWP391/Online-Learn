@@ -51,7 +51,7 @@ viewResult.addEventListener('click', e => {
         alert('Time Out');
     }
     $.ajax({
-        url: 'Exam/ViewResult',
+        url: '/Exam/ViewResult',
         type: 'POST',
         data: { listRes: answersOfUser, time: display.dataset.time - display.textContent.split(':')[0], examId: 1, totalQuestion: questionList.length },
         dataType: 'json',

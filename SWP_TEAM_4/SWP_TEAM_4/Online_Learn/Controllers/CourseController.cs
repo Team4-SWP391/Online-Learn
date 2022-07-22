@@ -23,10 +23,7 @@ namespace Online_Learn.Controllers {
             _context = context;
         }
 
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
-        [Authorize(Roles = "student")]
-        [Authorize(Roles = "sale")]
+
         public async Task<IActionResult> List(string name_search, int pageIndex)
         {
             List<Course> list_course = new List<Course>();
@@ -67,10 +64,6 @@ namespace Online_Learn.Controllers {
             return View();
         }
 
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
-        [Authorize(Roles = "student")]
-        [Authorize(Roles = "sale")]
         public async Task<IActionResult> Category(int department_id, string name_search, int pageIndex)
         {
             List<Course> list_course = new List<Course>();
@@ -117,10 +110,7 @@ namespace Online_Learn.Controllers {
             ViewBag.nextPage = pageIndex + 1;
             return View();
         }
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
-        [Authorize(Roles = "student")]
-        [Authorize(Roles = "sale")]
+
         public List<Course> getAllCourse(string name_search)
         {
             var list_course = _context.Courses.
@@ -129,10 +119,7 @@ namespace Online_Learn.Controllers {
             return list_course;
         }
 
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
-        [Authorize(Roles = "student")]
-        [Authorize(Roles = "sale")]
+
         public List<Course> getAllCourseByDepartment(string name_search, int department)
         {
             var list_course = _context.Courses.
@@ -141,10 +128,7 @@ namespace Online_Learn.Controllers {
             return list_course;
         }
 
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
-        [Authorize(Roles = "student")]
-        [Authorize(Roles = "sale")]
+
         public List<Course> Pagging(int pageIndex, int pageSize)
         {
             int size = pageSize;
@@ -156,10 +140,6 @@ namespace Online_Learn.Controllers {
             return list;
         }
 
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
-        [Authorize(Roles = "student")]
-        [Authorize(Roles = "sale")]
         public async Task<IActionResult> MyCourse(string name_search, int pageIndex)
         {
             Account user = JsonSerializer.Deserialize<Account>(HttpContext.Session.GetString("User"));
@@ -207,10 +187,6 @@ namespace Online_Learn.Controllers {
             return View();
         }
 
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
-        [Authorize(Roles = "student")]
-        [Authorize(Roles = "sale")]
         // GET: Courses/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -255,8 +231,7 @@ namespace Online_Learn.Controllers {
             return View(model);
         }
 
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
+
         // GET: Courses/Create
         public IActionResult Create()
         {
@@ -288,8 +263,6 @@ namespace Online_Learn.Controllers {
             return View(course);
         }
 
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
         // GET: Courses/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -324,8 +297,7 @@ namespace Online_Learn.Controllers {
         // POST: Courses/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
+
         [HttpPost]
         public async Task<IActionResult> Edit(int id, [Bind("CourseId,CourseName,Price,DepartmentId,Image,Rate,Language,AccountId,Description,IsSale,UpdateAt,LevelId")] Course course)
         {
@@ -357,9 +329,6 @@ namespace Online_Learn.Controllers {
         }
 
         //List Question By Course
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
-
         public IActionResult Questions(int? id)
         {
             if (id == null)
@@ -386,8 +355,6 @@ namespace Online_Learn.Controllers {
         }
 
         //Create Question in Course
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
 
         public IActionResult CreateQuestion(string CourseID, Question question)
         {
@@ -397,8 +364,6 @@ namespace Online_Learn.Controllers {
         }
 
         //Delete Question Course
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
 
         public IActionResult DeleteQuestion(int id)
         {
@@ -414,8 +379,7 @@ namespace Online_Learn.Controllers {
         }
 
         //Edit Question Course
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
+
 
         [HttpPost]
         public IActionResult EditQuestion(int id, string quiz, string op1, string op2, string op3, string op4, string solution, int totalQuestion)
@@ -482,8 +446,6 @@ namespace Online_Learn.Controllers {
             return _context.Courses.Any(e => e.CourseId == id);
         }
 
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
         public async Task<IActionResult> addLecture(Lecture NewLecture)
         {
             _context.Lectures.Add(NewLecture);
@@ -505,10 +467,7 @@ namespace Online_Learn.Controllers {
             return check;
         }
 
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
-        [Authorize(Roles = "student")]
-        [Authorize(Roles = "sale")]
+
         public IActionResult AddToCart(int id)
         {
             string gh = HttpContext.Session.GetString("cart");
@@ -554,10 +513,7 @@ namespace Online_Learn.Controllers {
             return check;
         }
 
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
-        [Authorize(Roles = "student")]
-        [Authorize(Roles = "sale")]
+
         public async Task<IActionResult> AddToWL(int id)
         {
             var account_id = JsonSerializer.Deserialize<Account>(HttpContext.Session.GetString("User")).AccountId;
@@ -574,10 +530,6 @@ namespace Online_Learn.Controllers {
 
 
         // GET: Course/VideoPage/5
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
-        [Authorize(Roles = "student")]
-        [Authorize(Roles = "sale")]
         public IActionResult Learn(int id)
         {
             Account user = JsonConvert.DeserializeObject<Account>(HttpContext.Session.GetString("User"));
@@ -586,21 +538,18 @@ namespace Online_Learn.Controllers {
             var listLectureId = listLecture.Select(l => l.LectureId).ToList();
             var listLesson = _context.Lessons.Where(l => listLectureId.Contains((int)l.LectureId)).ToList();
 
-
             Course course = _context.Courses.Include(c => c.Level).FirstOrDefault(c => c.CourseId == id);
             ViewBag.course = course;
             model.listLecture = listLecture;
             model.listLesson = listLesson;
+            HttpContext.Session.SetString("courseId", id.ToString());
             ViewBag.listLessonsOfAccount = _context.AccountLessons.Where(al => al.AccountId == user.AccountId && al.CourseId == id)
                 .Select(al => al.LessonId).ToList();
             ViewBag.listExam = _context.Exams.Where(e => listLectureId.Contains(e.LectureId)).ToList();
             return View("VideoPage", model);
         }
 
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
-        [Authorize(Roles = "student")]
-        [Authorize(Roles = "sale")]
+
         public IActionResult Progress(int lessonId, int accountId, int courseId)
         {
             AccountLesson accountLesson = _context.AccountLessons.FirstOrDefault(x => x.AccountId == accountId && x.LessonId == lessonId && x.CourseId == courseId);

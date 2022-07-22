@@ -36,8 +36,8 @@
                 </div>
             </div>
             <div class="header_center">
-                <span class="text-center">Title of Lesson</span>
-                <span class="text-center"><span id="quiz_done">0</span>/10</span>
+                <span class="text-center">@ViewBag.examName</span>
+                <span class="text-center"><span id="quiz_done">0</span>/@ViewBag.quantity</span>
             </div>
             <div class="header_right d-flex justify-content-end">
                 <a href="">Cancel</a>
@@ -46,7 +46,7 @@
         <div class="content" style="background-color: #f6f7fb;">
             <div class="container question">
                 <h2>Multiple Question</h2>
-                <h2 id="time" data-time="5">05:00</h2>
+                <h2 id="time" data-time="@ViewBag.time">@(Convert.ToInt32(ViewBag.time) <= 9 ? $"0{ViewBag.time}:00": $"{ViewBag.time}:00")</h2>
                 <div class="question_list">
                     @foreach (var question in Model)
                     {

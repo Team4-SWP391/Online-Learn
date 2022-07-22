@@ -41,10 +41,10 @@
                 @foreach (AccountCourse item in ViewBag.MyCourse)
                 {
                     <div class="card card-learning col-3 p-0">
-                        <a href="#" class="card-learning_img" tabindex="-1">
+                        <a href="/Course/Learn/@item.CourseId" class="card-learning_img" tabindex="-1">
                             <div class="card_img">
                                 <img class="img-fluid"
-                              width="100%"
+                             width="100%"
                              src="@item.Course.Image"
                              srcset="@item.Course.Image 1x">
                             </div>

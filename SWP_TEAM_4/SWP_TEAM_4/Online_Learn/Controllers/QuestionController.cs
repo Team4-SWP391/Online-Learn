@@ -112,7 +112,7 @@ namespace Online_Learn.Controllers {
                 question.Op3 = worksheet.Cells[row, 4].Value.ToString();
                 question.Op4 = worksheet.Cells[row, 5].Value.ToString();
                 question.Solution = worksheet.Cells[row, 6].Value.ToString();
-                question.LectureId = 1;
+                question.LectureId = Convert.ToInt32(worksheet.Cells[row, 7].Value);
                 _context.Add(question);
                 _context.SaveChanges();
             }
@@ -122,7 +122,7 @@ namespace Online_Learn.Controllers {
         {
             dynamic questions = (from q in _context.Questions
                                  join l in _context.Lectures on q.LectureId equals l.LectureId
-                                 select new { Quiz = q.Quiz, Op1 = q.Op1, Op2 = q.Op2, Op3 = q.Op3, Op4 = q.Op4, Solution = q.Solution, LectureName = l.LectureName });
+                                 select new { Quiz = q.Quiz, Op1 = q.Op1, Op2 = q.Op2, Op3 = q.Op3, Op4 = q.Op4, Solution = q.Solution, LectureName = l.LectureName, LectureId = q.LectureId });
             WriteExcel(questions);
             var path = @"Questions.xlsx";
             var memory = new MemoryStream();
@@ -144,6 +144,7 @@ namespace Online_Learn.Controllers {
             workSheet.Cells["E1"].Value = "Option 4";
             workSheet.Cells["F1"].Value = "Option 5";
             workSheet.Cells["G1"].Value = "LectureId";
+            workSheet.Cells["H1"].Value = "Lecture Name";
             int row = 2;
             foreach (var question in questions)
             {
@@ -153,7 +154,8 @@ namespace Online_Learn.Controllers {
                 workSheet.Cells["D" + row].Value = question.Op3;
                 workSheet.Cells["E" + row].Value = question.Op4;
                 workSheet.Cells["F" + row].Value = question.Solution;
-                workSheet.Cells["G" + row].Value = question.LectureName;
+                workSheet.Cells["G" + row].Value = question.LectureId;
+                workSheet.Cells["H" + row].Value = question.LectureName;
                 row++;
             }
             package.SaveAs(new FileInfo("Questions.xlsx"));
