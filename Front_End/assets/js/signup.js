@@ -29,7 +29,6 @@ const validateEmail = email => {
 const validatePass = pass => {
     return pass.match(/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/);
 };
-
 const validateName = name => {
     return name.match(/^([a-zA-Z ]){2,30}$/);
 };

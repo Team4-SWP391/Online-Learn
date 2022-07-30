@@ -24,6 +24,7 @@ namespace Online_Learn.Controllers {
         }
 
 
+        [Authorize(Roles = "admin")]
         public async Task<IActionResult> List(string name_search, int pageIndex)
         {
             List<Course> list_course = new List<Course>();
@@ -63,6 +64,7 @@ namespace Online_Learn.Controllers {
             ViewBag.nextPage = pageIndex + 1;
             return View();
         }
+
 
         public async Task<IActionResult> Category(int department_id, string name_search, int pageIndex)
         {
@@ -140,6 +142,7 @@ namespace Online_Learn.Controllers {
             return list;
         }
 
+        [Authorize]
         public async Task<IActionResult> MyCourse(string name_search, int pageIndex)
         {
             Account user = JsonSerializer.Deserialize<Account>(HttpContext.Session.GetString("User"));
@@ -233,6 +236,8 @@ namespace Online_Learn.Controllers {
         }
 
 
+        [Authorize(Roles = "admin, author")]
+
         // GET: Courses/Create
         public IActionResult Create()
         {
@@ -246,8 +251,8 @@ namespace Online_Learn.Controllers {
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
 
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
+        [Authorize(Roles = "admin, author")]
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("CourseId,CourseName,Price,DepartmentId,Image,Rate,Language,AccountId,Description,IsSale,UpdateAt,LevelId")] Course course)
@@ -265,6 +270,7 @@ namespace Online_Learn.Controllers {
         }
 
         // GET: Courses/Edit/5
+        [Authorize(Roles = "admin, author")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -468,7 +474,7 @@ namespace Online_Learn.Controllers {
             return check;
         }
 
-
+        [Authorize]
         public IActionResult AddToCart(int id)
         {
             string gh = HttpContext.Session.GetString("cart");
@@ -514,7 +520,7 @@ namespace Online_Learn.Controllers {
             return check;
         }
 
-
+        [Authorize]
         public async Task<IActionResult> AddToWL(int id)
         {
             var account_id = JsonSerializer.Deserialize<Account>(HttpContext.Session.GetString("User")).AccountId;
@@ -531,23 +537,28 @@ namespace Online_Learn.Controllers {
 
 
         // GET: Course/VideoPage/5
+        [Authorize]
         public IActionResult Learn(int id)
         {
             Account user = JsonConvert.DeserializeObject<Account>(HttpContext.Session.GetString("User"));
-            dynamic model = new System.Dynamic.ExpandoObject();
-            var listLecture = _context.Lectures.Where(l => l.CourseId == id).ToList();
-            var listLectureId = listLecture.Select(l => l.LectureId).ToList();
-            var listLesson = _context.Lessons.Where(l => listLectureId.Contains((int)l.LectureId)).ToList();
+            if (_context.AccountCourses.FirstOrDefault(ac => ac.CourseId == id && ac.AccountId == user.AccountId) != null)
+            {
+                dynamic model = new System.Dynamic.ExpandoObject();
+                var listLecture = _context.Lectures.Where(l => l.CourseId == id).ToList();
+                var listLectureId = listLecture.Select(l => l.LectureId).ToList();
+                var listLesson = _context.Lessons.Where(l => listLectureId.Contains((int)l.LectureId)).ToList();
 
-            Course course = _context.Courses.Include(c => c.Level).FirstOrDefault(c => c.CourseId == id);
-            ViewBag.course = course;
-            model.listLecture = listLecture;
-            model.listLesson = listLesson;
-            HttpContext.Session.SetString("courseId", id.ToString());
-            ViewBag.listLessonsOfAccount = _context.AccountLessons.Where(al => al.AccountId == user.AccountId && al.CourseId == id)
-                .Select(al => al.LessonId).ToList();
-            ViewBag.listExam = _context.Exams.Where(e => listLectureId.Contains(e.LectureId)).ToList();
-            return View("VideoPage", model);
+                Course course = _context.Courses.Include(c => c.Level).FirstOrDefault(c => c.CourseId == id);
+                ViewBag.course = course;
+                model.listLecture = listLecture;
+                model.listLesson = listLesson;
+                HttpContext.Session.SetString("courseId", id.ToString());
+                ViewBag.listLessonsOfAccount = _context.AccountLessons.Where(al => al.AccountId == user.AccountId && al.CourseId == id)
+                    .Select(al => al.LessonId).ToList();
+                ViewBag.listExam = _context.Exams.Where(e => listLectureId.Contains(e.LectureId)).ToList();
+                return View("VideoPage", model);
+            }
+            return Redirect($"/Course/Details/{id}");
         }
 
 

@@ -69,6 +69,7 @@ namespace Online_Learn.Controllers {
         }
 
         // GET: Blog/MyBlog
+        [Authorize]
         public async Task<IActionResult> MyBlog(string title)
         {
             dynamic model = new System.Dynamic.ExpandoObject();
@@ -104,7 +105,6 @@ namespace Online_Learn.Controllers {
             model.listYear = listYear;
             return View(model);
         }
-
         // GET: Blogs/Detail/5  
         public async Task<IActionResult> Detail(int? id)
         {
@@ -135,17 +135,19 @@ namespace Online_Learn.Controllers {
             {
                 return NotFound();
             }
+            var listComment = (from fb in _context.Feedbacks join fba in _context.FeedbackAccounts on fb.FeedbackId equals fba.FeedbackId join a in _context.Accounts on fba.AccountId equals a.AccountId orderby fb.FeedbackId descending where fb.BlogId == id select new Comment { fullName = a.FulllName, comment = fb.Message, createAt = fb.CreateDate }).ToList();
             ViewData["BlogId"] = blog.BlogId;
             ViewData["AccountName"] = blog.Account.FulllName;
             ViewData["AccountImg"] = blog.Account.Image;
             ViewData["user"] = blog.Account.FulllName;
             ViewData["AccountDes"] = blog.Account.Desc;
+            ViewBag.listComment = listComment;
             return View(blog);
 
 
         }
 
-        [Authorize(Roles = "admin")]
+        [Authorize]
         // GET: Blog/Create
         public IActionResult Create()
         {
@@ -172,28 +174,31 @@ namespace Online_Learn.Controllers {
             return View(blog);
         }
 
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
-        [Authorize(Roles = "student")]
-        [Authorize(Roles = "sale")]
+        [Authorize]
         // GET: Blogs/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+
+            Account user = JsonConvert.DeserializeObject<Account>(HttpContext.Session.GetString("User"));
+            int accountId = user.AccountId;
+            if (_context.Blogs.FirstOrDefault(b => b.BlogId == id).AccountId == accountId)
             {
-                return NotFound();
+                if (id == null)
+                {
+                    return NotFound();
+                }
+                var blog = await _context.Blogs.FindAsync(id);
+                if (blog == null)
+                {
+                    return NotFound();
+                }
+
+                ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "Password", blog.AccountId);
+
+                ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", blog.DepartmentId);
+                return View(blog);
             }
-
-            var blog = await _context.Blogs.FindAsync(id);
-            if (blog == null)
-            {
-                return NotFound();
-            }
-
-            ViewData["AccountId"] = new SelectList(_context.Accounts, "AccountId", "Password", blog.AccountId);
-
-            ViewData["DepartmentId"] = new SelectList(_context.Departments, "DepartmentId", "DepartmentName", blog.DepartmentId);
-            return View(blog);
+            return Redirect($"/Blog/Detail/{id}");
         }
 
         // POST: Blogs/Edit/5
@@ -233,28 +238,31 @@ namespace Online_Learn.Controllers {
             return View(blog);
         }
 
-        [Authorize(Roles = "admin")]
-        [Authorize(Roles = "author")]
-        [Authorize(Roles = "student")]
-        [Authorize(Roles = "sale")]
+        [Authorize]
         // GET: Blogs/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            Account user = JsonConvert.DeserializeObject<Account>(HttpContext.Session.GetString("User"));
+            int accountId = user.AccountId;
+            if (_context.Blogs.FirstOrDefault(b => b.BlogId == id).AccountId == accountId)
             {
-                return NotFound();
+                if (id == null)
+                {
+                    return NotFound();
+                }
+
+                var blog = await _context.Blogs.FindAsync(id);
+                _context.Blogs.Remove(blog);
+                await _context.SaveChangesAsync();
+
+
+                if (blog == null)
+                {
+                    return NotFound();
+                }
+                return RedirectToAction(nameof(MyBlog));
             }
-
-            var blog = await _context.Blogs.FindAsync(id);
-            _context.Blogs.Remove(blog);
-            await _context.SaveChangesAsync();
-
-
-            if (blog == null)
-            {
-                return NotFound();
-            }
-            return RedirectToAction(nameof(MyBlog));
+            return Redirect($"/Blog/Detail/{id}");
         }
 
         public IActionResult AddComment(int blogId, int accountId, string comment)
@@ -283,6 +291,11 @@ namespace Online_Learn.Controllers {
             return _context.Blogs.Any(e => e.BlogId == id);
         }
 
+        public class Comment {
+            public string fullName;
+            public string comment;
+            public DateTime? createAt;
+        }
 
     }
 

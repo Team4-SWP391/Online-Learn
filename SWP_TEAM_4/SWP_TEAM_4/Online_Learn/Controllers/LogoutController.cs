@@ -10,6 +10,7 @@ namespace Online_Learn.Controllers {
         {
             HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             HttpContext.Session.Remove("User");
+            HttpContext.Session.Remove("cart");
             HttpContext.Session.Clear();
             return Redirect("Home");
         }

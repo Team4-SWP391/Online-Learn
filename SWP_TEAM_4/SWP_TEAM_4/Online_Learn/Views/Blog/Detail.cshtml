@@ -1,6 +1,7 @@
 ﻿@model Online_Learn.Models.Blog
 @using Microsoft.AspNetCore.Http
 @using Newtonsoft.Json
+@using static Online_Learn.Controllers.BlogController
 @{
     ViewData["Title"] = "Detail";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -204,22 +205,27 @@
             }
             <br>
             <div id="listComment">
-                <div class="bodiii row" style="margin-right: 0px;">
-                    <div class="col-md-1" style="margin-left: 27px;">
-                        <br>
-                        <img class="anh" src="https://kenh14cdn.com/2018/3/4/2846802318924576207879858810573997153717090n-1520142824274618702811.jpg" alt="">
-                    </div>
-                    <div class="col-md-10">
-                        <br>
-                        <div style="font-size: 17px; font-weight: 700; margin-left: -25px;">
-                            <a href="" style="color: black;"> John Doe</a>
-                            <p style="color: rgb(131, 131, 131); margin-left: -1px; font-size: 12px;">July 12, 2021</p>
-                        </div>
-                    </div>
-                    <p style="margin-left: 27px;">If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</p>
-                    <a href="" style="margin-left: 27px; font-size: 17px;">Reply</a><br><br>
-                </div><br>
 
+                @foreach (Comment c in ViewBag.listComment)
+                {
+                    <div class="bodiii row" style="margin-right: 0px;">
+                        <div class="col-md-1" style="margin-left: 27px;">
+                            <br>
+                            <img class="anh" src="https://kenh14cdn.com/2018/3/4/2846802318924576207879858810573997153717090n-1520142824274618702811.jpg" alt="">
+                        </div>
+                        <div class="col-md-10">
+                            <br>
+                            <div style="font-size: 17px; font-weight: 700; margin-left: -25px;">
+                                <a href="" style="color: black;">@c.fullName</a>
+                                <p style="color: rgb(131, 131, 131); margin-left: -1px; font-size: 12px;">@c.createAt</p>
+                            </div>
+                        </div>
+                        <p style="margin-left: 27px;">@c.comment.</p>
+                        <a href="" style="margin-left: 27px; font-size: 17px;">Reply</a><br><br>
+                    </div>
+
+                    <br>
+                }
             </div>
 
         </div>
@@ -329,19 +335,19 @@
 
     function deleteBlog(id) {
         const template_deletelesson = `<div class="delete">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div     class="delete-heading">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div     class="delete-add">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <p>D    o you want to delete this post?</p>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                </di    v>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                <div     class="delete-icon">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i c    lass="fas fa-times" id="delete-close"></i>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                </di    v>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            </di    v>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div     class="delete-footer">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                <a h    ref="/Blog/Delete/${id}" class="delete-acpt">Ok</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                <spa    n class="delete-cancel">Cancel</span>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            </di    v>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                            </di    v>`;
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div     class="delete-heading">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div     class="delete-add">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <p>D    o you want to delete this post?</p>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </di    v>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <div     class="delete-icon">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                <i c    lass="fas fa-times" id="delete-close"></i>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            </di    v>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </di    v>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <div     class="delete-footer">
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <a h    ref="/Blog/Delete/${id}" class="delete-acpt">Ok</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <spa    n class="delete-cancel">Cancel</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </di    v>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        </di    v>`;
         document.body.insertAdjacentHTML('beforeend', template_deletelesson);
         lessondel.setAttribute('disabled', '');
     }

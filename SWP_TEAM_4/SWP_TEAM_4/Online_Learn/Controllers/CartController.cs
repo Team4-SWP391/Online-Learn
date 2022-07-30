@@ -25,6 +25,7 @@ namespace Online_Learn.Controllers {
         {
             _context = context;
         }
+        [Authorize]
         public async Task<IActionResult> ViewCart()
         {
             var cart = JsonSerializer.Deserialize<List<Course>>(HttpContext.Session.GetString("cart"));
@@ -46,6 +47,7 @@ namespace Online_Learn.Controllers {
             return View();
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<IActionResult> CheckOut()
         {
@@ -59,7 +61,6 @@ namespace Online_Learn.Controllers {
             ViewBag.price = price;
             return View();
         }
-
 
         public bool CourseOwner(AccountCourse ac)
         {
@@ -152,6 +153,8 @@ namespace Online_Learn.Controllers {
             }
             return check;
         }
+
+        [Authorize]
         public async Task<IActionResult> BuyNow(int id)
         {
             string gh = HttpContext.Session.GetString("cart");

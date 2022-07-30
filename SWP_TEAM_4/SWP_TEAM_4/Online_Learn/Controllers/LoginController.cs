@@ -33,6 +33,7 @@ using Org.BouncyCastle.Asn1.Crmf;
 namespace Online_Learn.Controllers {
     public class LoginController : Controller {
         private readonly Online_LearnContext _context;
+        private static readonly HttpClient client = new HttpClient();
 
         public LoginController(Online_LearnContext context)
         {
@@ -113,7 +114,7 @@ namespace Online_Learn.Controllers {
             }
             return View("Login");
         }
-        public async Task<GoogleToken> Login_Google(string code)
+        public async Task<IActionResult> Login_Google(string code)
         {
             string clientID = "240096817026-bnoup401nmf0bgig9c6evbpb473r6ou2.apps.googleusercontent.com";
             string clientSecret = "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";
@@ -139,9 +140,14 @@ namespace Online_Learn.Controllers {
                 }
             }
 
-            return token;
+            dynamic responseMessage = await client.GetAsync($"https://www.googleapis.com/oauth2/v2/userinfo?access_token={token.Access_Token}");
+            string emailGoggle = responseMessage.email;
+            if (_context.Accounts.FirstOrDefault(a => a.Email == emailGoggle) == null)
+            {
+                _context.Accounts.Add(new Account() { Email = responseMessage.email, Password = "", Image = responseMessage.picture, RoleId = 1, Username = emailGoggle.Split("@")[0] });
+            }
+            return RedirectToAction("Login", "Login", new { email = emailGoggle });
         }
-
 
         public string Login_Facebook()
         {
@@ -162,6 +168,11 @@ namespace Online_Learn.Controllers {
 
             }
             return byte2String;
+        }
+
+        public class InfoLogin {
+            public string Email { get; set; }
+            public string Pass { get; set; }
         }
 
     }

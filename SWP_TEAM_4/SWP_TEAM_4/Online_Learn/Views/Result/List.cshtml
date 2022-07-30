@@ -77,7 +77,7 @@
             <div class="order-action__excel">
                 <form method="POST" action="/Result/Import" enctype="multipart/form-data">
                     @*<input type="file" onchange="form.submit()" name="fileUpload" id="file" class="inputfile"
-                           accept=".xlsx, .xls, .csv" />
+                    accept=".xlsx, .xls, .csv" />
                     <label for="file" class="order-action__label">Choose a file to import</label>*@
                     <a href="/Result/Export">Export Excel</a>
                 </form>
@@ -99,7 +99,7 @@
                         {
                             <tr>
                                 <td>@item.ResultId</td>
-                                <td>@item.Account.FulllName</td>
+                                <td>@item.Account.Username</td>
                                 <td>@item.Exam.ExamName</td>
                                 <td>@item.Exam.StartDate</td>
                                 <td>@item.Score</td>
@@ -115,18 +115,18 @@
                 <div class="pagination" id="pagger">
                     <div class="pagination-item">
                         <a href="/Result/List?pageIndex=@(ViewBag.prevPage < 1 ? 1 : ViewBag.prevPage)&name=@ViewBag.name&name_exam=@ViewBag.name_exam&start=@ViewBag.start&end=@ViewBag.end&to=@ViewBag.to&from=@ViewBag.from"
-                           class="pagination-link"><i class="far fa-angle-left"></i></a>
+                       class="pagination-link"><i class="far fa-angle-left"></i></a>
                     </div>
                     @for (int i = 1; i <= ViewBag.maxPage; i++)
                     {
                         <div class="pagination-item">
                             <a href="/Result/List?pageIndex=@i&name=@ViewBag.name&name_exam=@ViewBag.name_exam&start=@ViewBag.start&end=@ViewBag.end&to=@ViewBag.to&from=@ViewBag.from"
-                               class="pagination-link">@i</a>
+                       class="pagination-link">@i</a>
                         </div>
                     }
                     <div class="pagination-item">
                         <a href="/Result/List?pageIndex=@(ViewBag.nextPage > ViewBag.maxPage ? 1 : ViewBag.nextPage)&name=@ViewBag.name&name_exam=@ViewBag.name_exam&start=@ViewBag.start&end=@ViewBag.end&to=@ViewBag.to&from=@ViewBag.from"
-                           class="pagination-link"><i class="fas fa-angle-right"></i></a>
+                       class="pagination-link"><i class="fas fa-angle-right"></i></a>
                     </div>
                 </div>
             }

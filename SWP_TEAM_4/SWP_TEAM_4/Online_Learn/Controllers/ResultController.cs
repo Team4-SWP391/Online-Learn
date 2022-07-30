@@ -9,9 +9,10 @@ using System.Threading.Tasks;
 using OfficeOpenXml;
 using Microsoft.AspNetCore.Http;
 using Online_Learn.AuthData;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Online_Learn.Controllers {
-    [AuthAttribute]
+    [Authorize(Roles = "admin")]
     public class ResultController : Controller {
         private readonly Online_LearnContext _context;
 

@@ -219,8 +219,8 @@
                     @if (user == null)
                     {
                         <li class="header_right-log d-flex justify-content-between align-items-center">
-                            <div class="header_right-log-in"><a href="../Login/Login_Udemy">Log In</a></div>
-                            <div class="header_right-log-out"><a href="../signup/register" class="text-white">Sign Up</a></div>
+                            <div class="header_right-log-in"><a href="/Login/Login_Udemy">Log In</a></div>
+                            <div class="header_right-log-out"><a href="/signup/register" class="text-white">Sign Up</a></div>
                         </li>
                     }
                     else
@@ -322,6 +322,10 @@
                                 </div>
                                 <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
                                     <ul class="p-0">
+                                        @if (user.RoleId != 1)
+                                        {
+                                            <li style="padding-bottom: 10px"><a href="/Dashboard">Manage Page</a></li>
+                                        }
                                         <li style="padding-bottom: 10px"><a href="/Course/MyCourse">My Course</a></li>
                                         <li style="padding-bottom: 10px;" class="d-flex justify-content-between">
 
@@ -334,30 +338,30 @@
                                                 <a href="/Cart/ViewCart">My Cart </a>
                                             }
                                             <span class="fw-bold text-white"
-                                                  style="background-color: var(--main-color); border-radius: 50%; width: 20px;text-align: center;">@cart.Count</span>
-                                            </li>
-                                            <li style="padding-bottom: 10px"><a href="/Wishlist">Wishlist</a></li>
-                                        </ul>
-                                    </div>
-                                    <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
-                                        <ul class="p-0">
-                                            <li style="padding-bottom: 10px"><a href="/Blog/MyBlog">My Blog</a></li>
-                                        </ul>
-                                    </div>
-                                    <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
-                                        <ul class="p-0">
-                                            <li style="padding-bottom: 10px"><a href="/Account/Profile">Public Profile</a></li>
-                                            <li style="padding-bottom: 10px"><a href="">Edit Profile</a></li>
-                                        </ul>
-                                    </div>
-                                    <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
-                                        <ul class="p-0">
-                                            <li style="padding-bottom: 10px"><a href="/Logout">Log Out</a></li>
-                                        </ul>
-                                    </div>
+                                              style="background-color: var(--main-color); border-radius: 50%; width: 20px;text-align: center;">@cart.Count</span>
+                                        </li>
+                                        <li style="padding-bottom: 10px"><a href="/Wishlist">Wishlist</a></li>
+                                    </ul>
                                 </div>
-                            </li>
-                        }
+                                <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
+                                    <ul class="p-0">
+                                        <li style="padding-bottom: 10px"><a href="/Blog/MyBlog">My Blog</a></li>
+                                    </ul>
+                                </div>
+                                <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
+                                    <ul class="p-0">
+                                        <li style="padding-bottom: 10px"><a href="/Account/Profile">Public Profile</a></li>
+                                        <li style="padding-bottom: 10px"><a href="">Edit Profile</a></li>
+                                    </ul>
+                                </div>
+                                <div style="border-bottom: 1px solid #d1d7dc; padding-bottom: 10px; padding: 16px;">
+                                    <ul class="p-0">
+                                        <li style="padding-bottom: 10px"><a href="/Logout">Log Out</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                    }
 
                 </ul>
             </div>

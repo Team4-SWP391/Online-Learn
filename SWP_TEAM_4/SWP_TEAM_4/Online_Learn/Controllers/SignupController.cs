@@ -4,15 +4,15 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+
 using Online_Learn.Models;
 
-namespace Online_Learn.Controllers
-{
-    public class SignupController : Controller
-    {
+namespace Online_Learn.Controllers {
+    public class SignupController : Controller {
         private readonly Online_LearnContext _context;
 
         public SignupController(Online_LearnContext context)
@@ -25,7 +25,7 @@ namespace Online_Learn.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Register(AccountSignup accountsignup)
@@ -39,6 +39,7 @@ namespace Online_Learn.Controllers
                     account.Password = GetMD5(accountsignup.Password);
                     account.Username = accountsignup.Username;
                     account.Email = accountsignup.Email;
+                    account.Image = "https://e7.pngegg.com/pngimages/416/62/png-clipart-anonymous-person-login-google-account-computer-icons-user-activity-miscellaneous-computer-thumbnail.png";
                     _context.Accounts.Add(account);
                     _context.SaveChanges();
                     return Redirect("../Login/Login_Udemy");

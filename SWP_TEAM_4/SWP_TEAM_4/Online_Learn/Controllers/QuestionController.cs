@@ -4,7 +4,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 
-
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.CodeAnalysis;
@@ -16,7 +16,7 @@ using Online_Learn.AuthData;
 using Online_Learn.Models;
 
 namespace Online_Learn.Controllers {
-    [AuthAttribute]
+    [Authorize]
     public class QuestionController : Controller {
         private readonly Online_LearnContext _context;
 
